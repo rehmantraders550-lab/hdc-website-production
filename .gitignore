@@ -1,0 +1,37 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+*.key
+*.crt
+
+# Dependencies / build output
+node_modules/
+dist/
+build/
+.cache/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Backups and database exports
+*.sql
+*.sqlite
+*.db
+*.zip
+*.rar
+*.7z
+
+# Large raw media should stay outside GitHub
+raw-assets/
+source-assets/
