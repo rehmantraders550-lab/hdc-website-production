@@ -28,34 +28,42 @@
 }
 
 :root {
-  /* Official HDC brand colours sampled from the team-approved logo artwork. */
+  /* Official HDC web palette sampled from the team-approved logo artwork supplied 2026-09-03. */
   --hdc-black: #000000;
-  --hdc-white: #f4f4f2;
-  --hdc-teal: #4ba3a1;
-  --hdc-aqua: #8bdcd7;
-  --hdc-deep-teal: #245668;
-  --hdc-gold: #d7a15b;
-  --hdc-amber: #b97832;
-  --hdc-copper: #804926;
-  --hdc-brown: #3e2110;
-  --hdc-champagne: #efcd8e;
+  --hdc-charcoal: #171f20;
+  --hdc-white: #f0f1f1;
+  --hdc-blue: #135778;
+  --hdc-teal: #37aaa5;
+  --hdc-aqua: #76d6ce;
+  --hdc-steel: #61888b;
+  --hdc-mist: #b4c5c7;
+  --hdc-gold: #d9a35a;
+  --hdc-amber: #c57d20;
+  --hdc-copper: #824925;
+  --hdc-umber: #491f08;
+  --hdc-champagne: #f0cd8b;
 
-  --ink: #171716;
-  --paper: #f3f0e9;
-  --paper-deep: #e9e3d8;
-  --canvas: #e2dbcf;
-  --coal: #070909;
-  --coal-soft: #111818;
-  --white: #faf8f3;
-  --mist: #b8b5ad;
-  --muted: #6b6a64;
-  --line: rgba(36, 86, 104, .20);
-  --line-light: rgba(139, 220, 215, .24);
+  /* Site neutrals are derived from the official logo family, not an unrelated beige/charcoal system. */
+  --ink: var(--hdc-charcoal);
+  --paper: #f0f0ed;
+  --paper-deep: #f0eee9;
+  --canvas: #f0ece2;
+  --coal: #090c0d;
+  --coal-soft: #0d1112;
+  --white: var(--hdc-white);
+  --mist: var(--hdc-mist);
+  --muted: #384e50;
+  --line: rgba(19, 87, 120, .20);
+  --line-light: rgba(118, 214, 206, .25);
   --accent: var(--hdc-teal);
   --accent-aqua: var(--hdc-aqua);
-  --accent-deep: var(--hdc-deep-teal);
+  --accent-deep: var(--hdc-blue);
+  --accent-steel: var(--hdc-steel);
   --accent-warm: var(--hdc-gold);
+  --accent-amber: var(--hdc-amber);
   --accent-copper: var(--hdc-copper);
+  --accent-umber: var(--hdc-umber);
+  --accent-champagne: var(--hdc-champagne);
   --max: 1440px;
   --gutter: clamp(1.25rem, 4.5vw, 5rem);
   --serif: "HDC Display", Georgia, "Times New Roman", serif;
@@ -84,7 +92,7 @@ button { cursor: pointer; }
 .skip-link { position: fixed; top: 10px; left: 10px; z-index: 120; padding: 10px 14px; background: var(--accent-aqua); color: var(--coal); transform: translateY(-160%); }
 .skip-link:focus { transform: translateY(0); }
 
-.site-header { position: sticky; top: 0; z-index: 90; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 80px; padding: 0 var(--gutter); background: rgba(243, 240, 233, .94); border-bottom: 1px solid rgba(36, 86, 104, .24); backdrop-filter: blur(16px); box-shadow: inset 0 1px 0 rgba(139, 220, 215, .10); }
+.site-header { position: sticky; top: 0; z-index: 90; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 80px; padding: 0 var(--gutter); background: rgba(240, 241, 241, .94); border-bottom: 1px solid rgba(19, 87, 120, .24); backdrop-filter: blur(16px); box-shadow: inset 0 1px 0 rgba(118, 214, 206, .12); }
 .site-header__brand { justify-self: start; display: inline-flex; align-items: center; min-width: 0; text-decoration: none; }
 .brand-logo { display: block; width: clamp(108px, 9vw, 150px); height: auto; aspect-ratio: 1 / 1; object-fit: contain; background: transparent; }
 .footer__logo { display: block; width: min(180px, 58vw); height: auto; margin: 0 0 1.7rem; background: transparent; }
@@ -112,6 +120,8 @@ button { cursor: pointer; }
 .eyebrow { color: var(--muted); }
 .section--dark .eyebrow { color: var(--accent-aqua); }
 .section-index { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: clamp(3rem, 6vw, 6rem); padding-bottom: 1.1rem; border-bottom: 1px solid currentColor; opacity: .72; }
+.section:not(.section--dark):not(.section--deep) .section-index { color: var(--accent-deep); }
+.section--dark .section-index, .section--deep .section-index { color: var(--accent-aqua); }
 .display, h1, h2 { margin: 0; font-family: var(--serif); font-weight: 400; letter-spacing: var(--display-tracking); line-height: var(--display-leading); text-wrap: balance; }
 h1 { max-width: 11.5ch; font-size: var(--type-display-xl); }
 h2 { max-width: 11ch; font-size: var(--type-display-lg); }
@@ -175,7 +185,7 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
 .application-card figcaption { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0 1.8rem; font-size: .88rem; }
 .application-card figcaption span { color: var(--muted); }
 .specimen-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: .85rem; }
-.specimen-grid__copy { display: flex; min-height: 660px; flex-direction: column; justify-content: end; padding: clamp(1.5rem, 4vw, 4rem); background: var(--paper-deep); }
+.specimen-grid__copy { display: flex; min-height: 660px; flex-direction: column; justify-content: end; padding: clamp(1.5rem, 4vw, 4rem); border-top: 2px solid var(--accent-warm); background: var(--paper-deep); }
 .specimen-grid__visuals { display: grid; grid-template-rows: 1fr 1fr; gap: .85rem; }
 .specimen-grid figure { min-height: 0; margin: 0; overflow: hidden; }
 
@@ -246,7 +256,8 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
 .map-marker { display: grid; min-height: 280px; place-content: center; padding: 2rem; background: var(--coal); color: var(--white); text-align: center; }
 .map-marker p { max-width: 25rem; color: var(--mist); line-height: 1.5; }
 
-.site-footer { background: var(--coal); color: var(--white); }
+.site-footer { position: relative; background: var(--coal); color: var(--white); }
+.site-footer::before { position: absolute; inset: 0 0 auto; height: 2px; background: linear-gradient(90deg, var(--accent-deep), var(--accent), var(--accent-warm), var(--accent-copper)); content: ""; opacity: .9; }
 .footer__top { display: grid; grid-template-columns: 1.35fr .65fr .65fr; gap: 2rem; padding: clamp(3rem, 6vw, 6rem) var(--gutter); }
 .footer__statement { max-width: 9ch; font-family: var(--serif); font-size: clamp(2.6rem, 5vw, 5.5rem); letter-spacing: -.065em; line-height: .9; }
 .footer__block { font-size: .9rem; line-height: 1.6; }
