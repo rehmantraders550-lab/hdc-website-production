@@ -51,11 +51,11 @@
   const setFlipState = (card, open) => {
     const trigger = card.querySelector('.tech-flip-card__front');
     const back = card.querySelector('.tech-flip-card__back');
-    const link = back ? back.querySelector('a') : null;
+    const controls = back ? back.querySelectorAll('a, button') : [];
     card.classList.toggle('is-flipped', open);
     if (trigger) trigger.setAttribute('aria-expanded', String(open));
     if (back) back.setAttribute('aria-hidden', String(!open));
-    if (link) link.tabIndex = open ? 0 : -1;
+    controls.forEach(control => { control.tabIndex = open ? 0 : -1; });
   };
   flipCards.forEach(card => {
     const trigger = card.querySelector('.tech-flip-card__front');
@@ -63,6 +63,11 @@
     trigger.addEventListener('click', () => {
       const open = !card.classList.contains('is-flipped');
       flipCards.forEach(other => setFlipState(other, other === card && open));
+    });
+    const close = card.querySelector('.tech-flip-card__close');
+    if (close) close.addEventListener('click', () => {
+      setFlipState(card, false);
+      trigger.focus();
     });
     card.addEventListener('keydown', event => {
       if (event.key === 'Escape' && card.classList.contains('is-flipped')) {
