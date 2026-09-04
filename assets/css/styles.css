@@ -322,3 +322,18 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
   .tech-flip-card.is-flipped .tech-flip-card__front { display: none; }
   .tech-flip-card.is-flipped .tech-flip-card__back { display: flex; }
 }
+
+
+/* Existing-section refinements: caption, specimen evidence and reserved-work cadence */
+.lab-grid__figure { display: flex; flex-direction: column; background: var(--coal); }
+.lab-grid__figure > img { flex: 1 1 auto; min-height: 0; }
+.lab-grid__caption { position: static; display: grid; grid-template-columns: 1fr auto; padding: .9rem 1.1rem; background: var(--coal); }
+.specimen-grid__visuals { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.specimen-grid figure { position: relative; background: var(--canvas); }
+.specimen-grid figcaption { position: absolute; right: .8rem; bottom: .7rem; left: .8rem; color: var(--white); font-family: var(--mono); font-size: .6rem; letter-spacing: .09em; text-shadow: 0 1px 10px rgba(0,0,0,.55); text-transform: uppercase; }
+.section.reserved { padding-block: clamp(4.5rem, 7vw, 7rem); }
+@media (max-width: 900px) {
+  .lab-grid__caption { grid-template-columns: 1fr; }
+  .specimen-grid__visuals { min-height: 0; }
+  .specimen-grid figure { aspect-ratio: 1 / 1; }
+}
