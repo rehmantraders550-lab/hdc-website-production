@@ -5,7 +5,6 @@
   const navItems = [
     ['services.html', 'Services', 'services'],
     ['applications.html', 'Applications', 'applications'],
-    ['selected-work.html', 'Selected work', 'work'],
     ['about.html', 'About HDC', 'about']
   ];
   const nav = navItems.map(([href, label, key]) => `<a href="${href}"${page === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
@@ -48,6 +47,31 @@
     }), { threshold: .12 });
     revealItems.forEach(item => observer.observe(item));
   } else revealItems.forEach(item => item.classList.add('is-visible'));
+  const flipCards = document.querySelectorAll('[data-flip-card]');
+  const setFlipState = (card, open) => {
+    const trigger = card.querySelector('.tech-flip-card__front');
+    const back = card.querySelector('.tech-flip-card__back');
+    const link = back ? back.querySelector('a') : null;
+    card.classList.toggle('is-flipped', open);
+    if (trigger) trigger.setAttribute('aria-expanded', String(open));
+    if (back) back.setAttribute('aria-hidden', String(!open));
+    if (link) link.tabIndex = open ? 0 : -1;
+  };
+  flipCards.forEach(card => {
+    const trigger = card.querySelector('.tech-flip-card__front');
+    if (!trigger) return;
+    trigger.addEventListener('click', () => {
+      const open = !card.classList.contains('is-flipped');
+      flipCards.forEach(other => setFlipState(other, other === card && open));
+    });
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && card.classList.contains('is-flipped')) {
+        setFlipState(card, false);
+        trigger.focus();
+      }
+    });
+    setFlipState(card, false);
+  });
   const form = document.querySelector('[data-quote-form]');
   if (form) form.addEventListener('submit', event => {
     event.preventDefault();
