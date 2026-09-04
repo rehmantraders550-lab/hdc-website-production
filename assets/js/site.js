@@ -77,7 +77,7 @@
     event.preventDefault();
     const data = new FormData(form);
     const fields = [['Name', 'name'], ['Company', 'company'], ['Phone / WhatsApp', 'phone'], ['Application', 'application'], ['Quantity', 'quantity'], ['Dimensions', 'dimensions'], ['Material / surface', 'surface'], ['Artwork status', 'artwork'], ['Required date', 'date'], ['Additional notes', 'notes']];
-    const body = fields.map(([label, key]) => `${label}: ${data.get(key) || '—'}`).join('\n');
+    const body = fields.map(([label, key]) => `${label}: ${data.get(key) || 'Not provided'}`).join('\n');
     const status = form.querySelector('[data-form-status]');
     status.textContent = 'Your email app is opening with the project brief filled in.';
     window.location.href = `mailto:REHMANTRADERS550@GMAIL.COM?subject=${encodeURIComponent('HDC Print Project Enquiry')}&body=${encodeURIComponent(body)}`;
