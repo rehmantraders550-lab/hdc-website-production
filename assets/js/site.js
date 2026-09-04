@@ -11,14 +11,14 @@
   if (header) header.innerHTML = `
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="site-header">
-      <a class="site-header__brand" href="index.html" aria-label="Hadi Digital Craft home"><span class="brand-mark">HADI</span><span class="brand-sub">DIGITAL CRAFT</span></a>
+      <a class="site-header__brand" href="index.html" aria-label="Hadi Digital Craft home"><img class="brand-logo" src="assets/images/HDC-OFFICIAL-LOGO.webp" alt="Hadi Digital Craft"></a>
       <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Primary navigation">${nav}<a class="nav-cta" href="request-a-quote.html">Request a quote</a></nav>
     </div>`;
   if (footer) footer.innerHTML = `
     <footer class="site-footer">
       <div class="footer__top">
-        <div><div class="footer__statement">PRINT, ENGINEERED TO BE FELT.</div></div>
+        <div><img class="footer__logo" src="assets/images/HDC-OFFICIAL-LOGO.webp" alt="Hadi Digital Craft"><div class="footer__statement">PRINT, ENGINEERED TO BE FELT.</div></div>
         <div class="footer__block"><b>Explore</b><a href="services.html">Services</a><a href="applications.html">Applications</a><a href="about.html">About HDC</a><a href="faq.html">FAQ</a></div>
         <div class="footer__block"><b>Begin a project</b><a href="tel:+923177267318">0317 7267318</a><a href="mailto:REHMANTRADERS550@GMAIL.COM">REHMANTRADERS550@GMAIL.COM</a><a href="contact.html">Opp. Nayyer Mall, G.T. Road, Gujrat</a></div>
       </div>
