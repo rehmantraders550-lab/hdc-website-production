@@ -294,7 +294,7 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
 /* Production Route Cards: contained within the existing technology register */
 .technology-grid--flip .technology-card { min-height: 410px; padding: 0; border: 0; background: transparent; overflow: visible; perspective: 1100px; }
 .tech-flip-card__inner { position: relative; min-height: 410px; transform-style: preserve-3d; transition: transform .62s cubic-bezier(.2,.72,.18,1); }
-.tech-flip-card.is-flipped .tech-flip-card__inner { transform: rotateY(180deg); }
+.tech-flip-card.is-flipped .tech-flip-card__inner, .tech-flip-card:focus-within .tech-flip-card__inner { transform: rotateY(180deg); }
 .tech-flip-card__front, .tech-flip-card__back { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: clamp(1.5rem, 3vw, 2.4rem); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .tech-flip-card__front { width: 100%; border: 0; background: var(--coal); color: var(--white); cursor: pointer; font: inherit; text-align: left; }
 .tech-flip-card__front:focus-visible, .tech-flip-card__back a:focus-visible { outline: 2px solid var(--accent); outline-offset: -6px; }
