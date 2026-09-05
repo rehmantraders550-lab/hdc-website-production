@@ -28,18 +28,18 @@
 }
 
 :root {
-  --ink: #171716;
-  --paper: #f3f0e9;
-  --paper-deep: #e9e3d8;
-  --canvas: #e2dbcf;
-  --coal: #101111;
-  --coal-soft: #1b1d1d;
-  --white: #faf8f3;
-  --mist: #b8b5ad;
-  --muted: #6b6a64;
+  --ink: #102124;
+  --paper: #F4F6F4;
+  --paper-deep: #E3E9E6;
+  --canvas: #D4DFDB;
+  --coal: #0E2426;
+  --coal-soft: #16383A;
+  --white: #FFFFFF;
+  --mist: #B9C8C3;
+  --muted: #5D6F6D;
   --line: rgba(23, 23, 22, .17);
   --line-light: rgba(250, 248, 243, .22);
-  --accent: #c9ff43;
+  --accent: #C7773E;
   --max: 1440px;
   --gutter: clamp(1.25rem, 4.5vw, 5rem);
   --serif: "HDC Display", Georgia, "Times New Roman", serif;
@@ -112,8 +112,8 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
 .hero__shade { background: linear-gradient(90deg, rgba(8, 9, 9, .96) 0%, rgba(8, 9, 9, .76) 44%, rgba(8, 9, 9, .18) 100%), linear-gradient(0deg, rgba(8, 9, 9, .46), transparent 44%); }
 .hero__inner { position: relative; z-index: 1; display: grid; align-content: end; min-height: min(800px, calc(100svh - 80px)); padding: clamp(3rem, 7vw, 7rem) var(--gutter); }
 .hero__copy { max-width: var(--max); width: 100%; margin: auto; }
-.hero .eyebrow { color: #cccbc5; }
-.hero .lede { color: #dfded7; }
+.hero .eyebrow { color: #C9D7D2; }
+.hero .lede { color: #E9F0ED; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 2.4rem; }
 .hero__spec { position: absolute; right: var(--gutter); bottom: clamp(2rem, 4vw, 4rem); font-family: var(--mono); font-size: .6rem; font-weight: 500; letter-spacing: .13em; line-height: 1.65; text-align: right; }
 .hero__spec::before { display: block; width: 12rem; height: 1px; margin: 0 0 .8rem auto; background: currentColor; content: ""; opacity: .6; }
@@ -142,7 +142,7 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
 .technology-card__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,11,11,.96) 0%, rgba(10,11,11,.25) 100%); }
 .technology-card__body { position: relative; z-index: 1; display: flex; flex: 1; flex-direction: column; justify-content: flex-end; }
 .technology-card__index { margin-bottom: auto; font-family: var(--mono); font-size: .65rem; letter-spacing: .12em; }
-.technology-card p { max-width: 29rem; margin: 1rem 0 0; color: #d1d0ca; line-height: 1.55; }
+.technology-card p { max-width: 29rem; margin: 1rem 0 0; color: #D6E1DC; line-height: 1.55; }
 .technology-card .text-link { width: max-content; margin-top: 1.5rem; }
 
 .lab-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: .85rem; }
