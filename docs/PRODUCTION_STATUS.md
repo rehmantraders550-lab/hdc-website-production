@@ -4,7 +4,9 @@
 - Platform: Hostinger static custom-code deployment via GitHub.
 - Business: Hadi Digital Craft is a printing-services business only; no printer/equipment sales positioning.
 - Visual direction: Engineered Tactility.
-- Core services: DTF, UV DTF, Offset, Large Format & Branding.
+- Core service architecture: Labels & Decals; Products & Object Printing; Packaging & Commercial Print; Large Format & Brand Environments.
+- Production methods remain subordinate: UV DTF where technically appropriate for labels/decals or objects; Offset for packaging/commercial print; Large Format for brand environments.
+- Events & Personalisation is an application category, not a core service.
 - Customer-facing language leads with application and outcome; technical claims remain evidence-bound.
 
 ## Integrated approved assets
@@ -24,7 +26,7 @@ All integrated images are web-optimized WebP derivatives with HDC production nam
 
 ## Deliberately unfilled / pending evidence
 - S01 compliant macro UV-DTF hero video + mobile version.
-- Dedicated DTF textile macro assets.
+- Historical textile/DTF source assets remain retained outside the customer-facing service architecture.
 - Dedicated UV-DTF raised-varnish macro assets.
 - Verified Glass / Metal / Acrylic / Textile / Paper surface set for Surface Lab.
 - Real/approved HDC project photography for Selected Production.
