@@ -9,11 +9,13 @@
 
 Hadi Digital Craft is a specialised commercial printing-services business. HDC does **not** sell printers, machinery, printing equipment, or printing hardware.
 
-Core services:
-- DTF printing
-- UV DTF printing
-- Offset printing
-- Large-format / branding printing
+Core service architecture:
+- Labels & Decals
+- Products & Object Printing
+- Packaging & Commercial Print
+- Large Format & Brand Environments
+
+Production methods remain subordinate to the service architecture: UV DTF may support labels, decals, products or objects where technically appropriate; Offset supports Packaging & Commercial Print; Large Format supports Large Format & Brand Environments. Events & Personalisation is an application category, not a core service.
 
 ## Locked visual doctrine
 

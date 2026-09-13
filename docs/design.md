@@ -10,7 +10,7 @@
 ## 1. Brand Identity
 
 **Company:** HADI DigitalCraft  
-**Positioning:** Industrial art gallery for advanced DTF, UV DTF, offset, and high-volume packaging printing.
+**Positioning:** Application-led commercial printing system for labels and decals, products and objects, packaging and commercial print, and large-format brand environments.
 
 **Logo Treatment**
 - Wordmark: HADI DigitalCraft

@@ -29,7 +29,7 @@
 - **Relume Component:** Header 1 (Full-bleed media + text overlay)
 - **Exact Content:**
   - Headline: Where precision meets artistry.
-  - Supporting text: An industrial art gallery that elevates advanced DTF, UV DTF, and offset printing into precise, gallery-grade industrial solutions. We set new technical and aesthetic standards for professional printing in Pakistan.
+  - Supporting text: An application-led commercial print studio for labels and decals, products and objects, packaging and commercial print, and large-format brand environments. HDC demonstrates physical print evidence without unsupported claims.
   - Brand ticker (bottom edge): Crafted Digitally. Crafted Digitally. Crafted Digitally.
 - **Visual Notes:**
   - Full-bleed looping background video (press cylinders, color separations, spot varnish catching copper light)

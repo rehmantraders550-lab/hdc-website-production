@@ -21,7 +21,7 @@ See:
 - `docs/HDC_CURRENT_PRODUCTION_STATE.md`
 - `docs/HDC_APPROVED_ASSET_MANIFEST.md`
 
-The current homepage architecture contains 12 production-defined sections from Hero through final brand close. Earlier Shopify-specific implementation wording is obsolete; valid Phase 4–5 architecture, visual, interaction, responsive, evidence and QA rules are to be implemented in the Hostinger/custom-code stack.
+The current homepage architecture contains 12 production-defined sections from Hero through final brand close. The customer-facing service architecture is Labels & Decals; Products & Object Printing; Packaging & Commercial Print; and Large Format & Brand Environments. Events & Personalisation is an application category. Earlier Shopify-specific implementation wording is obsolete; valid Phase 4–5 architecture, visual, interaction, responsive, evidence and QA rules are to be implemented in the Hostinger/custom-code stack.
 
 ## Repository structure
 
