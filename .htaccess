@@ -1,0 +1,8 @@
+# HDC legacy service URL migration
+Options -MultiViews
+RewriteEngine On
+
+RewriteRule ^dtf-printing\.html$ /applications.html [R=301,L]
+RewriteRule ^uv-dtf-printing\.html$ /labels-decals.html [R=301,L]
+RewriteRule ^offset-printing\.html$ /packaging-commercial-print.html [R=301,L]
+RewriteRule ^large-format-branding\.html$ /large-format-brand-environments.html [R=301,L]
