@@ -22,6 +22,12 @@ Raw source-generation files must remain outside the production repository. Websi
 | `HDC-IMG-INDUSTRIAL-PRINT-PROCESS-01.webp` | ChatGPT Image Jul 12, 2026, 01_54_02 AM.png | industrial print-process evidence |
 | `HDC-IMG-FLATBED-STONE-CALLIGRAPHY-01.webp` | stone caligraphy.png | stone / hard-surface application |
 
+| `HDC-IMG-HERO-SERVICE-ARCHITECTURE-01.webp` | New generated HDC service-architecture hero | Homepage hero / cross-category visual system |
+| `HDC-IMG-SERVICE-LABELS-DECALS-01.webp` | New generated HDC labels and decals visual | Labels & Decals service |
+| `HDC-IMG-SERVICE-PRODUCTS-OBJECTS-01.webp` | New generated HDC products and objects visual | Products & Object Printing service |
+| `HDC-IMG-SERVICE-PACKAGING-COMMERCIAL-01.webp` | New generated HDC packaging and commercial print visual | Packaging & Commercial Print service |
+| `HDC-IMG-SERVICE-BRAND-ENVIRONMENTS-01.webp` | New generated HDC large-format environment visual | Large Format & Brand Environments service |
+
 ## Approved video resources
 
 | Production filename | Source resource | Intended use |
