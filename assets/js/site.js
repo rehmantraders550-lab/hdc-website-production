@@ -47,30 +47,19 @@
     }), { threshold: .12 });
     revealItems.forEach(item => observer.observe(item));
   } else revealItems.forEach(item => item.classList.add('is-visible'));
-  const flipCards = document.querySelectorAll('[data-flip-card]');
-  const setFlipState = (card, open) => {
-    const trigger = card.querySelector('.tech-flip-card__front');
-    const back = card.querySelector('.tech-flip-card__back');
-    const link = back ? back.querySelector('a') : null;
-    card.classList.toggle('is-flipped', open);
-    if (trigger) trigger.setAttribute('aria-expanded', String(open));
-    if (back) back.setAttribute('aria-hidden', String(!open));
-    if (link) link.tabIndex = open ? 0 : -1;
-  };
-  flipCards.forEach(card => {
-    const trigger = card.querySelector('.tech-flip-card__front');
-    if (!trigger) return;
-    trigger.addEventListener('click', () => {
-      const open = !card.classList.contains('is-flipped');
-      flipCards.forEach(other => setFlipState(other, other === card && open));
+  document.querySelectorAll('[data-fan-menu]').forEach(menu => {
+    const panels = Array.from(menu.querySelectorAll('.fan-segment'));
+    panels.forEach(panel => {
+      const summary = panel.querySelector('summary');
+      const close = () => { panel.open = false; summary.focus(); };
+      summary.addEventListener('click', () => {
+        if (!panel.open) panels.forEach(other => { if (other !== panel) other.open = false; });
+      });
+      panel.querySelector('.fan-close').addEventListener('click', close);
+      panel.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && panel.open) { event.preventDefault(); close(); }
+      });
     });
-    card.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && card.classList.contains('is-flipped')) {
-        setFlipState(card, false);
-        trigger.focus();
-      }
-    });
-    setFlipState(card, false);
   });
   const form = document.querySelector('[data-quote-form]');
   if (form) form.addEventListener('submit', event => {

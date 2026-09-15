@@ -302,38 +302,36 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
 .enquiry-checklist b { color: var(--ink); font-size: inherit; }
 .enquiry-checklist span { color: var(--muted); }
 
-/* Production Route Cards: contained within the existing technology register */
-.technology-grid--flip .technology-card { min-height: 410px; padding: 0; border: 0; background: transparent; overflow: visible; perspective: 1100px; }
-.tech-flip-card__inner { position: relative; min-height: 410px; transform-style: preserve-3d; transition: transform .62s cubic-bezier(.2,.72,.18,1); }
-.tech-flip-card.is-flipped .tech-flip-card__inner, .tech-flip-card:focus-within .tech-flip-card__inner { transform: rotateY(180deg); }
-.tech-flip-card__front, .tech-flip-card__back { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: clamp(1.5rem, 3vw, 2.4rem); backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-.tech-flip-card__front { width: 100%; border: 0; background: var(--coal); color: var(--white); cursor: pointer; font: inherit; text-align: left; }
-.tech-flip-card__front:focus-visible, .tech-flip-card__back a:focus-visible { outline: 2px solid var(--accent); outline-offset: -6px; }
-.tech-flip-card__front .technology-card__media { opacity: .72; }
-.tech-flip-card__front:hover .technology-card__media, .tech-flip-card__front:focus-visible .technology-card__media { opacity: .82; transform: scale(1.03); }
-.tech-flip-card__front-body { position: relative; z-index: 1; display: grid; gap: .8rem; }
-.tech-flip-card__front-body small, .tech-flip-card__back small { font-family: var(--mono); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; }
-.tech-flip-card__front-body h3, .tech-flip-card__back h3 { margin: 0; font-family: var(--serif); font-size: clamp(2rem, 3vw, 3.2rem); font-weight: 400; letter-spacing: -.05em; line-height: .92; }
-.tech-flip-card__front-body > span:last-child { font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
-.tech-flip-card__back { justify-content: flex-end; transform: rotateY(180deg); border: 1px solid var(--line-light); background: var(--paper-deep); color: var(--ink); }
-.tech-flip-card__back p { max-width: 27rem; margin: 1rem 0 1.6rem; color: var(--muted); line-height: 1.55; }
-.tech-flip-card__back .text-link { color: var(--ink); }
-@media (hover: hover) and (min-width: 901px) {
-  .tech-flip-card:hover .tech-flip-card__inner { transform: rotateY(180deg); }
-}
+/* Pleated panels: contained within the Technology Register */
+#technologies .origami-fan-menu { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: start; border-top: 1px solid var(--line-light); border-left: 1px solid var(--line-light); }
+#technologies .fan-segment { min-width: 0; border-right: 1px solid var(--line-light); border-bottom: 1px solid var(--line-light); background: var(--coal); }
+#technologies .fan-summary { display: flex; flex-direction: column; gap: 1rem; padding: 1.25rem; cursor: pointer; list-style: none; }
+#technologies .fan-summary::-webkit-details-marker { display: none; }
+#technologies .fan-index, #technologies .fan-toggle, #technologies .fan-content small, #technologies .fan-close { font-family: var(--mono); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; }
+#technologies .fan-index { color: var(--mist); }
+#technologies .fan-image { display: block; aspect-ratio: 4 / 3; overflow: hidden; }
+#technologies .fan-image img { filter: brightness(1.05) contrast(1.02); }
+#technologies .fan-summary h3 { margin: 0; min-height: 3.2em; font-family: var(--serif); font-size: clamp(1.5rem, 2.1vw, 2.3rem); font-weight: 400; letter-spacing: -.04em; line-height: 1.08; overflow-wrap: break-word; }
+#technologies .fan-toggle { margin-top: auto; padding-top: .85rem; border-top: 1px solid var(--line-light); }
+#technologies .fan-collapse { display: none; }
+#technologies .fan-segment[open] .fan-expand { display: none; }
+#technologies .fan-segment[open] .fan-collapse { display: inline; }
+#technologies .fan-content { padding: 1.5rem 1.25rem; border-top: 1px solid var(--line); background: linear-gradient(180deg, rgba(16,33,36,.06), transparent 1.25rem), var(--paper-deep); color: var(--ink); transform-origin: top; }
+#technologies .fan-segment[open] .fan-content { animation: hdc-pleat-open .3s ease-out; }
+#technologies .fan-content p { margin: 1rem 0 1.5rem; font-size: .95rem; line-height: 1.6; }
+#technologies .fan-content .text-link { display: inline-block; max-width: 100%; font-size: .65rem; }
+#technologies .fan-close { display: block; min-height: 44px; margin-top: 1.5rem; padding: .65rem 0; border: 0; background: transparent; color: var(--ink); text-align: left; }
+#technologies .fan-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+@keyframes hdc-pleat-open { from { opacity: .5; transform: perspective(800px) rotateX(-6deg); } to { opacity: 1; transform: none; } }
 @media (max-width: 900px) {
   .capability-register__item { grid-template-columns: 1fr auto; }
-  .technology-grid--flip .technology-card, .tech-flip-card__inner { min-height: 360px; }
-  .tech-flip-card__front, .tech-flip-card__back { padding: 1.5rem; }
+  #technologies .origami-fan-menu { grid-template-columns: 1fr; }
+  #technologies .fan-summary h3 { min-height: 0; font-size: 2rem; }
+  #technologies .fan-image { aspect-ratio: 16 / 9; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .tech-flip-card__inner { transition: none; transform: none !important; }
-  .tech-flip-card__front, .tech-flip-card__back { transform: none; }
-  .tech-flip-card__back { display: none; }
-  .tech-flip-card.is-flipped .tech-flip-card__front { display: none; }
-  .tech-flip-card.is-flipped .tech-flip-card__back { display: flex; }
+  #technologies .fan-segment[open] .fan-content { animation: none; transform: none; }
 }
-
 
 /* Existing-section refinements: caption, specimen evidence and reserved-work cadence */
 .lab-grid__figure { display: flex; flex-direction: column; background: var(--coal); }
