@@ -1,5 +1,15 @@
 (() => {
   const page = document.body.dataset.page || '';
+  const path = window.location.pathname || '/';
+  const track = (eventName, detail = {}) => {
+    const payload = { event: eventName, page_path: path, ...detail };
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(payload);
+    window.dispatchEvent(new CustomEvent('hdc:track', { detail: payload }));
+  };
+  window.hdcTrack = track;
+  track('page_view');
+
   const header = document.querySelector('[data-site-header]');
   const footer = document.querySelector('[data-site-footer]');
   const navItems = [
@@ -24,6 +34,21 @@
       </div>
       <div class="footer__bottom"><span>Hadi Digital Craft / Gujrat</span><span>Commercial printing services only</span></div>
     </footer>`;
+
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    const label = (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80);
+    if (href.includes('request-a-quote.html')) track('quote_cta_click', { link_label: label });
+    else if (href.startsWith('https://wa.me/')) track('whatsapp_click', { link_label: label });
+    else if (href.startsWith('tel:')) track('phone_click', { link_label: label });
+    else if (href.startsWith('mailto:')) track('email_click', { link_label: label });
+    else if (/^(labels-decals|products-object-printing|packaging-commercial-print|large-format-brand-environments)\.html(?:$|#)/.test(href)) {
+      track('service_link_click', { destination: href.split('#')[0], link_label: label });
+    }
+  });
+
   const toggle = document.querySelector('.menu-button');
   const navEl = document.querySelector('.site-nav');
   if (toggle && navEl) {
@@ -40,6 +65,7 @@
       document.body.classList.remove('nav-open');
     }));
   }
+
   const revealItems = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
@@ -47,6 +73,7 @@
     }), { threshold: .12 });
     revealItems.forEach(item => observer.observe(item));
   } else revealItems.forEach(item => item.classList.add('is-visible'));
+
   document.querySelectorAll('[data-fan-menu]').forEach(menu => {
     const panels = Array.from(menu.querySelectorAll('.fan-segment'));
     panels.forEach(panel => {
@@ -61,14 +88,31 @@
       });
     });
   });
+
   const form = document.querySelector('[data-quote-form]');
-  if (form) form.addEventListener('submit', event => {
-    event.preventDefault();
-    const data = new FormData(form);
+  if (form) {
     const fields = [['Name', 'name'], ['Company', 'company'], ['Phone / WhatsApp', 'phone'], ['Application', 'application'], ['Quantity', 'quantity'], ['Dimensions', 'dimensions'], ['Material / surface', 'surface'], ['Artwork status', 'artwork'], ['Required date', 'date'], ['Additional notes', 'notes']];
-    const body = fields.map(([label, key]) => `${label}: ${data.get(key) || '—'}`).join('\n');
-    const status = form.querySelector('[data-form-status]');
-    status.textContent = 'Your email app is opening with the project brief filled in.';
-    window.location.href = `mailto:REHMANTRADERS550@GMAIL.COM?subject=${encodeURIComponent('HDC Print Project Enquiry')}&body=${encodeURIComponent(body)}`;
-  });
+    const buildBrief = () => {
+      const data = new FormData(form);
+      return fields.map(([label, key]) => `${label}: ${data.get(key) || '—'}`).join('\n');
+    };
+    const whatsapp = form.querySelector('[data-quote-whatsapp]');
+    const updateWhatsApp = () => {
+      if (!whatsapp) return;
+      const message = `HDC Print Project Enquiry\n\n${buildBrief()}`;
+      whatsapp.href = `https://wa.me/923177267318?text=${encodeURIComponent(message)}`;
+    };
+    form.addEventListener('input', updateWhatsApp);
+    form.addEventListener('change', updateWhatsApp);
+    updateWhatsApp();
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const body = buildBrief();
+      const status = form.querySelector('[data-form-status]');
+      if (status) status.textContent = 'Your email app is opening with the project brief filled in. You can use the WhatsApp option instead if email is not configured on this device.';
+      track('quote_email_prepare');
+      window.location.href = `mailto:REHMANTRADERS550@GMAIL.COM?subject=${encodeURIComponent('HDC Print Project Enquiry')}&body=${encodeURIComponent(body)}`;
+    });
+  }
 })();
