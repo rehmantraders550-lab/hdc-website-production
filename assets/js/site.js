@@ -14,6 +14,7 @@
   const footer = document.querySelector('[data-site-footer]');
   const navItems = [
     ['services.html', 'Services', 'services'],
+    ['production.html', 'Production', 'production'],
     ['applications.html', 'Applications', 'applications'],
     ['about.html', 'About HDC', 'about']
   ];
@@ -29,7 +30,7 @@
     <footer class="site-footer">
       <div class="footer__top">
         <div><div class="footer__statement">PRINT, ENGINEERED TO BE FELT.</div></div>
-        <div class="footer__block"><b>Explore</b><a href="services.html">Services</a><a href="applications.html">Applications</a><a href="about.html">About HDC</a><a href="faq.html">FAQ</a></div>
+        <div class="footer__block"><b>Explore</b><a href="services.html">Services</a><a href="production.html">Production</a><a href="applications.html">Applications</a><a href="about.html">About HDC</a><a href="faq.html">FAQ</a></div>
         <div class="footer__block"><b>Begin a project</b><a href="tel:+923177267318">0317 7267318</a><a href="mailto:REHMANTRADERS550@GMAIL.COM">REHMANTRADERS550@GMAIL.COM</a><a href="contact.html">Opp. Nayyer Mall, G.T. Road, Gujrat</a></div>
       </div>
       <div class="footer__bottom"><span>Hadi Digital Craft / Gujrat</span><span>Commercial printing services only</span></div>
