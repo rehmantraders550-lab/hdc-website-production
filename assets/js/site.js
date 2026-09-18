@@ -45,6 +45,7 @@
     else if (href.startsWith('https://wa.me/')) track('whatsapp_click', { link_label: label });
     else if (href.startsWith('tel:')) track('phone_click', { link_label: label });
     else if (href.startsWith('mailto:')) track('email_click', { link_label: label });
+    else if (/^production\.html(?:$|#)/.test(href)) track('production_link_click', { destination: href, link_label: label });
     else if (/^(labels-decals|products-object-printing|packaging-commercial-print|large-format-brand-environments)\.html(?:$|#)/.test(href)) {
       track('service_link_click', { destination: href.split('#')[0], link_label: label });
     }
