@@ -335,6 +335,67 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
   #technologies .fan-segment[open] .fan-content { animation: none; transform: none; }
 }
 
+/* Machinery Register: production-equipment evidence only */
+.machinery-register__intro { margin-bottom: clamp(3rem, 6vw, 6rem); }
+.machinery-register__intro .body { align-self: end; }
+.machinery-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line-light);
+  border-left: 1px solid var(--line-light);
+}
+.machinery-bay {
+  min-width: 0;
+  border-right: 1px solid var(--line-light);
+  border-bottom: 1px solid var(--line-light);
+}
+.machinery-bay__index {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--line-light);
+  color: var(--mist);
+  font-family: var(--mono);
+  font-size: .64rem;
+  letter-spacing: .1em;
+}
+.machinery-bay__media {
+  aspect-ratio: 4 / 3;
+  margin: 0;
+  overflow: hidden;
+  background: var(--coal);
+}
+.machinery-bay__media img {
+  filter: brightness(1.02) contrast(1.03);
+  transition: transform .65s cubic-bezier(.2,.65,.22,1);
+}
+.machinery-bay:hover .machinery-bay__media img { transform: scale(1.025); }
+.machinery-bay__body { padding: clamp(1.25rem, 2.5vw, 2rem); }
+.machinery-bay__body h3 { max-width: 14ch; font-family: var(--serif); font-weight: 400; }
+.machinery-bay__body p { margin: 1rem 0 0; color: var(--mist); font-size: .9rem; line-height: 1.6; }
+.machinery-bay__body .text-link { margin-top: 1.5rem; }
+
+@media (max-width: 900px) {
+  .machinery-register { overflow: hidden; }
+  .machinery-rail {
+    display: flex;
+    width: calc(100% + var(--gutter));
+    margin-right: calc(-1 * var(--gutter));
+    padding-right: var(--gutter);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+  .machinery-bay {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+  }
+  .machinery-bay__media { aspect-ratio: 16 / 10; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .machinery-bay__media img { transition: none; }
+  .machinery-bay:hover .machinery-bay__media img { transform: none; }
+}
+
 /* Existing-section refinements: caption, specimen evidence and reserved-work cadence */
 .lab-grid__figure { display: flex; flex-direction: column; background: var(--coal); }
 .lab-grid__figure > img { flex: 1 1 auto; min-height: 0; }
