@@ -72,3 +72,53 @@
 @keyframes hdcTrustRail { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 @media (max-width:899px){ .trust-rail__intro{grid-template-columns:1fr;align-items:start}.trust-mark{min-width:12.5rem;min-height:6rem} }
 @media (prefers-reduced-motion:reduce){ .trust-marquee__track{animation:none;flex-wrap:wrap;width:100%}.trust-mark[aria-hidden="true"]{display:none}.trust-mark{flex:1 1 50%} }
+
+/* 2026-09-19 surgical live repair: keep the trust insertion compact and preserve the existing page rhythm. */
+.trust-rail__intro {
+  padding-top: .9rem;
+  padding-bottom: .9rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  align-items: center;
+}
+.trust-rail__intro .eyebrow { margin: 0; white-space: nowrap; }
+.trust-rail__intro h2 {
+  margin: 0;
+  max-width: none;
+  font-family: var(--mono);
+  font-size: clamp(.72rem, 1vw, .9rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.trust-rail__intro .body {
+  margin: 0;
+  max-width: 26rem;
+  font-size: .72rem;
+  line-height: 1.4;
+  text-align: right;
+}
+.trust-mark {
+  min-width: clamp(10.5rem, 16vw, 14rem);
+  min-height: 5rem;
+  padding: .8rem 1.5rem;
+}
+.capability-strip a:first-child {
+  font-size: .56rem;
+  letter-spacing: .075em;
+  line-height: 1.35;
+}
+@media (max-width: 899px) {
+  .trust-rail__intro {
+    grid-template-columns: 1fr;
+    gap: .45rem;
+    align-items: start;
+  }
+  .trust-rail__intro h2,
+  .trust-rail__intro .body { text-align: left; }
+  .trust-rail__intro .body { max-width: 34rem; }
+  .trust-mark { min-width: 10.5rem; min-height: 4.6rem; }
+}
