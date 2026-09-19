@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" role="img" aria-labelledby="title desc">
+  <title id="title">HDC industry relationships</title>
+  <desc id="desc">PAK Fans, Royal Fans, Wahid Fans, Al-Ahmad Fans, Rado Fans and Karam Fans.</desc>
+  <rect width="720" height="560" fill="#0E2426"/>
+  <text x="40" y="50" fill="#B9C8C3" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="600" letter-spacing="3">25 YEARS / INDUSTRY RELATIONSHIPS</text>
+  <line x1="40" y1="76" x2="680" y2="76" stroke="#D4DFDB" stroke-opacity=".25"/>
+  <g fill="#D4DFDB" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="2" text-anchor="middle">
+    <text x="200" y="155">PAK FANS</text>
+    <text x="520" y="155">ROYAL FANS</text>
+    <text x="200" y="270">WAHID FANS</text>
+    <text x="520" y="270">AL-AHMAD FANS</text>
+    <text x="200" y="385">RADO FANS</text>
+    <text x="520" y="385">KARAM FANS</text>
+  </g>
+  <g stroke="#D4DFDB" stroke-opacity=".2">
+    <line x1="360" y1="102" x2="360" y2="420"/>
+    <line x1="40" y1="204" x2="680" y2="204"/>
+    <line x1="40" y1="319" x2="680" y2="319"/>
+  </g>
+  <line x1="40" y1="450" x2="680" y2="450" stroke="#D4DFDB" stroke-opacity=".25"/>
+  <text x="680" y="500" fill="#B9C8C3" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="500" letter-spacing="2" text-anchor="end">GUJRAT FAN-MANUFACTURING SECTOR</text>
+</svg>
