@@ -14,6 +14,7 @@
   const footer = document.querySelector('[data-site-footer]');
   const navItems = [
     ['services.html', 'Services', 'services'],
+    ['production.html', 'Production', 'production'],
     ['applications.html', 'Applications', 'applications'],
     ['about.html', 'About HDC', 'about']
   ];
@@ -29,7 +30,7 @@
     <footer class="site-footer">
       <div class="footer__top">
         <div><div class="footer__statement">PRINT, ENGINEERED TO BE FELT.</div></div>
-        <div class="footer__block"><b>Explore</b><a href="services.html">Services</a><a href="applications.html">Applications</a><a href="about.html">About HDC</a><a href="faq.html">FAQ</a></div>
+        <div class="footer__block"><b>Explore</b><a href="services.html">Services</a><a href="production.html">Production</a><a href="applications.html">Applications</a><a href="about.html">About HDC</a><a href="faq.html">FAQ</a></div>
         <div class="footer__block"><b>Begin a project</b><a href="tel:+923177267318">0317 7267318</a><a href="mailto:REHMANTRADERS550@GMAIL.COM">REHMANTRADERS550@GMAIL.COM</a><a href="contact.html">Opp. Nayyer Mall, G.T. Road, Gujrat</a></div>
       </div>
       <div class="footer__bottom"><span>Hadi Digital Craft / Gujrat</span><span>Commercial printing services only</span></div>
@@ -115,4 +116,58 @@
       window.location.href = `mailto:REHMANTRADERS550@GMAIL.COM?subject=${encodeURIComponent('HDC Print Project Enquiry')}&body=${encodeURIComponent(body)}`;
     });
   }
+})();
+
+/* HDC restrained tilt: pointer-only, reduced-motion safe, no layout shift. */
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const cards = Array.from(document.querySelectorAll('[data-tilt-card]'));
+  if (!cards.length) return;
+
+  const resets = [];
+
+  cards.forEach(card => {
+    const plane = card.querySelector('.application-feature__image img');
+    if (!plane) return;
+    const strength = Math.min(1.4, Math.max(0.6, Number(card.dataset.tiltStrength) || 1.1));
+    let frame = 0;
+
+    const isEnabled = () => !reduceMotion.matches && finePointer.matches;
+
+    const reset = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = 0;
+      plane.style.removeProperty('--tilt-x');
+      plane.style.removeProperty('--tilt-y');
+      plane.style.willChange = 'auto';
+    };
+    resets.push(reset);
+
+    card.addEventListener('pointerenter', event => {
+      if (!isEnabled() || (event.pointerType && event.pointerType !== 'mouse')) return;
+      plane.style.willChange = 'transform';
+    });
+
+    card.addEventListener('pointermove', event => {
+      if (!isEnabled() || (event.pointerType && event.pointerType !== 'mouse')) { reset(); return; }
+      const rect = card.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const x = ((event.clientX - rect.left) / rect.width - .5) * 2;
+      const y = ((event.clientY - rect.top) / rect.height - .5) * 2;
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        plane.style.setProperty('--tilt-x', `${(-y * strength).toFixed(2)}deg`);
+        plane.style.setProperty('--tilt-y', `${(x * strength).toFixed(2)}deg`);
+      });
+    });
+
+    card.addEventListener('pointerleave', reset);
+    card.addEventListener('pointercancel', reset);
+    card.addEventListener('blur', reset, true);
+  });
+
+  const resetAll = () => resets.forEach(reset => reset());
+  reduceMotion.addEventListener?.('change', resetAll);
+  finePointer.addEventListener?.('change', resetAll);
 })();
