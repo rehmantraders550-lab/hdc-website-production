@@ -1,0 +1,256 @@
+/* HDC Process Rail
+   Scoped interaction layer for the existing Production Path section.
+   No global element selectors; no external dependencies. */
+
+.process-rail {
+  --pr-ink: var(--hdc-graphite, #0B1013);
+  --pr-muted: var(--hdc-silver, #A9B3B7);
+  --pr-paper: var(--hdc-paper, #F0EFED);
+  --pr-copper: var(--hdc-copper-light, #D89A63);
+  --pr-cyan: var(--hdc-cyan, #47C1C7);
+  list-style: none;
+  margin: clamp(2.25rem, 4vw, 4.25rem) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid color-mix(in srgb, var(--pr-ink) 18%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--pr-ink) 18%, transparent);
+}
+
+.process-step {
+  min-width: 0;
+  border-left: 1px solid color-mix(in srgb, var(--pr-ink) 18%, transparent);
+}
+
+.process-step:last-child {
+  border-right: 1px solid color-mix(in srgb, var(--pr-ink) 18%, transparent);
+}
+
+.process-step__trigger {
+  appearance: none;
+  width: 100%;
+  min-height: 21rem;
+  margin: 0;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  border: 0;
+  background: transparent;
+  color: var(--pr-ink);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: .9rem;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 180ms ease;
+}
+
+.process-step__trigger:focus-visible {
+  outline: 2px solid var(--pr-cyan);
+  outline-offset: -3px;
+}
+
+.process-step__index {
+  font-size: .72rem;
+  line-height: 1;
+  letter-spacing: .14em;
+  color: color-mix(in srgb, var(--pr-ink) 48%, transparent);
+  transition: color 180ms ease;
+}
+
+.process-step__title {
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+  transition: transform 220ms cubic-bezier(.2,.7,.2,1), color 180ms ease;
+}
+
+.process-step__copy {
+  max-width: 18rem;
+  font-size: clamp(.9rem, 1vw, 1.05rem);
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--pr-ink) 62%, transparent);
+  transition: color 180ms ease;
+}
+
+.process-step__rail {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 8px;
+  border: 1px solid color-mix(in srgb, var(--pr-ink) 22%, transparent);
+  background: var(--pr-paper);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.process-step__rail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--pr-ink) 5%, transparent));
+  transform-origin: left center;
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.process-step__deposit {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--pr-ink) 16%, transparent) 0 1px,
+      transparent 1px 4px
+    ),
+    repeating-linear-gradient(
+      8deg,
+      color-mix(in srgb, var(--pr-ink) 6%, transparent) 0 1px,
+      transparent 1px 7px
+    );
+  will-change: transform;
+}
+
+.process-step__pass {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -28px;
+  width: 24px;
+  opacity: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--pr-copper) 36%, transparent) 52%,
+    color-mix(in srgb, var(--pr-cyan) 18%, transparent) 78%,
+    transparent 100%
+  );
+  border-right: 1px solid color-mix(in srgb, var(--pr-copper) 55%, transparent);
+  will-change: left, opacity;
+}
+
+.process-step.is-printing .process-step__rail::before {
+  opacity: 1;
+  animation: hdcRailDraw 180ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+.process-step.is-printing .process-step__deposit {
+  animation: hdcRailDeposit 440ms 80ms cubic-bezier(.22,.61,.36,1) both;
+}
+
+.process-step.is-printing .process-step__pass {
+  animation: hdcRailPass 440ms 80ms cubic-bezier(.22,.61,.36,1) both;
+}
+
+.process-step.is-complete .process-step__deposit {
+  transform: scaleX(1);
+}
+
+.process-step.is-complete .process-step__pass {
+  opacity: 0;
+}
+
+.process-step.is-active .process-step__index {
+  color: color-mix(in srgb, var(--pr-copper) 88%, var(--pr-ink));
+}
+
+.process-step.is-active .process-step__title {
+  transform: translateY(-2px);
+}
+
+.process-step.is-active .process-step__copy {
+  color: color-mix(in srgb, var(--pr-ink) 78%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .process-step:not(.is-active) .process-step__trigger:hover {
+    background: color-mix(in srgb, var(--pr-ink) 2.5%, transparent);
+  }
+
+  .process-step:not(.is-active) .process-step__trigger:hover .process-step__rail {
+    border-color: color-mix(in srgb, var(--pr-ink) 38%, transparent);
+  }
+}
+
+@keyframes hdcRailDraw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes hdcRailDeposit {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes hdcRailPass {
+  0% { opacity: 0; left: -28px; }
+  8% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; left: calc(100% + 4px); }
+}
+
+@media (max-width: 899px) {
+  .process-rail {
+    grid-template-columns: 1fr;
+    border-bottom: 0;
+  }
+
+  .process-step {
+    border-right: 1px solid color-mix(in srgb, var(--pr-ink) 18%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--pr-ink) 18%, transparent);
+  }
+
+  .process-step__trigger {
+    min-height: 0;
+    padding: 1.2rem 1rem 1.35rem;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    column-gap: .85rem;
+    row-gap: .5rem;
+  }
+
+  .process-step__index {
+    grid-row: 1 / span 2;
+    padding-top: .2rem;
+  }
+
+  .process-step__title {
+    font-size: clamp(1.3rem, 7vw, 1.7rem);
+  }
+
+  .process-step__copy {
+    max-width: none;
+  }
+
+  .process-step__rail {
+    grid-column: 1 / -1;
+    margin-top: .35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-step__trigger,
+  .process-step__index,
+  .process-step__title,
+  .process-step__copy {
+    transition: none;
+  }
+
+  .process-step.is-printing .process-step__rail::before,
+  .process-step.is-printing .process-step__deposit,
+  .process-step.is-printing .process-step__pass {
+    animation: none;
+  }
+
+  .process-step.is-printing .process-step__deposit,
+  .process-step.is-complete .process-step__deposit {
+    transform: scaleX(1);
+  }
+
+  .process-step.is-printing .process-step__pass {
+    opacity: 0;
+  }
+}
