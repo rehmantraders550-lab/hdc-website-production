@@ -15,7 +15,10 @@
       const content = panel.querySelector('[data-hdc-panel-content]');
       panel.classList.toggle('is-active', expanded);
       trigger?.setAttribute('aria-expanded', String(expanded));
-      content?.setAttribute('aria-hidden', String(!expanded));
+      if (content) {
+        content.setAttribute('aria-hidden', String(!expanded));
+        content.inert = !expanded;
+      }
     };
 
     const closeActive = ({ restoreFocus = false } = {}) => {
