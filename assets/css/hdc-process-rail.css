@@ -118,10 +118,9 @@
   position: absolute;
   top: -1px;
   bottom: -1px;
-  left: 0;
+  left: -28px;
   width: 24px;
   opacity: 0;
-  transform: translateX(-28px);
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -130,7 +129,7 @@
     transparent 100%
   );
   border-right: 1px solid color-mix(in srgb, var(--pr-copper) 55%, transparent);
-  will-change: transform, opacity;
+  will-change: left, opacity;
 }
 
 .process-step.is-printing .process-step__rail::before {
@@ -187,10 +186,10 @@
 }
 
 @keyframes hdcRailPass {
-  0% { opacity: 0; transform: translateX(-28px); }
+  0% { opacity: 0; left: -28px; }
   8% { opacity: 1; }
   88% { opacity: 1; }
-  100% { opacity: 0; transform: translateX(calc(100% + 28px)); }
+  100% { opacity: 0; left: calc(100% + 4px); }
 }
 
 @media (max-width: 899px) {
