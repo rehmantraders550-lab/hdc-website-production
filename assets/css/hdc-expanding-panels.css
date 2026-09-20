@@ -1,7 +1,7 @@
 /* HDC expanding production panels — isolated lab component */
 .hdc-expanding-panels {
-  --hep-bg: var(--coal, #0e2426);
-  --hep-text: var(--white, #ffffff);
+  --hep-bg: var(--coal, #0B1013);
+  --hep-text: var(--white, #FFFFFF);
   --hep-muted: rgba(255,255,255,.68);
   --hep-line: rgba(255,255,255,.14);
   --hep-speed: 560ms;
@@ -38,7 +38,7 @@
   flex: 1 1 0;
   min-width: 0;
   overflow: hidden;
-  background: #102224;
+  background: #171D21;
   border-right: 1px solid var(--hep-line);
   transition: flex-grow var(--hep-speed) var(--hep-ease);
 }
