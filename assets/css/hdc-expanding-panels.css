@@ -1,0 +1,266 @@
+/* HDC expanding production panels — isolated lab component */
+.hdc-expanding-panels {
+  --hep-bg: var(--coal, #0e2426);
+  --hep-text: var(--white, #ffffff);
+  --hep-muted: rgba(255,255,255,.68);
+  --hep-line: rgba(255,255,255,.14);
+  --hep-speed: 620ms;
+  --hep-ease: cubic-bezier(.22,1,.36,1);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  contain: layout paint;
+  background: var(--hep-bg);
+  color: var(--hep-text);
+}
+.hdc-expanding-panels,
+.hdc-expanding-panels * { box-sizing: border-box; }
+.hdc-expanding-panels__stage {
+  display: flex;
+  min-height: clamp(580px, 68vw, 720px);
+  border-top: 1px solid var(--hep-line);
+  border-bottom: 1px solid var(--hep-line);
+}
+.hdc-expanding-panels__panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  background: #102224;
+  border-right: 1px solid var(--hep-line);
+  transition: flex-grow var(--hep-speed) var(--hep-ease), opacity 320ms ease;
+}
+.hdc-expanding-panels__panel:last-child { border-right: 0; }
+.hdc-expanding-panels.is-interacting .hdc-expanding-panels__panel:not(.is-active) {
+  flex-grow: .58;
+  opacity: .72;
+}
+.hdc-expanding-panels.is-interacting .hdc-expanding-panels__panel.is-active {
+  flex-grow: 4.2;
+  opacity: 1;
+  z-index: 2;
+}
+.hdc-expanding-panels__media,
+.hdc-expanding-panels__shade,
+.hdc-expanding-panels__trigger {
+  position: absolute;
+  inset: 0;
+}
+.hdc-expanding-panels__media { z-index: 0; }
+.hdc-expanding-panels__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--hep-object-position, 50% 50%);
+  transform: scale(1.025);
+  filter: saturate(.88) contrast(1.03);
+  transition: transform 900ms var(--hep-ease), filter 420ms ease;
+}
+.hdc-expanding-panels__panel.is-active .hdc-expanding-panels__media img {
+  transform: scale(1);
+  filter: saturate(1) contrast(1.02);
+}
+.hdc-expanding-panels__shade {
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(4,14,15,.10) 0%, rgba(4,14,15,.30) 48%, rgba(4,14,15,.92) 100%),
+    linear-gradient(90deg, rgba(4,14,15,.30), transparent 42%, rgba(4,14,15,.16));
+  transition: background 420ms ease;
+}
+.hdc-expanding-panels__panel.is-active .hdc-expanding-panels__shade {
+  background:
+    linear-gradient(180deg, rgba(4,14,15,.08) 0%, rgba(4,14,15,.24) 48%, rgba(4,14,15,.90) 100%),
+    linear-gradient(90deg, rgba(4,14,15,.40), transparent 56%);
+}
+.hdc-expanding-panels__trigger {
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  appearance: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+.hdc-expanding-panels__trigger:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -5px;
+}
+.hdc-expanding-panels__index {
+  position: absolute;
+  top: clamp(1.1rem, 2vw, 1.6rem);
+  left: clamp(1.1rem, 2vw, 1.6rem);
+  z-index: 5;
+  font-family: var(--mono, monospace);
+  font-size: .62rem;
+  letter-spacing: .12em;
+  color: rgba(255,255,255,.70);
+}
+.hdc-expanding-panels__collapsed {
+  position: absolute;
+  left: clamp(1.1rem, 2vw, 1.6rem);
+  right: clamp(1.1rem, 2vw, 1.6rem);
+  bottom: clamp(1.1rem, 2vw, 1.7rem);
+  z-index: 5;
+  pointer-events: none;
+  transition: opacity 260ms ease, transform 360ms var(--hep-ease);
+}
+.hdc-expanding-panels__collapsed small {
+  display: block;
+  margin-bottom: .65rem;
+  font-family: var(--mono, monospace);
+  font-size: .58rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.62);
+}
+.hdc-expanding-panels__collapsed h3 {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(1.1rem, 2.1vw, 2rem);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+.hdc-expanding-panels__panel.is-active .hdc-expanding-panels__collapsed {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.hdc-expanding-panels__expanded {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, .72fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  padding: clamp(4.6rem, 7vw, 6.2rem) clamp(1.4rem, 3.8vw, 3.8rem) clamp(1.5rem, 3.8vw, 3.8rem);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 320ms ease, transform 520ms var(--hep-ease);
+}
+.hdc-expanding-panels__panel.is-active .hdc-expanding-panels__expanded {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 170ms;
+}
+.hdc-expanding-panels__copy { min-width: 0; }
+.hdc-expanding-panels__kicker {
+  margin: 0 0 .8rem;
+  font-family: var(--mono, monospace);
+  font-size: .6rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.66);
+}
+.hdc-expanding-panels__expanded h3 {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.2rem, 5vw, 5.4rem);
+  line-height: .92;
+  font-weight: 500;
+  letter-spacing: -.045em;
+}
+.hdc-expanding-panels__description {
+  max-width: 38rem;
+  margin: 1.25rem 0 0;
+  color: rgba(255,255,255,.78);
+  font-size: clamp(.92rem, 1.2vw, 1.05rem);
+  line-height: 1.6;
+}
+.hdc-expanding-panels__meta {
+  align-self: end;
+  min-width: 0;
+  border-top: 1px solid var(--hep-line);
+}
+.hdc-expanding-panels__meta-row {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: .9rem 0;
+  border-bottom: 1px solid var(--hep-line);
+}
+.hdc-expanding-panels__meta-row span:first-child {
+  font-family: var(--mono, monospace);
+  font-size: .56rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.52);
+}
+.hdc-expanding-panels__meta-row span:last-child {
+  font-size: .78rem;
+  line-height: 1.45;
+  color: rgba(255,255,255,.82);
+}
+.hdc-expanding-panels__cta {
+  position: relative;
+  z-index: 8;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-top: 1.25rem;
+  color: inherit;
+  font-family: var(--mono, monospace);
+  font-size: .62rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.hdc-expanding-panels__cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -.3rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(.32);
+  transform-origin: left;
+  transition: transform 240ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hdc-expanding-panels__panel:not(.is-active):hover .hdc-expanding-panels__media img { transform: scale(1.04); }
+  .hdc-expanding-panels__panel:not(.is-active):hover .hdc-expanding-panels__collapsed { transform: translateY(-4px); }
+  .hdc-expanding-panels__cta:hover::after { transform: scaleX(1); }
+}
+@media (max-width: 899px) {
+  .hdc-expanding-panels { overflow: visible; contain: paint; }
+  .hdc-expanding-panels__stage { display: grid; min-height: 0; }
+  .hdc-expanding-panels__panel,
+  .hdc-expanding-panels.is-interacting .hdc-expanding-panels__panel,
+  .hdc-expanding-panels.is-interacting .hdc-expanding-panels__panel.is-active {
+    flex: none;
+    min-height: 138px;
+    opacity: 1;
+    border-right: 0;
+    border-bottom: 1px solid var(--hep-line);
+    transition: min-height var(--hep-speed) var(--hep-ease);
+  }
+  .hdc-expanding-panels__panel:last-child { border-bottom: 0; }
+  .hdc-expanding-panels__panel.is-active { min-height: min(620px, 155vw); }
+  .hdc-expanding-panels__collapsed { top: 50%; bottom: auto; transform: translateY(-50%); }
+  .hdc-expanding-panels__collapsed h3 { max-width: 22ch; font-size: clamp(1.15rem, 5.4vw, 1.75rem); }
+  .hdc-expanding-panels__panel.is-active .hdc-expanding-panels__collapsed { transform: translateY(calc(-50% + 8px)); }
+  .hdc-expanding-panels__expanded { grid-template-columns: 1fr; gap: 1.5rem; align-content: end; padding: 4.5rem 1.15rem 1.25rem; }
+  .hdc-expanding-panels__expanded h3 { max-width: 11ch; font-size: clamp(2.35rem, 12vw, 4rem); }
+  .hdc-expanding-panels__meta { width: 100%; }
+  .hdc-expanding-panels__meta-row { grid-template-columns: 6.2rem minmax(0, 1fr); }
+}
+@media (max-width: 420px) {
+  .hdc-expanding-panels__panel.is-active { min-height: 560px; }
+  .hdc-expanding-panels__expanded { padding-left: 1rem; padding-right: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hdc-expanding-panels__panel,
+  .hdc-expanding-panels__media img,
+  .hdc-expanding-panels__collapsed,
+  .hdc-expanding-panels__expanded,
+  .hdc-expanding-panels__cta::after { transition: none !important; }
+}
