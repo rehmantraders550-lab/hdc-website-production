@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "production_source": "github-main-only",
+    "no_manual_public_html_overwrite": true,
+    "no_inline_base64_images": true,
+    "duplicate_live_pixels": "blocking",
+    "allowed_status": [
+      "live",
+      "fallback",
+      "reserved",
+      "legacy"
+    ]
+  },
+  "slots": [
+    {
+      "slot": "homepage.hero.poster",
+      "path": "assets/images/approved/HDC-IMG-HERO-SERVICE-ARCHITECTURE-01.webp",
+      "width": 1672,
+      "height": 941,
+      "aspect": "16:9",
+      "git_blob_sha": "0c57724994075b2e4feb762e535e1532915d7daa",
+      "status": "fallback"
+    },
+    {
+      "slot": "homepage.production_evidence",
+      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-PROOF-01.webp",
+      "width": 1448,
+      "height": 1086,
+      "aspect": "4:3",
+      "git_blob_sha": "c3aa5de98858f8acaa979153c020372f3ce3a563",
+      "status": "live"
+    },
+    {
+      "slot": "service.labels_decals",
+      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-LABELS-01.webp",
+      "width": 1448,
+      "height": 1086,
+      "aspect": "4:3",
+      "git_blob_sha": "5c7aaf938e4eb0067fbf0d2a797a7b58449ba740",
+      "status": "live"
+    },
+    {
+      "slot": "service.products_objects",
+      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-OBJECTS-01.webp",
+      "width": 1448,
+      "height": 1086,
+      "aspect": "4:3",
+      "git_blob_sha": "24b2c55f6688dda7fb875f498e641251c8d6dfe9",
+      "status": "live"
+    },
+    {
+      "slot": "service.packaging_commercial",
+      "path": "assets/images/approved/HDC-IMG-SERVICE-PACKAGING-COMMERCIAL-01.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "10464aa1baf94be6adcfb62ecdb52c7acbd7ba0d",
+      "status": "live"
+    },
+    {
+      "slot": "service.large_format_environment",
+      "path": "assets/images/approved/HDC-IMG-SERVICE-BRAND-ENVIRONMENTS-01.webp",
+      "width": 1672,
+      "height": 941,
+      "aspect": "16:9",
+      "git_blob_sha": "6237a890286a604b62dad689ef43d39b3dc14461",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.surface_lab",
+      "path": "assets/images/refresh/HDC-IMG-SURFACE-LAB-MIXED-01.jpg",
+      "width": 1376,
+      "height": 768,
+      "aspect": "~16:9",
+      "git_blob_sha": "f3a1367675b11a1baee4ab5ddec60119f29b9b85",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.material_macro",
+      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-MACRO-01.webp",
+      "width": 700,
+      "height": 525,
+      "aspect": "4:3",
+      "git_blob_sha": "e150629d548cd0259602e8d842a68ea02ad9a9a9",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.registration",
+      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-REGISTRATION-01.webp",
+      "width": 1448,
+      "height": 1086,
+      "aspect": "4:3",
+      "git_blob_sha": "e8dbc8e57f6a76c44762239a56347d4783849334",
+      "status": "live"
+    },
+    {
+      "slot": "production.precision_process",
+      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-PROCESS-01.webp",
+      "width": 1448,
+      "height": 1086,
+      "aspect": "4:3",
+      "git_blob_sha": "c0a10ca5c5504fe520adb39a233f0fc5c2a5cf1a",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.surface_detail",
+      "path": "assets/images/HDC-IMG-PREMIUM-SURFACE-DETAIL-01.webp",
+      "width": 1280,
+      "height": 853,
+      "aspect": "3:2",
+      "git_blob_sha": "4324460361004ea53124f64687628335aee8afe4",
+      "status": "live"
+    },
+    {
+      "slot": "production.flatbed_pattern",
+      "path": "assets/images/HDC-IMG-FLATBED-PATTERN-01.webp",
+      "width": 1280,
+      "height": 698,
+      "aspect": "wide",
+      "git_blob_sha": "be5155f90cdfc5f3903d41bd5e180daaa669f837",
+      "status": "live"
+    }
+  ]
+}
