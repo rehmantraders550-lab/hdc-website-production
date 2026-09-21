@@ -21,6 +21,8 @@ def local_ref(value):
     value = value.strip()
     if not value or value.startswith(("#", "mailto:", "tel:", "data:", "javascript:")):
         return None
+    if "${" in value or "{{" in value:
+        return None
     if re.match(r"^[a-z][a-z0-9+.-]*://", value, re.I):
         return None
     value = unquote(value.split("#", 1)[0].split("?", 1)[0])
@@ -29,6 +31,8 @@ def local_ref(value):
 def resolve_ref(source, ref):
     if ref.startswith("/"):
         return ROOT / ref.lstrip("/")
+    if source.suffix.lower() == ".js":
+        return (ROOT / ref).resolve()
     return (source.parent / ref).resolve()
 
 def check_ref(source, raw):
