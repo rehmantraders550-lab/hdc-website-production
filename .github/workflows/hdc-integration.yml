@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [main, hdc-integration-automation]
+    branches: [main, hdc-integration-automation, 'hdc-media-*']
   workflow_dispatch:
 
 permissions:
