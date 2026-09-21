@@ -24,11 +24,11 @@
     },
     {
       "slot": "homepage.production_evidence",
-      "path": "assets/images/refresh/HDC-IMG-SPECIMENS-COLLECTION-01.jpg",
-      "width": 1408,
-      "height": 768,
-      "aspect": "wide",
-      "git_blob_sha": "3d0a06d3ce024c7cdf24a925e9aad4c000f97601",
+      "path": "assets/images/production/HDC-IMG-PRODUCTION-EVIDENCE-02.jpg",
+      "width": 800,
+      "height": 800,
+      "aspect": "1:1",
+      "git_blob_sha": "358a114e79aef8f39ef604fd5cd671271d9d0d37",
       "status": "live"
     },
     {
@@ -51,11 +51,11 @@
     },
     {
       "slot": "service.packaging_commercial",
-      "path": "assets/images/approved/HDC-IMG-SERVICE-PACKAGING-COMMERCIAL-01.webp",
-      "width": 1536,
-      "height": 1024,
-      "aspect": "3:2",
-      "git_blob_sha": "10464aa1baf94be6adcfb62ecdb52c7acbd7ba0d",
+      "path": "assets/images/services/HDC-IMG-SERVICE-PACKAGING-COMMERCIAL-02.webp",
+      "width": 900,
+      "height": 502,
+      "aspect": "wide",
+      "git_blob_sha": "3bf6cf74dd440211371eccfc3c88e26df0e7d835",
       "status": "live"
     },
     {
@@ -69,38 +69,38 @@
     },
     {
       "slot": "homepage.surface_lab",
-      "path": "assets/images/refresh/HDC-IMG-SURFACE-LAB-MIXED-01.jpg",
-      "width": 1376,
-      "height": 768,
+      "path": "assets/images/surfaces/HDC-IMG-SURFACE-LAB-MIXED-02.jpg",
+      "width": 900,
+      "height": 502,
       "aspect": "wide",
-      "git_blob_sha": "f3a1367675b11a1baee4ab5ddec60119f29b9b85",
+      "git_blob_sha": "8445f8afba6fd916aaab4cec8b4d6f4a6990f84b",
       "status": "live"
     },
     {
       "slot": "homepage.material_macro",
-      "path": "assets/images/HDC-IMG-PREMIUM-SURFACE-DETAIL-01.webp",
-      "width": 1280,
-      "height": 853,
-      "aspect": "3:2",
-      "git_blob_sha": "4324460361004ea53124f64687628335aee8afe4",
+      "path": "assets/images/surfaces/HDC-IMG-PREMIUM-SURFACE-DETAIL-02.webp",
+      "width": 800,
+      "height": 800,
+      "aspect": "1:1",
+      "git_blob_sha": "436d02c5b8f68af00a6189c4158e1ff8673423f7",
       "status": "live"
     },
     {
       "slot": "homepage.registration",
-      "path": "assets/images/refresh/HDC-IMG-QC-REGISTRATION-LOUPE-01.jpg",
-      "width": 1408,
-      "height": 768,
+      "path": "assets/images/qc/HDC-IMG-QC-REGISTRATION-02.webp",
+      "width": 900,
+      "height": 502,
       "aspect": "wide",
-      "git_blob_sha": "120d848900228cad781be592739af8ec9d4d37b4",
+      "git_blob_sha": "535c4ed4f9f55704085877610a3bf4b93ea9eb3d",
       "status": "live"
     },
     {
       "slot": "production.precision_process",
-      "path": "assets/images/HDC-IMG-UV-FLATBED-PROCESS-01.webp",
-      "width": 1280,
-      "height": 853,
-      "aspect": "3:2",
-      "git_blob_sha": "8389616151143e517d0d9c9c6482d2095a21317f",
+      "path": "assets/images/production/HDC-IMG-PRODUCTION-PRECISION-02.webp",
+      "width": 800,
+      "height": 800,
+      "aspect": "1:1",
+      "git_blob_sha": "5ae194aabde0e9d0f9b169928174e6665e2785c0",
       "status": "live"
     },
     {
@@ -120,6 +120,15 @@
       "aspect": "wide",
       "git_blob_sha": "408bf17661a59d8301b873819c2923de6566ffe5",
       "status": "live"
+    },
+    {
+      "slot": "production.uv_flatbed_process",
+      "path": "assets/images/production/HDC-IMG-UV-FLATBED-PROCESS-02.webp",
+      "width": 800,
+      "height": 800,
+      "aspect": "1:1",
+      "git_blob_sha": "b5d8a9e1b3b66d9c670cf58bcd7d63339b47181d",
+      "status": "live"
     }
   ],
   "legacy_invalid_assets": [
@@ -129,5 +138,10 @@
     "assets/images/editorial/HDC-IMG-EDITORIAL-MACRO-01.webp",
     "assets/images/editorial/HDC-IMG-EDITORIAL-REGISTRATION-01.webp",
     "assets/images/editorial/HDC-IMG-EDITORIAL-PROCESS-01.webp"
-  ]
+  ],
+  "source_package": {
+    "name": "HDC_HOSTINGER_IMAGE_PATCH_2026-09-21.zip",
+    "visual_qa": "7 accepted / 4 held back",
+    "notes": "Accepted assets are versioned and routed semantically; no files deleted."
+  }
 }
