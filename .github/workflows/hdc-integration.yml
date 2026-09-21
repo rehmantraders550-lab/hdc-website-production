@@ -29,6 +29,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install image validation dependency
+        run: python -m pip install --disable-pip-version-check Pillow
+
       - name: Validate local references, IDs and asset integrity
         run: python scripts/validate_site.py
 
