@@ -1,0 +1,78 @@
+name: HDC Integration Guard
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main, hdc-integration-automation]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hdc-integration-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate static site and assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate local references, IDs and asset integrity
+        run: python scripts/validate_site.py
+
+      - name: Record validated commit
+        run: |
+          echo "validated_sha=${GITHUB_SHA}" >> "$GITHUB_STEP_SUMMARY"
+          echo "branch=${GITHUB_REF_NAME}" >> "$GITHUB_STEP_SUMMARY"
+
+  live-smoke:
+    name: Verify Hostinger live render
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    env:
+      LIVE_URL: ${{ vars.HDC_LIVE_URL }}
+    steps:
+      - name: Require production URL configuration
+        if: env.LIVE_URL == ''
+        run: |
+          echo "::warning::Repository variable HDC_LIVE_URL is not configured. Source validation passed, but live deployment cannot be verified."
+          echo "live_verification=SKIPPED (HDC_LIVE_URL missing)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Wait for Hostinger Git deployment
+        if: env.LIVE_URL != ''
+        run: sleep 90
+
+      - name: Smoke test homepage
+        if: env.LIVE_URL != ''
+        run: |
+          set -euo pipefail
+          code="$(curl -L -sS -o /tmp/hdc-home.html -w '%{http_code}' --retry 3 --retry-delay 10 "$LIVE_URL")"
+          test "$code" = "200"
+          grep -qi "Hadi Digital Craft" /tmp/hdc-home.html
+          echo "homepage_http=$code" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Smoke test critical pages
+        if: env.LIVE_URL != ''
+        run: |
+          set -euo pipefail
+          base="${LIVE_URL%/}"
+          for path in labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html applications.html production.html request-a-quote.html
+          do
+            code="$(curl -L -sS -o /dev/null -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
+            echo "$path -> $code"
+            test "$code" = "200"
+          done
+          echo "live_verification=PASSED" >> "$GITHUB_STEP_SUMMARY"
