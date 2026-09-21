@@ -1,11 +1,11 @@
-/* HDC Process Rail
+/* HDC Process Rail v2
    Scoped interaction layer for the existing Production Path section.
-   No global element selectors; no external dependencies. */
+   One-pass, DTF-inspired surface deposition with no external dependencies. */
 
 .process-rail {
   --pr-ink: var(--hdc-graphite, #0B1013);
   --pr-muted: var(--hdc-silver, #A9B3B7);
-  --pr-paper: var(--hdc-paper, #F0EFED);
+  --pr-surface: var(--hdc-white, #FFFFFF);
   --pr-copper: var(--hdc-copper-light, #D89A63);
   --pr-cyan: var(--hdc-cyan, #47C1C7);
   list-style: none;
@@ -15,6 +15,7 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   border-top: 1px solid color-mix(in srgb, var(--pr-ink) 18%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--pr-ink) 18%, transparent);
+  contain: layout paint;
 }
 
 .process-step {
@@ -79,10 +80,11 @@
   display: block;
   width: 100%;
   height: 8px;
-  border: 1px solid color-mix(in srgb, var(--pr-ink) 22%, transparent);
-  background: var(--pr-paper);
+  border: 1px solid color-mix(in srgb, var(--pr-ink) 24%, transparent);
+  background: var(--pr-surface);
   overflow: hidden;
   isolation: isolate;
+  contain: paint;
 }
 
 .process-step__rail::before {
@@ -103,12 +105,12 @@
   background:
     repeating-linear-gradient(
       90deg,
-      color-mix(in srgb, var(--pr-ink) 16%, transparent) 0 1px,
+      color-mix(in srgb, var(--pr-ink) 14%, transparent) 0 1px,
       transparent 1px 4px
     ),
     repeating-linear-gradient(
       8deg,
-      color-mix(in srgb, var(--pr-ink) 6%, transparent) 0 1px,
+      color-mix(in srgb, var(--pr-ink) 5%, transparent) 0 1px,
       transparent 1px 7px
     );
   will-change: transform;
@@ -118,31 +120,31 @@
   position: absolute;
   top: -1px;
   bottom: -1px;
-  left: -28px;
-  width: 24px;
+  left: -30px;
+  width: 26px;
   opacity: 0;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    color-mix(in srgb, var(--pr-copper) 36%, transparent) 52%,
-    color-mix(in srgb, var(--pr-cyan) 18%, transparent) 78%,
+    color-mix(in srgb, var(--pr-copper) 30%, transparent) 50%,
+    color-mix(in srgb, var(--pr-cyan) 14%, transparent) 76%,
     transparent 100%
   );
-  border-right: 1px solid color-mix(in srgb, var(--pr-copper) 55%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--pr-copper) 48%, transparent);
   will-change: left, opacity;
 }
 
 .process-step.is-printing .process-step__rail::before {
   opacity: 1;
-  animation: hdcRailDraw 180ms cubic-bezier(.2,.7,.2,1) both;
+  animation: hdcRailDraw 170ms cubic-bezier(.2,.7,.2,1) both;
 }
 
 .process-step.is-printing .process-step__deposit {
-  animation: hdcRailDeposit 440ms 80ms cubic-bezier(.22,.61,.36,1) both;
+  animation: hdcRailDeposit 430ms 70ms cubic-bezier(.22,.61,.36,1) both;
 }
 
 .process-step.is-printing .process-step__pass {
-  animation: hdcRailPass 440ms 80ms cubic-bezier(.22,.61,.36,1) both;
+  animation: hdcRailPass 430ms 70ms cubic-bezier(.22,.61,.36,1) both;
 }
 
 .process-step.is-complete .process-step__deposit {
@@ -154,7 +156,7 @@
 }
 
 .process-step.is-active .process-step__index {
-  color: color-mix(in srgb, var(--pr-copper) 88%, var(--pr-ink));
+  color: color-mix(in srgb, var(--pr-copper) 86%, var(--pr-ink));
 }
 
 .process-step.is-active .process-step__title {
@@ -186,7 +188,7 @@
 }
 
 @keyframes hdcRailPass {
-  0% { opacity: 0; left: -28px; }
+  0% { opacity: 0; left: -30px; }
   8% { opacity: 1; }
   88% { opacity: 1; }
   100% { opacity: 0; left: calc(100% + 4px); }
@@ -196,6 +198,7 @@
   .process-rail {
     grid-template-columns: 1fr;
     border-bottom: 0;
+    contain: paint;
   }
 
   .process-step {

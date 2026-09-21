@@ -12,38 +12,56 @@
 
     const steps = Array.from(root.querySelectorAll(".process-step"));
     const buttons = steps.map((step) => step.querySelector(".process-step__trigger")).filter(Boolean);
-    let activeIndex = -1;
-    let activationTimer = 0;
+    if (!steps.length || buttons.length !== steps.length) return;
 
-    const clearAnimationState = (step) => {
-      step.classList.remove("is-printing", "is-complete");
-      step.querySelectorAll(".process-step__deposit, .process-step__pass, .process-step__rail::before");
-      step.getAnimations({ subtree: true }).forEach((animation) => animation.cancel());
+    let activeIndex = -1;
+    let runId = 0;
+    let startTimer = 0;
+    let finishTimer = 0;
+
+    const cancelTimers = () => {
+      window.clearTimeout(startTimer);
+      window.clearTimeout(finishTimer);
+      startTimer = 0;
+      finishTimer = 0;
     };
 
-    const setPressedState = () => {
+    const cancelAnimations = () => {
+      steps.forEach((step) => {
+        step.getAnimations({ subtree: true }).forEach((animation) => animation.cancel());
+      });
+    };
+
+    const syncPressedState = () => {
       buttons.forEach((button, index) => {
         button.setAttribute("aria-pressed", index === activeIndex ? "true" : "false");
       });
     };
 
+    const resetVisualStates = (nextIndex) => {
+      steps.forEach((step, index) => {
+        step.classList.remove("is-active", "is-printing", "is-complete");
+        if (index === nextIndex) step.classList.add("is-active");
+      });
+    };
+
     const activate = (index, moveFocus = false) => {
       if (index < 0 || index >= steps.length) return;
+
       if (index === activeIndex && steps[index].classList.contains("is-complete")) {
         if (moveFocus) buttons[index].focus();
         return;
       }
 
-      window.clearTimeout(activationTimer);
+      runId += 1;
+      const thisRun = runId;
 
-      steps.forEach((step, stepIndex) => {
-        step.classList.remove("is-active", "is-printing", "is-complete");
-        step.getAnimations({ subtree: true }).forEach((animation) => animation.cancel());
-        if (stepIndex === index) step.classList.add("is-active");
-      });
+      cancelTimers();
+      cancelAnimations();
+      resetVisualStates(index);
 
       activeIndex = index;
-      setPressedState();
+      syncPressedState();
       if (moveFocus) buttons[index].focus();
 
       const selected = steps[index];
@@ -53,25 +71,29 @@
         return;
       }
 
-      activationTimer = window.setTimeout(() => {
-        if (activeIndex !== index) return;
-        selected.classList.add("is-printing");
+      startTimer = window.setTimeout(() => {
+        if (thisRun !== runId || activeIndex !== index) return;
 
+        selected.classList.add("is-printing");
         const deposit = selected.querySelector(".process-step__deposit");
+
         if (!deposit) {
           selected.classList.remove("is-printing");
           selected.classList.add("is-complete");
           return;
         }
 
+        let finished = false;
         const finish = () => {
-          if (activeIndex !== index) return;
+          if (finished || thisRun !== runId || activeIndex !== index) return;
+          finished = true;
+          window.clearTimeout(finishTimer);
           selected.classList.remove("is-printing");
           selected.classList.add("is-complete");
         };
 
         deposit.addEventListener("animationend", finish, { once: true });
-        window.setTimeout(finish, 700);
+        finishTimer = window.setTimeout(finish, 650);
       }, 70);
     };
 
@@ -99,8 +121,19 @@
 
     reducedMotion.addEventListener?.("change", () => {
       if (activeIndex < 0) return;
-      steps[activeIndex].classList.remove("is-printing");
-      steps[activeIndex].classList.add("is-complete");
+
+      runId += 1;
+      cancelTimers();
+      cancelAnimations();
+
+      const active = steps[activeIndex];
+      active.classList.remove("is-printing");
+
+      if (reducedMotion.matches) {
+        active.classList.add("is-complete");
+      } else {
+        active.classList.remove("is-complete");
+      }
     });
   });
 })();
