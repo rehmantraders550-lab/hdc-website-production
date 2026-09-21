@@ -24,29 +24,29 @@
     },
     {
       "slot": "homepage.production_evidence",
-      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-PROOF-01.webp",
-      "width": 1448,
-      "height": 1086,
-      "aspect": "4:3",
-      "git_blob_sha": "c3aa5de98858f8acaa979153c020372f3ce3a563",
+      "path": "assets/images/refresh/HDC-IMG-SPECIMENS-COLLECTION-01.jpg",
+      "width": 1408,
+      "height": 768,
+      "aspect": "wide",
+      "git_blob_sha": "3d0a06d3ce024c7cdf24a925e9aad4c000f97601",
       "status": "live"
     },
     {
       "slot": "service.labels_decals",
-      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-LABELS-01.webp",
-      "width": 1448,
-      "height": 1086,
-      "aspect": "4:3",
-      "git_blob_sha": "5c7aaf938e4eb0067fbf0d2a797a7b58449ba740",
+      "path": "assets/images/approved/HDC-IMG-SERVICE-LABELS-DECALS-01.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "6e464925a416224ee9f35f2e0fa8b8569dda6b8b",
       "status": "live"
     },
     {
       "slot": "service.products_objects",
-      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-OBJECTS-01.webp",
-      "width": 1448,
-      "height": 1086,
-      "aspect": "4:3",
-      "git_blob_sha": "24b2c55f6688dda7fb875f498e641251c8d6dfe9",
+      "path": "assets/images/approved/HDC-IMG-SERVICE-PRODUCTS-OBJECTS-01.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "a5b4c23751556675c5527345a24c8f9a41153955",
       "status": "live"
     },
     {
@@ -72,44 +72,35 @@
       "path": "assets/images/refresh/HDC-IMG-SURFACE-LAB-MIXED-01.jpg",
       "width": 1376,
       "height": 768,
-      "aspect": "~16:9",
+      "aspect": "wide",
       "git_blob_sha": "f3a1367675b11a1baee4ab5ddec60119f29b9b85",
       "status": "live"
     },
     {
       "slot": "homepage.material_macro",
-      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-MACRO-01.webp",
-      "width": 700,
-      "height": 525,
-      "aspect": "4:3",
-      "git_blob_sha": "e150629d548cd0259602e8d842a68ea02ad9a9a9",
-      "status": "live"
-    },
-    {
-      "slot": "homepage.registration",
-      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-REGISTRATION-01.webp",
-      "width": 1448,
-      "height": 1086,
-      "aspect": "4:3",
-      "git_blob_sha": "e8dbc8e57f6a76c44762239a56347d4783849334",
-      "status": "live"
-    },
-    {
-      "slot": "production.precision_process",
-      "path": "assets/images/editorial/HDC-IMG-EDITORIAL-PROCESS-01.webp",
-      "width": 1448,
-      "height": 1086,
-      "aspect": "4:3",
-      "git_blob_sha": "c0a10ca5c5504fe520adb39a233f0fc5c2a5cf1a",
-      "status": "live"
-    },
-    {
-      "slot": "homepage.surface_detail",
       "path": "assets/images/HDC-IMG-PREMIUM-SURFACE-DETAIL-01.webp",
       "width": 1280,
       "height": 853,
       "aspect": "3:2",
       "git_blob_sha": "4324460361004ea53124f64687628335aee8afe4",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.registration",
+      "path": "assets/images/refresh/HDC-IMG-QC-REGISTRATION-LOUPE-01.jpg",
+      "width": 1408,
+      "height": 768,
+      "aspect": "wide",
+      "git_blob_sha": "120d848900228cad781be592739af8ec9d4d37b4",
+      "status": "live"
+    },
+    {
+      "slot": "production.precision_process",
+      "path": "assets/images/HDC-IMG-UV-FLATBED-PROCESS-01.webp",
+      "width": 1280,
+      "height": 853,
+      "aspect": "3:2",
+      "git_blob_sha": "8389616151143e517d0d9c9c6482d2095a21317f",
       "status": "live"
     },
     {
@@ -120,6 +111,23 @@
       "aspect": "wide",
       "git_blob_sha": "be5155f90cdfc5f3903d41bd5e180daaa669f837",
       "status": "live"
+    },
+    {
+      "slot": "homepage.colour_surface_detail",
+      "path": "assets/images/HDC-IMG-COLOUR-SURFACE-DETAIL-01.webp",
+      "width": 1280,
+      "height": 698,
+      "aspect": "wide",
+      "git_blob_sha": "408bf17661a59d8301b873819c2923de6566ffe5",
+      "status": "live"
     }
+  ],
+  "legacy_invalid_assets": [
+    "assets/images/editorial/HDC-IMG-EDITORIAL-PROOF-01.webp",
+    "assets/images/editorial/HDC-IMG-EDITORIAL-LABELS-01.webp",
+    "assets/images/editorial/HDC-IMG-EDITORIAL-OBJECTS-01.webp",
+    "assets/images/editorial/HDC-IMG-EDITORIAL-MACRO-01.webp",
+    "assets/images/editorial/HDC-IMG-EDITORIAL-REGISTRATION-01.webp",
+    "assets/images/editorial/HDC-IMG-EDITORIAL-PROCESS-01.webp"
   ]
 }
