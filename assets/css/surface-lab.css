@@ -1,0 +1,39 @@
+.sl-page { --sl-ink:#0B1013; --sl-panel:#171D21; --sl-accent:#47C1C7; --sl-paper:#F0EFED; --sl-muted:#A9B3B7; background:var(--sl-paper); }
+.sl-page .sl-hero,.sl-page .sl-section { padding:clamp(5rem,9vw,9rem) 0; }
+.sl-page .sl-hero { background:var(--sl-ink); color:#fff; padding-top:clamp(9rem,15vw,13rem); }
+.sl-hero__grid,.sl-two-col { display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,6vw,7rem); align-items:center; }
+.sl-page h1 { font-size:clamp(4rem,10vw,10rem); line-height:.9; letter-spacing:-.075em; margin:.7em 0 .25em; }
+.sl-page h2 { font-size:clamp(2.4rem,5vw,5rem); line-height:1.05; letter-spacing:-.055em; max-width:13ch; margin:.5em 0; }
+.sl-page p { line-height:1.65; }
+.sl-hero__visual { margin:0; }
+.sl-hero__visual img,.sl-media-placeholder { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; background:var(--sl-panel); }
+.sl-hero__visual figcaption,.sl-explorer figcaption { color:var(--sl-muted); font-size:.75rem; text-transform:uppercase; letter-spacing:.13em; padding-top:1rem; }
+.sl-section--dark { background:var(--sl-panel); color:#fff; }
+.sl-page .shell { padding-inline:clamp(1.25rem,5vw,5rem); }
+@media(max-width:760px){.sl-hero__grid,.sl-two-col{grid-template-columns:1fr}.sl-page .sl-hero{padding-top:8rem}}
+.sl-intro { max-width:32rem; font-size:clamp(1.1rem,1.7vw,1.45rem); color:var(--sl-paper); }
+.sl-note,.sl-annotation,.sl-spec { color:var(--sl-muted); font-size:.82rem; letter-spacing:.06em; }
+.sl-annotation { margin-top:2.5rem; color:#036F86; font-weight:700; }
+.sl-lead { font-size:clamp(1.35rem,2.4vw,2.2rem); line-height:1.32!important; }
+.sl-principle-copy { max-width:37rem; }
+.sl-explorer { display:grid; grid-template-columns:minmax(14rem,.65fr) minmax(0,1.35fr); gap:clamp(1.5rem,4vw,5rem); margin-top:clamp(2rem,5vw,5rem); }
+.sl-explorer__tabs { display:flex; flex-direction:column; align-self:start; border-top:1px solid #526066; }
+.sl-explorer__tabs button { border:0; border-bottom:1px solid #526066; background:transparent; color:var(--sl-muted); padding:1.4rem .4rem; display:flex; gap:1.6rem; text-align:left; font:inherit; font-size:clamp(1.1rem,1.8vw,1.5rem); cursor:pointer; transition:color .25s,background .25s,padding .25s; }
+.sl-explorer__tabs button span { font-size:.75rem; padding-top:.4rem; color:var(--sl-accent); }
+.sl-explorer__tabs button:is(:hover,[aria-selected="true"]) { color:#fff; background:#243036; padding-left:1rem; }
+.sl-explorer__display article { display:grid; grid-template-columns:1fr .8fr; gap:clamp(1rem,3vw,3rem); align-items:end; }
+.sl-explorer__display article[hidden] { display:none; }
+.sl-explorer__display figure { margin:0; }
+.sl-explorer__display img { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; background:#263136; }
+.sl-explorer__display h3 { font-size:clamp(2rem,3.5vw,3.8rem); line-height:1; letter-spacing:-.05em; margin:.5em 0; }
+.sl-explorer__display p:not(.eyebrow) { color:#d8dfdf; }
+.sl-method-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:4rem; }
+.sl-method-grid article { padding:2rem; border-top:2px solid #036F86; background:#fff; min-height:16rem; }
+.sl-method-grid span { font-size:.75rem; color:#036F86; letter-spacing:.1em; }
+.sl-method-grid h3 { font-size:2rem; margin:2rem 0 .5rem; }
+.sl-enquiry-copy { max-width:33rem; }
+.sl-enquiry-copy .button { display:inline-block; margin-top:1.5rem; }
+.sl-page :is(button,a):focus-visible { outline:3px solid var(--sl-accent); outline-offset:4px; }
+@media(max-width:900px) { .sl-explorer,.sl-explorer__display article {grid-template-columns:1fr}.sl-explorer__tabs {flex-direction:row;overflow-x:auto;scrollbar-width:thin}.sl-explorer__tabs button {flex:0 0 auto;min-width:11rem}.sl-explorer__display article {gap:1rem}.sl-explorer__display img {aspect-ratio:16/9}.sl-method-grid {grid-template-columns:1fr 1fr} }
+@media(max-width:600px){.sl-method-grid{grid-template-columns:1fr}.sl-method-grid article{min-height:0}.sl-explorer__display img{aspect-ratio:4/3}.sl-page h1{font-size:clamp(3.5rem,16vw,6rem)}}
+@media(prefers-reduced-motion:reduce){.sl-explorer__tabs button{transition:none}}
