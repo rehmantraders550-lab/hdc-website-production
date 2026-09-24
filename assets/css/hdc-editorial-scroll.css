@@ -1,0 +1,133 @@
+/* HDC Homepage Editorial Scroll System v1
+   Pilot layer: homepage only. No layout ownership; motion is transform/opacity/clip based.
+*/
+
+body[data-editorial-scroll="home"] {
+  --editorial-ease: cubic-bezier(.22,.61,.36,1);
+  --editorial-fast: 360ms;
+  --editorial-base: 620ms;
+  --editorial-slow: 820ms;
+}
+
+body[data-editorial-scroll="home"] [data-editorial-section] {
+  --editorial-progress: 0;
+  --editorial-media-shift: 18px;
+  position: relative;
+}
+
+body[data-editorial-scroll="home"] [data-editorial-item] {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition:
+    opacity var(--editorial-base) var(--editorial-ease),
+    transform var(--editorial-base) var(--editorial-ease),
+    clip-path var(--editorial-slow) var(--editorial-ease);
+  transition-delay: calc(var(--editorial-order, 0) * 70ms);
+}
+
+body[data-editorial-scroll="home"] [data-editorial-item="index"] {
+  transform: translate3d(0, 10px, 0);
+}
+
+body[data-editorial-scroll="home"] [data-editorial-item="media"] {
+  clip-path: inset(8% 0 0 0);
+  transform:
+    translate3d(0, calc(var(--editorial-media-shift) * (1 - var(--editorial-progress))), 0)
+    scale(calc(.985 + (var(--editorial-progress) * .015)));
+  transform-origin: 50% 50%;
+}
+
+body[data-editorial-scroll="home"] [data-editorial-item="rule"] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 100% 0 0);
+}
+
+body[data-editorial-scroll="home"] [data-editorial-section].is-editorial-entered [data-editorial-item] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+body[data-editorial-scroll="home"] [data-editorial-section].is-editorial-entered [data-editorial-item="media"] {
+  clip-path: inset(0 0 0 0);
+  transform:
+    translate3d(0, calc(var(--editorial-media-shift) * (1 - var(--editorial-progress))), 0)
+    scale(calc(.985 + (var(--editorial-progress) * .015)));
+}
+
+body[data-editorial-scroll="home"] [data-editorial-section].is-editorial-entered [data-editorial-item="rule"] {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Editorial cadence: text resolves before evidence/details. */
+body[data-editorial-scroll="home"] [data-editorial-sequence="evidence"] .capability-register__item,
+body[data-editorial-scroll="home"] [data-editorial-sequence="quality"] .quality-register > div,
+body[data-editorial-scroll="home"] [data-editorial-sequence="process"] .process-step {
+  transition-delay: calc(220ms + (var(--editorial-order, 0) * 72ms));
+}
+
+/* Application mosaic: preserve card interaction while giving the grid a measured entrance. */
+body[data-editorial-scroll="home"] [data-editorial-sequence="applications"] .application-feature[data-editorial-item] {
+  transform: translate3d(0, 26px, 0);
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="applications"].is-editorial-entered .application-feature[data-editorial-item] {
+  transform: translate3d(0, 0, 0);
+}
+
+/* Full-bleed environment image gets only a very shallow travel cue. */
+body[data-editorial-scroll="home"] [data-editorial-sequence="environment"] .environment__media {
+  transform: translate3d(0, calc((.5 - var(--editorial-progress)) * 22px), 0) scale(1.025);
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+/* Do not layer editorial transforms onto controls whose own JS owns motion. */
+body[data-editorial-scroll="home"] #technologies .hdc-expanding-panels [data-editorial-item],
+body[data-editorial-scroll="home"] .process-rail .process-step__trigger {
+  transform: none;
+}
+
+/* Progressive enhancement: if JS never boots, content remains visible. */
+html:not(.editorial-scroll-ready) body[data-editorial-scroll="home"] [data-editorial-item] {
+  opacity: 1;
+  transform: none;
+  clip-path: none;
+}
+
+@media (max-width: 899px) {
+  body[data-editorial-scroll="home"] [data-editorial-section] {
+    --editorial-media-shift: 10px;
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-item] {
+    transform: translate3d(0, 14px, 0);
+    transition-delay: calc(var(--editorial-order, 0) * 46ms);
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="applications"] .application-feature[data-editorial-item] {
+    transform: translate3d(0, 16px, 0);
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="applications"].is-editorial-entered .application-feature[data-editorial-item] {
+    transform: none;
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="environment"] .environment__media {
+    transform: none;
+    will-change: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.editorial-scroll-ready body[data-editorial-scroll="home"] [data-editorial-item] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="environment"] .environment__media {
+    transform: none !important;
+    will-change: auto;
+  }
+}
