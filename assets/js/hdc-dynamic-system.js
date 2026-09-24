@@ -168,10 +168,32 @@
 
     if (application && applicationField && !applicationField.value) {
       applicationField.value = application;
+      applicationField.dispatchEvent(new Event('input', { bubbles: true }));
+      applicationField.dispatchEvent(new Event('change', { bubbles: true }));
     }
     if (surface && surfaceField && !surfaceField.value) {
       surfaceField.value = surface;
+      surfaceField.dispatchEvent(new Event('input', { bubbles: true }));
+      surfaceField.dispatchEvent(new Event('change', { bubbles: true }));
     }
+
+    document.querySelectorAll('[data-quote-application]').forEach(button => {
+      button.addEventListener('click', () => {
+        const value = button.dataset.quoteApplication || '';
+        if (!applicationField || !value) return;
+        applicationField.value = value;
+        applicationField.dispatchEvent(new Event('input', { bubbles: true }));
+        applicationField.dispatchEvent(new Event('change', { bubbles: true }));
+        document.querySelectorAll('[data-quote-application]').forEach(other => {
+          other.setAttribute('aria-pressed', String(other === button));
+        });
+        if (context && contextText) {
+          context.hidden = false;
+          contextText.textContent = value;
+        }
+        if (window.hdcTrack) window.hdcTrack('quote_application_select', { application: value });
+      });
+    });
     if (context && contextText && (application || surface)) {
       context.hidden = false;
       const parts = [];
