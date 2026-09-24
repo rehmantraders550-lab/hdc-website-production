@@ -92,6 +92,76 @@
 
   const form = document.querySelector('[data-quote-form]');
   if (form) {
+    const DRAFT_KEY = 'hdcQuoteDraftV1';
+    const DRAFT_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+    const PERSIST_FIELDS = ['application', 'quantity', 'dimensions', 'surface', 'artwork', 'date'];
+    const clearSaved = form.querySelector('[data-quote-clear]');
+
+    const readDraft = () => {
+      try {
+        const raw = localStorage.getItem(DRAFT_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== 'object' || !parsed.savedAt || !parsed.values) return null;
+        if (Date.now() - Number(parsed.savedAt) > DRAFT_TTL_MS) {
+          localStorage.removeItem(DRAFT_KEY);
+          return null;
+        }
+        return parsed.values;
+      } catch (_) {
+        return null;
+      }
+    };
+
+    const writeDraft = () => {
+      try {
+        const values = {};
+        PERSIST_FIELDS.forEach(name => {
+          const field = form.elements[name];
+          if (field && typeof field.value === 'string') values[name] = field.value;
+        });
+        const hasValue = Object.values(values).some(value => value.trim());
+        if (!hasValue) {
+          localStorage.removeItem(DRAFT_KEY);
+          if (clearSaved) clearSaved.hidden = true;
+          return;
+        }
+        localStorage.setItem(DRAFT_KEY, JSON.stringify({ savedAt: Date.now(), values }));
+        if (clearSaved) clearSaved.hidden = false;
+      } catch (_) {}
+    };
+
+    const restoreDraft = () => {
+      const values = readDraft();
+      if (!values) return false;
+      PERSIST_FIELDS.forEach(name => {
+        const field = form.elements[name];
+        if (field && !field.value && typeof values[name] === 'string') field.value = values[name];
+      });
+      if (clearSaved) clearSaved.hidden = false;
+      return true;
+    };
+
+    restoreDraft();
+
+    PERSIST_FIELDS.forEach(name => {
+      const field = form.elements[name];
+      if (!field) return;
+      field.addEventListener('input', writeDraft);
+      field.addEventListener('change', writeDraft);
+    });
+
+    clearSaved?.addEventListener('click', () => {
+      try { localStorage.removeItem(DRAFT_KEY); } catch (_) {}
+      PERSIST_FIELDS.forEach(name => {
+        const field = form.elements[name];
+        if (field) field.value = '';
+      });
+      clearSaved.hidden = true;
+      const status = form.querySelector('[data-form-status]');
+      if (status) status.textContent = 'Saved project details cleared from this device.';
+      form.elements.application?.focus();
+    });
     const fields = [['Name', 'name'], ['Company', 'company'], ['Phone / WhatsApp', 'phone'], ['Application', 'application'], ['Quantity', 'quantity'], ['Dimensions', 'dimensions'], ['Material / surface', 'surface'], ['Artwork status', 'artwork'], ['Required date', 'date'], ['Additional notes', 'notes']];
     const buildBrief = () => {
       const data = new FormData(form);
