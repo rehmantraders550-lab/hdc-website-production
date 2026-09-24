@@ -32,7 +32,23 @@
     }
   };
 
-  let route = 'all';
+  const ROUTE_KEY = 'hdcApplicationRouteV1';
+  const readSavedRoute = () => {
+    try {
+      const saved = localStorage.getItem(ROUTE_KEY);
+      return saved && ROUTES[saved] ? saved : 'all';
+    } catch (_) {
+      return 'all';
+    }
+  };
+  const writeSavedRoute = value => {
+    try {
+      if (value === 'all') localStorage.removeItem(ROUTE_KEY);
+      else localStorage.setItem(ROUTE_KEY, value);
+    } catch (_) {}
+  };
+
+  let route = readSavedRoute();
 
   const routeButtons = Array.from(document.querySelectorAll('[data-application-route]'));
   const routeReadout = document.querySelector('[data-route-readout]');
@@ -82,6 +98,8 @@
     const enquiryCta = document.querySelector('[data-enquiry-cta]');
     if (enquirySummary) enquirySummary.textContent = ROUTES[route].readout;
     if (enquiryCta) enquiryCta.href = ROUTES[route].href;
+
+    if (announce) writeSavedRoute(route);
 
     if (announce && window.hdcTrack) {
       window.hdcTrack('application_route_select', { route });
@@ -166,12 +184,12 @@
     const context = document.querySelector('[data-quote-context]');
     const contextText = document.querySelector('[data-quote-context-text]');
 
-    if (application && applicationField && !applicationField.value) {
+    if (application && applicationField) {
       applicationField.value = application;
       applicationField.dispatchEvent(new Event('input', { bubbles: true }));
       applicationField.dispatchEvent(new Event('change', { bubbles: true }));
     }
-    if (surface && surfaceField && !surfaceField.value) {
+    if (surface && surfaceField) {
       surfaceField.value = surface;
       surfaceField.dispatchEvent(new Event('input', { bubbles: true }));
       surfaceField.dispatchEvent(new Event('change', { bubbles: true }));
@@ -203,5 +221,5 @@
     }
   }
 
-  setRoute('all', false);
+  setRoute(route, false);
 })();
