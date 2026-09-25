@@ -5,7 +5,7 @@
 body[data-editorial-scroll="home"] {
   --editorial-ease: cubic-bezier(.22,.61,.36,1);
   --editorial-fast: 360ms;
-  --editorial-base: 900ms;
+  --editorial-base: 1500ms;
   --editorial-slow: 1150ms;
 }
 
