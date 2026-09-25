@@ -78,15 +78,15 @@
   object-fit: cover;
   object-position: var(--hep-object-position, 50% 50%);
   transform: scale(1.025);
-  filter: saturate(.88) contrast(1.03);
+  filter: saturate(.92) brightness(1.08) contrast(1.02);
   transition: transform 900ms var(--hep-ease), filter 420ms ease;
 }
 .hdc-expanding-panels.is-interacting .hdc-expanding-panels__panel:not(.is-active) .hdc-expanding-panels__media img {
-  filter: saturate(.72) brightness(.78) contrast(1.04);
+  filter: saturate(.80) brightness(.88) contrast(1.03);
 }
 .hdc-expanding-panels__panel.is-active .hdc-expanding-panels__media img {
   transform: scale(1);
-  filter: saturate(1) brightness(1) contrast(1.02);
+  filter: saturate(1) brightness(1.10) contrast(1.02);
 }
 .hdc-expanding-panels__shade {
   z-index: 1;
@@ -284,7 +284,7 @@
   .hdc-expanding-panels__panel { scroll-margin-top: 5.5rem; }
   .hdc-expanding-panels__panel.is-active { min-height: clamp(560px, 150vw, 650px); }
   .hdc-expanding-panels.is-interacting .hdc-expanding-panels__panel:not(.is-active) .hdc-expanding-panels__media img {
-    filter: saturate(.82) brightness(.88) contrast(1.03);
+    filter: saturate(.86) brightness(.96) contrast(1.03);
   }
   .hdc-expanding-panels__collapsed { top: 50%; bottom: auto; transform: translateY(-50%); }
   .hdc-expanding-panels__collapsed h3 { max-width: 22ch; font-size: clamp(1.15rem, 5.4vw, 1.75rem); }

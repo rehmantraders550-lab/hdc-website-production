@@ -80,7 +80,7 @@ img { background: var(--paper-deep); }
 .specimen-grid__visuals img,
 .process-media video,
 .process-media img,
-.service-intro__image img { filter: brightness(1.05) contrast(1.02); }
+.service-intro__image img { filter: brightness(1.12) contrast(1.02); }
 a { color: inherit; }
 button, input, textarea, select { font: inherit; }
 button { cursor: pointer; }
@@ -128,7 +128,7 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
 
 .hero { position: relative; min-height: min(800px, calc(100svh - 80px)); overflow: hidden; background: var(--coal); color: var(--white); }
 .hero__media, .hero__shade { position: absolute; inset: 0; }
-.hero__media { opacity: .95; }
+.hero__media { opacity: 1; }
 .hero__shade { background: linear-gradient(90deg, rgba(11, 16, 19, .60) 0%, rgba(11, 16, 19, .28) 44%, rgba(11, 16, 19, .04) 100%), linear-gradient(0deg, rgba(11, 16, 19, .24), transparent 44%); }
 .hero__inner { position: relative; z-index: 1; display: grid; align-content: end; min-height: min(800px, calc(100svh - 80px)); padding: clamp(3rem, 7vw, 7rem) var(--gutter); }
 .hero__copy { max-width: var(--max); width: 100%; margin: auto; }
@@ -182,7 +182,7 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
 .specimen-grid figure { min-height: 0; margin: 0; overflow: hidden; }
 
 .environment { position: relative; overflow: hidden; background: var(--coal); color: var(--white); }
-.environment__media { position: absolute; inset: 0; opacity: .72; }
+.environment__media { position: absolute; inset: 0; opacity: .86; }
 .environment__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11, 16, 19,.68), rgba(11, 16, 19,.16)); }
 .environment .shell { position: relative; z-index: 1; }
 .environment h2 { max-width: 9ch; }
@@ -267,7 +267,7 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
   .site-nav .nav-cta { justify-content: center; margin-top: 1.5rem; border: 1px solid var(--ink); }
   .menu-button { display: block; }
   .hero, .hero__inner { min-height: calc(100svh - 70px); }
-  .hero__media { opacity: .90; }
+  .hero__media { opacity: .96; }
   .hero__shade { background: linear-gradient(0deg, rgba(11, 16, 19,.66) 0%, rgba(11, 16, 19,.20) 68%, rgba(11, 16, 19,.04) 100%); }
   .hero__spec { display: none; }
   .capability-strip { grid-template-columns: 1fr 1fr; }
