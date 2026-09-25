@@ -5,13 +5,13 @@
 body[data-editorial-scroll="home"] {
   --editorial-ease: cubic-bezier(.22,.61,.36,1);
   --editorial-fast: 360ms;
-  --editorial-base: 620ms;
-  --editorial-slow: 820ms;
+  --editorial-base: 900ms;
+  --editorial-slow: 1150ms;
 }
 
 body[data-editorial-scroll="home"] [data-editorial-section] {
   --editorial-progress: 0;
-  --editorial-media-shift: 18px;
+  --editorial-media-shift: 26px;
   position: relative;
 }
 
@@ -22,7 +22,7 @@ body[data-editorial-scroll="home"] [data-editorial-item] {
     opacity var(--editorial-base) var(--editorial-ease),
     transform var(--editorial-base) var(--editorial-ease),
     clip-path var(--editorial-slow) var(--editorial-ease);
-  transition-delay: calc(var(--editorial-order, 0) * 70ms);
+  transition-delay: calc(var(--editorial-order, 0) * 90ms);
 }
 
 body[data-editorial-scroll="home"] [data-editorial-item="index"] {
@@ -63,7 +63,7 @@ body[data-editorial-scroll="home"] [data-editorial-section].is-editorial-entered
 body[data-editorial-scroll="home"] [data-editorial-sequence="evidence"] .capability-register__item,
 body[data-editorial-scroll="home"] [data-editorial-sequence="quality"] .quality-register > div,
 body[data-editorial-scroll="home"] [data-editorial-sequence="process"] .process-step {
-  transition-delay: calc(220ms + (var(--editorial-order, 0) * 72ms));
+  transition-delay: calc(280ms + (var(--editorial-order, 0) * 90ms));
 }
 
 /* Application mosaic: preserve card interaction while giving the grid a measured entrance. */
@@ -76,7 +76,7 @@ body[data-editorial-scroll="home"] [data-editorial-sequence="applications"].is-e
 
 /* Full-bleed environment image gets only a very shallow travel cue. */
 body[data-editorial-scroll="home"] [data-editorial-sequence="environment"] .environment__media {
-  transform: translate3d(0, calc((.5 - var(--editorial-progress)) * 22px), 0) scale(1.025);
+  transform: translate3d(0, calc((.5 - var(--editorial-progress)) * 30px), 0) scale(1.025);
   transform-origin: 50% 50%;
   will-change: transform;
 }
@@ -96,12 +96,12 @@ html:not(.editorial-scroll-ready) body[data-editorial-scroll="home"] [data-edito
 
 @media (max-width: 899px) {
   body[data-editorial-scroll="home"] [data-editorial-section] {
-    --editorial-media-shift: 10px;
+    --editorial-media-shift: 14px;
   }
 
   body[data-editorial-scroll="home"] [data-editorial-item] {
     transform: translate3d(0, 14px, 0);
-    transition-delay: calc(var(--editorial-order, 0) * 46ms);
+    transition-delay: calc(var(--editorial-order, 0) * 58ms);
   }
 
   body[data-editorial-scroll="home"] [data-editorial-sequence="applications"] .application-feature[data-editorial-item] {
