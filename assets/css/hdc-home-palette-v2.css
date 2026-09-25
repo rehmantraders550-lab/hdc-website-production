@@ -1,0 +1,109 @@
+/* HDC Homepage Palette v2 — scoped color-role refinement
+   Homepage only. Does not alter the global HDC palette or other pages.
+   Hierarchy: graphite structure -> warm substrate -> copper material signal -> restrained technical signal.
+*/
+
+body[data-editorial-scroll="home"] {
+  /* Structural darks */
+  --hdc-graphite: #0B1013;
+  --hdc-charcoal: #181B1D;
+  --ink: #0B1013;
+  --coal: #0B1013;
+  --coal-soft: #181B1D;
+
+  /* Warm substrate field */
+  --hdc-paper: #F2EEE8;
+  --paper: #F2EEE8;
+  --paper-deep: #FAF7F2;
+  --canvas: #E3DDD5;
+  --white: #FFFFFF;
+  --hdc-white: #FFFFFF;
+
+  /* Material accent */
+  --hdc-copper: #8A5737;
+  --hdc-copper-light: #C88A5A;
+  --accent: #C88A5A;
+
+  /* Technical signals — intentionally subdued */
+  --hdc-teal: #295E64;
+  --hdc-cyan: #6C9B9C;
+
+  /* Neutral information colors */
+  --hdc-silver: #9CA5A7;
+  --mist: #9CA5A7;
+  --muted: #5E6463;
+
+  /* Rules */
+  --line: rgba(11, 16, 19, .15);
+  --line-light: rgba(255, 255, 255, .17);
+}
+
+/* Keep large light fields warm rather than blue-grey. */
+body[data-editorial-scroll="home"] .section--canvas {
+  background: var(--canvas);
+}
+
+body[data-editorial-scroll="home"] .specimen-grid__copy,
+body[data-editorial-scroll="home"] .reserved__box,
+body[data-editorial-scroll="home"] .quote-context {
+  background-color: var(--paper-deep);
+}
+
+/* Copper = physical/material emphasis. */
+body[data-editorial-scroll="home"] .text-link:hover,
+body[data-editorial-scroll="home"] .register-arrow:hover,
+body[data-editorial-scroll="home"] .nav-cta:hover,
+body[data-editorial-scroll="home"] .button--dark:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+  background-color: var(--accent);
+}
+
+/* Text links keep their structure on light fields; only the signal changes. */
+body[data-editorial-scroll="home"] .text-link:hover,
+body[data-editorial-scroll="home"] .register-arrow:hover {
+  color: var(--hdc-copper);
+  background: transparent;
+}
+
+/* Teal/cyan are reserved for instrument-like state cues, not broad fills. */
+body[data-editorial-scroll="home"] .hdc-production-state[data-state="active"] .hdc-production-state__pulse {
+  background: var(--hdc-teal);
+}
+
+body[data-editorial-scroll="home"] .hdc-production-state[data-state="review"] .hdc-production-state__pulse {
+  background: var(--hdc-copper-light);
+}
+
+/* Dark production fields remain nearly neutral; imagery and material finish do the visual work. */
+body[data-editorial-scroll="home"] .section--dark,
+body[data-editorial-scroll="home"] #technologies,
+body[data-editorial-scroll="home"] .lab-grid__figure {
+  background-color: var(--coal);
+}
+
+/* Warm neutral image placeholders prevent cool flashes during image loading. */
+body[data-editorial-scroll="home"] img,
+body[data-editorial-scroll="home"] .media-frame,
+body[data-editorial-scroll="home"] .application-feature__image,
+body[data-editorial-scroll="home"] .specimen-grid figure {
+  background-color: var(--paper-deep);
+}
+
+body[data-editorial-scroll="home"] .section--dark img,
+body[data-editorial-scroll="home"] #technologies img,
+body[data-editorial-scroll="home"] .lab-grid__figure img {
+  background-color: var(--coal-soft);
+}
+
+/* Focus remains high-contrast and calm. */
+body[data-editorial-scroll="home"] :focus-visible {
+  outline-color: var(--hdc-teal);
+}
+
+/* Mobile retains the same hierarchy; no alternate palette. */
+@media (max-width: 899px) {
+  body[data-editorial-scroll="home"] {
+    --line: rgba(11, 16, 19, .17);
+  }
+}
