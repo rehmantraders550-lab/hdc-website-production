@@ -37,3 +37,9 @@
 @media(max-width:900px) { .sl-explorer,.sl-explorer__display article {grid-template-columns:1fr}.sl-explorer__tabs {flex-direction:row;overflow-x:auto;scrollbar-width:thin}.sl-explorer__tabs button {flex:0 0 auto;min-width:11rem}.sl-explorer__display article {gap:1rem}.sl-explorer__display img {aspect-ratio:16/9}.sl-method-grid {grid-template-columns:1fr 1fr} }
 @media(max-width:600px){.sl-method-grid{grid-template-columns:1fr}.sl-method-grid article{min-height:0}.sl-explorer__display img{aspect-ratio:4/3}.sl-page h1{font-size:clamp(3.5rem,16vw,6rem)}}
 @media(prefers-reduced-motion:reduce){.sl-explorer__tabs button{transition:none}}
+
+/* ORVIA hero imagery calibration — wide source inside portrait evidence frame. */
+.sl-hero__visual img {
+  object-position: 72% center;
+}
+

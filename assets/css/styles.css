@@ -387,3 +387,59 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
 @media (prefers-reduced-motion: reduce) {
   .hero__media .hero__fallback { display: block; }
 }
+
+/* ==========================================================================
+   ORVIA HERO IMAGERY SYSTEM — 2026-09-26
+   Source: calculated HDC Engineered Tactility hero set.
+   Page-family routing preserves existing page semantics and markup.
+   ========================================================================== */
+body[data-page="production"] {
+  --hdc-page-hero-image: url("../images/heroes/HDC-HERO-PRODUCTION-2026-09-26.webp");
+}
+body[data-page="services"],
+body[data-page="about"],
+body[data-page="applications"],
+body[data-page="work"] {
+  --hdc-page-hero-image: url("../images/heroes/HDC-HERO-HOME-2026-09-26.webp");
+}
+body[data-page=""] {
+  --hdc-page-hero-image: url("../images/heroes/HDC-HERO-PROJECT-2026-09-26.webp");
+}
+.page-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--coal);
+  background-image:
+    linear-gradient(90deg, rgba(11, 16, 19, .94) 0%, rgba(11, 16, 19, .86) 38%, rgba(11, 16, 19, .72) 68%, rgba(11, 16, 19, .62) 100%),
+    var(--hdc-page-hero-image);
+  background-position: center, 72% center;
+  background-size: cover, cover;
+  background-repeat: no-repeat;
+}
+.page-hero .shell {
+  position: relative;
+  z-index: 1;
+}
+.page-hero .lede {
+  text-shadow: 0 1px 20px rgba(0, 0, 0, .28);
+}
+.hero__media .hero__fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 72% center;
+}
+
+@media (max-width: 760px) {
+  .page-hero {
+    background-image:
+      linear-gradient(180deg, rgba(11, 16, 19, .91) 0%, rgba(11, 16, 19, .82) 58%, rgba(11, 16, 19, .78) 100%),
+      var(--hdc-page-hero-image);
+    background-position: center, 70% center;
+  }
+  .hero__media .hero__fallback {
+    object-position: 68% center;
+  }
+}
+
