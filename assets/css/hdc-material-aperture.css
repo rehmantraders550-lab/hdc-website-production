@@ -225,7 +225,6 @@
 .hdc-material-aperture__panel.is-active .hdc-material-aperture__expanded {
   opacity: 1;
   transform: none;
-  pointer-events: auto;
   transition-delay: 100ms;
 }
 
@@ -272,6 +271,7 @@
   letter-spacing: .1em;
   text-decoration: none;
   text-transform: uppercase;
+  pointer-events: auto;
 }
 
 .hdc-material-aperture__cta::after {
