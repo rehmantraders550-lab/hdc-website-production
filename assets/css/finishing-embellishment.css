@@ -231,3 +231,12 @@
   .fe-layer-sheet { transition: none; }
   .fe-gallery__visual.is-changing img { opacity: 1; transform: none; }
 }
+
+/* ORVIA hero imagery calibration — tactile evidence weighted to the right. */
+.fe-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 73% center;
+}
+
