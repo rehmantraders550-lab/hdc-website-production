@@ -143,8 +143,8 @@
 .product-universe__motion-hint { color: var(--universe-muted); }
 .product-universe__controls { display: flex; gap: .45rem; }
 .product-universe__controls button {
-  min-width: 42px;
-  min-height: 38px;
+  min-width: 44px;
+  min-height: 44px;
   padding: .55rem .75rem;
   border: 1px solid var(--universe-line);
   border-radius: 0;
@@ -175,6 +175,14 @@
   }
   .product-universe__tile:hover img { transform: scale(1.04); }
 }
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .product-universe__tile {
+    flex-basis: clamp(12rem, 22vw, 15rem);
+    min-height: clamp(16rem, 26vw, 19rem);
+  }
+}
+
 @media (max-width: 899px) {
   .product-universe-stage { padding: 1rem 0 2rem; }
   .product-universe {
