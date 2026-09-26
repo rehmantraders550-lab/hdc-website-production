@@ -9,29 +9,36 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (!viewport || !tiles.length) return;
 
-  const leftOf = tile => tile.offsetLeft - viewport.offsetLeft;
-  const maxScroll = () => Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-  const clamp = value => Math.max(0, Math.min(maxScroll(), value));
-  const behavior = () => reduceMotion.matches ? 'auto' : 'smooth';
-
-  const nearestIndex = () => {
-    const x = viewport.scrollLeft;
-    let best = 0;
-    let distance = Infinity;
-    tiles.forEach((tile, index) => {
-      const delta = Math.abs(leftOf(tile) - x);
-      if (delta < distance) {
-        distance = delta;
-        best = index;
-      }
-    });
-    return best;
+  const tileLeft = tile => {
+    const viewportRect = viewport.getBoundingClientRect();
+    const tileRect = tile.getBoundingClientRect();
+    return viewport.scrollLeft + (tileRect.left - viewportRect.left);
   };
 
-  const scrollToTile = index => {
+  const maxScroll = () => Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+  const clamp = value => Math.max(0, Math.min(maxScroll(), value));
+  const smoothBehavior = () => reduceMotion.matches ? 'auto' : 'smooth';
+
+  const findNextIndex = () => {
+    const x = viewport.scrollLeft;
+    const threshold = 8;
+    const index = tiles.findIndex(tile => tileLeft(tile) > x + threshold);
+    return index === -1 ? tiles.length - 1 : index;
+  };
+
+  const findPreviousIndex = () => {
+    const x = viewport.scrollLeft;
+    const threshold = 8;
+    for (let index = tiles.length - 1; index >= 0; index -= 1) {
+      if (tileLeft(tiles[index]) < x - threshold) return index;
+    }
+    return 0;
+  };
+
+  const scrollToTile = (index, behavior = smoothBehavior()) => {
     const tile = tiles[Math.max(0, Math.min(tiles.length - 1, index))];
     if (!tile) return;
-    viewport.scrollTo({ left: clamp(leftOf(tile)), behavior: behavior() });
+    viewport.scrollTo({ left: clamp(tileLeft(tile)), behavior });
   };
 
   const updateControls = () => {
@@ -40,17 +47,16 @@
     if (next) next.disabled = viewport.scrollLeft >= maxScroll() - tolerance;
   };
 
-  prev?.addEventListener('click', () => scrollToTile(nearestIndex() - 1));
-  next?.addEventListener('click', () => scrollToTile(nearestIndex() + 1));
+  prev?.addEventListener('click', () => scrollToTile(findPreviousIndex()));
+  next?.addEventListener('click', () => scrollToTile(findNextIndex()));
 
   tiles.forEach(tile => {
     tile.addEventListener('focus', () => {
-      const viewLeft = viewport.scrollLeft;
-      const viewRight = viewLeft + viewport.clientWidth;
-      const tileLeft = leftOf(tile);
-      const tileRight = tileLeft + tile.offsetWidth;
-      if (tileLeft < viewLeft || tileRight > viewRight) {
-        viewport.scrollTo({ left: clamp(tileLeft), behavior: behavior() });
+      const viewportRect = viewport.getBoundingClientRect();
+      const tileRect = tile.getBoundingClientRect();
+      const fullyVisible = tileRect.left >= viewportRect.left && tileRect.right <= viewportRect.right;
+      if (!fullyVisible) {
+        viewport.scrollTo({ left: clamp(tileLeft(tile)), behavior: 'auto' });
       }
     });
   });
