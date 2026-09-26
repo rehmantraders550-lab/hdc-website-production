@@ -1,0 +1,34 @@
+name: HDC Source Archive Export
+
+on:
+  push:
+    branches:
+      - archive/hdc-source-drive-2026-09-26
+
+permissions:
+  contents: read
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout verified production source
+        uses: actions/checkout@v4
+        with:
+          ref: 0bd720206f88b5d95e6346b8b504ff9c316e7336
+          fetch-depth: 1
+
+      - name: Record source identity
+        run: |
+          printf '%s\n'             'repository=rehmantraders550-lab/hdc-website-production'             'branch=main'             'commit=0bd720206f88b5d95e6346b8b504ff9c316e7336'             'tree=d2bd24d9e61a807709607969183cb87fb500496a'             'export_date=2026-09-26' > HDC_SOURCE_SNAPSHOT_MANIFEST.txt
+
+      - name: Upload exact source snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: HDC-source-main-0bd720206f88
+          path: |
+            .
+            !.git
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
