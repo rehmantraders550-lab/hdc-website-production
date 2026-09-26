@@ -76,7 +76,7 @@
       const match = route === 'all' || tags.includes(route);
       card.classList.toggle('is-route-match', match);
       card.classList.toggle('is-route-muted', !match);
-      card.setAttribute('aria-hidden', 'false');
+      if (!card.hasAttribute('data-product-universe-clone')) card.setAttribute('aria-hidden', 'false');
     });
 
     if (routeReadout) routeReadout.textContent = ROUTES[route].readout;
