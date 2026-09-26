@@ -1,0 +1,164 @@
+/* HDC Selected Work Holding Visual v1
+   Temporary, non-case-study background treatment.
+   Remove this layer when verified project imagery is approved.
+*/
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-top: clamp(3rem, 5vw, 5rem);
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+  background: var(--paper);
+}
+
+/* Abstract proof-sheet field: intentionally non-literal and non-client-specific. */
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 12%;
+  right: -4%;
+  width: min(58vw, 58rem);
+  height: 76%;
+  pointer-events: none;
+  opacity: .46;
+  transform: rotate(-3deg);
+  transform-origin: center;
+  background:
+    radial-gradient(circle at 72% 34%, rgba(11, 16, 19, .095) 0 1.5%, transparent 1.8% 100%),
+    linear-gradient(112deg, transparent 0 28%, rgba(11, 16, 19, .04) 28.2% 28.5%, transparent 28.7% 61%, rgba(11, 16, 19, .035) 61.2% 61.45%, transparent 61.7%),
+    repeating-linear-gradient(0deg, rgba(11, 16, 19, .024) 0 1px, transparent 1px 68px),
+    repeating-linear-gradient(90deg, rgba(11, 16, 19, .02) 0 1px, transparent 1px 92px),
+    linear-gradient(145deg, rgba(169, 179, 183, .12), rgba(240, 239, 237, .02) 42%, rgba(125, 78, 44, .065));
+  clip-path: polygon(8% 0, 100% 8%, 91% 100%, 0 91%);
+  filter: blur(.15px);
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(240, 239, 237, .97) 0%,
+    rgba(240, 239, 237, .92) 35%,
+    rgba(240, 239, 237, .76) 60%,
+    rgba(240, 239, 237, .86) 100%
+  );
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .shell {
+  position: relative;
+  z-index: 2;
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, .72fr) minmax(18rem, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: .95rem clamp(2rem, 5vw, 5rem);
+  align-content: center;
+  align-items: start;
+  min-height: clamp(19rem, 24vw, 24rem);
+  max-width: none;
+  padding: clamp(2rem, 3vw, 3rem) 0;
+  border: 0;
+  border-top: var(--home-rule);
+  border-bottom: var(--home-rule);
+  background: transparent;
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box > .eyebrow {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box > h2 {
+  grid-column: 1;
+  grid-row: 2 / span 2;
+  align-self: start;
+  max-width: 6.5ch;
+  margin: 0;
+  font-size: clamp(4rem, 6.4vw, 7rem);
+  line-height: .9;
+  letter-spacing: -.055em;
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box > .body {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+  max-width: 39rem;
+  margin: 0;
+  font-size: clamp(.98rem, 1.1vw, 1.15rem);
+  line-height: 1.58;
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box > .text-link {
+  grid-column: 2;
+  grid-row: 3;
+  width: max-content;
+  margin-top: clamp(.85rem, 1.6vw, 1.4rem);
+}
+
+/* Mobile: keep the visual secondary and the content linear. */
+@media (max-width: 899px) {
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding::before {
+    top: 24%;
+    right: -30%;
+    width: 110vw;
+    height: 58%;
+    opacity: .28;
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding::after {
+    background: linear-gradient(
+      180deg,
+      rgba(240, 239, 237, .97) 0%,
+      rgba(240, 239, 237, .9) 50%,
+      rgba(240, 239, 237, .82) 100%
+    );
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    min-height: 0;
+    gap: 1rem;
+    padding: 2rem 0;
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box > .eyebrow,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box > h2,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box > .body,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box > .text-link {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box > h2 {
+    max-width: 7ch;
+    font-size: clamp(3.25rem, 14vw, 5rem);
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding .reserved__box > .text-link {
+    margin-top: .5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"].reserved--holding::before {
+    transform: none;
+  }
+}
