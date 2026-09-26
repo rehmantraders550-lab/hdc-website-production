@@ -1,0 +1,168 @@
+/* HDC Homepage Symmetry v1
+   Homepage-only composition refinement.
+   Inspiration: Finishing & Embellishment editorial grid, rules, registers and controlled asymmetry.
+   No interaction ownership.
+*/
+
+body[data-editorial-scroll="home"] {
+  --home-gap-tight: clamp(.75rem, 1vw, 1rem);
+  --home-gap-wide: clamp(2.5rem, 6vw, 6rem);
+  --home-rule: 1px solid var(--line);
+  --home-rule-light: 1px solid var(--line-light);
+}
+
+/* Shared master axis */
+body[data-editorial-scroll="home"] .product-universe-stage {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* Finishing-page-inspired section rhythm */
+body[data-editorial-scroll="home"] [data-editorial-section] > .shell > .section-index,
+body[data-editorial-scroll="home"] .environment .section-index {
+  margin-bottom: clamp(2.75rem, 5vw, 5rem);
+  padding-bottom: 1rem;
+}
+
+/* Editorial split family: 45 / 55 and mirrored 55 / 45 */
+body[data-editorial-scroll="home"] [data-editorial-sequence="evidence"] .split {
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1fr);
+  gap: var(--home-gap-wide);
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="surface-lab"] .lab-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, .82fr);
+  gap: var(--home-gap-tight);
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="surface-lab"] .lab-grid__figure {
+  order: -1;
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="applications"] .application-intro {
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, .82fr);
+  gap: var(--home-gap-wide);
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="material-detail"] .specimen-grid {
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1fr);
+  gap: var(--home-gap-tight);
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="process"] .process-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, .82fr);
+  gap: var(--home-gap-wide);
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="process"] .process-media {
+  order: -1;
+}
+
+body[data-editorial-scroll="home"] [data-editorial-sequence="enquiry"] .quote-panel {
+  grid-template-columns: minmax(0, 1fr) minmax(21rem, .82fr);
+  gap: var(--home-gap-wide);
+}
+
+/* Applications: explicit symmetry where no hierarchy has been established. */
+body[data-editorial-scroll="home"] [data-editorial-sequence="applications"] .application-feature:nth-child(1),
+body[data-editorial-scroll="home"] [data-editorial-sequence="applications"] .application-feature:nth-child(2) {
+  grid-column: span 6;
+}
+
+/* Quality: deliberate principle/register asymmetry, inspired by the finishing ledger. */
+body[data-editorial-scroll="home"] [data-editorial-sequence="quality"] .split {
+  grid-template-columns: minmax(13rem, .43fr) minmax(0, 1fr);
+  gap: var(--home-gap-wide);
+  align-items: start;
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="quality"] .quality-register {
+  margin-top: 0;
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="quality"] .quality-register div {
+  grid-template-columns: minmax(7rem, 1fr) auto;
+  gap: 1.5rem;
+  min-height: 4.25rem;
+}
+
+/* Selected Work: curatorial pause, not a decorative card. */
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] {
+  background: var(--paper);
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box {
+  display: grid;
+  grid-template-columns: minmax(0, .72fr) minmax(18rem, 1fr);
+  gap: 1.15rem var(--home-gap-wide);
+  max-width: none;
+  padding: clamp(2rem, 4vw, 4rem) 0;
+  border: 0;
+  border-top: var(--home-rule);
+  border-bottom: var(--home-rule);
+  background: transparent;
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > .eyebrow,
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > h2 {
+  grid-column: 1;
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > .body,
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > .text-link {
+  grid-column: 2;
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > h2 {
+  max-width: 9ch;
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > .body {
+  max-width: 36rem;
+  margin-top: 0;
+}
+body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > .text-link {
+  width: max-content;
+  margin-top: .25rem;
+}
+
+/* Keep repeated registers visually related. */
+body[data-editorial-scroll="home"] .capability-register,
+body[data-editorial-scroll="home"] .quality-register,
+body[data-editorial-scroll="home"] .surface-register {
+  border-top-width: 1px;
+}
+
+/* Mobile returns to semantic document order and single-column reading. */
+@media (max-width: 899px) {
+  body[data-editorial-scroll="home"] .product-universe-stage {
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="evidence"] .split,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="surface-lab"] .lab-grid,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="applications"] .application-intro,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="material-detail"] .specimen-grid,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="process"] .process-grid,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="quality"] .split,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="enquiry"] .quote-panel,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="surface-lab"] .lab-grid__figure,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="process"] .process-media {
+    order: 0;
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > .eyebrow,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > h2,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > .body,
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > .text-link {
+    grid-column: 1;
+  }
+
+  body[data-editorial-scroll="home"] [data-editorial-sequence="selected-work"] .reserved__box > .body {
+    margin-top: .25rem;
+  }
+}
+
+@media (max-width: 520px) {
+  body[data-editorial-scroll="home"] .product-universe-stage {
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+}
