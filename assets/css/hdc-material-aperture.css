@@ -1,0 +1,424 @@
+/* HDC Material Aperture v1
+   Compact material counterpart to the Production Register.
+   Same expansion grammar, reduced height, warm/light material field.
+*/
+
+.hdc-material-aperture {
+  --hma-speed: 480ms;
+  --hma-ease: cubic-bezier(.22, 1, .36, 1);
+  --hma-line: rgba(11, 16, 19, .15);
+  --hma-muted: rgba(11, 16, 19, .58);
+  margin-top: clamp(2.4rem, 5vw, 4.5rem);
+  color: var(--ink);
+}
+
+.hdc-material-aperture,
+.hdc-material-aperture * {
+  box-sizing: border-box;
+}
+
+.hdc-material-aperture__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0 .85rem;
+  font-family: var(--mono);
+  font-size: .61rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.hdc-material-aperture__header span:last-child {
+  color: var(--muted);
+  text-align: right;
+}
+
+.hdc-material-aperture__stage {
+  display: flex;
+  min-height: clamp(190px, 17vw, 230px);
+  border-top: 1px solid var(--hma-line);
+  border-bottom: 1px solid var(--hma-line);
+}
+
+.hdc-material-aperture__panel {
+  --hma-accent: var(--hdc-silver);
+  --hma-surface:
+    linear-gradient(145deg, rgba(255,255,255,.44), rgba(242,238,232,.9));
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  border-right: 1px solid var(--hma-line);
+  background: var(--paper-deep);
+  transition:
+    flex-grow var(--hma-speed) var(--hma-ease),
+    box-shadow 320ms ease,
+    transform 320ms var(--hma-ease);
+}
+
+.hdc-material-aperture__panel:last-child {
+  border-right: 0;
+}
+
+.hdc-material-aperture__panel::before,
+.hdc-material-aperture__panel::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.hdc-material-aperture__panel::before {
+  inset: 0;
+  z-index: 0;
+  background: var(--hma-surface);
+  opacity: .76;
+  transition: opacity 320ms ease, transform 560ms var(--hma-ease);
+}
+
+.hdc-material-aperture__panel::after {
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  height: 3px;
+  background: var(--hma-accent);
+  transform: scaleX(.24);
+  transform-origin: left;
+  transition: transform 320ms var(--hma-ease);
+}
+
+.hdc-material-aperture.is-interacting .hdc-material-aperture__panel:not(.is-active) {
+  flex-grow: .76;
+}
+
+.hdc-material-aperture.is-interacting .hdc-material-aperture__panel.is-active {
+  z-index: 3;
+  flex-grow: 2.55;
+  box-shadow: -18px 0 32px rgba(11, 16, 19, .07), 18px 0 32px rgba(11, 16, 19, .07);
+  transform: translateY(-3px);
+}
+
+.hdc-material-aperture__panel.is-active::before {
+  opacity: 1;
+  transform: scale(1.015);
+}
+
+.hdc-material-aperture__panel.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Material-specific cues: restrained, non-photographic and subordinate to typography. */
+.hdc-material-aperture__panel--acrylic {
+  --hma-accent: var(--hdc-cyan);
+  --hma-surface:
+    linear-gradient(145deg, rgba(108,155,156,.16), rgba(250,247,242,.86) 58%, rgba(156,165,167,.12));
+}
+
+.hdc-material-aperture__panel--glass {
+  --hma-accent: #84AEB2;
+  --hma-surface:
+    linear-gradient(155deg, rgba(255,255,255,.76), rgba(108,155,156,.13) 52%, rgba(242,238,232,.86));
+}
+
+.hdc-material-aperture__panel--metal {
+  --hma-accent: var(--hdc-silver);
+  --hma-surface:
+    linear-gradient(130deg, rgba(156,165,167,.22), rgba(250,247,242,.82) 44%, rgba(156,165,167,.18) 46%, rgba(242,238,232,.92));
+}
+
+.hdc-material-aperture__panel--leather {
+  --hma-accent: var(--hdc-copper);
+  --hma-surface:
+    repeating-linear-gradient(118deg, rgba(138,87,55,.035) 0 1px, transparent 1px 7px),
+    linear-gradient(145deg, rgba(138,87,55,.16), rgba(242,238,232,.9) 64%);
+}
+
+.hdc-material-aperture__panel--paper {
+  --hma-accent: var(--hdc-copper-light);
+  --hma-surface:
+    repeating-linear-gradient(0deg, rgba(11,16,19,.022) 0 1px, transparent 1px 9px),
+    linear-gradient(145deg, rgba(216,154,99,.09), rgba(250,247,242,.96));
+}
+
+.hdc-material-aperture__panel--film {
+  --hma-accent: var(--hdc-teal);
+  --hma-surface:
+    linear-gradient(125deg, rgba(41,94,100,.14), transparent 38%),
+    linear-gradient(145deg, rgba(255,255,255,.7), rgba(108,155,156,.12) 60%, rgba(242,238,232,.9));
+}
+
+.hdc-material-aperture__trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  appearance: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.hdc-material-aperture__trigger:focus-visible {
+  outline: 2px solid var(--hdc-teal);
+  outline-offset: -5px;
+}
+
+.hdc-material-aperture__index {
+  position: absolute;
+  z-index: 2;
+  top: 1rem;
+  left: 1rem;
+  color: var(--hma-muted);
+  font-family: var(--mono);
+  font-size: .61rem;
+  letter-spacing: .11em;
+  pointer-events: none;
+}
+
+.hdc-material-aperture__collapsed {
+  position: absolute;
+  z-index: 2;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 320ms var(--hma-ease);
+}
+
+.hdc-material-aperture__collapsed h3 {
+  max-width: 10ch;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: clamp(.95rem, 1.35vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1.02;
+}
+
+.hdc-material-aperture__panel.is-active .hdc-material-aperture__collapsed {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.hdc-material-aperture__expanded {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: 0;
+  padding: 2.9rem clamp(1rem, 2vw, 1.6rem) 1.15rem;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 260ms ease, transform 420ms var(--hma-ease);
+}
+
+.hdc-material-aperture__panel.is-active .hdc-material-aperture__expanded {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 100ms;
+}
+
+.hdc-material-aperture__kicker {
+  margin: 0 0 .4rem;
+  color: var(--hma-muted);
+  font-family: var(--mono);
+  font-size: .57rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.hdc-material-aperture__expanded h3 {
+  margin: 0;
+  max-width: 11ch;
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: .94;
+}
+
+.hdc-material-aperture__description {
+  max-width: 29rem;
+  margin: .7rem 0 0;
+  color: var(--muted);
+  font-size: clamp(.78rem, .9vw, .9rem);
+  line-height: 1.46;
+}
+
+.hdc-material-aperture__cta {
+  position: relative;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  width: max-content;
+  min-height: 34px;
+  margin-top: .55rem;
+  padding: .25rem 0;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: .57rem;
+  letter-spacing: .1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.hdc-material-aperture__cta::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: .05rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(.3);
+  transform-origin: left;
+  transition: transform 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hdc-material-aperture__panel:not(.is-active):hover::before {
+    opacity: .92;
+  }
+
+  .hdc-material-aperture__panel:not(.is-active):hover .hdc-material-aperture__collapsed {
+    transform: translateY(-3px);
+  }
+
+  .hdc-material-aperture__cta:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1180px) {
+  .hdc-material-aperture__stage {
+    min-height: 205px;
+  }
+
+  .hdc-material-aperture.is-interacting .hdc-material-aperture__panel:not(.is-active) {
+    flex-grow: .8;
+  }
+
+  .hdc-material-aperture.is-interacting .hdc-material-aperture__panel.is-active {
+    flex-grow: 2.35;
+  }
+
+  .hdc-material-aperture__collapsed h3 {
+    font-size: clamp(.9rem, 1.45vw, 1.15rem);
+  }
+
+  .hdc-material-aperture__expanded h3 {
+    font-size: clamp(1.65rem, 3vw, 2.4rem);
+  }
+}
+
+/* Mobile: compact vertical accordion, not squeezed horizontal panels. */
+@media (max-width: 899px) {
+  .hdc-material-aperture__header {
+    padding-bottom: .75rem;
+  }
+
+  .hdc-material-aperture__stage {
+    display: grid;
+    min-height: 0;
+  }
+
+  .hdc-material-aperture__panel,
+  .hdc-material-aperture.is-interacting .hdc-material-aperture__panel,
+  .hdc-material-aperture.is-interacting .hdc-material-aperture__panel.is-active {
+    flex: none;
+    min-height: 76px;
+    border-right: 0;
+    border-bottom: 1px solid var(--hma-line);
+    transform: none;
+    box-shadow: none;
+    transition: min-height var(--hma-speed) var(--hma-ease);
+  }
+
+  .hdc-material-aperture__panel:last-child {
+    border-bottom: 0;
+  }
+
+  .hdc-material-aperture__panel.is-active {
+    min-height: clamp(225px, 58vw, 270px);
+  }
+
+  .hdc-material-aperture__panel::after {
+    width: 3px;
+    height: auto;
+    right: auto;
+    bottom: 0;
+    transform: scaleY(.24);
+    transform-origin: top;
+  }
+
+  .hdc-material-aperture__panel.is-active::after {
+    transform: scaleY(1);
+  }
+
+  .hdc-material-aperture__index {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .hdc-material-aperture__collapsed {
+    top: 50%;
+    right: 2.5rem;
+    bottom: auto;
+    left: 3.4rem;
+    transform: translateY(-50%);
+  }
+
+  .hdc-material-aperture__collapsed h3 {
+    max-width: 24ch;
+    font-size: 1rem;
+  }
+
+  .hdc-material-aperture__panel.is-active .hdc-material-aperture__collapsed {
+    transform: translateY(calc(-50% + 6px));
+  }
+
+  .hdc-material-aperture__expanded {
+    justify-content: flex-end;
+    padding: 2.5rem 1rem 1rem 3.4rem;
+  }
+
+  .hdc-material-aperture__expanded h3 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .hdc-material-aperture__description {
+    max-width: 32rem;
+    font-size: .86rem;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .hdc-material-aperture {
+    --hma-line: rgba(11, 16, 19, .34);
+    --hma-muted: rgba(11, 16, 19, .78);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hdc-material-aperture__panel,
+  .hdc-material-aperture__panel::before,
+  .hdc-material-aperture__panel::after,
+  .hdc-material-aperture__collapsed,
+  .hdc-material-aperture__expanded,
+  .hdc-material-aperture__cta::after {
+    transition: none !important;
+    transform: none !important;
+  }
+}
