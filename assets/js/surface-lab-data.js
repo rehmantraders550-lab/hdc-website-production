@@ -32,6 +32,7 @@
         publicStatus:"Assessment required", internalStatus:"UNTESTED",
         image:"assets/images/imagery-2026-09-24/HDC-2026-glass.webp",
         imageAlt:"Glass surface study showing a printed application on a transparent rigid surface",
+        serviceHref:"products-object-printing.html", serviceLabel:"Explore products & object printing",
         review:sharedReview
       },
       {
@@ -43,6 +44,7 @@
         publicStatus:"Assessment required", internalStatus:"UNTESTED",
         image:"assets/images/imagery-2026-09-24/HDC-2026-acrylic.webp",
         imageAlt:"Acrylic surface study showing printed detail on a transparent rigid polymer",
+        serviceHref:"products-object-printing.html", serviceLabel:"Explore products & object printing",
         review:sharedReview
       },
       {
@@ -53,6 +55,7 @@
         candidates:["Direct UV","UV-DTF","Vinyl"],
         publicStatus:"Assessment required", internalStatus:"UNTESTED",
         image:null, imageAlt:"",
+        serviceHref:"products-object-printing.html", serviceLabel:"Explore products & object printing",
         review:sharedReview
       },
       {
@@ -63,6 +66,7 @@
         candidates:["Direct UV","UV-DTF","Vinyl"],
         publicStatus:"Assessment required", internalStatus:"UNTESTED",
         image:null, imageAlt:"",
+        serviceHref:"large-format-brand-environments.html", serviceLabel:"Explore brand environments",
         review:sharedReview
       },
       {
@@ -73,6 +77,7 @@
         candidates:["Direct UV","UV-DTF","Vinyl"],
         publicStatus:"Assessment required", internalStatus:"UNTESTED",
         image:null, imageAlt:"",
+        serviceHref:"large-format-brand-environments.html", serviceLabel:"Explore brand environments",
         review:sharedReview
       },
       {
@@ -84,6 +89,7 @@
         publicStatus:"Assessment required", internalStatus:"UNTESTED",
         image:"assets/images/HDC-IMG-FLATBED-WOOD-GEOMETRY-01.webp",
         imageAlt:"Wood object study used for geometry and surface assessment",
+        serviceHref:"products-object-printing.html", serviceLabel:"Explore products & object printing",
         review:sharedReview
       },
       {
@@ -94,6 +100,7 @@
         candidates:["Direct UV","UV-DTF","Vinyl"],
         publicStatus:"Assessment required", internalStatus:"UNTESTED",
         image:null, imageAlt:"",
+        serviceHref:"products-object-printing.html", serviceLabel:"Explore products & object printing",
         review:sharedReview
       },
       {
@@ -104,6 +111,7 @@
         candidates:[],
         publicStatus:"Exact surface review required", internalStatus:"UNTESTED",
         image:null, imageAlt:"",
+        serviceHref:"request-a-quote.html?application=Surface%20review", serviceLabel:"Start surface review",
         review:sharedReview
       }
     ]
