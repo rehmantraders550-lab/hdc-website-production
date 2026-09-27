@@ -15,10 +15,10 @@
 
   const WAIT = Object.freeze({
     PREPARE: 140,
-    TRAVEL: 540,
-    MAX_STAGGER: 200,
-    POST_LOCK: 110,
-    META: 200
+    TRAVEL: 1080,
+    MAX_STAGGER: 400,
+    POST_LOCK: 220,
+    META: 400
   });
 
   let assemblyStarted = false;
