@@ -64,7 +64,6 @@
     button.type = 'button';
     button.className = 'sl-decision-step';
     button.dataset.slStep = step.id;
-    button.setAttribute('role','listitem');
     button.setAttribute('aria-pressed','false');
     button.innerHTML =
       '<span class="sl-decision-step__index">' + esc(step.index) + '</span>' +
@@ -128,7 +127,7 @@
     });
   }
 
-  function setActive(material, scroll = false) {
+  function setActive(material, scroll = false, updateHash = true) {
     if (!material) return;
     active = material;
 
@@ -161,7 +160,7 @@
     }
 
     const newHash = '#surface-' + material.slug;
-    if (location.hash !== newHash) history.replaceState(null,'',newHash);
+    if (updateHash && location.hash !== newHash) history.replaceState(null,'',newHash);
 
     if (scroll) {
       page.querySelector('#sl-detail')?.scrollIntoView({
@@ -248,12 +247,12 @@
   };
 
   const initial = hashMaterial() || data.materials[0];
-  setActive(initial, false);
+  setActive(initial, false, Boolean(hashMaterial()));
   renderCompare();
 
   addEventListener('hashchange', () => {
     const material = hashMaterial();
-    if (material && material !== active) setActive(material, false);
+    if (material && material !== active) setActive(material, false, false);
   });
 
   page.querySelectorAll('[data-surface-reactive]').forEach(surface => {
