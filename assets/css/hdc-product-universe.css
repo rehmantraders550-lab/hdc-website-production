@@ -117,7 +117,10 @@
   text-decoration: none;
   background: #171d21;
   isolation: isolate;
-  will-change: transform, opacity;
+  will-change: auto;
+  transition:
+    transform 260ms cubic-bezier(.22, 1, .36, 1),
+    border-color 180ms ease;
 }
 
 .product-universe__tile--dominant { --tile-width: 21rem; --tile-height: 19rem; }
@@ -137,6 +140,7 @@
 .product-universe__tile[data-assemble-group="4"] { --assembly-delay: 200ms; }
 
 .product-universe.is-assembly-ready .product-universe__tile {
+  will-change: transform, opacity;
   opacity: 0;
   transform: translate3d(var(--enter-x), var(--enter-y), 0);
   transition:
@@ -303,20 +307,24 @@
     grid-template-columns: minmax(0, 1fr) minmax(13rem, 19rem);
   }
 
-  .product-universe__tile--dominant,
-  .product-universe__tile--wide {
+  .product-universe__tile--dominant {
     --tile-width: min(68vw, 19rem);
     --tile-height: 18.5rem;
   }
 
-  .product-universe__tile--medium {
-    --tile-width: min(54vw, 16rem);
+  .product-universe__tile--wide {
+    --tile-width: min(61vw, 17rem);
     --tile-height: 17.5rem;
   }
 
+  .product-universe__tile--medium {
+    --tile-width: min(54vw, 15rem);
+    --tile-height: 16.75rem;
+  }
+
   .product-universe__tile--narrow {
-    --tile-width: min(44vw, 13rem);
-    --tile-height: 16.5rem;
+    --tile-width: min(44vw, 12.5rem);
+    --tile-height: 16.25rem;
   }
 }
 
@@ -353,9 +361,13 @@
     align-items: stretch !important;
   }
 
-  .product-universe__tile--dominant,
-  .product-universe__tile--wide {
+  .product-universe__tile--dominant {
     --tile-width: 72vw;
+    --tile-height: 17.5rem;
+  }
+
+  .product-universe__tile--wide {
+    --tile-width: 64vw;
     --tile-height: 17.5rem;
   }
 
