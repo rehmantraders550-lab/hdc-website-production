@@ -3,11 +3,13 @@
   if (!root) return;
 
   const viewport = root.querySelector('[data-product-universe-viewport]');
+  const rows = [...root.querySelectorAll('[data-product-universe-row]')];
   const tiles = [...root.querySelectorAll('.product-universe__tile')];
+  const anchors = rows[0] ? [...rows[0].querySelectorAll('.product-universe__tile')] : tiles;
   const prev = root.querySelector('[data-product-universe-prev]');
   const next = root.querySelector('[data-product-universe-next]');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (!viewport || !tiles.length) return;
+  if (!viewport || !tiles.length || !anchors.length) return;
 
   const tileLeft = tile => {
     const viewportRect = viewport.getBoundingClientRect();
@@ -22,21 +24,21 @@
   const findNextIndex = () => {
     const x = viewport.scrollLeft;
     const threshold = 8;
-    const index = tiles.findIndex(tile => tileLeft(tile) > x + threshold);
-    return index === -1 ? tiles.length - 1 : index;
+    const index = anchors.findIndex(tile => tileLeft(tile) > x + threshold);
+    return index === -1 ? anchors.length - 1 : index;
   };
 
   const findPreviousIndex = () => {
     const x = viewport.scrollLeft;
     const threshold = 8;
-    for (let index = tiles.length - 1; index >= 0; index -= 1) {
-      if (tileLeft(tiles[index]) < x - threshold) return index;
+    for (let index = anchors.length - 1; index >= 0; index -= 1) {
+      if (tileLeft(anchors[index]) < x - threshold) return index;
     }
     return 0;
   };
 
-  const scrollToTile = (index, behavior = smoothBehavior()) => {
-    const tile = tiles[Math.max(0, Math.min(tiles.length - 1, index))];
+  const scrollToColumn = (index, behavior = smoothBehavior()) => {
+    const tile = anchors[Math.max(0, Math.min(anchors.length - 1, index))];
     if (!tile) return;
     viewport.scrollTo({ left: clamp(tileLeft(tile)), behavior });
   };
@@ -47,8 +49,8 @@
     if (next) next.disabled = viewport.scrollLeft >= maxScroll() - tolerance;
   };
 
-  prev?.addEventListener('click', () => scrollToTile(findPreviousIndex()));
-  next?.addEventListener('click', () => scrollToTile(findNextIndex()));
+  prev?.addEventListener('click', () => scrollToColumn(findPreviousIndex()));
+  next?.addEventListener('click', () => scrollToColumn(findNextIndex()));
 
   tiles.forEach(tile => {
     tile.addEventListener('focus', () => {
