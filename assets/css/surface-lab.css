@@ -569,3 +569,24 @@
     transition:none;
   }
 }
+
+
+/* ORVIA hero luminance calibration — 2026-09-27 */
+.sl-page .sl-hero {
+  background: linear-gradient(118deg, #0B1013 0%, #11191D 56%, #182226 100%);
+}
+.sl-page .sl-hero h1 {
+  max-width: 8ch;
+  font-size: clamp(3.8rem, 7vw, 7rem);
+}
+.sl-page .sl-hero__visual img {
+  filter: brightness(1.14) saturate(.96) contrast(1.03);
+}
+@media (max-width: 900px) {
+  .sl-page .sl-hero {
+    padding-top: clamp(6rem, 12vw, 8rem);
+  }
+  .sl-page .sl-hero h1 {
+    font-size: clamp(3.2rem, 14vw, 5.4rem);
+  }
+}
