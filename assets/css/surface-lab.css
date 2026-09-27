@@ -345,6 +345,42 @@
   outline-offset:4px;
 }
 
+
+.sl-material-card h3 { margin:0; font-size:inherit; letter-spacing:normal; }
+.sl-material-card__name { margin-top:.5rem; }
+.sl-material-card__name a { color:inherit; text-decoration:none; }
+.sl-material-card__summary { color:#d8dfdf; font-size:.92rem; margin:0; }
+.sl-material-card__candidates {
+  display:grid;
+  gap:.35rem;
+  padding-top:.75rem;
+  border-top:1px solid rgba(255,255,255,.18);
+}
+.sl-material-card__candidates span {
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  color:var(--sl-muted);
+  font-size:.78rem;
+}
+.sl-material-card__candidates b { color:#fff; font-weight:600; }
+.sl-material-card__actions {
+  margin-top:auto;
+  display:grid;
+  gap:.65rem;
+}
+.sl-card-link { color:#fff; text-underline-offset:.25em; font-size:.82rem; }
+.sl-card-cta-placeholder {
+  display:inline-block;
+  width:max-content;
+  max-width:100%;
+  padding:.55rem .7rem;
+  border:1px dashed rgba(255,255,255,.3);
+  color:var(--sl-muted);
+  font-size:.68rem;
+  letter-spacing:.1em;
+}
+
 @media (max-width:1180px) {
   .sl-material-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .sl-decision-path { grid-template-columns:repeat(3,minmax(0,1fr)); }
