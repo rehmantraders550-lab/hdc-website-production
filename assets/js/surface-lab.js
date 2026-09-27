@@ -13,8 +13,8 @@
 
   if (tools) tools.hidden = false;
 
-  const cardByRecord = new Map(cards.map(card => [card.dataset.recordId, card]));
-  const detailByRecord = new Map(details.map(detail => [detail.dataset.recordId, detail]));
+  const cardByRecord = new Map(cards.map(card => [card.dataset.recordKey, card]));
+  const detailByRecord = new Map(details.map(detail => [detail.dataset.recordKey, detail]));
   const selected = new Set();
 
   const normalized = value => (value || '').toLowerCase().replace(/\s+/g, ' ').trim();
@@ -78,7 +78,7 @@
   };
 
   cards.forEach(card => {
-    const recordId = card.dataset.recordId;
+    const recordId = card.dataset.recordKey;
     const name = card.querySelector('.sl-material-card__name')?.textContent?.trim() || 'Material';
 
     const compare = document.createElement('label');
