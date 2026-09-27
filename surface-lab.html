@@ -6,12 +6,12 @@
   <meta name="theme-color" content="#0B1013">
   <meta name="description" content="Hadi Digital Craft Surface Lab — an assessment-led material and surface review system for print applications.">
   <meta name="orvia:governance" content="ORVIA Web Execution Protocol v1.0">
-  <meta name="orvia:artifact" content="HDC Surface Lab Structure v1">
+  <meta name="orvia:artifact" content="HDC Surface Lab v2">
   <title>Surface Lab — Hadi Digital Craft</title>
   <link rel="stylesheet" href="assets/css/styles.css?v=20260927-hero-luminance-01">
-  <link rel="stylesheet" href="assets/css/surface-lab.css?v=20260926-structure-v1">
+  <link rel="stylesheet" href="assets/css/surface-lab.css?v=20260927-redesign-v2">
 </head>
-<body class="sl-page" data-page="surface-lab" data-orvia="HDC-SURFACE-LAB-STRUCTURE-V1">
+<body class="sl-page" data-page="surface-lab" data-orvia="HDC-SURFACE-LAB-V2">
   <div data-site-header></div>
 
   <main id="main-content">
@@ -23,41 +23,43 @@
           <p class="sl-intro">Start with the object and surface, not the machine.</p>
           <div class="sl-hero__actions" aria-label="Surface Lab page actions">
             <a class="button button--light" href="#sl-materials">Browse materials</a>
-            <a class="sl-text-link" href="#sl-review">Send your object/surface for review</a>
+            <a class="sl-text-link" href="request-a-quote.html?application=Surface%20review&amp;surface=Unknown%20or%20uncertain">Send your object / surface for review</a>
           </div>
         </div>
-        <figure class="sl-hero__visual">
+
+        <figure class="sl-hero__visual" data-surface-reactive tabindex="0" aria-label="Surface study image">
           <img src="assets/images/heroes/HDC-HERO-SURFACE-LAB-2026-09-26.webp" alt="HDC surface-study arrangement of printed materials and decorated objects" loading="eager" fetchpriority="high">
           <figcaption>Surface study / material, finish, application</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="sl-section" aria-labelledby="sl-decision-title">
+    <section class="sl-section sl-decision" aria-labelledby="sl-decision-title">
       <div class="shell">
         <div class="section-index">
           <span>01 / DECISION LOGIC</span>
           <span>OBJECT → RECOMMENDATION</span>
         </div>
+
         <div class="sl-section-heading">
           <div>
             <p class="eyebrow">HOW SURFACE LAB DECIDES</p>
             <h2 id="sl-decision-title">Define the job before the route.</h2>
           </div>
-          <p class="sl-lead">The page is organized around what the object is, what its surface is, and how it will be used.</p>
+          <p class="sl-lead">Surface Lab moves from the physical object toward a qualified recommendation. A production route only becomes meaningful after the surface and use conditions are understood.</p>
         </div>
 
-        <ol class="sl-decision-path" aria-label="Surface Lab decision sequence">
-          <li><span>01</span><strong>Object</strong></li>
-          <li><span>02</span><strong>Material</strong></li>
-          <li><span>03</span><strong>Coating</strong></li>
-          <li><span>04</span><strong>Geometry</strong></li>
-          <li><span>05</span><strong>Environment</strong></li>
-          <li><span>06</span><strong>Visual requirement</strong></li>
-          <li><span>07</span><strong>Process candidate</strong></li>
-          <li><span>08</span><strong>Validation status</strong></li>
-          <li><span>09</span><strong>Recommendation</strong></li>
-        </ol>
+        <div class="sl-decision-system" data-sl-decision>
+          <div class="sl-decision-rail" role="list" aria-label="Surface Lab decision sequence" data-sl-decision-rail></div>
+          <div class="sl-decision-readout" aria-live="polite">
+            <span class="sl-decision-readout__index" data-sl-decision-index>01</span>
+            <div>
+              <p class="sl-slot-label" data-sl-decision-label>Object</p>
+              <h3 data-sl-decision-prompt>What are you making?</h3>
+              <p data-sl-decision-detail>Start with the physical object or application rather than a machine or process.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -67,874 +69,121 @@
           <span>02 / MATERIAL NAVIGATOR</span>
           <span>8 SURFACE FAMILIES</span>
         </div>
+
         <div class="sl-section-heading">
           <div>
             <p class="eyebrow">BROWSE BY MATERIAL</p>
             <h2 id="sl-materials-title">Choose the closest surface family.</h2>
           </div>
-          <p class="sl-lead">Each material remains assessment-led until the exact surface, finish and use case are confirmed.</p>
+          <p class="sl-lead">Each material remains assessment-led until the exact surface, finish and use case are confirmed. Candidate processes are shown for orientation, not as automatic approvals.</p>
         </div>
 
-        <div class="sl-material-tools" data-sl-tools hidden>
+        <div class="sl-material-tools" data-sl-tools>
           <div class="sl-search-field">
             <label for="sl-material-search">Find a material</label>
             <input id="sl-material-search" type="search" autocomplete="off" placeholder="Glass, acrylic, wood…">
-            <p id="sl-search-status" class="sl-tool-status" role="status" aria-live="polite"></p>
+            <p id="sl-search-status" class="sl-tool-status" role="status" aria-live="polite">8 material families available.</p>
           </div>
+
           <div class="sl-compare-guide">
             <strong>Compare 2–3 materials</strong>
-            <p>Select materials from the cards. Comparison uses customer-safe fields only.</p>
+            <p>Comparison uses the same normalized material records shown below.</p>
+            <a class="sl-inline-link" href="#sl-compare">Open comparison</a>
           </div>
         </div>
 
-        <div class="sl-material-grid" aria-label="Surface Lab material families">
-          <article class="sl-material-card" data-record-key="SURF-GLASS-001">
-            <span class="sl-material-card__index">01</span>
-            <h3 class="sl-material-card__name"><a href="#surface-glass">Glass</a></h3>
-            <p class="sl-material-card__summary" data-card-summary="SURF-GLASS-001">Glass can support direct UV, UV-DTF, vinyl, or specialist decoration routes depending on the exact glass, coating, geometry, print face, and how the finished piece will be handled and cleaned.</p>
-            <div class="sl-material-card__candidates" aria-label="Glass process candidates">
-              <span>Direct UV <b>May suit</b></span>
-              <span>UV-DTF <b>May suit</b></span>
-              <span>Vinyl <b>May suit</b></span>
-            </div>
-            <p class="sl-material-card__status">Assessment required</p>
-            <div class="sl-material-card__actions">
-              <a class="sl-card-link" href="#surface-glass">Open material record</a>
-              <span class="sl-card-cta-placeholder" data-card-cta="SURF-GLASS-001">Request a sample test</span>
-            </div>
-          </article>
-          <article class="sl-material-card" data-record-key="SURF-ACRYLIC-001">
-            <span class="sl-material-card__index">02</span>
-            <h3 class="sl-material-card__name"><a href="#surface-acrylic">Acrylic / PMMA</a></h3>
-            <p class="sl-material-card__summary" data-card-summary="SURF-ACRYLIC-001">Acrylic is a strong candidate for high-detail rigid-surface graphics, but performance depends on acrylic type, surface finish, stress state, fabrication history, and the chosen print or transfer method.</p>
-            <div class="sl-material-card__candidates" aria-label="Acrylic / PMMA process candidates">
-              <span>Direct UV <b>May suit</b></span>
-              <span>UV-DTF <b>May suit</b></span>
-              <span>Vinyl <b>May suit</b></span>
-            </div>
-            <p class="sl-material-card__status">Assessment required</p>
-            <div class="sl-material-card__actions">
-              <a class="sl-card-link" href="#surface-acrylic">Open material record</a>
-              <span class="sl-card-cta-placeholder" data-card-cta="SURF-ACRYLIC-001">Request a sample test</span>
-            </div>
-          </article>
-          <article class="sl-material-card" data-record-key="SURF-COATED-METAL-001">
-            <span class="sl-material-card__index">03</span>
-            <h3 class="sl-material-card__name"><a href="#surface-coated-metal">Coated Metal</a></h3>
-            <p class="sl-material-card__summary" data-card-summary="SURF-COATED-METAL-001">Coated metal can be decorated by several print and graphic methods, but the real printable surface is the coating system—not simply the metal underneath.</p>
-            <div class="sl-material-card__candidates" aria-label="Coated Metal process candidates">
-              <span>Direct UV <b>May suit</b></span>
-              <span>UV-DTF <b>May suit</b></span>
-              <span>Vinyl <b>May suit</b></span>
-            </div>
-            <p class="sl-material-card__status">Assessment required</p>
-            <div class="sl-material-card__actions">
-              <a class="sl-card-link" href="#surface-coated-metal">Open material record</a>
-              <span class="sl-card-cta-placeholder" data-card-cta="SURF-COATED-METAL-001">Send your object/surface for review</span>
-            </div>
-          </article>
-          <article class="sl-material-card" data-record-key="SURF-ACM-001">
-            <span class="sl-material-card__index">04</span>
-            <h3 class="sl-material-card__name"><a href="#surface-acm">ACM / Dibond-type Panels</a></h3>
-            <p class="sl-material-card__summary" data-card-summary="SURF-ACM-001">ACM is well suited to signage, display, and brand-environment work, but coating family, panel construction, finishing, and installation conditions must be known before the graphic method is locked.</p>
-            <div class="sl-material-card__candidates" aria-label="ACM / Dibond-type Panels process candidates">
-              <span>Direct UV <b>May suit</b></span>
-              <span>UV-DTF <b>May suit</b></span>
-              <span>Vinyl <b>May suit</b></span>
-            </div>
-            <p class="sl-material-card__status">Assessment required</p>
-            <div class="sl-material-card__actions">
-              <a class="sl-card-link" href="#surface-acm">Open material record</a>
-              <span class="sl-card-cta-placeholder" data-card-cta="SURF-ACM-001">Ask for a material/process recommendation</span>
-            </div>
-          </article>
-          <article class="sl-material-card" data-record-key="SURF-PVC-001">
-            <span class="sl-material-card__index">05</span>
-            <h3 class="sl-material-card__name"><a href="#surface-pvc">PVC / Foamex</a></h3>
-            <p class="sl-material-card__summary" data-card-summary="SURF-PVC-001">PVC and foam-board products are common display surfaces, but board density, skin type, heat sensitivity, fabrication method, and adhesive migration can materially change the correct print route.</p>
-            <div class="sl-material-card__candidates" aria-label="PVC / Foamex process candidates">
-              <span>Direct UV <b>May suit</b></span>
-              <span>UV-DTF <b>May suit</b></span>
-              <span>Vinyl <b>May suit</b></span>
-            </div>
-            <p class="sl-material-card__status">Assessment required</p>
-            <div class="sl-material-card__actions">
-              <a class="sl-card-link" href="#surface-pvc">Open material record</a>
-              <span class="sl-card-cta-placeholder" data-card-cta="SURF-PVC-001">Ask for a material/process recommendation</span>
-            </div>
-          </article>
-          <article class="sl-material-card" data-record-key="SURF-WOOD-001">
-            <span class="sl-material-card__index">06</span>
-            <h3 class="sl-material-card__name"><a href="#surface-wood">Wood & Engineered Board</a></h3>
-            <p class="sl-material-card__summary" data-card-summary="SURF-WOOD-001">Wood and engineered boards can produce highly tactile print results, but porosity, moisture, grain, sealers, coatings, and dimensional movement determine what process is suitable.</p>
-            <div class="sl-material-card__candidates" aria-label="Wood & Engineered Board process candidates">
-              <span>Direct UV <b>May suit</b></span>
-              <span>UV-DTF <b>May suit</b></span>
-              <span>Vinyl <b>May suit</b></span>
-            </div>
-            <p class="sl-material-card__status">Assessment required</p>
-            <div class="sl-material-card__actions">
-              <a class="sl-card-link" href="#surface-wood">Open material record</a>
-              <span class="sl-card-cta-placeholder" data-card-cta="SURF-WOOD-001">Send your object/surface for review</span>
-            </div>
-          </article>
-          <article class="sl-material-card" data-record-key="SURF-RIGID-PLASTICS-001">
-            <span class="sl-material-card__index">07</span>
-            <h3 class="sl-material-card__name"><a href="#surface-rigid-plastics">Rigid Plastics</a></h3>
-            <p class="sl-material-card__summary" data-card-summary="SURF-RIGID-PLASTICS-001">Rigid plastics vary widely. Some accept printing readily, while others need surface treatment or an alternative method, so the exact polymer and surface state must be identified first.</p>
-            <div class="sl-material-card__candidates" aria-label="Rigid Plastics process candidates">
-              <span>Direct UV <b>May suit</b></span>
-              <span>UV-DTF <b>May suit</b></span>
-              <span>Vinyl <b>May suit</b></span>
-            </div>
-            <p class="sl-material-card__status">Assessment required</p>
-            <div class="sl-material-card__actions">
-              <a class="sl-card-link" href="#surface-rigid-plastics">Open material record</a>
-              <span class="sl-card-cta-placeholder" data-card-cta="SURF-RIGID-PLASTICS-001">Send your object/surface for review</span>
-            </div>
-          </article>
-          <article class="sl-material-card" data-record-key="SURF-UNKNOWN-001">
-            <span class="sl-material-card__index">08</span>
-            <h3 class="sl-material-card__name"><a href="#surface-unknown">Experimental / Unknown Surfaces</a></h3>
-            <p class="sl-material-card__summary" data-card-summary="SURF-UNKNOWN-001">If the material or coating is unknown, HDC can first assess the object and determine whether a safe print, transfer, film, or alternate production route is worth testing.</p>
-            <div class="sl-material-card__candidates" aria-label="Experimental / Unknown Surfaces process candidates">
-              <span>Direct UV <b>May suit</b></span>
-              <span>UV-DTF <b>May suit</b></span>
-              <span>Vinyl <b>May suit</b></span>
-            </div>
-            <p class="sl-material-card__status">Exact surface review required</p>
-            <div class="sl-material-card__actions">
-              <a class="sl-card-link" href="#surface-unknown">Open material record</a>
-              <span class="sl-card-cta-placeholder" data-card-cta="SURF-UNKNOWN-001">Send your object/surface for review</span>
-            </div>
-          </article>
-        </div>
+        <div class="sl-material-grid" aria-label="Surface Lab material families" data-sl-material-grid></div>
       </div>
     </section>
 
-    <section class="sl-section" aria-labelledby="sl-detail-title">
+    <section class="sl-section sl-detail-stage" id="sl-detail" aria-labelledby="sl-detail-title">
       <div class="shell">
         <div class="section-index">
           <span>03 / MATERIAL DETAIL</span>
-          <span>SHARED DETAIL ARCHITECTURE</span>
+          <span>ONE ACTIVE RECORD</span>
         </div>
+
         <div class="sl-section-heading">
           <div>
-            <p class="eyebrow">MATERIAL RECORDS</p>
-            <h2 id="sl-detail-title">One structure. Eight records.</h2>
+            <p class="eyebrow">MATERIAL RECORD</p>
+            <h2 id="sl-detail-title">One structure. One active record.</h2>
           </div>
-          <p class="sl-lead">Customer-facing material content is projected from the approved Surface Lab dataset; internal production controls remain excluded.</p>
+          <p class="sl-lead">Select a material above. The record below updates in place, keeping the page compact while preserving a consistent review structure.</p>
         </div>
 
-        <div class="sl-material-details">
-          
-          <article class="sl-material-detail" id="surface-glass" data-record-key="SURF-GLASS-001" aria-labelledby="surface-glass-title">
-            <header class="sl-detail-header">
+        <article class="sl-record" data-sl-record aria-live="polite">
+          <div class="sl-record__media" data-sl-record-media>
+            <div class="sl-record__media-fallback" data-sl-record-fallback>
+              <span>Material evidence</span>
+              <strong data-sl-record-fallback-name>Glass</strong>
+              <small>Dedicated imagery is shown only where an approved asset exists.</small>
+            </div>
+            <img data-sl-record-image src="assets/images/imagery-2026-09-24/HDC-2026-glass.webp" alt="Glass surface study showing a printed application on a transparent rigid surface">
+          </div>
+
+          <div class="sl-record__body">
+            <header class="sl-record__header">
               <div>
-                <p class="eyebrow">01 / MATERIAL RECORD</p>
-                <h3 id="surface-glass-title">Glass</h3>
+                <span class="sl-record__index" data-sl-record-index>01</span>
+                <h3 data-sl-record-name>Glass</h3>
               </div>
-              <div class="sl-status" aria-label="Current customer-facing validation state">
-                <span>Assessment required</span>
-                <small>Final process is confirmed after the exact surface and intended use are reviewed.</small>
-              </div>
-            </header>
-            <figure class="sl-record-media">
-              <img src="assets/images/imagery-2026-09-24/HDC-2026-glass.webp" alt="Glass surface study showing a printed application on a transparent rigid surface" loading="lazy">
-              <figcaption>GLASS / SURFACE STUDY</figcaption>
-            </figure>
-
-            <div class="sl-detail-grid">
-              <section class="sl-content-slot" aria-labelledby="surface-glass-summary">
-                <p class="sl-slot-label">PUBLIC SUMMARY</p>
-                <h4 id="surface-glass-summary">Material overview</h4>
-                <p data-content-slot="public-summary">Glass can support direct UV, UV-DTF, vinyl, or specialist decoration routes depending on the exact glass, coating, geometry, print face, and how the finished piece will be handled and cleaned.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-glass-variants">
-                <p class="sl-slot-label">PUBLIC VARIANTS</p>
-                <h4 id="surface-glass-variants">Common forms / variants</h4>
-                <p data-content-slot="public-variants">Common variants include: soda-lime, borosilicate, aluminosilicate, coated/treated glass, unknown glass.</p>
-              </section>
-            </div>
-
-            <section class="sl-process-zone" aria-labelledby="surface-glass-processes">
-              <div class="sl-process-zone__head">
-                <p class="sl-slot-label">CONDITIONAL</p>
-                <h4 id="surface-glass-processes">Process candidates</h4>
-                <p>Every process candidate keeps its qualification and sample/review requirement in the same component.</p>
-              </div>
-              <div class="sl-process-grid">
-                <article class="sl-process-card">
-                  <span>01</span>
-                  <h5>Direct UV</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-direct-uv">Direct UV may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>02</span>
-                  <h5>UV-DTF</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-uv-dtf">UV-DTF may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>03</span>
-                  <h5>Vinyl</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-vinyl">Vinyl may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-              </div>
-              <p class="sl-qualification">Suitability depends on the exact material, coating, geometry and intended use. A sample or material review may be required before production.</p>
-            </section>
-
-            <div class="sl-detail-grid sl-detail-grid--lower">
-              <section class="sl-content-slot" aria-labelledby="surface-glass-testing">
-                <p class="sl-slot-label">TEST / ALTERNATE ROUTE</p>
-                <h4 id="surface-glass-testing">When another route may be needed</h4>
-                <p data-content-slot="conditional-avoid">Customer-safe conditional wording enters during CONTENT validation.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-glass-review">
-                <p class="sl-slot-label">REVIEW INPUT</p>
-                <h4 id="surface-glass-review">What HDC needs to review</h4>
-                <ul class="sl-review-list">
-                  <li>Object / application</li>
-                  <li>Material and coating, if known</li>
-                  <li>Dimensions and geometry</li>
-                  <li>Use environment and handling</li>
-                  <li>Desired visual effect</li>
-                  <li>Quantity and sample availability</li>
-                </ul>
-              </section>
-            </div>
-
-            <div class="sl-cta-zone" data-cta-zone="SURF-GLASS-001" aria-label="Glass enquiry actions">
-              <div>
-                <p class="sl-slot-label">CTA ROUTING</p>
-                <p>Primary action: <strong>Request a sample test</strong><br>Secondary action: <strong>Request a project quote</strong></p>
-              </div>
-              <span class="sl-cta-placeholder">Request a sample test</span>
-            </div>
-          </article>
-          <article class="sl-material-detail" id="surface-acrylic" data-record-key="SURF-ACRYLIC-001" aria-labelledby="surface-acrylic-title">
-            <header class="sl-detail-header">
-              <div>
-                <p class="eyebrow">02 / MATERIAL RECORD</p>
-                <h3 id="surface-acrylic-title">Acrylic / PMMA</h3>
-              </div>
-              <div class="sl-status" aria-label="Current customer-facing validation state">
-                <span>Assessment required</span>
-                <small>Final process is confirmed after the exact surface and intended use are reviewed.</small>
-              </div>
-            </header>
-            <figure class="sl-record-media">
-              <img src="assets/images/imagery-2026-09-24/HDC-2026-acrylic.webp" alt="Acrylic surface study showing printed detail on a transparent rigid polymer" loading="lazy">
-              <figcaption>ACRYLIC / SURFACE STUDY</figcaption>
-            </figure>
-
-            <div class="sl-detail-grid">
-              <section class="sl-content-slot" aria-labelledby="surface-acrylic-summary">
-                <p class="sl-slot-label">PUBLIC SUMMARY</p>
-                <h4 id="surface-acrylic-summary">Material overview</h4>
-                <p data-content-slot="public-summary">Acrylic is a strong candidate for high-detail rigid-surface graphics, but performance depends on acrylic type, surface finish, stress state, fabrication history, and the chosen print or transfer method.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-acrylic-variants">
-                <p class="sl-slot-label">PUBLIC VARIANTS</p>
-                <h4 id="surface-acrylic-variants">Common forms / variants</h4>
-                <p data-content-slot="public-variants">Common variants include: Cast (ISO 7823-1), Extruded (ISO 7823-2), Impact-Modified, UV-Stabilized, Frosted / Textured, Hard-Coated (Optical).</p>
-              </section>
-            </div>
-
-            <section class="sl-process-zone" aria-labelledby="surface-acrylic-processes">
-              <div class="sl-process-zone__head">
-                <p class="sl-slot-label">CONDITIONAL</p>
-                <h4 id="surface-acrylic-processes">Process candidates</h4>
-                <p>Every process candidate keeps its qualification and sample/review requirement in the same component.</p>
-              </div>
-              <div class="sl-process-grid">
-                <article class="sl-process-card">
-                  <span>01</span>
-                  <h5>Direct UV</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-direct-uv">Direct UV may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>02</span>
-                  <h5>UV-DTF</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-uv-dtf">UV-DTF may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>03</span>
-                  <h5>Vinyl</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-vinyl">Vinyl may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-              </div>
-              <p class="sl-qualification">Suitability depends on the exact material, coating, geometry and intended use. A sample or material review may be required before production.</p>
-            </section>
-
-            <div class="sl-detail-grid sl-detail-grid--lower">
-              <section class="sl-content-slot" aria-labelledby="surface-acrylic-testing">
-                <p class="sl-slot-label">TEST / ALTERNATE ROUTE</p>
-                <h4 id="surface-acrylic-testing">When another route may be needed</h4>
-                <p data-content-slot="conditional-avoid">Customer-safe conditional wording enters during CONTENT validation.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-acrylic-review">
-                <p class="sl-slot-label">REVIEW INPUT</p>
-                <h4 id="surface-acrylic-review">What HDC needs to review</h4>
-                <ul class="sl-review-list">
-                  <li>Object / application</li>
-                  <li>Material and coating, if known</li>
-                  <li>Dimensions and geometry</li>
-                  <li>Use environment and handling</li>
-                  <li>Desired visual effect</li>
-                  <li>Quantity and sample availability</li>
-                </ul>
-              </section>
-            </div>
-
-            <div class="sl-cta-zone" data-cta-zone="SURF-ACRYLIC-001" aria-label="Acrylic / PMMA enquiry actions">
-              <div>
-                <p class="sl-slot-label">CTA ROUTING</p>
-                <p>Primary action: <strong>Request a sample test</strong><br>Secondary action: <strong>Request a project quote</strong></p>
-              </div>
-              <span class="sl-cta-placeholder">Request a sample test</span>
-            </div>
-          </article>
-          <article class="sl-material-detail" id="surface-coated-metal" data-record-key="SURF-COATED-METAL-001" aria-labelledby="surface-coated-metal-title">
-            <header class="sl-detail-header">
-              <div>
-                <p class="eyebrow">03 / MATERIAL RECORD</p>
-                <h3 id="surface-coated-metal-title">Coated Metal</h3>
-              </div>
-              <div class="sl-status" aria-label="Current customer-facing validation state">
-                <span>Assessment required</span>
-                <small>Final process is confirmed after the exact surface and intended use are reviewed.</small>
+              <div class="sl-record__state">
+                <span data-sl-record-status>Assessment required</span>
+                <small>Candidate process is not production approval.</small>
               </div>
             </header>
 
-            <div class="sl-detail-grid">
-              <section class="sl-content-slot" aria-labelledby="surface-coated-metal-summary">
-                <p class="sl-slot-label">PUBLIC SUMMARY</p>
-                <h4 id="surface-coated-metal-summary">Material overview</h4>
-                <p data-content-slot="public-summary">Coated metal can be decorated by several print and graphic methods, but the real printable surface is the coating system—not simply the metal underneath.</p>
+            <p class="sl-record__summary" data-sl-record-summary></p>
+
+            <div class="sl-record__facts">
+              <section>
+                <p class="sl-slot-label">COMMON FORMS / VARIANTS</p>
+                <p data-sl-record-variants></p>
               </section>
-
-              <section class="sl-content-slot sl-content-slot--empty" aria-label="Common forms or variants not published in the current projection"><p class="sl-slot-label">PUBLIC VARIANTS</p><p>Not published in the current projection record.</p></section>
-            </div>
-
-            <section class="sl-process-zone" aria-labelledby="surface-coated-metal-processes">
-              <div class="sl-process-zone__head">
-                <p class="sl-slot-label">CONDITIONAL</p>
-                <h4 id="surface-coated-metal-processes">Process candidates</h4>
-                <p>Every process candidate keeps its qualification and sample/review requirement in the same component.</p>
-              </div>
-              <div class="sl-process-grid">
-                <article class="sl-process-card">
-                  <span>01</span>
-                  <h5>Direct UV</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-direct-uv">Direct UV may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>02</span>
-                  <h5>UV-DTF</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-uv-dtf">UV-DTF may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>03</span>
-                  <h5>Vinyl</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-vinyl">Vinyl may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-              </div>
-              <p class="sl-qualification">Suitability depends on the exact material, coating, geometry and intended use. A sample or material review may be required before production.</p>
-            </section>
-
-            <div class="sl-detail-grid sl-detail-grid--lower">
-              <section class="sl-content-slot" aria-labelledby="surface-coated-metal-testing">
-                <p class="sl-slot-label">TEST / ALTERNATE ROUTE</p>
-                <h4 id="surface-coated-metal-testing">When another route may be needed</h4>
-                <p data-content-slot="conditional-avoid">Customer-safe conditional wording enters during CONTENT validation.</p>
+              <section>
+                <p class="sl-slot-label">PROCESS CANDIDATES</p>
+                <ul data-sl-record-candidates></ul>
               </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-coated-metal-review">
-                <p class="sl-slot-label">REVIEW INPUT</p>
-                <h4 id="surface-coated-metal-review">What HDC needs to review</h4>
-                <ul class="sl-review-list">
-                  <li>Object / application</li>
-                  <li>Material and coating, if known</li>
-                  <li>Dimensions and geometry</li>
-                  <li>Use environment and handling</li>
-                  <li>Desired visual effect</li>
-                  <li>Quantity and sample availability</li>
-                </ul>
+              <section>
+                <p class="sl-slot-label">REVIEW VARIABLES</p>
+                <ul data-sl-record-signals></ul>
+              </section>
+              <section>
+                <p class="sl-slot-label">WHAT HDC NEEDS</p>
+                <ul data-sl-record-review></ul>
               </section>
             </div>
 
-            <div class="sl-cta-zone" data-cta-zone="SURF-COATED-METAL-001" aria-label="Coated Metal enquiry actions">
-              <div>
-                <p class="sl-slot-label">CTA ROUTING</p>
-                <p>Primary action: <strong>Send your object/surface for review</strong><br>Secondary action: <strong>Request a sample test</strong></p>
-              </div>
-              <span class="sl-cta-placeholder">Send your object/surface for review</span>
+            <div class="sl-record__actions">
+              <a class="button button--dark" data-sl-record-review-link href="request-a-quote.html?application=Surface%20review&amp;surface=Glass">Send surface for review</a>
+              <a class="sl-inline-link" data-sl-record-service-link href="products-object-printing.html">Explore related service</a>
             </div>
-          </article>
-          <article class="sl-material-detail" id="surface-acm" data-record-key="SURF-ACM-001" aria-labelledby="surface-acm-title">
-            <header class="sl-detail-header">
-              <div>
-                <p class="eyebrow">04 / MATERIAL RECORD</p>
-                <h3 id="surface-acm-title">ACM / Dibond-type Panels</h3>
-              </div>
-              <div class="sl-status" aria-label="Current customer-facing validation state">
-                <span>Assessment required</span>
-                <small>Final process is confirmed after the exact surface and intended use are reviewed.</small>
-              </div>
-            </header>
-
-            <div class="sl-detail-grid">
-              <section class="sl-content-slot" aria-labelledby="surface-acm-summary">
-                <p class="sl-slot-label">PUBLIC SUMMARY</p>
-                <h4 id="surface-acm-summary">Material overview</h4>
-                <p data-content-slot="public-summary">ACM is well suited to signage, display, and brand-environment work, but coating family, panel construction, finishing, and installation conditions must be known before the graphic method is locked.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-acm-variants">
-                <p class="sl-slot-label">PUBLIC VARIANTS</p>
-                <h4 id="surface-acm-variants">Common forms / variants</h4>
-                <p data-content-slot="public-variants">Common variants include: PE-core display, FR-core architectural, A2-core architectural, Digital-print specialized.</p>
-              </section>
-            </div>
-
-            <section class="sl-process-zone" aria-labelledby="surface-acm-processes">
-              <div class="sl-process-zone__head">
-                <p class="sl-slot-label">CONDITIONAL</p>
-                <h4 id="surface-acm-processes">Process candidates</h4>
-                <p>Every process candidate keeps its qualification and sample/review requirement in the same component.</p>
-              </div>
-              <div class="sl-process-grid">
-                <article class="sl-process-card">
-                  <span>01</span>
-                  <h5>Direct UV</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-direct-uv">Direct UV may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>02</span>
-                  <h5>UV-DTF</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-uv-dtf">UV-DTF may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>03</span>
-                  <h5>Vinyl</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-vinyl">Vinyl may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-              </div>
-              <p class="sl-qualification">Suitability depends on the exact material, coating, geometry and intended use. A sample or material review may be required before production.</p>
-            </section>
-
-            <div class="sl-detail-grid sl-detail-grid--lower">
-              <section class="sl-content-slot" aria-labelledby="surface-acm-testing">
-                <p class="sl-slot-label">TEST / ALTERNATE ROUTE</p>
-                <h4 id="surface-acm-testing">When another route may be needed</h4>
-                <p data-content-slot="conditional-avoid">Customer-safe conditional wording enters during CONTENT validation.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-acm-review">
-                <p class="sl-slot-label">REVIEW INPUT</p>
-                <h4 id="surface-acm-review">What HDC needs to review</h4>
-                <ul class="sl-review-list">
-                  <li>Object / application</li>
-                  <li>Material and coating, if known</li>
-                  <li>Dimensions and geometry</li>
-                  <li>Use environment and handling</li>
-                  <li>Desired visual effect</li>
-                  <li>Quantity and sample availability</li>
-                </ul>
-              </section>
-            </div>
-
-            <div class="sl-cta-zone" data-cta-zone="SURF-ACM-001" aria-label="ACM / Dibond-type Panels enquiry actions">
-              <div>
-                <p class="sl-slot-label">CTA ROUTING</p>
-                <p>Primary action: <strong>Ask for a material/process recommendation</strong><br>Secondary action: <strong>Request a project quote</strong></p>
-              </div>
-              <span class="sl-cta-placeholder">Ask for a material/process recommendation</span>
-            </div>
-          </article>
-          <article class="sl-material-detail" id="surface-pvc" data-record-key="SURF-PVC-001" aria-labelledby="surface-pvc-title">
-            <header class="sl-detail-header">
-              <div>
-                <p class="eyebrow">05 / MATERIAL RECORD</p>
-                <h3 id="surface-pvc-title">PVC / Foamex</h3>
-              </div>
-              <div class="sl-status" aria-label="Current customer-facing validation state">
-                <span>Assessment required</span>
-                <small>Final process is confirmed after the exact surface and intended use are reviewed.</small>
-              </div>
-            </header>
-
-            <div class="sl-detail-grid">
-              <section class="sl-content-slot" aria-labelledby="surface-pvc-summary">
-                <p class="sl-slot-label">PUBLIC SUMMARY</p>
-                <h4 id="surface-pvc-summary">Material overview</h4>
-                <p data-content-slot="public-summary">PVC and foam-board products are common display surfaces, but board density, skin type, heat sensitivity, fabrication method, and adhesive migration can materially change the correct print route.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-pvc-variants">
-                <p class="sl-slot-label">PUBLIC VARIANTS</p>
-                <h4 id="surface-pvc-variants">Common forms / variants</h4>
-                <p data-content-slot="public-variants">Common variants include: Solid rigid PVC, Expanded free-foam PVC, Integral-skin Celuka PVC, Colored/Black PVC, UV-stabilized exterior PVC, Lightweight economy display board.</p>
-              </section>
-            </div>
-
-            <section class="sl-process-zone" aria-labelledby="surface-pvc-processes">
-              <div class="sl-process-zone__head">
-                <p class="sl-slot-label">CONDITIONAL</p>
-                <h4 id="surface-pvc-processes">Process candidates</h4>
-                <p>Every process candidate keeps its qualification and sample/review requirement in the same component.</p>
-              </div>
-              <div class="sl-process-grid">
-                <article class="sl-process-card">
-                  <span>01</span>
-                  <h5>Direct UV</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-direct-uv">Direct UV may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>02</span>
-                  <h5>UV-DTF</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-uv-dtf">UV-DTF may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>03</span>
-                  <h5>Vinyl</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-vinyl">Vinyl may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-              </div>
-              <p class="sl-qualification">Suitability depends on the exact material, coating, geometry and intended use. A sample or material review may be required before production.</p>
-            </section>
-
-            <div class="sl-detail-grid sl-detail-grid--lower">
-              <section class="sl-content-slot" aria-labelledby="surface-pvc-testing">
-                <p class="sl-slot-label">TEST / ALTERNATE ROUTE</p>
-                <h4 id="surface-pvc-testing">When another route may be needed</h4>
-                <p data-content-slot="conditional-avoid">Customer-safe conditional wording enters during CONTENT validation.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-pvc-review">
-                <p class="sl-slot-label">REVIEW INPUT</p>
-                <h4 id="surface-pvc-review">What HDC needs to review</h4>
-                <ul class="sl-review-list">
-                  <li>Object / application</li>
-                  <li>Material and coating, if known</li>
-                  <li>Dimensions and geometry</li>
-                  <li>Use environment and handling</li>
-                  <li>Desired visual effect</li>
-                  <li>Quantity and sample availability</li>
-                </ul>
-              </section>
-            </div>
-
-            <div class="sl-cta-zone" data-cta-zone="SURF-PVC-001" aria-label="PVC / Foamex enquiry actions">
-              <div>
-                <p class="sl-slot-label">CTA ROUTING</p>
-                <p>Primary action: <strong>Ask for a material/process recommendation</strong><br>Secondary action: <strong>Request a sample test</strong></p>
-              </div>
-              <span class="sl-cta-placeholder">Ask for a material/process recommendation</span>
-            </div>
-          </article>
-          <article class="sl-material-detail" id="surface-wood" data-record-key="SURF-WOOD-001" aria-labelledby="surface-wood-title">
-            <header class="sl-detail-header">
-              <div>
-                <p class="eyebrow">06 / MATERIAL RECORD</p>
-                <h3 id="surface-wood-title">Wood & Engineered Board</h3>
-              </div>
-              <div class="sl-status" aria-label="Current customer-facing validation state">
-                <span>Assessment required</span>
-                <small>Final process is confirmed after the exact surface and intended use are reviewed.</small>
-              </div>
-            </header>
-            <figure class="sl-record-media">
-              <img src="assets/images/HDC-IMG-FLATBED-WOOD-GEOMETRY-01.webp" alt="Printed geometric detail on a wood surface used as a material and application study" loading="lazy">
-              <figcaption>WOOD / PRINTED SURFACE STUDY</figcaption>
-            </figure>
-
-            <div class="sl-detail-grid">
-              <section class="sl-content-slot" aria-labelledby="surface-wood-summary">
-                <p class="sl-slot-label">PUBLIC SUMMARY</p>
-                <h4 id="surface-wood-summary">Material overview</h4>
-                <p data-content-slot="public-summary">Wood and engineered boards can produce highly tactile print results, but porosity, moisture, grain, sealers, coatings, and dimensional movement determine what process is suitable.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-wood-variants">
-                <p class="sl-slot-label">PUBLIC VARIANTS</p>
-                <h4 id="surface-wood-variants">Common forms / variants</h4>
-                <p data-content-slot="public-variants">Common variants include: Hardwood open/closed grain, Softwood, Oily/Resinous wood, Standard MDF, MR MDF, FR MDF, Particleboard, Birch plywood.</p>
-              </section>
-            </div>
-
-            <section class="sl-process-zone" aria-labelledby="surface-wood-processes">
-              <div class="sl-process-zone__head">
-                <p class="sl-slot-label">CONDITIONAL</p>
-                <h4 id="surface-wood-processes">Process candidates</h4>
-                <p>Every process candidate keeps its qualification and sample/review requirement in the same component.</p>
-              </div>
-              <div class="sl-process-grid">
-                <article class="sl-process-card">
-                  <span>01</span>
-                  <h5>Direct UV</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-direct-uv">Direct UV may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>02</span>
-                  <h5>UV-DTF</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-uv-dtf">UV-DTF may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>03</span>
-                  <h5>Vinyl</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-vinyl">Vinyl may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-              </div>
-              <p class="sl-qualification">Suitability depends on the exact material, coating, geometry and intended use. A sample or material review may be required before production.</p>
-            </section>
-
-            <div class="sl-detail-grid sl-detail-grid--lower">
-              <section class="sl-content-slot" aria-labelledby="surface-wood-testing">
-                <p class="sl-slot-label">TEST / ALTERNATE ROUTE</p>
-                <h4 id="surface-wood-testing">When another route may be needed</h4>
-                <p data-content-slot="conditional-avoid">Customer-safe conditional wording enters during CONTENT validation.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-wood-review">
-                <p class="sl-slot-label">REVIEW INPUT</p>
-                <h4 id="surface-wood-review">What HDC needs to review</h4>
-                <ul class="sl-review-list">
-                  <li>Object / application</li>
-                  <li>Material and coating, if known</li>
-                  <li>Dimensions and geometry</li>
-                  <li>Use environment and handling</li>
-                  <li>Desired visual effect</li>
-                  <li>Quantity and sample availability</li>
-                </ul>
-              </section>
-            </div>
-
-            <div class="sl-cta-zone" data-cta-zone="SURF-WOOD-001" aria-label="Wood & Engineered Board enquiry actions">
-              <div>
-                <p class="sl-slot-label">CTA ROUTING</p>
-                <p>Primary action: <strong>Send your object/surface for review</strong><br>Secondary action: <strong>Request a sample test</strong></p>
-              </div>
-              <span class="sl-cta-placeholder">Send your object/surface for review</span>
-            </div>
-          </article>
-          <article class="sl-material-detail" id="surface-rigid-plastics" data-record-key="SURF-RIGID-PLASTICS-001" aria-labelledby="surface-rigid-plastics-title">
-            <header class="sl-detail-header">
-              <div>
-                <p class="eyebrow">07 / MATERIAL RECORD</p>
-                <h3 id="surface-rigid-plastics-title">Rigid Plastics</h3>
-              </div>
-              <div class="sl-status" aria-label="Current customer-facing validation state">
-                <span>Assessment required</span>
-                <small>Final process is confirmed after the exact surface and intended use are reviewed.</small>
-              </div>
-            </header>
-
-            <div class="sl-detail-grid">
-              <section class="sl-content-slot" aria-labelledby="surface-rigid-plastics-summary">
-                <p class="sl-slot-label">PUBLIC SUMMARY</p>
-                <h4 id="surface-rigid-plastics-summary">Material overview</h4>
-                <p data-content-slot="public-summary">Rigid plastics vary widely. Some accept printing readily, while others need surface treatment or an alternative method, so the exact polymer and surface state must be identified first.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-rigid-plastics-variants">
-                <p class="sl-slot-label">PUBLIC VARIANTS</p>
-                <h4 id="surface-rigid-plastics-variants">Common forms / variants</h4>
-                <p data-content-slot="public-variants">Common variants include: ABS, HIPS, PC, PP, PE, HDPE, PET, PETG.</p>
-              </section>
-            </div>
-
-            <section class="sl-process-zone" aria-labelledby="surface-rigid-plastics-processes">
-              <div class="sl-process-zone__head">
-                <p class="sl-slot-label">CONDITIONAL</p>
-                <h4 id="surface-rigid-plastics-processes">Process candidates</h4>
-                <p>Every process candidate keeps its qualification and sample/review requirement in the same component.</p>
-              </div>
-              <div class="sl-process-grid">
-                <article class="sl-process-card">
-                  <span>01</span>
-                  <h5>Direct UV</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-direct-uv">Direct UV may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>02</span>
-                  <h5>UV-DTF</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-uv-dtf">UV-DTF may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>03</span>
-                  <h5>Vinyl</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-vinyl">Vinyl may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-              </div>
-              <p class="sl-qualification">Suitability depends on the exact material, coating, geometry and intended use. A sample or material review may be required before production.</p>
-            </section>
-
-            <div class="sl-detail-grid sl-detail-grid--lower">
-              <section class="sl-content-slot" aria-labelledby="surface-rigid-plastics-testing">
-                <p class="sl-slot-label">TEST / ALTERNATE ROUTE</p>
-                <h4 id="surface-rigid-plastics-testing">When another route may be needed</h4>
-                <p data-content-slot="conditional-avoid">Customer-safe conditional wording enters during CONTENT validation.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-rigid-plastics-review">
-                <p class="sl-slot-label">REVIEW INPUT</p>
-                <h4 id="surface-rigid-plastics-review">What HDC needs to review</h4>
-                <ul class="sl-review-list">
-                  <li>Object / application</li>
-                  <li>Material and coating, if known</li>
-                  <li>Dimensions and geometry</li>
-                  <li>Use environment and handling</li>
-                  <li>Desired visual effect</li>
-                  <li>Quantity and sample availability</li>
-                </ul>
-              </section>
-            </div>
-
-            <div class="sl-cta-zone" data-cta-zone="SURF-RIGID-PLASTICS-001" aria-label="Rigid Plastics enquiry actions">
-              <div>
-                <p class="sl-slot-label">CTA ROUTING</p>
-                <p>Primary action: <strong>Send your object/surface for review</strong><br>Secondary action: <strong>Request a sample test</strong></p>
-              </div>
-              <span class="sl-cta-placeholder">Send your object/surface for review</span>
-            </div>
-          </article>
-          <article class="sl-material-detail" id="surface-unknown" data-record-key="SURF-UNKNOWN-001" aria-labelledby="surface-unknown-title">
-            <header class="sl-detail-header">
-              <div>
-                <p class="eyebrow">08 / MATERIAL RECORD</p>
-                <h3 id="surface-unknown-title">Experimental / Unknown Surfaces</h3>
-              </div>
-              <div class="sl-status" aria-label="Current customer-facing validation state">
-                <span>Assessment required</span>
-                <small>Final process is confirmed after the exact surface and intended use are reviewed.</small>
-              </div>
-            </header>
-
-            <div class="sl-detail-grid">
-              <section class="sl-content-slot" aria-labelledby="surface-unknown-summary">
-                <p class="sl-slot-label">PUBLIC SUMMARY</p>
-                <h4 id="surface-unknown-summary">Material overview</h4>
-                <p data-content-slot="public-summary">If the material or coating is unknown, HDC can first assess the object and determine whether a safe print, transfer, film, or alternate production route is worth testing.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-unknown-variants">
-                <p class="sl-slot-label">PUBLIC VARIANTS</p>
-                <h4 id="surface-unknown-variants">Common forms / variants</h4>
-                <p data-content-slot="public-variants">Common variants include: thermoplastics, thermosets, composites, coated metals, glass-like, unbranded imports.</p>
-              </section>
-            </div>
-
-            <section class="sl-process-zone" aria-labelledby="surface-unknown-processes">
-              <div class="sl-process-zone__head">
-                <p class="sl-slot-label">CONDITIONAL</p>
-                <h4 id="surface-unknown-processes">Process candidates</h4>
-                <p>Every process candidate keeps its qualification and sample/review requirement in the same component.</p>
-              </div>
-              <div class="sl-process-grid">
-                <article class="sl-process-card">
-                  <span>01</span>
-                  <h5>Direct UV</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-direct-uv">Direct UV may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>02</span>
-                  <h5>UV-DTF</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-uv-dtf">UV-DTF may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-                <article class="sl-process-card">
-                  <span>03</span>
-                  <h5>Vinyl</h5>
-                  <strong>May suit</strong>
-                  <p data-content-slot="conditional-vinyl">Vinyl may be suitable depending on the exact material, surface condition, geometry, and intended use. A sample or material review may be required before production.</p>
-                </article>
-              </div>
-              <p class="sl-qualification">Suitability depends on the exact material, coating, geometry and intended use. A sample or material review may be required before production.</p>
-            </section>
-
-            <div class="sl-detail-grid sl-detail-grid--lower">
-              <section class="sl-content-slot" aria-labelledby="surface-unknown-testing">
-                <p class="sl-slot-label">TEST / ALTERNATE ROUTE</p>
-                <h4 id="surface-unknown-testing">When another route may be needed</h4>
-                <p data-content-slot="conditional-avoid">Customer-safe conditional wording enters during CONTENT validation.</p>
-              </section>
-
-              <section class="sl-content-slot" aria-labelledby="surface-unknown-review">
-                <p class="sl-slot-label">REVIEW INPUT</p>
-                <h4 id="surface-unknown-review">What HDC needs to review</h4>
-                <ul class="sl-review-list">
-                  <li>Object / application</li>
-                  <li>Material and coating, if known</li>
-                  <li>Dimensions and geometry</li>
-                  <li>Use environment and handling</li>
-                  <li>Desired visual effect</li>
-                  <li>Quantity and sample availability</li>
-                </ul>
-              </section>
-            </div>
-
-            <div class="sl-cta-zone" data-cta-zone="SURF-UNKNOWN-001" aria-label="Experimental / Unknown Surfaces enquiry actions">
-              <div>
-                <p class="sl-slot-label">CTA ROUTING</p>
-                <p>Primary action: <strong>Send your object/surface for review</strong><br>Secondary action: <strong>Request a sample test</strong></p>
-              </div>
-              <span class="sl-cta-placeholder">Send your object/surface for review</span>
-            </div>
-          </article>
-        </div>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="sl-section sl-section--dark" aria-labelledby="sl-compare-title">
+    <section class="sl-section sl-section--dark" id="sl-compare" aria-labelledby="sl-compare-title">
       <div class="shell">
         <div class="section-index">
           <span>04 / COMPARE</span>
-          <span>PUBLIC + CONDITIONAL ONLY</span>
+          <span>NO RANKING</span>
         </div>
+
         <div class="sl-section-heading">
           <div>
-            <p class="eyebrow">COMPARISON CONTAINER</p>
+            <p class="eyebrow">SIDE-BY-SIDE REVIEW</p>
             <h2 id="sl-compare-title">Compare without ranking.</h2>
           </div>
-          <p class="sl-lead">The interaction stage may allow two or three materials to be compared using only customer-safe fields.</p>
+          <p class="sl-lead">Compare shared fields and review variables. The tool does not score materials or claim one is universally better.</p>
         </div>
-        <div class="sl-compare-shell" data-sl-compare-region aria-label="Material comparison structure" aria-live="polite">
-          <div class="sl-compare-slot"><span>01</span><strong>Select a material</strong></div>
-          <div class="sl-compare-slot"><span>02</span><strong>Select a second material</strong></div>
-          <div class="sl-compare-slot"><span>03</span><strong>Optional third material</strong></div>
-        </div>
+
+        <div class="sl-compare-shell" data-sl-compare-region aria-label="Material comparison" aria-live="polite"></div>
         <p class="sl-tool-status" data-sl-compare-status role="status" aria-live="polite">Select at least two materials to compare.</p>
       </div>
     </section>
 
-    <section class="sl-section" id="sl-review" aria-labelledby="sl-review-title">
+    <section class="sl-section sl-review" id="sl-review" aria-labelledby="sl-review-title">
       <div class="shell sl-review-layout">
         <div>
           <div class="section-index">
@@ -944,16 +193,30 @@
           <p class="eyebrow">SURFACE REVIEW</p>
           <h2 id="sl-review-title">Not sure what the surface is?</h2>
         </div>
+
         <div class="sl-review-panel">
-          <p>Unknown material or coating routes to the Experimental / Unknown Surfaces record. The page does not guess a substrate or process.</p>
-          <a class="button" href="#surface-unknown">Open unknown-surface record</a>
+          <p>Use the unknown-surface route rather than guessing a substrate or production method. HDC can review the object, material or coating information, dimensions, intended use and visual requirement before a route is proposed.</p>
+          <ul class="sl-review-panel__inputs">
+            <li>Object or application</li>
+            <li>Material / coating information if known</li>
+            <li>Dimensions and geometry</li>
+            <li>Intended use and handling</li>
+            <li>Artwork or visual reference</li>
+          </ul>
+          <a class="button button--dark" href="request-a-quote.html?application=Surface%20review&amp;surface=Unknown%20or%20uncertain">Send for surface review</a>
         </div>
       </div>
     </section>
   </main>
 
   <div data-site-footer></div>
+
+  <noscript>
+    <div class="sl-noscript">Surface Lab interaction requires JavaScript. You can still <a href="request-a-quote.html?application=Surface%20review">send a surface for review</a>.</div>
+  </noscript>
+
   <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/surface-lab-data.js" defer></script>
   <script src="assets/js/surface-lab.js" defer></script>
 </body>
 </html>
