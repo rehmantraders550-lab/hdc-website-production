@@ -1,153 +1,190 @@
 (() => {
   const page = document.querySelector('.sl-page');
-  if (!page) return;
+  const records = Array.isArray(window.HDC_SURFACE_LAB_MATERIALS) ? window.HDC_SURFACE_LAB_MATERIALS : [];
+  if (!page || !records.length) return;
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const cards = Array.from(document.querySelectorAll('.sl-material-card'));
-  const details = Array.from(document.querySelectorAll('.sl-material-detail'));
-  const tools = document.querySelector('[data-sl-tools]');
-  const search = document.querySelector('#sl-material-search');
-  const searchStatus = document.querySelector('#sl-search-status');
+  const list = document.querySelector('[data-sl-material-list]');
+  const activeRecord = document.querySelector('[data-sl-active-record]');
   const compareRegion = document.querySelector('[data-sl-compare-region]');
   const compareStatus = document.querySelector('[data-sl-compare-status]');
-
-  if (tools) tools.hidden = false;
-
-  const cardByRecord = new Map(cards.map(card => [card.dataset.recordKey, card]));
-  const detailByRecord = new Map(details.map(detail => [detail.dataset.recordKey, detail]));
+  const search = document.querySelector('#sl-material-search');
+  const searchStatus = document.querySelector('[data-sl-search-status]');
+  const decisionReadout = document.querySelector('[data-sl-decision-readout]');
+  const decisionButtons = Array.from(document.querySelectorAll('[data-sl-decision-step]'));
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const selected = new Set();
 
-  const normalized = value => (value || '').toLowerCase().replace(/\s+/g, ' ').trim();
+  const DECISIONS = [
+    ['01 / Object','Identify the physical item or application before considering a production method.'],
+    ['02 / Material','Confirm the material family, grade or best-known substrate description.'],
+    ['03 / Coating','Identify any coating, paint, laminate, treatment or surface finish already present.'],
+    ['04 / Geometry','Review form, dimensions, edges, curvature, clearance and printable area.'],
+    ['05 / Environment','Clarify handling, cleaning, installation and intended use conditions.'],
+    ['06 / Visual requirement','Define colour, opacity, finish, detail and the required visual behaviour.'],
+    ['07 / Process candidate','Shortlist production routes without presenting an untested route as confirmed.'],
+    ['08 / Validation status','Record what is known, what remains conditional and whether a sample or review is required.'],
+    ['09 / Recommendation','Confirm the production route only after the project conditions and validation status are understood.']
+  ];
 
-  // Progressive enhancement: details are fully visible without JS.
-  details.forEach(detail => {
-    const header = detail.querySelector('.sl-detail-header');
-    if (!header) return;
+  let activeSlug = getSlugFromHash() || records[0].slug;
+  if (!records.some(function(record) { return record.slug === activeSlug; })) activeSlug = records[0].slug;
 
-    const body = document.createElement('div');
-    body.className = 'sl-detail-body';
-    body.id = detail.id + '-body';
-
-    Array.from(detail.children).forEach(child => {
-      if (child !== header) body.appendChild(child);
-    });
-
-    const toggle = document.createElement('button');
-    toggle.type = 'button';
-    toggle.className = 'sl-detail-toggle';
-    toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-controls', body.id);
-    toggle.textContent = 'View details';
-
-    header.appendChild(toggle);
-    detail.appendChild(body);
-
-    const setOpen = (open, moveFocus = false) => {
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.textContent = open ? 'Close details' : 'View details';
-      body.hidden = !open;
-      body.inert = !open;
-      detail.classList.toggle('is-open', open);
-      if (moveFocus) toggle.focus();
-    };
-
-    toggle.addEventListener('click', () => {
-      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-    });
-
-    detail.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-        event.preventDefault();
-        setOpen(false, true);
-      }
-    });
-
-    detail._slSetOpen = setOpen;
-    setOpen(false);
-  });
-
-  const openFromHash = () => {
-    const id = window.location.hash.slice(1);
-    if (!id) return;
-    const detail = document.getElementById(id);
-    if (!detail || !detail.classList.contains('sl-material-detail')) return;
-    details.forEach(item => item._slSetOpen?.(item === detail));
-    requestAnimationFrame(() => {
-      detail.scrollIntoView({ block: 'start', behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  const escapeHtml = function(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function(char) {
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'})[char];
     });
   };
 
-  cards.forEach(card => {
-    const recordId = card.dataset.recordKey;
-    const name = card.querySelector('.sl-material-card__name')?.textContent?.trim() || 'Material';
+  const queryHref = function(record) {
+    return 'request-a-quote.html?application=' + encodeURIComponent('Surface review') +
+      '&surface=' + encodeURIComponent(record.name);
+  };
 
-    const compare = document.createElement('label');
-    compare.className = 'sl-compare-control';
-    compare.innerHTML = '<input type="checkbox"> <span>Compare</span>';
-    const input = compare.querySelector('input');
-    input.setAttribute('aria-label', 'Compare ' + name);
-    input.dataset.compareRecord = recordId;
+  function getSlugFromHash() {
+    const match = location.hash.match(/^#surface-(.+)$/);
+    return match ? match[1] : '';
+  }
 
-    const actions = card.querySelector('.sl-material-card__actions');
-    if (actions) actions.appendChild(compare);
+  function recordBySlug(slug) {
+    return records.find(function(record) { return record.slug === slug; });
+  }
 
-    input.addEventListener('change', () => {
-      if (input.checked && selected.size >= 3) {
-        input.checked = false;
-        if (compareStatus) compareStatus.textContent = 'You can compare up to three materials.';
-        return;
-      }
-      if (input.checked) selected.add(recordId);
-      else selected.delete(recordId);
-      renderComparison();
+  function renderList(filter) {
+    filter = filter || '';
+    const term = filter.trim().toLowerCase();
+    const visible = records.filter(function(record) {
+      if (!term) return true;
+      const haystack = [
+        record.name,
+        record.summary
+      ].concat(record.variants || [])
+       .concat((record.candidates || []).map(function(item) { return item[0]; }))
+       .join(' ')
+       .toLowerCase();
+      return haystack.includes(term);
     });
-  });
 
-  if (search) {
-    search.addEventListener('input', () => {
-      const query = normalized(search.value);
-      let visible = 0;
-      cards.forEach(card => {
-        const match = !query || normalized(card.textContent).includes(query);
-        card.hidden = !match;
-        if (match) visible += 1;
+    list.innerHTML = visible.map(function(record) {
+      return '<button type="button" class="sl-material-row" data-sl-select="' + escapeHtml(record.slug) + '" aria-pressed="' + String(record.slug === activeSlug) + '">' +
+        '<span class="sl-material-row__index">' + escapeHtml(record.index) + '</span>' +
+        '<span class="sl-material-row__name">' + escapeHtml(record.name) + '</span>' +
+        '<span class="sl-material-row__status" aria-hidden="true"></span>' +
+      '</button>';
+    }).join('');
+
+    if (searchStatus) {
+      searchStatus.textContent = term
+        ? (visible.length ? visible.length + ' material' + (visible.length === 1 ? '' : 's') + ' shown.' : 'No matching material. Use Experimental / Unknown Surfaces if the surface is uncertain.')
+        : records.length + ' material families available.';
+    }
+  }
+
+  function renderActive(record) {
+    if (!record) return;
+
+    const variants = record.variants && record.variants.length
+      ? record.variants.map(function(item) { return '<li>' + escapeHtml(item) + '</li>'; }).join('')
+      : '<li>Exact variant or coating requires review.</li>';
+
+    const candidates = (record.candidates || []).map(function(item) {
+      return '<li><span>' + escapeHtml(item[0]) + '</span><strong>' + escapeHtml(item[1]) + '</strong></li>';
+    }).join('');
+
+    const review = (record.review || []).map(function(item) {
+      return '<li>' + escapeHtml(item) + '</li>';
+    }).join('');
+
+    const media = record.image
+      ? '<figure class="sl-record-media">' +
+          '<img src="' + escapeHtml(record.image.src) + '" alt="' + escapeHtml(record.image.alt) + '" loading="lazy">' +
+          '<figcaption>' + escapeHtml(record.name) + ' / surface study</figcaption>' +
+        '</figure>'
+      : '';
+
+    activeRecord.innerHTML =
+      '<div class="sl-record-top" id="surface-' + escapeHtml(record.slug) + '">' +
+        '<div>' +
+          '<p class="sl-record-kicker">' + escapeHtml(record.index) + ' / MATERIAL RECORD</p>' +
+          '<h3>' + escapeHtml(record.name) + '</h3>' +
+        '</div>' +
+        '<div class="sl-record-state">' +
+          '<b>' + escapeHtml(record.status) + '</b>' +
+          '<span>Final process is confirmed after the exact surface and intended use are reviewed.</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="sl-record-body' + (record.image ? '' : ' sl-record-body--no-media') + '">' +
+        '<div class="sl-record-copy">' +
+          '<p class="sl-record-summary">' + escapeHtml(record.summary) + '</p>' +
+          '<div class="sl-evidence-grid">' +
+            '<section class="sl-evidence-block"><b>Common forms / variants</b><ul>' + variants + '</ul></section>' +
+            '<section class="sl-evidence-block"><b>Process candidates</b><ul class="sl-candidate-list">' + candidates + '</ul></section>' +
+            '<section class="sl-evidence-block"><b>What HDC needs to review</b><ul>' + review + '</ul></section>' +
+          '</div>' +
+        '</div>' +
+        media +
+      '</div>' +
+      '<div class="sl-record-actions">' +
+        '<a class="button button--light" href="' + queryHref(record) + '">' + escapeHtml(record.action) + '</a>' +
+        '<a href="#sl-review">Review requirements</a>' +
+        '<label class="sl-compare-toggle">' +
+          '<input type="checkbox" data-sl-compare="' + escapeHtml(record.key) + '"' + (selected.has(record.key) ? ' checked' : '') + '>' +
+          '<span>Compare this material</span>' +
+        '</label>' +
+      '</div>';
+
+    const compareInput = activeRecord.querySelector('[data-sl-compare]');
+    if (compareInput) {
+      compareInput.addEventListener('change', function() {
+        if (compareInput.checked && selected.size >= 3) {
+          compareInput.checked = false;
+          if (compareStatus) compareStatus.textContent = 'You can compare up to three materials.';
+          return;
+        }
+        if (compareInput.checked) selected.add(record.key);
+        else selected.delete(record.key);
+        renderComparison();
       });
-      if (searchStatus) {
-        searchStatus.textContent = query
-          ? (visible ? visible + ' material' + (visible === 1 ? '' : 's') + ' shown.' : 'No matching material. Use Experimental / Unknown Surfaces if the surface is uncertain.')
-          : '8 material families available.';
-      }
-    });
-    if (searchStatus) searchStatus.textContent = '8 material families available.';
+    }
   }
 
   function renderComparison() {
-    if (!compareRegion) return;
     const ids = Array.from(selected);
-    const slots = [0, 1, 2].map(index => {
-      const id = ids[index];
-      if (!id) {
-        const labels = ['Select a material', 'Select a second material', 'Optional third material'];
-        return '<div class="sl-compare-slot"><span>0' + (index + 1) + '</span><strong>' + labels[index] + '</strong></div>';
-      }
+    const selectedRecords = ids.map(function(id) {
+      return records.find(function(record) { return record.key === id; });
+    }).filter(Boolean);
 
-      const card = cardByRecord.get(id);
-      const name = card?.querySelector('.sl-material-card__name')?.textContent?.trim() || id;
-      const summary = card?.querySelector('.sl-material-card__summary')?.textContent?.trim() || '';
-      const status = card?.querySelector('.sl-material-card__status')?.textContent?.trim() || 'Assessment required';
-      const detail = detailByRecord.get(id);
-      const href = detail ? '#' + detail.id : '#sl-materials';
-
-      return '<article class="sl-compare-slot sl-compare-slot--filled">' +
-        '<span>0' + (index + 1) + '</span>' +
-        '<h3>' + escapeHtml(name) + '</h3>' +
-        '<p>' + escapeHtml(summary) + '</p>' +
-        '<ul><li>Direct UV — May suit</li><li>UV-DTF — May suit</li><li>Vinyl — May suit</li></ul>' +
-        '<strong>' + escapeHtml(status) + '</strong>' +
-        '<a href="' + href + '">Open material record</a>' +
+    const cards = selectedRecords.map(function(record) {
+      const candidateRows = (record.candidates || []).map(function(item) {
+        return '<li><span>' + escapeHtml(item[0]) + '</span><b>' + escapeHtml(item[1]) + '</b></li>';
+      }).join('');
+      return '<article class="sl-compare-card">' +
+        '<div class="sl-compare-card__head">' +
+          '<span>' + escapeHtml(record.index) + ' / MATERIAL</span>' +
+          '<button type="button" data-sl-remove-compare="' + escapeHtml(record.key) + '">Remove</button>' +
+        '</div>' +
+        '<h3>' + escapeHtml(record.name) + '</h3>' +
+        '<p>' + escapeHtml(record.summary) + '</p>' +
+        '<ul>' + candidateRows + '</ul>' +
+        '<a href="#surface-' + escapeHtml(record.slug) + '">View material record</a>' +
       '</article>';
     });
-    compareRegion.innerHTML = slots.join('');
+
+    while (cards.length < 3) {
+      const label = cards.length === 0 ? 'Select a material' : cards.length === 1 ? 'Select a second material' : 'Optional third material';
+      cards.push('<div class="sl-compare-empty"><div><strong>' + label + '</strong><span>Choose from the Surface Explorer above.</span></div></div>');
+    }
+
+    compareRegion.innerHTML = cards.join('');
+
+    compareRegion.querySelectorAll('[data-sl-remove-compare]').forEach(function(button) {
+      button.addEventListener('click', function() {
+        selected.delete(button.dataset.slRemoveCompare);
+        renderComparison();
+        const active = recordBySlug(activeSlug);
+        if (active) renderActive(active);
+      });
+    });
+
     if (compareStatus) {
       compareStatus.textContent = ids.length < 2
         ? 'Select at least two materials to compare.'
@@ -155,24 +192,54 @@
     }
   }
 
-  function escapeHtml(value) {
-    return String(value).replace(/[&<>"']/g, char => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#039;'
-    })[char]);
+  function selectRecord(slug, options) {
+    options = options || {};
+    const record = recordBySlug(slug);
+    if (!record) return;
+    activeSlug = slug;
+
+    renderList(search ? search.value : '');
+    renderActive(record);
+
+    if (options.updateHash !== false) {
+      history.replaceState(null, '', '#surface-' + record.slug);
+    }
+
+    if (options.scroll) {
+      activeRecord.scrollIntoView({block:'start', behavior:reduceMotion.matches ? 'auto' : 'smooth'});
+    }
   }
 
-  document.addEventListener('click', event => {
-    const link = event.target.closest('a[href^="#surface-"]');
-    if (!link) return;
-    const detail = document.querySelector(link.getAttribute('href'));
-    if (!detail?.classList.contains('sl-material-detail')) return;
-    details.forEach(item => item._slSetOpen?.(item === detail));
+  list.addEventListener('click', function(event) {
+    const button = event.target.closest('[data-sl-select]');
+    if (!button) return;
+    selectRecord(button.dataset.slSelect, {updateHash:true, scroll:false});
   });
 
-  window.addEventListener('hashchange', openFromHash);
-  openFromHash();
+  if (search) {
+    search.addEventListener('input', function() { renderList(search.value); });
+  }
+
+  decisionButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      const index = Number(button.dataset.slDecisionStep);
+      const entry = DECISIONS[index];
+      if (!entry) return;
+      decisionButtons.forEach(function(item, i) {
+        item.setAttribute('aria-pressed', String(i === index));
+      });
+      if (decisionReadout) {
+        decisionReadout.innerHTML = '<b>' + escapeHtml(entry[0]) + '</b><span>' + escapeHtml(entry[1]) + '</span>';
+      }
+    });
+  });
+
+  window.addEventListener('hashchange', function() {
+    const slug = getSlugFromHash();
+    if (recordBySlug(slug)) selectRecord(slug, {updateHash:false, scroll:true});
+  });
+
+  renderList();
+  renderActive(recordBySlug(activeSlug));
+  renderComparison();
 })();
