@@ -381,6 +381,78 @@
   letter-spacing:.1em;
 }
 
+
+.sl-material-tools {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(16rem,.55fr);
+  gap:1rem;
+  margin-bottom:1.25rem;
+  padding:1rem;
+  border:1px solid rgba(255,255,255,.25);
+}
+.sl-search-field { display:grid; gap:.55rem; }
+.sl-search-field label,
+.sl-compare-guide strong {
+  font-size:.78rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.sl-search-field input {
+  width:100%;
+  min-height:44px;
+  padding:.75rem .85rem;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:0;
+  background:#0f1518;
+  color:#fff;
+  font:inherit;
+}
+.sl-search-field input::placeholder { color:#879297; }
+.sl-compare-guide p,
+.sl-tool-status { margin:.35rem 0 0; color:var(--sl-muted); font-size:.8rem; }
+
+.sl-compare-control {
+  min-height:44px;
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  width:max-content;
+  max-width:100%;
+  color:#fff;
+  font-size:.8rem;
+  cursor:pointer;
+}
+.sl-compare-control input { width:1.1rem; height:1.1rem; accent-color:var(--sl-accent); }
+
+.sl-detail-toggle {
+  align-self:start;
+  min-height:44px;
+  padding:.75rem 1rem;
+  border:1px solid var(--sl-ink);
+  background:transparent;
+  color:var(--sl-ink);
+  font:inherit;
+  cursor:pointer;
+}
+.sl-detail-header {
+  grid-template-columns:minmax(0,1.15fr) minmax(16rem,.65fr) auto;
+}
+.sl-detail-body[hidden] { display:none; }
+.sl-material-detail.is-open .sl-detail-header { padding-bottom:clamp(2rem,4vw,3.5rem); }
+.sl-material-detail:not(.is-open) .sl-detail-header { padding-bottom:1.25rem; }
+
+.sl-material-card[hidden] { display:none; }
+.sl-content-slot--empty { color:#657176; }
+.sl-compare-slot--filled h3 {
+  margin:0;
+  font-size:clamp(1.3rem,2vw,1.8rem);
+  letter-spacing:-.03em;
+}
+.sl-compare-slot--filled p,
+.sl-compare-slot--filled li { color:#d8dfdf; font-size:.86rem; }
+.sl-compare-slot--filled ul { padding-left:1.1rem; margin:.25rem 0; }
+.sl-compare-slot--filled a { color:#fff; text-underline-offset:.25em; }
+
 @media (max-width:1180px) {
   .sl-material-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .sl-decision-path { grid-template-columns:repeat(3,minmax(0,1fr)); }
@@ -390,7 +462,8 @@
   .sl-hero__grid,
   .sl-section-heading,
   .sl-review-layout,
-  .sl-detail-header {
+  .sl-detail-header,
+  .sl-material-tools {
     grid-template-columns:1fr;
   }
 
