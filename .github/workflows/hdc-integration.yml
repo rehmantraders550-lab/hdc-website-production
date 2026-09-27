@@ -46,36 +46,52 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     env:
-      LIVE_URL: ${{ vars.HDC_LIVE_URL }}
+      LIVE_URL: ${{ vars.HDC_LIVE_URL || 'https://hadidigitalcraft.com' }}
     steps:
-      - name: Require production URL configuration
-        if: env.LIVE_URL == ''
+      - name: Resolve production URL
         run: |
-          echo "::warning::Repository variable HDC_LIVE_URL is not configured. Source validation passed, but live deployment cannot be verified."
-          echo "live_verification=SKIPPED (HDC_LIVE_URL missing)" >> "$GITHUB_STEP_SUMMARY"
+          echo "live_url=$LIVE_URL" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Wait for Hostinger Git deployment
-        if: env.LIVE_URL != ''
         run: sleep 90
 
-      - name: Smoke test homepage
-        if: env.LIVE_URL != ''
-        run: |
-          set -euo pipefail
-          code="$(curl -L -sS -o /tmp/hdc-home.html -w '%{http_code}' --retry 3 --retry-delay 10 "$LIVE_URL")"
-          test "$code" = "200"
-          grep -qi "Hadi Digital Craft" /tmp/hdc-home.html
-          echo "homepage_http=$code" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Smoke test critical pages
-        if: env.LIVE_URL != ''
+      - name: Smoke test homepage and hero deployment
         run: |
           set -euo pipefail
           base="${LIVE_URL%/}"
-          for path in labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html applications.html production.html request-a-quote.html
+          code="$(curl -L -sS -o /tmp/hdc-home.html -w '%{http_code}' --retry 4 --retry-delay 10 "$LIVE_URL")"
+          test "$code" = "200"
+          grep -qi "Hadi Digital Craft" /tmp/hdc-home.html
+          grep -q 'assets/images/imagery-2026-09-24/HDC-2026-hero.webp' /tmp/hdc-home.html
+          grep -q 'styles.css?v=20260927-hero-luminance-01' /tmp/hdc-home.html
+
+          css_code="$(curl -L -sS -o /tmp/hdc-styles.css -w '%{http_code}' --retry 3 --retry-delay 5 "$base/assets/css/styles.css?v=20260927-hero-luminance-01")"
+          test "$css_code" = "200"
+          grep -q 'ORVIA HERO LUMINANCE SYSTEM' /tmp/hdc-styles.css
+
+          hero_code="$(curl -L -sS -o /dev/null -w '%{http_code}' --retry 3 --retry-delay 5 "$base/assets/images/imagery-2026-09-24/HDC-2026-hero.webp")"
+          test "$hero_code" = "200"
+
+          echo "homepage_http=$code" >> "$GITHUB_STEP_SUMMARY"
+          echo "hero_asset_http=$hero_code" >> "$GITHUB_STEP_SUMMARY"
+          echo "hero_luminance_css=PASSED" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Smoke test critical pages and page-specific heroes
+        run: |
+          set -euo pipefail
+          base="${LIVE_URL%/}"
+          for path in labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html applications.html production.html request-a-quote.html finishing-embellishment.html surface-lab.html
           do
             code="$(curl -L -sS -o /dev/null -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
             echo "$path -> $code"
             test "$code" = "200"
           done
+
+          fe_code="$(curl -L -sS -o /tmp/hdc-fe.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/finishing-embellishment.css")"
+          sl_code="$(curl -L -sS -o /tmp/hdc-sl.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/surface-lab.css")"
+          test "$fe_code" = "200"
+          test "$sl_code" = "200"
+          grep -q 'ORVIA hero luminance calibration' /tmp/hdc-fe.css
+          grep -q 'ORVIA hero luminance calibration' /tmp/hdc-sl.css
+
           echo "live_verification=PASSED" >> "$GITHUB_STEP_SUMMARY"
