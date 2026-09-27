@@ -129,6 +129,78 @@
       "aspect": "1:1",
       "git_blob_sha": "b5d8a9e1b3b66d9c670cf58bcd7d63339b47181d",
       "status": "live"
+    },
+    {
+      "slot": "homepage.surface_family.glass",
+      "path": "assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-GLASS-01.webp",
+      "width": 1122,
+      "height": 1402,
+      "aspect": "4:5",
+      "git_blob_sha": "868a75796a7c55d5af72f2418c4ab66f976af05a",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.surface_family.acrylic",
+      "path": "assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-ACRYLIC-01.webp",
+      "width": 1122,
+      "height": 1402,
+      "aspect": "4:5",
+      "git_blob_sha": "b8d442d4f1089ab5d8d1a6750fa3af16b1e1772c",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.surface_family.coated-metal",
+      "path": "assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-COATED-METAL-01.webp",
+      "width": 1122,
+      "height": 1402,
+      "aspect": "4:5",
+      "git_blob_sha": "8e0eda823b24a9fdfcc290d358f96fe98986e915",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.surface_family.acm",
+      "path": "assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-ACM-01.webp",
+      "width": 1122,
+      "height": 1402,
+      "aspect": "4:5",
+      "git_blob_sha": "384584556f774892a1c77df88ff82b51ade075b3",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.surface_family.pvc",
+      "path": "assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-PVC-01.webp",
+      "width": 1122,
+      "height": 1402,
+      "aspect": "4:5",
+      "git_blob_sha": "c261060ea9274bc7dd2b99548162efb3bad86fd8",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.surface_family.wood-board",
+      "path": "assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-WOOD-BOARD-01.webp",
+      "width": 1122,
+      "height": 1402,
+      "aspect": "4:5",
+      "git_blob_sha": "ccfe63321f37c5c065ecc707ffd49b64173bf7f7",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.surface_family.rigid-plastics",
+      "path": "assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-RIGID-PLASTICS-01.webp",
+      "width": 1122,
+      "height": 1402,
+      "aspect": "4:5",
+      "git_blob_sha": "9624ae65ee1209d6976f1ca876755e14cdc73080",
+      "status": "live"
+    },
+    {
+      "slot": "homepage.surface_family.unknown-surfaces",
+      "path": "assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-UNKNOWN-SURFACES-01.webp",
+      "width": 1122,
+      "height": 1402,
+      "aspect": "4:5",
+      "git_blob_sha": "a7fd0be827451f411cdaf781dc7e9628fb0a036f",
+      "status": "live"
     }
   ],
   "legacy_invalid_assets": [
