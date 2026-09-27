@@ -60,6 +60,9 @@
 
         assemblyTimers.push(window.setTimeout(() => {
           setState('interactive');
+          requestAnimationFrame(() => {
+            root.classList.remove('is-assembly-ready');
+          });
         }, WAIT.POST_LOCK + WAIT.META));
       }, WAIT.TRAVEL + WAIT.MAX_STAGGER));
     }, WAIT.PREPARE));
