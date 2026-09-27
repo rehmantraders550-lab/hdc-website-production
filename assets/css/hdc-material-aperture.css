@@ -6,8 +6,8 @@
 .hdc-material-aperture {
   --hma-speed: 480ms;
   --hma-ease: cubic-bezier(.22, 1, .36, 1);
-  --hma-line: rgba(11, 16, 19, .15);
-  --hma-muted: rgba(11, 16, 19, .58);
+  --hma-line: rgba(255, 255, 255, .24);
+  --hma-muted: rgba(255, 255, 255, .74);
   margin-top: clamp(2.4rem, 5vw, 4.5rem);
   color: var(--ink);
 }
@@ -44,14 +44,13 @@
 
 .hdc-material-aperture__panel {
   --hma-accent: var(--hdc-silver);
-  --hma-surface:
-    linear-gradient(145deg, rgba(255,255,255,.44), rgba(242,238,232,.9));
+  --hma-photo: none;
   position: relative;
   flex: 1 1 0;
   min-width: 0;
   overflow: hidden;
   border-right: 1px solid var(--hma-line);
-  background: var(--paper-deep);
+  background: var(--hdc-graphite);
   transition:
     flex-grow var(--hma-speed) var(--hma-ease),
     box-shadow 320ms ease,
@@ -72,8 +71,12 @@
 .hdc-material-aperture__panel::before {
   inset: 0;
   z-index: 0;
-  background: var(--hma-surface);
-  opacity: .76;
+  background-image:
+    linear-gradient(180deg, rgba(11,16,19,.16) 0%, rgba(11,16,19,.04) 34%, rgba(11,16,19,.78) 100%),
+    var(--hma-photo);
+  background-position: center, center 48%;
+  background-size: cover, cover;
+  opacity: .98;
   transition: opacity 320ms ease, transform 560ms var(--hma-ease);
 }
 
@@ -101,6 +104,9 @@
 }
 
 .hdc-material-aperture__panel.is-active::before {
+  background-image:
+    linear-gradient(180deg, rgba(11,16,19,.24) 0%, rgba(11,16,19,.12) 24%, rgba(11,16,19,.88) 100%),
+    var(--hma-photo);
   opacity: 1;
   transform: scale(1.015);
 }
@@ -109,56 +115,45 @@
   transform: scaleX(1);
 }
 
-/* Material-specific cues: restrained, non-photographic and subordinate to typography. */
+/* Material-specific specimen photography; imagery remains subordinate to the index. */
 .hdc-material-aperture__panel--glass {
   --hma-accent: #84AEB2;
-  --hma-surface:
-    linear-gradient(155deg, rgba(255,255,255,.76), rgba(108,155,156,.13) 52%, rgba(242,238,232,.86));
+  --hma-photo: url("../images/surface-families/HDC-IMG-SURFACE-FAMILY-GLASS-01.webp");
 }
 
 .hdc-material-aperture__panel--acrylic {
   --hma-accent: var(--hdc-cyan);
-  --hma-surface:
-    linear-gradient(145deg, rgba(108,155,156,.16), rgba(250,247,242,.86) 58%, rgba(156,165,167,.12));
+  --hma-photo: url("../images/surface-families/HDC-IMG-SURFACE-FAMILY-ACRYLIC-01.webp");
 }
 
 .hdc-material-aperture__panel--coated-metal {
   --hma-accent: var(--hdc-silver);
-  --hma-surface:
-    linear-gradient(130deg, rgba(156,165,167,.22), rgba(250,247,242,.82) 44%, rgba(156,165,167,.18) 46%, rgba(242,238,232,.92));
+  --hma-photo: url("../images/surface-families/HDC-IMG-SURFACE-FAMILY-COATED-METAL-01.webp");
 }
 
 .hdc-material-aperture__panel--acm {
   --hma-accent: var(--hdc-teal);
-  --hma-surface:
-    linear-gradient(145deg, rgba(3,111,134,.12), rgba(250,247,242,.92) 60%, rgba(169,179,183,.16));
+  --hma-photo: url("../images/surface-families/HDC-IMG-SURFACE-FAMILY-ACM-01.webp");
 }
 
 .hdc-material-aperture__panel--pvc {
   --hma-accent: #7FA9AD;
-  --hma-surface:
-    linear-gradient(145deg, rgba(71,193,199,.10), rgba(250,247,242,.96) 62%, rgba(169,179,183,.10));
+  --hma-photo: url("../images/surface-families/HDC-IMG-SURFACE-FAMILY-PVC-01.webp");
 }
 
 .hdc-material-aperture__panel--wood {
   --hma-accent: var(--hdc-copper);
-  --hma-surface:
-    repeating-linear-gradient(118deg, rgba(125,78,44,.035) 0 1px, transparent 1px 7px),
-    linear-gradient(145deg, rgba(216,154,99,.14), rgba(242,238,232,.9) 64%);
+  --hma-photo: url("../images/surface-families/HDC-IMG-SURFACE-FAMILY-WOOD-BOARD-01.webp");
 }
 
 .hdc-material-aperture__panel--plastic {
   --hma-accent: #4D8189;
-  --hma-surface:
-    linear-gradient(125deg, rgba(41,94,100,.12), transparent 38%),
-    linear-gradient(145deg, rgba(255,255,255,.7), rgba(108,155,156,.10) 60%, rgba(242,238,232,.9));
+  --hma-photo: url("../images/surface-families/HDC-IMG-SURFACE-FAMILY-RIGID-PLASTICS-01.webp");
 }
 
 .hdc-material-aperture__panel--unknown {
   --hma-accent: #7D4E2C;
-  --hma-surface:
-    repeating-linear-gradient(135deg, rgba(125,78,44,.04) 0 1px, transparent 1px 10px),
-    linear-gradient(145deg, rgba(169,179,183,.12), rgba(242,238,232,.96));
+  --hma-photo: url("../images/surface-families/HDC-IMG-SURFACE-FAMILY-UNKNOWN-SURFACES-01.webp");
 }
 
 .hdc-material-aperture__trigger {
@@ -187,7 +182,8 @@
   z-index: 2;
   top: 1rem;
   left: 1rem;
-  color: var(--hma-muted);
+  color: rgba(255,255,255,.86);
+  text-shadow: 0 1px 12px rgba(0,0,0,.55);
   font-family: var(--mono);
   font-size: .61rem;
   letter-spacing: .11em;
@@ -207,11 +203,13 @@
 .hdc-material-aperture__collapsed h3 {
   max-width: 12ch;
   margin: 0;
+  color: var(--hdc-white);
   font-family: var(--sans);
   font-size: clamp(.82rem, 1vw, 1.12rem);
   font-weight: 600;
   letter-spacing: -.03em;
   line-height: 1.02;
+  text-shadow: 0 1px 12px rgba(0,0,0,.58);
 }
 
 .hdc-material-aperture__panel.is-active .hdc-material-aperture__collapsed {
@@ -252,6 +250,7 @@
 .hdc-material-aperture__expanded h3 {
   margin: 0;
   max-width: 14ch;
+  color: var(--hdc-white);
   font-family: var(--serif);
   font-size: clamp(1.7rem, 2.55vw, 2.8rem);
   font-weight: 400;
@@ -262,7 +261,7 @@
 .hdc-material-aperture__description {
   max-width: 30rem;
   margin: .7rem 0 0;
-  color: var(--muted);
+  color: rgba(255,255,255,.8);
   font-size: clamp(.76rem, .86vw, .88rem);
   line-height: 1.46;
 }
@@ -277,7 +276,7 @@
   min-height: 34px;
   margin-top: .55rem;
   padding: .25rem 0;
-  color: var(--ink);
+  color: var(--hdc-white);
   font-family: var(--mono);
   font-size: .57rem;
   letter-spacing: .1em;
@@ -423,8 +422,8 @@
 
 @media (prefers-contrast: more) {
   .hdc-material-aperture {
-    --hma-line: rgba(11, 16, 19, .34);
-    --hma-muted: rgba(11, 16, 19, .78);
+    --hma-line: rgba(255, 255, 255, .48);
+    --hma-muted: rgba(255, 255, 255, .92);
   }
 }
 
