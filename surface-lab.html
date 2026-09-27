@@ -74,6 +74,18 @@
           <p class="sl-lead">Each material remains assessment-led until the exact surface, finish and use case are confirmed.</p>
         </div>
 
+        <div class="sl-material-tools" data-sl-tools hidden>
+          <div class="sl-search-field">
+            <label for="sl-material-search">Find a material</label>
+            <input id="sl-material-search" type="search" autocomplete="off" placeholder="Glass, acrylic, wood…">
+            <p id="sl-search-status" class="sl-tool-status" role="status" aria-live="polite"></p>
+          </div>
+          <div class="sl-compare-guide">
+            <strong>Compare 2–3 materials</strong>
+            <p>Select materials from the cards. Comparison uses customer-safe fields only.</p>
+          </div>
+        </div>
+
         <div class="sl-material-grid" aria-label="Surface Lab material families">
           <article class="sl-material-card" data-record-id="SURF-GLASS-001">
             <span class="sl-material-card__index">01</span>
@@ -900,11 +912,12 @@
           </div>
           <p class="sl-lead">The interaction stage may allow two or three materials to be compared using only customer-safe fields.</p>
         </div>
-        <div class="sl-compare-shell" data-sl-compare-region aria-label="Material comparison structure">
-          <div class="sl-compare-slot"><span>01</span><strong>Material slot</strong></div>
-          <div class="sl-compare-slot"><span>02</span><strong>Material slot</strong></div>
-          <div class="sl-compare-slot"><span>03</span><strong>Optional material slot</strong></div>
+        <div class="sl-compare-shell" data-sl-compare-region aria-label="Material comparison structure" aria-live="polite">
+          <div class="sl-compare-slot"><span>01</span><strong>Select a material</strong></div>
+          <div class="sl-compare-slot"><span>02</span><strong>Select a second material</strong></div>
+          <div class="sl-compare-slot"><span>03</span><strong>Optional third material</strong></div>
         </div>
+        <p class="sl-tool-status" data-sl-compare-status role="status" aria-live="polite">Select at least two materials to compare.</p>
       </div>
     </section>
 
