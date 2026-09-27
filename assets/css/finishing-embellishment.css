@@ -240,3 +240,33 @@
   object-position: 73% center;
 }
 
+
+
+/* ORVIA hero luminance calibration — 2026-09-27 */
+body.fe-page .fe-hero {
+  background: linear-gradient(110deg, #0B1013 0%, #10181C 48%, #182226 100%);
+}
+body.fe-page .fe-hero h1 {
+  max-width: 9.2ch;
+  font-size: clamp(3.6rem, 6.6vw, 7rem);
+}
+body.fe-page .fe-hero__media img {
+  filter: brightness(1.16) saturate(.94) contrast(1.04);
+}
+body.fe-page .fe-hero__media::after {
+  background: linear-gradient(180deg, transparent 60%, rgba(11, 16, 19, .30));
+}
+@media (max-width: 899px) {
+  body.fe-page .fe-hero__copy {
+    min-height: auto;
+    padding-top: clamp(5.5rem, 14vw, 8rem);
+    padding-bottom: clamp(2.5rem, 8vw, 4rem);
+  }
+  body.fe-page .fe-hero h1 {
+    max-width: 9ch;
+    font-size: clamp(3rem, 13vw, 5.2rem);
+  }
+  body.fe-page .fe-hero__media {
+    min-height: 78vw;
+  }
+}
