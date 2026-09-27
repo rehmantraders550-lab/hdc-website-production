@@ -134,18 +134,18 @@
 .product-universe__tile[data-enter="down"] { --enter-y: 18%; }
 
 .product-universe__tile[data-assemble-group="0"] { --assembly-delay: 0ms; }
-.product-universe__tile[data-assemble-group="1"] { --assembly-delay: 50ms; }
-.product-universe__tile[data-assemble-group="2"] { --assembly-delay: 100ms; }
-.product-universe__tile[data-assemble-group="3"] { --assembly-delay: 150ms; }
-.product-universe__tile[data-assemble-group="4"] { --assembly-delay: 200ms; }
+.product-universe__tile[data-assemble-group="1"] { --assembly-delay: 100ms; }
+.product-universe__tile[data-assemble-group="2"] { --assembly-delay: 200ms; }
+.product-universe__tile[data-assemble-group="3"] { --assembly-delay: 300ms; }
+.product-universe__tile[data-assemble-group="4"] { --assembly-delay: 400ms; }
 
 .product-universe.is-assembly-ready .product-universe__tile {
   will-change: transform, opacity;
   opacity: 0;
   transform: translate3d(var(--enter-x), var(--enter-y), 0);
   transition:
-    transform 540ms var(--universe-ease) var(--assembly-delay),
-    opacity 320ms ease var(--assembly-delay),
+    transform 1080ms var(--universe-ease) var(--assembly-delay),
+    opacity 640ms ease var(--assembly-delay),
     border-color 180ms ease;
 }
 
@@ -187,7 +187,7 @@
   align-self: flex-end;
   width: 100%;
   padding: clamp(.78rem, 1.1vw, 1rem);
-  transition: opacity 200ms ease, transform 200ms ease;
+  transition: opacity 400ms ease, transform 400ms ease;
 }
 
 .product-universe.is-assembly-ready[data-state="assembling"] .product-universe__content {
