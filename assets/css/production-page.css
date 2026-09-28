@@ -255,6 +255,29 @@ body[data-page="production"]{
   .prod-system-card:hover img{opacity:.68;transform:scale(1.025);}
 }
 
+.prod-noscript{
+  display:grid;
+  gap:.75rem;
+  margin-top:1rem;
+  padding:1rem 0;
+  border-top:1px solid var(--prod-line-dark);
+}
+.prod-noscript p{
+  margin:0;
+  color:var(--prod-muted);
+  font-size:.78rem;
+}
+.prod-noscript a{
+  width:max-content;
+  max-width:100%;
+  color:#fff;
+  font-family:var(--mono);
+  font-size:.62rem;
+  letter-spacing:.07em;
+  text-decoration:none;
+  text-transform:uppercase;
+}
+
 .prod-specialist{
   display:grid;
   grid-template-columns:minmax(13rem,.3fr) minmax(0,.7fr);
