@@ -174,4 +174,11 @@
 
   renderSystems();
   renderRecord(methodBySlug(activeSlug));
+
+  if (slugFromHash()) {
+    requestAnimationFrame(function(){
+      const target = document.querySelector('#production-record');
+      if (target) target.scrollIntoView({block:'start',behavior:'auto'});
+    });
+  }
 })();
