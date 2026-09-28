@@ -6,7 +6,6 @@
   const grid = document.querySelector('[data-prod-system-grid]');
   const specialistHost = document.querySelector('[data-prod-specialist]');
   const recordHost = document.querySelector('[data-prod-record]');
-  const recordCode = document.querySelector('[data-prod-record-code]');
   const routeButtons = Array.from(document.querySelectorAll('[data-prod-route-step]'));
   const routeReadout = document.querySelector('[data-prod-route-readout]');
   const projectCopy = document.querySelector('[data-prod-project-copy]');
@@ -14,12 +13,12 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   const ROUTING = [
-    ['01 / SURFACE','Confirm the substrate or finished surface before selecting a production method.'],
-    ['02 / GEOMETRY','Check whether the job is flat, curved, dimensional or constrained by machine clearance.'],
-    ['03 / ARTWORK','Review reproduction requirements, opacity, colour, registration and artwork readiness.'],
-    ['04 / RUN','Consider quantity, repeatability, setup requirements and production efficiency.'],
-    ['05 / HANDLING','Account for finishing, installation, wear, cleaning and intended use conditions.'],
-    ['06 / PROCESS','Select and validate the production method against the actual physical job.']
+    ['Surface','Confirm the substrate or finished surface before selecting a production method.'],
+    ['Geometry','Check whether the job is flat, curved, dimensional or constrained by machine clearance.'],
+    ['Artwork','Review reproduction requirements, opacity, colour, registration and artwork readiness.'],
+    ['Run','Consider quantity, repeatability, setup requirements and production efficiency.'],
+    ['Handling','Account for finishing, installation, wear, cleaning and intended use conditions.'],
+    ['Process','Select and validate the production method against the actual physical job.']
   ];
 
   const primary = methods.filter(function(method){ return method.tier === 'primary'; });
@@ -52,7 +51,6 @@
         '<span class="prod-system-card__media"><img src="' + escapeHtml(method.image) + '" alt="" loading="lazy"></span>' +
         '<span class="prod-system-card__shade" aria-hidden="true"></span>' +
         '<span class="prod-system-card__body">' +
-          '<span class="prod-system-card__index">' + escapeHtml(method.index) + '</span>' +
           '<span class="prod-system-card__family">' + escapeHtml(method.family) + '</span>' +
           '<h3>' + escapeHtml(method.name) + '</h3>' +
           '<p>' + escapeHtml(method.short) + '</p>' +
@@ -62,9 +60,8 @@
 
     if (specialist && specialistHost){
       specialistHost.innerHTML =
-        '<span>' + escapeHtml(specialist.index) + '</span>' +
         '<strong>' + escapeHtml(specialist.name) + '</strong>' +
-        '<small>' + escapeHtml(specialist.short) + '</small>' +
+        '<span class="prod-specialist__copy">' + escapeHtml(specialist.short) + '</span>' +
         '<b aria-hidden="true">→</b>';
       specialistHost.setAttribute('aria-pressed',String(specialist.slug === activeSlug));
     }
@@ -79,15 +76,12 @@
   function renderRecord(method){
     if (!method) return;
     activeSlug = method.slug;
-    if (recordCode) recordCode.textContent = method.key;
 
     recordHost.innerHTML =
       '<figure class="prod-record__media">' +
         '<img src="' + escapeHtml(method.image) + '" alt="' + escapeHtml(method.imageAlt) + '" loading="lazy">' +
-        '<figcaption class="prod-record__media-foot"><span>' + escapeHtml(method.index) + ' / ' + escapeHtml(method.family) + '</span><span>Production evidence</span></figcaption>' +
       '</figure>' +
       '<div class="prod-record__copy">' +
-        '<p class="eyebrow">PRODUCTION METHOD — ' + escapeHtml(method.index) + '</p>' +
         '<h2 id="prod-record-title">' + escapeHtml(method.name) + '</h2>' +
         '<p class="prod-record__description">' + escapeHtml(method.description) + '</p>' +
         '<div class="prod-record__facts">' +
@@ -98,13 +92,10 @@
         '</div>' +
       '</div>' +
       '<aside class="prod-record__aside">' +
-        '<div>' +
-          '<b>Technical depth</b>' +
-          '<div class="prod-record__meta">' +
-            '<div><small>System class</small><strong>' + escapeHtml(method.tier === 'primary' ? 'Primary production system' : 'Specialist production route') + '</strong></div>' +
-            '<div><small>Machine documentation</small><strong>Dedicated method guide available</strong></div>' +
-            '<div><small>Related services</small><strong>' + (method.related || []).map(function(item){ return escapeHtml(item[0]); }).join(' · ') + '</strong></div>' +
-          '</div>' +
+        '<div class="prod-record__context">' +
+          '<h3>Production context</h3>' +
+          '<p>' + escapeHtml(method.tier === 'primary' ? 'Primary production system with a dedicated method guide.' : 'Specialist production route with a dedicated method guide.') + '</p>' +
+          '<p>' + escapeHtml((method.related || []).map(function(item){ return item[0]; }).join(' · ')) + '</p>' +
         '</div>' +
         '<div class="prod-record__actions">' +
           '<a class="button button--dark" href="' + escapeHtml(method.machineGuide) + '">Open machine guide</a>' +
@@ -114,14 +105,13 @@
       '</aside>';
 
     if (projectCopy){
-      projectCopy.textContent = 'Current context: ' + method.name + '. Share the application, quantity, dimensions, surface or substrate, and artwork readiness so HDC can review whether this route fits the actual job.';
+      projectCopy.textContent = method.name + ' is selected. Share the application, quantity, dimensions, surface or substrate, and artwork readiness so HDC can review whether this route fits the actual job.';
     }
     if (projectCta){
       projectCta.href = quoteHref(method);
       projectCta.textContent = 'Discuss ' + method.family;
     }
   }
-
   function selectMethod(slug, options){
     options = options || {};
     const method = methodBySlug(slug);
