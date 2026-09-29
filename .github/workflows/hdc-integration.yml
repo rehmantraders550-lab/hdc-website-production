@@ -59,17 +59,17 @@ jobs:
         run: |
           set -euo pipefail
           base="${LIVE_URL%/}"
-          code="$(curl -L -sS -o /tmp/hdc-home.html -w '%{http_code}' --retry 4 --retry-delay 10 "$LIVE_URL")"
+          code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-home.html -w '%{http_code}' --retry 4 --retry-delay 10 "$LIVE_URL")"
           test "$code" = "200"
           grep -qi "Hadi Digital Craft" /tmp/hdc-home.html
           grep -q 'assets/images/imagery-2026-09-24/HDC-2026-hero.webp' /tmp/hdc-home.html
           grep -q 'styles.css?v=20260927-hero-luminance-01' /tmp/hdc-home.html
 
-          css_code="$(curl -L -sS -o /tmp/hdc-styles.css -w '%{http_code}' --retry 3 --retry-delay 5 "$base/assets/css/styles.css?v=20260927-hero-luminance-01")"
+          css_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-styles.css -w '%{http_code}' --retry 3 --retry-delay 5 "$base/assets/css/styles.css?v=20260927-hero-luminance-01")"
           test "$css_code" = "200"
           grep -q 'ORVIA HERO LUMINANCE SYSTEM' /tmp/hdc-styles.css
 
-          hero_code="$(curl -L -sS -o /dev/null -w '%{http_code}' --retry 3 --retry-delay 5 "$base/assets/images/imagery-2026-09-24/HDC-2026-hero.webp")"
+          hero_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /dev/null -w '%{http_code}' --retry 3 --retry-delay 5 "$base/assets/images/imagery-2026-09-24/HDC-2026-hero.webp")"
           test "$hero_code" = "200"
 
           echo "homepage_http=$code" >> "$GITHUB_STEP_SUMMARY"
@@ -82,25 +82,31 @@ jobs:
           base="${LIVE_URL%/}"
           for path in labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html applications.html production.html request-a-quote.html finishing-embellishment.html surface-lab.html
           do
-            code="$(curl -L -sS -o /dev/null -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
+            code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /dev/null -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
             echo "$path -> $code"
             test "$code" = "200"
           done
 
-          fe_code="$(curl -L -sS -o /tmp/hdc-fe.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/finishing-embellishment.css")"
-          sl_code="$(curl -L -sS -o /tmp/hdc-sl.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/surface-lab.css")"
-          ds_code="$(curl -L -sS -o /tmp/hdc-design-system.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/hdc-design-system-v1.css?v=20260929-service-v2")"
+          fe_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-fe.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/finishing-embellishment.css")"
+          sl_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-sl.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/surface-lab.css")"
+          ds_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-design-system.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/hdc-design-system-v1.css?v=20260929-service-v2")"
           test "$fe_code" = "200"
           test "$sl_code" = "200"
           test "$ds_code" = "200"
           grep -q 'ORVIA_SERVICE_ARCHITECTURE_V2' /tmp/hdc-design-system.css
 
+          sl_html_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-surface-lab.html -w '%{http_code}' --retry 2 --retry-delay 5 "$base/surface-lab.html")"
+          test "$sl_html_code" = "200"
+          grep -q 'surface-lab.css?v=20260929-visual-redesign-v4' /tmp/hdc-surface-lab.html
+          grep -q 'ORVIA_SURFACE_LAB_VISUAL_REDESIGN_V4' /tmp/hdc-sl.css
+
           for path in services.html labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html
           do
             tmp="/tmp/hdc-${path//\//-}"
-            curl -L -sS --retry 2 --retry-delay 5 -o "$tmp" "$base/$path"
+            curl -L -sS --connect-timeout 10 --max-time 30 --retry 2 --retry-delay 5 -o "$tmp" "$base/$path"
             grep -q 'hdc-design-system-v1.css?v=20260929-service-v2' "$tmp"
           done
 
           echo "service_architecture_v2=PASSED" >> "$GITHUB_STEP_SUMMARY"
+          echo "surface_lab_visual_redesign_v4=PASSED" >> "$GITHUB_STEP_SUMMARY"
           echo "live_verification=PASSED" >> "$GITHUB_STEP_SUMMARY"
