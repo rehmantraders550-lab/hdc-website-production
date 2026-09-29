@@ -1,0 +1,205 @@
+/* ORVIA_COMPONENT: hdc-design-system-framework-v1
+   Purpose: shared sequencing, grid, density, transition, responsive and QA guardrails.
+   Scope: outer composition only. Existing component interaction internals are preserved. */
+
+:root {
+  /* Grid */
+  --hdc-grid-columns: 12;
+  --hdc-grid-gap: clamp(.75rem, 1.4vw, 1.5rem);
+
+  /* Spacing scale */
+  --hdc-space-xs: clamp(.35rem, .5vw, .55rem);
+  --hdc-space-s: clamp(.75rem, 1vw, 1rem);
+  --hdc-space-m: clamp(1.25rem, 2vw, 2rem);
+  --hdc-space-l: clamp(3rem, 5.5vw, 5.75rem);
+  --hdc-space-xl: clamp(5rem, 8vw, 8.5rem);
+  --hdc-space-xxl: clamp(7rem, 11vw, 12rem);
+
+  /* Width system */
+  --hdc-width-page: min(1440px, calc(100vw - (2 * var(--gutter))));
+  --hdc-width-reading: 42rem;
+  --hdc-width-technical: 58rem;
+  --hdc-width-interaction: 76rem;
+
+  /* Motion */
+  --hdc-motion-fast: 180ms;
+  --hdc-motion-standard: 360ms;
+  --hdc-motion-slow: 620ms;
+  --hdc-motion-ease: cubic-bezier(.2,.65,.22,1);
+}
+
+/* 12-column compositional scaffold. Components may opt in without internal rewrites. */
+.hdc-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--hdc-grid-gap);
+}
+
+.hdc-reading-width { max-width: var(--hdc-width-reading); }
+.hdc-technical-width { max-width: var(--hdc-width-technical); }
+.hdc-interaction-width { max-width: var(--hdc-width-interaction); }
+
+/* Density sequencing: preserve components, normalize editorial breathing. */
+[data-editorial-section] {
+  position: relative;
+  isolation: isolate;
+}
+
+[data-editorial-sequence="product-universe"],
+[data-editorial-sequence="production-register"],
+[data-editorial-sequence="applications"] {
+  --hdc-section-density: active;
+}
+
+[data-editorial-sequence="surface-lab"],
+[data-editorial-sequence="material-detail"],
+[data-editorial-sequence="process"],
+[data-editorial-sequence="quality"] {
+  --hdc-section-density: balanced;
+}
+
+[data-editorial-sequence="environment"],
+[data-editorial-sequence="selected-work"],
+[data-editorial-sequence="enquiry"] {
+  --hdc-section-density: quiet;
+}
+
+/* The framework uses surrounding space as a transition before reaching for animation. */
+[data-editorial-section] + [data-editorial-section] {
+  border-top: 0 solid transparent;
+}
+
+[data-editorial-sequence="product-universe"],
+[data-editorial-sequence="production-register"],
+[data-editorial-sequence="applications"] {
+  scroll-margin-top: 6rem;
+}
+
+/* Quiet passages create decompression between active/technical modules. */
+[data-editorial-sequence="surface-lab"] .shell,
+[data-editorial-sequence="environment"] .shell,
+[data-editorial-sequence="selected-work"] .shell,
+[data-editorial-sequence="enquiry"] .shell {
+  padding-block: var(--hdc-space-s);
+}
+
+/* Editorial hierarchy: one focal layer + one support layer + metadata/action. */
+[data-editorial-section] .section-index {
+  margin-bottom: clamp(2.5rem, 4.5vw, 5rem);
+}
+
+[data-editorial-section] h2 {
+  max-width: 10.5ch;
+}
+
+[data-editorial-section] .body,
+[data-editorial-section] .lede {
+  max-width: var(--hdc-width-reading);
+}
+
+/* Transition vocabulary: editorial space, hairline/index, tonal passage. */
+.hdc-transition--space {
+  min-height: var(--hdc-space-l);
+}
+
+.hdc-transition--hairline {
+  border-top: 1px solid var(--line);
+}
+
+.hdc-transition--tonal {
+  background: var(--paper-deep);
+}
+
+/* Control motion: no perpetual design-system animation. */
+[data-editorial-section] img,
+[data-editorial-section] video,
+[data-editorial-section] a,
+[data-editorial-section] button {
+  animation-iteration-count: 1;
+}
+
+/* Prevent component geometry from escaping its editorial boundary. */
+[data-editorial-section] .shell,
+.product-universe-stage .shell {
+  width: 100%;
+  max-width: var(--max);
+}
+
+[data-editorial-section] :where(img, video, svg, canvas) {
+  max-width: 100%;
+}
+
+/* Focus should remain independent from hover/motion. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Defensive wrapping for 200% zoom / long content. */
+:where(h1, h2, h3, p, a, button, span, small, strong) {
+  overflow-wrap: anywhere;
+}
+
+/* Tablet: 8-column conceptual grid. Existing components retain their own geometry. */
+@media (max-width: 1180px) {
+  :root {
+    --hdc-grid-columns: 8;
+    --hdc-space-xl: clamp(4.5rem, 8vw, 7rem);
+    --hdc-space-xxl: clamp(6rem, 10vw, 9rem);
+  }
+
+  .hdc-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+
+  [data-editorial-section] .section-index {
+    margin-bottom: clamp(2.25rem, 5vw, 4rem);
+  }
+}
+
+/* Mobile: independent composition, 4-column conceptual grid, no horizontal page overflow. */
+@media (max-width: 760px) {
+  :root {
+    --hdc-grid-columns: 4;
+    --hdc-grid-gap: .75rem;
+    --hdc-space-l: 2.75rem;
+    --hdc-space-xl: 4.25rem;
+    --hdc-space-xxl: 5.5rem;
+  }
+
+  html, body { max-width: 100%; overflow-x: clip; }
+  .hdc-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  [data-editorial-section] .section-index {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .45rem;
+  }
+
+  [data-editorial-section] h2 { max-width: 12ch; }
+  [data-editorial-section] .body,
+  [data-editorial-section] .lede { max-width: none; }
+}
+
+/* Reduced motion: retain state changes, remove choreography. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* 200% zoom/reflow safety: treat very narrow CSS viewports as mobile. */
+@media (max-width: 480px) {
+  .section,
+  .page-hero,
+  .hero__inner {
+    padding-inline: max(1rem, var(--gutter));
+  }
+
+  .button,
+  .nav-cta,
+  button {
+    min-height: 44px;
+  }
+}
