@@ -88,21 +88,24 @@ jobs:
           done
 
           fe_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-fe.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/finishing-embellishment.css")"
-          sl_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-sl.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/surface-lab.css")"
+          sl_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-sl.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/surface-lab.css?v=20260929-visual-redesign-v4")"
           ds_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-design-system.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/hdc-design-system-v1.css?v=20260929-service-v2")"
           test "$fe_code" = "200"
           test "$sl_code" = "200"
           test "$ds_code" = "200"
           grep -q 'ORVIA_SERVICE_ARCHITECTURE_V2' /tmp/hdc-design-system.css
+          echo "design_system_css=PASSED" >> "$GITHUB_STEP_SUMMARY"
 
           sl_html_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-surface-lab.html -w '%{http_code}' --retry 2 --retry-delay 5 "$base/surface-lab.html")"
           test "$sl_html_code" = "200"
           grep -q 'surface-lab.css?v=20260929-visual-redesign-v4' /tmp/hdc-surface-lab.html
           grep -q 'ORVIA_SURFACE_LAB_VISUAL_REDESIGN_V4' /tmp/hdc-sl.css
+          echo "surface_lab_css=PASSED" >> "$GITHUB_STEP_SUMMARY"
 
           machine_css_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-machine-pages.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/machine-pages.css?v=20260929-v1")"
           test "$machine_css_code" = "200"
           grep -q 'ORVIA_MACHINE_PAGES_VISUAL_REDESIGN_V1' /tmp/hdc-machine-pages.css
+          echo "machine_pages_css=PASSED" >> "$GITHUB_STEP_SUMMARY"
 
           for path in machine-dtf.html machine-uv-dtf.html machine-uv-flatbed.html machine-offset.html machine-large-format.html
           do
