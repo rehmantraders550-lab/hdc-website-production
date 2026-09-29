@@ -1,0 +1,389 @@
+/* ORVIA_MACHINE_PAGES_VISUAL_REDESIGN_V1
+   Shared visual system for HDC machine/process guide pages.
+   Scope: presentation only. Existing claims, routes and JS behavior are preserved. */
+
+.hdc-machine-page{
+  --mp-ink:#0B1013;
+  --mp-panel:#11181C;
+  --mp-panel-2:#171D21;
+  --mp-paper:#F0EFED;
+  --mp-paper-2:#F7F5F1;
+  --mp-white:#FFFFFF;
+  --mp-muted:#A9B3B7;
+  --mp-teal:#036F86;
+  --mp-cyan:#47C1C7;
+  --mp-copper:#D89A63;
+  --mp-line:rgba(11,16,19,.16);
+  --mp-line-light:rgba(255,255,255,.18);
+  background:var(--mp-paper);
+  color:var(--mp-ink);
+}
+
+.hdc-machine-page main{overflow:clip;}
+.hdc-machine-page .shell{
+  width:min(100%,1520px);
+  margin-inline:auto;
+  padding-inline:clamp(1.25rem,4.2vw,4.75rem);
+}
+
+/* HERO */
+.hdc-machine-page .page-hero{
+  position:relative;
+  min-height:min(820px,86vh);
+  display:flex;
+  align-items:flex-end;
+  padding:clamp(7rem,11vw,11rem) 0 clamp(4rem,6vw,6rem);
+  background:
+    radial-gradient(circle at 72% 28%, rgba(71,193,199,.12), transparent 28%),
+    linear-gradient(120deg,#090f12 0%,#0B1013 58%,#141d21 100%);
+  color:var(--mp-white);
+  border-bottom:1px solid var(--mp-line-light);
+}
+.hdc-machine-page .page-hero::after{
+  position:absolute;
+  inset:auto 0 0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(71,193,199,.5),transparent);
+  content:"";
+}
+.hdc-machine-page .page-hero .shell{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:clamp(.8rem,1.4vw,1.5rem);
+  align-items:end;
+}
+.hdc-machine-page .page-hero .shell>div{grid-column:1/span 8;}
+.hdc-machine-page .page-hero .lede{
+  grid-column:9/-1;
+  margin:0 0 .7rem;
+  max-width:30rem;
+  color:rgba(255,255,255,.7);
+  font-size:clamp(1.12rem,1.6vw,1.5rem);
+  line-height:1.5;
+}
+.hdc-machine-page .page-hero .eyebrow{
+  color:var(--mp-copper);
+  letter-spacing:.13em;
+}
+.hdc-machine-page .page-hero h1{
+  margin:.9rem 0 0;
+  max-width:9ch;
+  font-family:var(--serif);
+  font-size:clamp(4.2rem,7.8vw,9rem);
+  font-weight:400;
+  line-height:.86;
+  letter-spacing:-.062em;
+}
+.hdc-machine-page .page-hero .shell>div::after{
+  display:block;
+  width:5.5rem;
+  height:1px;
+  margin-top:2.5rem;
+  background:var(--mp-cyan);
+  content:"";
+}
+
+/* GENERAL SECTION RHYTHM */
+.hdc-machine-page main>.section{
+  padding-block:clamp(5.5rem,8.5vw,9.5rem);
+}
+.hdc-machine-page .section-index{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  margin-bottom:clamp(3rem,5vw,5.5rem);
+  padding-bottom:1.1rem;
+  border-bottom:1px solid currentColor;
+  opacity:.75;
+  font-family:var(--mono);
+  font-size:.58rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+/* SYSTEM INTRO — process specimen + dossier */
+.hdc-machine-page .machine-system-section{
+  background:var(--mp-paper-2);
+}
+.hdc-machine-page .service-intro{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:clamp(.8rem,1.4vw,1.5rem);
+  align-items:start;
+}
+.hdc-machine-page .service-intro>div:first-child{
+  grid-column:1/span 5;
+  padding-top:1rem;
+}
+.hdc-machine-page .service-intro__image{
+  position:relative;
+  grid-column:7/-1;
+  min-height:clamp(32rem,50vw,48rem);
+  overflow:hidden;
+  background:var(--mp-panel);
+}
+.hdc-machine-page .service-intro__image::before{
+  position:absolute;
+  inset:1rem 1rem auto auto;
+  z-index:2;
+  padding:.5rem .65rem;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(11,16,19,.35);
+  color:rgba(255,255,255,.8);
+  font-family:var(--mono);
+  font-size:.54rem;
+  letter-spacing:.12em;
+  content:"PRODUCTION / PROCESS / OUTPUT";
+  backdrop-filter:blur(8px);
+}
+.hdc-machine-page .service-intro__image img{
+  height:100%;
+  min-height:inherit;
+  object-fit:cover;
+  filter:brightness(.82) saturate(.8) contrast(1.08);
+}
+.hdc-machine-page .service-intro h2{
+  margin:.8rem 0 1.5rem;
+  max-width:8ch;
+  font-family:var(--serif);
+  font-size:clamp(3.3rem,5.3vw,6rem);
+  font-weight:400;
+  line-height:.9;
+  letter-spacing:-.05em;
+}
+.hdc-machine-page .service-intro .body{
+  margin:0;
+  max-width:38rem;
+  color:rgba(11,16,19,.7);
+  line-height:1.7;
+}
+.hdc-machine-page .facts{
+  margin:clamp(2.5rem,4.8vw,4.8rem) 0 0;
+  padding:0;
+  list-style:none;
+  border-top:1px solid var(--mp-line);
+}
+.hdc-machine-page .facts li{
+  display:grid;
+  grid-template-columns:minmax(9rem,.8fr) minmax(0,1.5fr);
+  gap:1.2rem;
+  padding:1.25rem 0;
+  border-bottom:1px solid var(--mp-line);
+}
+.hdc-machine-page .facts b{
+  font-family:var(--mono);
+  font-size:.62rem;
+  font-weight:500;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+.hdc-machine-page .facts span{
+  color:#4e595e;
+  font-size:.82rem;
+  line-height:1.55;
+}
+
+/* PRODUCTION SEQUENCE — engineered three-panel register */
+.hdc-machine-page .machine-sequence-section{
+  background:#0d1417!important;
+  color:#fff;
+}
+.hdc-machine-page .machine-sequence-section .section-index{
+  border-bottom-color:var(--mp-line-light);
+}
+.hdc-machine-page .service-route{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid var(--mp-line-light);
+  border-left:1px solid var(--mp-line-light);
+}
+.hdc-machine-page .service-route article{
+  position:relative;
+  min-height:clamp(22rem,31vw,31rem);
+  padding:clamp(1.6rem,3vw,3rem);
+  border-right:1px solid var(--mp-line-light);
+  border-bottom:1px solid var(--mp-line-light);
+  overflow:hidden;
+}
+.hdc-machine-page .service-route article::after{
+  position:absolute;
+  inset:auto 0 0;
+  height:3px;
+  background:linear-gradient(90deg,var(--mp-teal),var(--mp-cyan));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .35s ease;
+  content:"";
+}
+@media (hover:hover) and (pointer:fine){
+  .hdc-machine-page .service-route article:hover::after{transform:scaleX(1);}
+}
+.hdc-machine-page .service-route article>b{
+  display:block;
+  margin-bottom:clamp(7rem,12vw,12rem);
+  color:var(--mp-cyan);
+  font-family:var(--mono);
+  font-size:.66rem;
+  font-weight:500;
+  letter-spacing:.12em;
+}
+.hdc-machine-page .service-route h3{
+  margin:0;
+  max-width:13ch;
+  font-family:var(--serif);
+  font-size:clamp(1.9rem,3vw,3.4rem);
+  font-weight:400;
+  line-height:.98;
+  letter-spacing:-.035em;
+}
+
+/* RELATED ROUTE — editorial bridge */
+.hdc-machine-page .machine-route-section{
+  position:relative;
+  background:var(--mp-paper);
+}
+.hdc-machine-page .machine-route-section::before{
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:rgba(11,16,19,.06);
+  content:"";
+}
+.hdc-machine-page .machine-route-section .split{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:clamp(.8rem,1.4vw,1.5rem);
+  align-items:end;
+}
+.hdc-machine-page .machine-route-section .split>div:first-child{grid-column:1/span 7;}
+.hdc-machine-page .machine-route-section .split>div:last-child{grid-column:9/-1;}
+.hdc-machine-page .machine-route-section h2{
+  margin:.8rem 0 0;
+  max-width:10ch;
+  font-family:var(--serif);
+  font-size:clamp(3.2rem,5.6vw,6.2rem);
+  font-weight:400;
+  line-height:.9;
+  letter-spacing:-.05em;
+}
+.hdc-machine-page .machine-route-section .body{
+  color:rgba(11,16,19,.68);
+  line-height:1.65;
+}
+.hdc-machine-page .machine-route-section .button{
+  margin-top:1.4rem;
+}
+
+/* ENQUIRY — hard terminal panel */
+.hdc-machine-page .machine-enquiry-section{
+  position:relative;
+  background:linear-gradient(118deg,#0B1013,#141d21)!important;
+  color:#fff;
+}
+.hdc-machine-page .machine-enquiry-section::after{
+  position:absolute;
+  top:0;
+  right:8%;
+  width:22rem;
+  height:22rem;
+  border:1px solid rgba(71,193,199,.1);
+  border-radius:50%;
+  transform:translateY(-45%);
+  content:"";
+  pointer-events:none;
+}
+.hdc-machine-page .machine-enquiry-section .split{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:clamp(.8rem,1.4vw,1.5rem);
+  align-items:end;
+}
+.hdc-machine-page .machine-enquiry-section .split>div:first-child{grid-column:1/span 7;}
+.hdc-machine-page .machine-enquiry-section .split>div:last-child{grid-column:9/-1;}
+.hdc-machine-page .machine-enquiry-section h2{
+  margin:.8rem 0 0;
+  max-width:7ch;
+  font-family:var(--serif);
+  font-size:clamp(3.3rem,5.8vw,6.6rem);
+  font-weight:400;
+  line-height:.9;
+  letter-spacing:-.052em;
+}
+.hdc-machine-page .machine-enquiry-section .body{
+  color:rgba(255,255,255,.7);
+  line-height:1.65;
+}
+
+/* PAGE IDENTITY ACCENTS */
+.hdc-machine-page[data-machine="uv-dtf"] .page-hero{--machine-accent:#47C1C7;}
+.hdc-machine-page[data-machine="uv-flatbed"] .page-hero{--machine-accent:#036F86;}
+.hdc-machine-page[data-machine="offset"] .page-hero{--machine-accent:#D89A63;}
+.hdc-machine-page[data-machine="large-format"] .page-hero{--machine-accent:#A9B3B7;}
+.hdc-machine-page[data-machine="dtf"] .page-hero{--machine-accent:#7D4E2C;}
+
+/* RESPONSIVE */
+@media (max-width:980px){
+  .hdc-machine-page .page-hero{min-height:auto;}
+  .hdc-machine-page .page-hero .shell,
+  .hdc-machine-page .service-intro,
+  .hdc-machine-page .machine-route-section .split,
+  .hdc-machine-page .machine-enquiry-section .split{
+    grid-template-columns:repeat(8,minmax(0,1fr));
+  }
+  .hdc-machine-page .page-hero .shell>div,
+  .hdc-machine-page .service-intro>div:first-child,
+  .hdc-machine-page .machine-route-section .split>div:first-child,
+  .hdc-machine-page .machine-enquiry-section .split>div:first-child{grid-column:1/span 5;}
+  .hdc-machine-page .page-hero .lede,
+  .hdc-machine-page .machine-route-section .split>div:last-child,
+  .hdc-machine-page .machine-enquiry-section .split>div:last-child{grid-column:6/-1;}
+  .hdc-machine-page .service-intro__image{
+    grid-column:6/-1;
+    min-height:34rem;
+  }
+}
+
+@media (max-width:760px){
+  .hdc-machine-page main>.section{padding-block:4.5rem;}
+  .hdc-machine-page .page-hero{
+    padding-block:6rem 3.5rem;
+  }
+  .hdc-machine-page .page-hero .shell,
+  .hdc-machine-page .service-intro,
+  .hdc-machine-page .machine-route-section .split,
+  .hdc-machine-page .machine-enquiry-section .split{
+    grid-template-columns:1fr;
+    gap:2.5rem;
+  }
+  .hdc-machine-page .page-hero .shell>div,
+  .hdc-machine-page .page-hero .lede,
+  .hdc-machine-page .service-intro>div:first-child,
+  .hdc-machine-page .service-intro__image,
+  .hdc-machine-page .machine-route-section .split>div:first-child,
+  .hdc-machine-page .machine-route-section .split>div:last-child,
+  .hdc-machine-page .machine-enquiry-section .split>div:first-child,
+  .hdc-machine-page .machine-enquiry-section .split>div:last-child{
+    grid-column:1;
+  }
+  .hdc-machine-page .page-hero h1{
+    font-size:clamp(3.7rem,17vw,6.3rem);
+  }
+  .hdc-machine-page .service-intro__image{min-height:28rem;}
+  .hdc-machine-page .facts li{grid-template-columns:1fr;gap:.55rem;}
+  .hdc-machine-page .service-route{grid-template-columns:1fr;}
+  .hdc-machine-page .service-route article{
+    min-height:0;
+    padding:2rem;
+  }
+  .hdc-machine-page .service-route article>b{margin-bottom:4rem;}
+  .hdc-machine-page .machine-route-section::before{display:none;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hdc-machine-page *{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+  }
+}
