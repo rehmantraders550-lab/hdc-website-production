@@ -203,3 +203,434 @@
     min-height: 44px;
   }
 }
+
+
+/* ORVIA_SERVICE_ARCHITECTURE_V2
+   Visible editorial architecture for the HDC service family.
+   Existing copy, imagery and interaction logic are preserved. */
+
+body.hdc-service-system main {
+  overflow: clip;
+}
+
+body.hdc-service-system .page-hero[data-editorial-section] {
+  min-height: clamp(34rem, 72vh, 48rem);
+  display: flex;
+  align-items: end;
+  padding-block: clamp(5rem, 10vw, 9rem) clamp(4rem, 7vw, 7rem);
+  background:
+    linear-gradient(180deg, rgba(11,16,19,.98), rgba(23,29,33,.98));
+  color: var(--white);
+  border-bottom: 1px solid var(--line-light);
+}
+
+body.hdc-service-system .page-hero[data-editorial-section] .shell {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--hdc-grid-gap);
+  align-items: end;
+}
+
+body.hdc-service-system .page-hero[data-editorial-section] .shell > :first-child {
+  grid-column: 1 / span 8;
+}
+
+body.hdc-service-system .page-hero[data-editorial-section] .lede {
+  grid-column: 9 / -1;
+  align-self: end;
+  margin: 0 0 .5rem;
+  color: rgba(255,255,255,.72);
+  font-size: var(--type-lede);
+  line-height: 1.45;
+}
+
+body.hdc-service-system .page-hero[data-editorial-section] h1 {
+  margin: .55rem 0 0;
+  max-width: 9ch;
+  font-family: var(--serif);
+  font-size: clamp(3.8rem, 8.1vw, 8.8rem);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: -.055em;
+}
+
+body.hdc-service-system .page-hero[data-editorial-section] .eyebrow {
+  color: var(--hdc-copper-light);
+}
+
+/* Primary editorial body rhythm */
+body.hdc-service-system main > .section[data-editorial-section] {
+  padding-block: clamp(5rem, 9vw, 10rem);
+}
+
+body.hdc-service-system main > .section[data-editorial-sequence="application"] {
+  background: var(--paper);
+}
+
+body.hdc-service-system main > .section[data-editorial-sequence="process"] {
+  background: var(--white);
+  border-block: 1px solid var(--line);
+}
+
+body.hdc-service-system main > .section[data-editorial-sequence="production"] {
+  background: var(--paper);
+}
+
+body.hdc-service-system main > .section[data-editorial-sequence="enquiry"] {
+  background: var(--coal);
+  color: var(--white);
+}
+
+/* Service intro: text and proof image become one deliberate 12-column composition. */
+body.hdc-service-system .service-intro {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--hdc-grid-gap);
+  align-items: start;
+}
+
+body.hdc-service-system .service-intro > :first-child {
+  grid-column: 1 / span 5;
+  padding-top: clamp(.5rem, 2vw, 2rem);
+}
+
+body.hdc-service-system .service-intro__image {
+  grid-column: 7 / -1;
+  min-height: clamp(28rem, 48vw, 44rem);
+  overflow: hidden;
+  border-radius: 1px;
+  background: var(--coal-soft);
+}
+
+body.hdc-service-system .service-intro__image img {
+  transition: transform var(--hdc-motion-slow) var(--hdc-motion-ease);
+}
+
+@media (hover:hover) and (pointer:fine) {
+  body.hdc-service-system .service-intro__image:hover img {
+    transform: scale(1.018);
+  }
+}
+
+body.hdc-service-system .service-intro h2 {
+  margin: .75rem 0 1.5rem;
+  max-width: 8.5ch;
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5vw, 5.8rem);
+  font-weight: 400;
+  line-height: .94;
+  letter-spacing: -.045em;
+}
+
+body.hdc-service-system .service-intro .body {
+  margin: 0;
+  color: rgba(11,16,19,.72);
+  line-height: 1.65;
+}
+
+body.hdc-service-system .facts {
+  margin: clamp(2.5rem, 5vw, 5rem) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+body.hdc-service-system .facts li {
+  display: grid;
+  grid-template-columns: minmax(8rem, .8fr) minmax(0, 1.7fr);
+  gap: 1rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+body.hdc-service-system .facts b,
+body.hdc-service-system .facts span {
+  font-size: .86rem;
+  line-height: 1.5;
+}
+
+body.hdc-service-system .facts b {
+  font-family: var(--mono);
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Process route: architectural ledger instead of generic cards. */
+body.hdc-service-system .service-route {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+}
+
+body.hdc-service-system .service-route article {
+  min-height: clamp(16rem, 24vw, 22rem);
+  padding: clamp(1.5rem, 3vw, 3rem);
+  border-right: 1px solid var(--line);
+}
+
+body.hdc-service-system .service-route article:last-child {
+  border-right: 0;
+}
+
+body.hdc-service-system .service-route article > b {
+  display: block;
+  margin-bottom: clamp(4rem, 8vw, 8rem);
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  color: var(--hdc-teal);
+}
+
+body.hdc-service-system .service-route h3 {
+  margin: 0 0 .75rem;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 2.6vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+body.hdc-service-system .service-route p {
+  max-width: 28ch;
+  margin: 0;
+  color: rgba(11,16,19,.68);
+  line-height: 1.55;
+}
+
+/* Production method register gets the same geometry language as Production. */
+body.hdc-service-system [data-editorial-sequence="production"] .split {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--hdc-grid-gap);
+  align-items: start;
+}
+
+body.hdc-service-system [data-editorial-sequence="production"] .split > :first-child {
+  grid-column: 1 / span 5;
+}
+
+body.hdc-service-system [data-editorial-sequence="production"] .capability-register {
+  grid-column: 7 / -1;
+  border-top: 1px solid var(--line);
+}
+
+body.hdc-service-system .capability-register__item {
+  position: relative;
+  min-height: 9rem;
+  padding: 1.35rem 4rem 1.35rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+body.hdc-service-system .capability-register__item small {
+  display: block;
+  margin-bottom: 1.35rem;
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--hdc-teal);
+}
+
+body.hdc-service-system .capability-register__item p {
+  max-width: 42ch;
+  margin: 0;
+  font-size: clamp(1rem, 1.45vw, 1.25rem);
+  line-height: 1.45;
+}
+
+body.hdc-service-system .capability-register__item .register-arrow {
+  position: absolute;
+  top: 1.25rem;
+  right: 0;
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+
+/* Enquiry becomes a quiet terminal panel. */
+body.hdc-service-system [data-editorial-sequence="enquiry"] .split {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--hdc-grid-gap);
+  align-items: end;
+}
+
+body.hdc-service-system [data-editorial-sequence="enquiry"] .split > :first-child {
+  grid-column: 1 / span 7;
+}
+
+body.hdc-service-system [data-editorial-sequence="enquiry"] .split > :last-child {
+  grid-column: 9 / -1;
+}
+
+body.hdc-service-system [data-editorial-sequence="enquiry"] h2 {
+  max-width: 8ch;
+  margin: .75rem 0 0;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 6.8rem);
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: -.05em;
+}
+
+body.hdc-service-system [data-editorial-sequence="enquiry"] .body {
+  color: rgba(255,255,255,.72);
+}
+
+/* Services landing: asymmetrical editorial service atlas. */
+body.hdc-service-system.hdc-services-index .technology-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--hdc-grid-gap);
+}
+
+body.hdc-service-system.hdc-services-index .technology-card {
+  min-height: clamp(28rem, 46vw, 42rem);
+}
+
+body.hdc-service-system.hdc-services-index .technology-card:nth-child(1) { grid-column: 1 / span 7; }
+body.hdc-service-system.hdc-services-index .technology-card:nth-child(2) { grid-column: 8 / -1; }
+body.hdc-service-system.hdc-services-index .technology-card:nth-child(3) { grid-column: 1 / span 5; }
+body.hdc-service-system.hdc-services-index .technology-card:nth-child(4) { grid-column: 6 / -1; }
+body.hdc-service-system.hdc-services-index .technology-card:nth-child(5) { grid-column: 1 / -1; min-height: clamp(24rem, 38vw, 34rem); }
+
+body.hdc-service-system.hdc-services-index .technology-card__body {
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+body.hdc-service-system.hdc-services-index .technology-card h3 {
+  max-width: 12ch;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.2vw, 3.8rem);
+  font-weight: 400;
+  line-height: .96;
+  letter-spacing: -.04em;
+}
+
+body.hdc-service-system.hdc-services-index [data-editorial-sequence="service-atlas"] {
+  padding-block: clamp(5rem, 9vw, 10rem);
+  background: var(--paper);
+}
+
+body.hdc-service-system.hdc-services-index [data-editorial-sequence="positioning"] {
+  background: var(--white);
+  border-top: 1px solid var(--line);
+}
+
+body.hdc-service-system.hdc-services-index [data-editorial-sequence="positioning"] .split {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--hdc-grid-gap);
+  align-items: end;
+}
+
+body.hdc-service-system.hdc-services-index [data-editorial-sequence="positioning"] .split > :first-child {
+  grid-column: 1 / span 7;
+}
+
+body.hdc-service-system.hdc-services-index [data-editorial-sequence="positioning"] .split > :last-child {
+  grid-column: 9 / -1;
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  body.hdc-service-system .page-hero[data-editorial-section] {
+    min-height: auto;
+  }
+
+  body.hdc-service-system .page-hero[data-editorial-section] .shell,
+  body.hdc-service-system .service-intro,
+  body.hdc-service-system [data-editorial-sequence="production"] .split,
+  body.hdc-service-system [data-editorial-sequence="enquiry"] .split,
+  body.hdc-service-system.hdc-services-index [data-editorial-sequence="positioning"] .split {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  body.hdc-service-system .page-hero[data-editorial-section] .shell > :first-child,
+  body.hdc-service-system .service-intro > :first-child,
+  body.hdc-service-system [data-editorial-sequence="production"] .split > :first-child,
+  body.hdc-service-system [data-editorial-sequence="enquiry"] .split > :first-child,
+  body.hdc-service-system.hdc-services-index [data-editorial-sequence="positioning"] .split > :first-child {
+    grid-column: 1 / span 5;
+  }
+
+  body.hdc-service-system .page-hero[data-editorial-section] .lede,
+  body.hdc-service-system [data-editorial-sequence="production"] .capability-register,
+  body.hdc-service-system [data-editorial-sequence="enquiry"] .split > :last-child,
+  body.hdc-service-system.hdc-services-index [data-editorial-sequence="positioning"] .split > :last-child {
+    grid-column: 6 / -1;
+  }
+
+  body.hdc-service-system .service-intro__image {
+    grid-column: 6 / -1;
+    min-height: 34rem;
+  }
+}
+
+/* Mobile: semantic order is preserved, geometry is independently composed. */
+@media (max-width: 760px) {
+  body.hdc-service-system .page-hero[data-editorial-section] {
+    padding-block: 4.5rem 3.5rem;
+  }
+
+  body.hdc-service-system .page-hero[data-editorial-section] .shell,
+  body.hdc-service-system .service-intro,
+  body.hdc-service-system [data-editorial-sequence="production"] .split,
+  body.hdc-service-system [data-editorial-sequence="enquiry"] .split,
+  body.hdc-service-system.hdc-services-index [data-editorial-sequence="positioning"] .split {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  body.hdc-service-system .page-hero[data-editorial-section] .shell > :first-child,
+  body.hdc-service-system .page-hero[data-editorial-section] .lede,
+  body.hdc-service-system .service-intro > :first-child,
+  body.hdc-service-system .service-intro__image,
+  body.hdc-service-system [data-editorial-sequence="production"] .split > :first-child,
+  body.hdc-service-system [data-editorial-sequence="production"] .capability-register,
+  body.hdc-service-system [data-editorial-sequence="enquiry"] .split > :first-child,
+  body.hdc-service-system [data-editorial-sequence="enquiry"] .split > :last-child,
+  body.hdc-service-system.hdc-services-index [data-editorial-sequence="positioning"] .split > :first-child,
+  body.hdc-service-system.hdc-services-index [data-editorial-sequence="positioning"] .split > :last-child {
+    grid-column: 1;
+  }
+
+  body.hdc-service-system .page-hero[data-editorial-section] h1 {
+    font-size: clamp(3.25rem, 15vw, 5.4rem);
+  }
+
+  body.hdc-service-system .service-intro__image {
+    min-height: 26rem;
+  }
+
+  body.hdc-service-system .facts li {
+    grid-template-columns: 1fr;
+    gap: .5rem;
+  }
+
+  body.hdc-service-system .service-route {
+    grid-template-columns: 1fr;
+  }
+
+  body.hdc-service-system .service-route article {
+    min-height: 0;
+    padding: 2rem 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  body.hdc-service-system .service-route article > b {
+    margin-bottom: 3rem;
+  }
+
+  body.hdc-service-system.hdc-services-index .technology-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.hdc-service-system.hdc-services-index .technology-card:nth-child(n) {
+    grid-column: 1;
+    min-height: clamp(24rem, 120vw, 34rem);
+  }
+}
