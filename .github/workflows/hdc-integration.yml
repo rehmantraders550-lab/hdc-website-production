@@ -80,7 +80,7 @@ jobs:
         run: |
           set -euo pipefail
           base="${LIVE_URL%/}"
-          for path in labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html applications.html production.html request-a-quote.html finishing-embellishment.html surface-lab.html
+          for path in labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html applications.html production.html request-a-quote.html finishing-embellishment.html surface-lab.html machine-dtf.html machine-uv-dtf.html machine-uv-flatbed.html machine-offset.html machine-large-format.html
           do
             code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /dev/null -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
             echo "$path -> $code"
@@ -100,6 +100,18 @@ jobs:
           grep -q 'surface-lab.css?v=20260929-visual-redesign-v4' /tmp/hdc-surface-lab.html
           grep -q 'ORVIA_SURFACE_LAB_VISUAL_REDESIGN_V4' /tmp/hdc-sl.css
 
+          machine_css_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-machine-pages.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/machine-pages.css?v=20260929-v1")"
+          test "$machine_css_code" = "200"
+          grep -q 'ORVIA_MACHINE_PAGES_VISUAL_REDESIGN_V1' /tmp/hdc-machine-pages.css
+
+          for path in machine-dtf.html machine-uv-dtf.html machine-uv-flatbed.html machine-offset.html machine-large-format.html
+          do
+            tmp="/tmp/hdc-${path}"
+            curl -L -sS --connect-timeout 10 --max-time 30 --retry 2 --retry-delay 5 -o "$tmp" "$base/$path"
+            grep -q 'machine-pages.css?v=20260929-v1' "$tmp"
+            grep -q 'class="hdc-machine-page"' "$tmp"
+          done
+
           for path in services.html labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html
           do
             tmp="/tmp/hdc-${path//\//-}"
@@ -109,4 +121,5 @@ jobs:
 
           echo "service_architecture_v2=PASSED" >> "$GITHUB_STEP_SUMMARY"
           echo "surface_lab_visual_redesign_v4=PASSED" >> "$GITHUB_STEP_SUMMARY"
+          echo "machine_pages_visual_redesign_v1=PASSED" >> "$GITHUB_STEP_SUMMARY"
           echo "live_verification=PASSED" >> "$GITHUB_STEP_SUMMARY"
