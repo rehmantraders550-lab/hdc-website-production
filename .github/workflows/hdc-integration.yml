@@ -89,9 +89,16 @@ jobs:
 
           fe_code="$(curl -L -sS -o /tmp/hdc-fe.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/finishing-embellishment.css")"
           sl_code="$(curl -L -sS -o /tmp/hdc-sl.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/surface-lab.css")"
+          ds_code="$(curl -L -sS -o /tmp/hdc-design-system.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/hdc-design-system-v1.css?v=20260929-service-v2")"
           test "$fe_code" = "200"
           test "$sl_code" = "200"
-          grep -q 'ORVIA hero luminance calibration' /tmp/hdc-fe.css
-          grep -q 'ORVIA hero luminance calibration' /tmp/hdc-sl.css
+          test "$ds_code" = "200"
+          grep -q 'ORVIA_SERVICE_ARCHITECTURE_V2' /tmp/hdc-design-system.css
 
+          for path in services.html labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html
+          do
+            curl -L -sS --retry 2 --retry-delay 5 "$base/$path" | grep -q 'hdc-design-system-v1.css?v=20260929-service-v2'
+          done
+
+          echo "service_architecture_v2=PASSED" >> "$GITHUB_STEP_SUMMARY"
           echo "live_verification=PASSED" >> "$GITHUB_STEP_SUMMARY"
