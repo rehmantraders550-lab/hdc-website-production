@@ -1,0 +1,302 @@
+/* ORVIA_SITEWIDE_SYMMETRY_CALIBRATION_V1
+   Global visual calibration layer for HDC public pages.
+   Purpose: unify page width, vertical rhythm, text measure, image geometry,
+   responsive composition, focus behavior, and section transitions without
+   replacing page-specific interaction systems. */
+
+:root{
+  --hdc-site-max:1520px;
+  --hdc-site-gutter:clamp(1.25rem,4.2vw,4.75rem);
+  --hdc-site-section:clamp(5.25rem,8.5vw,9rem);
+  --hdc-site-section-tight:clamp(3.75rem,6vw,6rem);
+  --hdc-site-gap:clamp(1rem,1.5vw,1.6rem);
+  --hdc-site-copy:42rem;
+  --hdc-site-copy-narrow:34rem;
+  --hdc-site-line:rgba(11,16,19,.14);
+  --hdc-site-line-dark:rgba(255,255,255,.16);
+}
+
+html{
+  scroll-padding-top:5rem;
+}
+
+body{
+  overflow-x:clip;
+}
+
+main,
+section,
+.shell,
+.split,
+[class*="grid"],
+[class*="layout"]{
+  min-width:0;
+}
+
+img,
+video,
+canvas,
+svg{
+  max-width:100%;
+}
+
+img,
+video{
+  display:block;
+}
+
+/* One canonical content frame across all public pages. */
+body:not([data-page="surface-lab"]) .shell,
+body.hdc-machine-page .shell{
+  width:min(100%,var(--hdc-site-max));
+  margin-inline:auto;
+  padding-inline:var(--hdc-site-gutter);
+}
+
+/* Standard editorial breathing room while preserving intentionally custom heroes. */
+body:not([data-page="surface-lab"]):not(.hdc-machine-page) main>.section{
+  padding-block:var(--hdc-site-section);
+}
+
+body:not([data-page="surface-lab"]):not(.hdc-machine-page) main>.section.section--compact,
+body:not([data-page="surface-lab"]):not(.hdc-machine-page) main>.section.reserved{
+  padding-block:var(--hdc-site-section-tight);
+}
+
+/* Readable measures: large layouts remain architectural, paragraphs remain human. */
+.body,
+.lede,
+[class*="__lede"],
+[class*="__description"],
+[class*="__copy"] p{
+  max-width:var(--hdc-site-copy);
+}
+
+p,
+li,
+dd,
+figcaption{
+  text-wrap:pretty;
+}
+
+h1,
+h2,
+h3{
+  text-wrap:balance;
+}
+
+/* Normalize editorial two-column relationships where generic split is used. */
+@media (min-width:901px){
+  .section>.shell>.split:not(.split--stack):not(.split--equal){
+    display:grid;
+    grid-template-columns:minmax(0,7fr) minmax(18rem,4fr);
+    gap:clamp(2.5rem,6vw,7rem);
+    align-items:start;
+  }
+
+  .section>.shell>.split.split--end{
+    align-items:end;
+  }
+
+  .section>.shell>.split>.media-frame,
+  .section>.shell>.split>figure{
+    justify-self:stretch;
+  }
+}
+
+/* Prevent orphaned editorial labels from becoming visual bands. */
+.section-index:empty{
+  display:none!important;
+}
+
+.section-index{
+  max-width:100%;
+}
+
+/* Media discipline: same visual weight across service, evidence and project sections. */
+.media-frame,
+.service-intro__image,
+.prod-record__media,
+.sl-record-main,
+[class*="__media"]{
+  overflow:hidden;
+}
+
+.media-frame img,
+.service-intro__image img,
+.prod-record__media img,
+.sl-record-main img,
+[class*="__media"] img{
+  width:100%;
+}
+
+/* Generic editorial media gets a consistent landscape proportion.
+   Explicit component aspect-ratios from page-specific systems remain authoritative. */
+.media-frame:not(.media-frame--portrait) img{
+  aspect-ratio:4/3;
+  object-fit:cover;
+}
+
+/* Major heading cadence across content pages. */
+.page-hero h1,
+.prod-hero h1,
+.fe-hero h1,
+.sl-hero h1,
+.hdc-machine-page .page-hero h1{
+  text-wrap:balance;
+}
+
+.section h2,
+.prod-routing__heading h2,
+.prod-systems__heading h2,
+.prod-evidence__heading h2{
+  max-width:11ch;
+}
+
+/* Give editorial sections a clear beginning without adding decorative bars everywhere. */
+body:not([data-page="surface-lab"]) main>.section + .section{
+  border-top-color:var(--hdc-site-line);
+}
+
+body:not([data-page="surface-lab"]) main>.section.section--dark + .section,
+body:not([data-page="surface-lab"]) main>.section + .section.section--dark{
+  border-top-color:var(--hdc-site-line-dark);
+}
+
+/* Buttons and text links align to a common interaction footprint. */
+.button{
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.text-link{
+  line-height:1.35;
+}
+
+/* Keep technical labels quiet; avoid visual chatter competing with headings. */
+.eyebrow,
+.section-index,
+small,
+[class*="__family"],
+[class*="__index"]{
+  letter-spacing:min(.14em,2px);
+}
+
+/* Homepage calibration: retain bespoke systems but align vertical handoffs. */
+body[data-editorial-scroll="home"] [data-editorial-section]{
+  scroll-margin-top:4rem;
+}
+
+body[data-editorial-scroll="home"] .capability-strip{
+  margin-block:0;
+}
+
+body[data-editorial-scroll="home"] .quote-panel,
+body[data-editorial-scroll="home"] .reserved__box{
+  max-width:var(--hdc-site-max);
+}
+
+/* Service family: equalize proof image height and section entry. */
+body.hdc-service-system .service-intro__image{
+  min-height:clamp(30rem,46vw,44rem);
+}
+
+body.hdc-service-system main>.section[data-editorial-section]{
+  scroll-margin-top:4.5rem;
+}
+
+/* Production: remove residual spacing reserved for the deleted specialist row. */
+body[data-page="production"] .prod-system-grid{
+  margin-bottom:0;
+}
+
+body[data-page="production"] .prod-record-section{
+  padding-top:var(--hdc-site-section);
+}
+
+/* Machine guides: preserve technical identity while matching site-wide cadence. */
+.hdc-machine-page main>.section{
+  padding-block:var(--hdc-site-section);
+}
+
+.hdc-machine-page .service-route article{
+  min-width:0;
+}
+
+/* Forms and utility pages: stop overly wide fields and copy blocks. */
+form,
+.form-grid,
+.quote-panel,
+.contact-stack{
+  min-width:0;
+}
+
+input,
+textarea,
+select,
+button{
+  max-width:100%;
+}
+
+/* Tablet */
+@media (max-width:980px){
+  :root{
+    --hdc-site-gutter:clamp(1.25rem,4vw,2.5rem);
+    --hdc-site-section:clamp(4.5rem,8vw,6.5rem);
+  }
+
+  .section>.shell>.split:not(.split--stack){
+    gap:2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width:760px){
+  :root{
+    --hdc-site-gutter:1.25rem;
+    --hdc-site-section:4.25rem;
+    --hdc-site-section-tight:3.25rem;
+  }
+
+  body{
+    overflow-x:hidden;
+  }
+
+  .section>.shell>.split,
+  .split{
+    grid-template-columns:1fr!important;
+    gap:2rem!important;
+  }
+
+  .button{
+    min-height:48px;
+  }
+
+  .media-frame img{
+    aspect-ratio:4/3;
+  }
+
+  h1,
+  h2,
+  h3,
+  p,
+  li,
+  a,
+  span{
+    overflow-wrap:anywhere;
+  }
+}
+
+@media (max-width:480px){
+  :is(a,button,input,select,textarea){
+    min-height:44px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{
+    scroll-behavior:auto!important;
+  }
+}

@@ -124,5 +124,17 @@ jobs:
 
           echo "service_architecture_v2=PASSED" >> "$GITHUB_STEP_SUMMARY"
           echo "surface_lab_visual_redesign_v4=PASSED" >> "$GITHUB_STEP_SUMMARY"
+          site_css_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-sitewide-symmetry.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/hdc-sitewide-symmetry-v1.css?v=20260929-v1")"
+          test "$site_css_code" = "200"
+          grep -q 'ORVIA_SITEWIDE_SYMMETRY_CALIBRATION_V1' /tmp/hdc-sitewide-symmetry.css
+
+          for path in about.html applications.html contact.html faq.html finishing-embellishment.html index.html labels-decals.html large-format-brand-environments.html machine-dtf.html machine-large-format.html machine-offset.html machine-uv-dtf.html machine-uv-flatbed.html packaging-commercial-print.html production.html products-object-printing.html request-a-quote.html selected-work.html services.html surface-lab.html
+          do
+            tmp="/tmp/hdc-sitewide-${path}"
+            curl -L -sS --connect-timeout 10 --max-time 30 --retry 2 --retry-delay 5 -o "$tmp" "$base/$path"
+            grep -q 'hdc-sitewide-symmetry-v1.css?v=20260929-v1' "$tmp"
+          done
+
           echo "machine_pages_visual_redesign_v1=PASSED" >> "$GITHUB_STEP_SUMMARY"
+          echo "sitewide_symmetry_calibration_v1=PASSED" >> "$GITHUB_STEP_SUMMARY"
           echo "live_verification=PASSED" >> "$GITHUB_STEP_SUMMARY"
