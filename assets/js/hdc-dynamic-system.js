@@ -194,6 +194,14 @@
       surfaceField.dispatchEvent(new Event('input', { bubbles: true }));
       surfaceField.dispatchEvent(new Event('change', { bubbles: true }));
     }
+    ['quantity', 'dimensions', 'artwork', 'date'].forEach(fieldName => {
+      const value = params.get(fieldName);
+      const field = form.elements.namedItem(fieldName);
+      if (!value || !field) return;
+      field.value = value;
+      field.dispatchEvent(new Event('input', { bubbles: true }));
+      field.dispatchEvent(new Event('change', { bubbles: true }));
+    });
 
     document.querySelectorAll('[data-quote-application]').forEach(button => {
       button.addEventListener('click', () => {
