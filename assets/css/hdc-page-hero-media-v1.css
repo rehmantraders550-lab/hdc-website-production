@@ -22,3 +22,55 @@
  .page-hero.page-hero--visual .page-hero__media figcaption { flex-direction:column; }
  .page-hero.page-hero--visual .page-hero__media figcaption span:last-child { text-align:left; }
 }
+
+
+/* ORVIA_FIX: service/product visual heroes must own a real two-column grid.
+   Keep nested copy together; the shared service-system grid used to force the
+   photo into column 2 of a 12-column layout, shrinking it to a thumbnail. */
+body.hdc-service-system .page-hero.page-hero--visual[data-editorial-section] .shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(20rem, .9fr);
+  grid-auto-flow: row;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+}
+body.hdc-service-system .page-hero.page-hero--visual[data-editorial-section] .page-hero__content {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1rem, 1.8vw, 1.5rem);
+  min-width: 0;
+}
+body.hdc-service-system .page-hero.page-hero--visual[data-editorial-section] .page-hero__content .lede {
+  grid-column: auto;
+  align-self: stretch;
+  max-width: 42rem;
+  margin: 0;
+}
+body.hdc-service-system .page-hero.page-hero--visual[data-editorial-section] .page-hero__media {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  min-width: 0;
+}
+@media (max-width: 980px) {
+  body.hdc-service-system .page-hero.page-hero--visual[data-editorial-section] .shell {
+    grid-template-columns: minmax(0, 1.05fr) minmax(16rem, .9fr);
+  }
+}
+@media (max-width: 760px) {
+  body.hdc-service-system .page-hero.page-hero--visual[data-editorial-section] .shell {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+  body.hdc-service-system .page-hero.page-hero--visual[data-editorial-section] .page-hero__content {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  body.hdc-service-system .page-hero.page-hero--visual[data-editorial-section] .page-hero__media {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
