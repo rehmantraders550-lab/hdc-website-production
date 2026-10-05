@@ -61,6 +61,7 @@
 .hdc-glass-brief__form input:focus-visible, .hdc-glass-brief__form select:focus-visible { outline: 2px solid var(--pdp-teal); outline-offset: 2px; }
 .hdc-glass-brief__actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; padding-top: .5rem; }
 .hdc-glass-brief__actions span { max-width: 19rem; color: #4f595d; font-size: .8rem; }
+.hdc-glass-brief__noscript { grid-column: 1 / -1; font-size: .86rem; }
 .hdc-product-page .hdc-glass-brief__actions .button { border: 0; cursor: pointer; font: inherit; }
 @media (max-width: 900px) {
   .hdc-product-page .hdc-glass-intro, .hdc-product-section-head, .hdc-glass-gallery, .hdc-glass-methods, .hdc-glass-brief { grid-template-columns: 1fr; }
