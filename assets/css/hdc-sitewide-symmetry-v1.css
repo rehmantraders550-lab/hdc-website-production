@@ -5,12 +5,12 @@
    replacing page-specific interaction systems. */
 
 :root{
-  --hdc-site-max:1520px;
-  --hdc-site-gutter:clamp(1.25rem,4.2vw,4.75rem);
-  --hdc-site-section:clamp(5.25rem,8.5vw,9rem);
+  --hdc-site-max:1320px;
+  --hdc-site-gutter:clamp(1.25rem,3vw,2.5rem);
+  --hdc-site-section:clamp(4rem,7vw,7rem);
   --hdc-site-section-tight:clamp(3.75rem,6vw,6rem);
   --hdc-site-gap:clamp(1rem,1.5vw,1.6rem);
-  --hdc-site-copy:42rem;
+  --hdc-site-copy:38rem;
   --hdc-site-copy-narrow:34rem;
   --hdc-site-line:rgba(11,16,19,.14);
   --hdc-site-line-dark:rgba(255,255,255,.16);
@@ -89,7 +89,7 @@ h3{
 @media (min-width:901px){
   .section>.shell>.split:not(.split--stack):not(.split--equal){
     display:grid;
-    grid-template-columns:minmax(0,7fr) minmax(18rem,4fr);
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
     gap:clamp(2.5rem,6vw,7rem);
     align-items:start;
   }
@@ -200,7 +200,7 @@ body[data-editorial-scroll="home"] .reserved__box{
 
 /* Service family: equalize proof image height and section entry. */
 body.hdc-service-system .service-intro__image{
-  min-height:clamp(30rem,46vw,44rem);
+  min-height:0;
 }
 
 body.hdc-service-system main>.section[data-editorial-section]{
@@ -278,15 +278,7 @@ button{
     aspect-ratio:4/3;
   }
 
-  h1,
-  h2,
-  h3,
-  p,
-  li,
-  a,
-  span{
-    overflow-wrap:anywhere;
-  }
+  p, li, dd, .footer__block a { overflow-wrap:anywhere; }
 }
 
 @media (max-width:480px){
@@ -300,3 +292,30 @@ button{
     scroll-behavior:auto!important;
   }
 }
+
+/* ORVIA_ALIGNMENT_V2: the shell owns gutters, never both shell and section. */
+body:not([data-page="surface-lab"]) main > .section { padding-inline:0; }
+body .section > .shell.split { gap:clamp(2rem,4vw,4rem); }
+.section-index { margin-bottom:clamp(2rem,4vw,3.5rem); }
+body.hdc-service-system .service-intro h2 { max-width:15ch; font-size:clamp(2.35rem,4vw,4.25rem); line-height:1.04; }
+body.hdc-service-system .service-intro__image { min-height:0; align-self:start; }
+body.hdc-service-system .service-intro__image img { width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; }
+body .section h2 { line-height:1.05; }
+body .site-footer .footer__top, body .site-footer .footer__bottom {
+  width:min(100%,var(--hdc-site-max)); margin-inline:auto; padding-inline:var(--hdc-site-gutter);
+}
+.footer__bottom { flex-wrap:wrap; }
+.orvia-credit { color:#A9B3B7; white-space:nowrap; }
+body[data-page="production"] .prod-hero .eyebrow { color:#D89A63; }
+body[data-page="production"] .prod-hero__inner { column-gap:clamp(2rem,4vw,4rem); }
+:where(a,button,input,select,textarea):focus-visible { outline:2px solid #036F86; outline-offset:4px; }
+:where(.page-hero,.section--dark,.site-header,.site-footer) :focus-visible { outline-color:#47C1C7; }
+@media(max-width:900px) {
+  body .section > .shell.split { grid-template-columns:minmax(0,1fr); }
+  body.hdc-service-system .service-intro { grid-template-columns:minmax(0,1fr); gap:2rem; }
+  body.hdc-service-system .service-intro > :first-child,
+  body.hdc-service-system .service-intro__image { grid-column:1; }
+}
+
+.contact-grid article { min-width:0; }
+.contact-grid a { max-width:100%; overflow-wrap:anywhere; }
