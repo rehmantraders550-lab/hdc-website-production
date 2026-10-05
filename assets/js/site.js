@@ -33,7 +33,7 @@
         <div class="footer__block"><b>Explore</b><a href="services.html">Services</a><a href="production.html">Production</a><a href="applications.html">Applications</a><a href="surface-lab.html">Surface Lab</a><a href="about.html">About HDC</a><a href="faq.html">FAQ</a></div>
         <div class="footer__block"><b>Begin a project</b><a href="tel:+923177267318">0317 7267318</a><a href="mailto:REHMANTRADERS550@GMAIL.COM">REHMANTRADERS550@GMAIL.COM</a><a href="contact.html">Opp. Nayyer Mall, G.T. Road, Gujrat</a></div>
       </div>
-      <div class="footer__bottom"><span>Hadi Digital Craft / Gujrat</span><span>Commercial printing services only</span></div>
+      <div class="footer__bottom"><span>Hadi Digital Craft / Gujrat</span><span>Commercial printing services only</span><span class="orvia-credit" data-orvia-component="site-credit-v1">Powered by ORVIA</span></div>
     </footer>`;
 
   document.addEventListener('click', event => {

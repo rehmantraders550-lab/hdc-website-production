@@ -1,3 +1,5 @@
+> Historical design record. Current HDC visual authority: `.orvia/VISUAL_REFINEMENT_V1.md`. Preserve this file for provenance; do not use its superseded palette or type direction for new changes.
+
 # HADI DigitalCraft – Design System for Stitch
 **Version:** 1.0  
 **Date:** 2026-09-06  

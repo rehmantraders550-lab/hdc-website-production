@@ -39,9 +39,9 @@ body[data-editorial-scroll="home"] [data-editorial-sequence="process"] .process-
 }
 
 body[data-editorial-scroll="home"] [data-editorial-sequence="process"] .process-grid h2 {
-  max-width: 7.4ch;
+  max-width: 16ch;
   margin-top: .7rem;
-  font-size: clamp(3.25rem, 5.7vw, 6.6rem);
+  font-size: clamp(2.75rem, 4.6vw, 4.75rem);
   line-height: .9;
   letter-spacing: -.055em;
 }
@@ -133,7 +133,7 @@ body[data-editorial-scroll="home"] [data-editorial-sequence="process"] .process-
   }
 
   body[data-editorial-scroll="home"] [data-editorial-sequence="process"] .process-grid h2 {
-    max-width: 8ch;
+    max-width: 16ch;
     font-size: clamp(2.8rem, 12vw, 4.8rem);
   }
 

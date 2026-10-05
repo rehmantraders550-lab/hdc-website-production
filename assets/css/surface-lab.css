@@ -1490,3 +1490,8 @@
     grid-template-columns:repeat(4,14rem);
   }
 }
+
+/* ORVIA: readable editorial measures, shared outer rails. */
+.sl-page { --sl-shell-max:1320px; }
+.sl-page .shell:not(.sl-hero__grid) { padding-inline:var(--hdc-site-gutter); }
+.sl-page .sl-decision-heading h2, .sl-page #sl-materials-title { max-width:16ch; font-size:clamp(2.5rem,4.4vw,4.5rem); line-height:1.04; }

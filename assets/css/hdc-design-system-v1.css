@@ -136,7 +136,7 @@
 }
 
 /* Defensive wrapping for 200% zoom / long content. */
-:where(h1, h2, h3, p, a, button, span, small, strong) {
+:where(p, a, button, span, small, strong) {
   overflow-wrap: anywhere;
 }
 
@@ -466,10 +466,10 @@ body.hdc-service-system [data-editorial-sequence="enquiry"] .split > :last-child
 }
 
 body.hdc-service-system [data-editorial-sequence="enquiry"] h2 {
-  max-width: 8ch;
+  max-width: 16ch;
   margin: .75rem 0 0;
   font-family: var(--serif);
-  font-size: clamp(3rem, 6vw, 6.8rem);
+  font-size: clamp(2.75rem, 4.6vw, 4.75rem);
   font-weight: 400;
   line-height: .92;
   letter-spacing: -.05em;
@@ -490,10 +490,10 @@ body.hdc-service-system.hdc-services-index .technology-card {
   min-height: clamp(28rem, 46vw, 42rem);
 }
 
-body.hdc-service-system.hdc-services-index .technology-card:nth-child(1) { grid-column: 1 / span 7; }
-body.hdc-service-system.hdc-services-index .technology-card:nth-child(2) { grid-column: 8 / -1; }
-body.hdc-service-system.hdc-services-index .technology-card:nth-child(3) { grid-column: 1 / span 5; }
-body.hdc-service-system.hdc-services-index .technology-card:nth-child(4) { grid-column: 6 / -1; }
+body.hdc-service-system.hdc-services-index .technology-card:nth-child(1) { grid-column: 1 / span 6; }
+body.hdc-service-system.hdc-services-index .technology-card:nth-child(2) { grid-column: 7 / -1; }
+body.hdc-service-system.hdc-services-index .technology-card:nth-child(3) { grid-column: 1 / span 6; }
+body.hdc-service-system.hdc-services-index .technology-card:nth-child(4) { grid-column: 7 / -1; }
 body.hdc-service-system.hdc-services-index .technology-card:nth-child(5) { grid-column: 1 / -1; min-height: clamp(24rem, 38vw, 34rem); }
 
 body.hdc-service-system.hdc-services-index .technology-card__body {
@@ -501,7 +501,7 @@ body.hdc-service-system.hdc-services-index .technology-card__body {
 }
 
 body.hdc-service-system.hdc-services-index .technology-card h3 {
-  max-width: 12ch;
+  max-width: 19ch;
   font-family: var(--serif);
   font-size: clamp(2rem, 3.2vw, 3.8rem);
   font-weight: 400;
