@@ -179,6 +179,8 @@
     const params = new URLSearchParams(location.search);
     const application = params.get('application');
     const surface = params.get('surface');
+    const glassDetails = params.get('glassDetails');
+    const resolvedSurface = [surface, glassDetails].filter(Boolean).join('; ');
     const applicationField = form.elements.application;
     const surfaceField = form.elements.surface;
     const context = document.querySelector('[data-quote-context]');
@@ -189,11 +191,19 @@
       applicationField.dispatchEvent(new Event('input', { bubbles: true }));
       applicationField.dispatchEvent(new Event('change', { bubbles: true }));
     }
-    if (surface && surfaceField) {
-      surfaceField.value = surface;
+    if (resolvedSurface && surfaceField) {
+      surfaceField.value = resolvedSurface;
       surfaceField.dispatchEvent(new Event('input', { bubbles: true }));
       surfaceField.dispatchEvent(new Event('change', { bubbles: true }));
     }
+    ['quantity', 'dimensions', 'artwork', 'date'].forEach(fieldName => {
+      const value = params.get(fieldName);
+      const field = form.elements.namedItem(fieldName);
+      if (!value || !field) return;
+      field.value = value;
+      field.dispatchEvent(new Event('input', { bubbles: true }));
+      field.dispatchEvent(new Event('change', { bubbles: true }));
+    });
 
     document.querySelectorAll('[data-quote-application]').forEach(button => {
       button.addEventListener('click', () => {
@@ -212,11 +222,11 @@
         if (window.hdcTrack) window.hdcTrack('quote_application_select', { application: value });
       });
     });
-    if (context && contextText && (application || surface)) {
+    if (context && contextText && (application || resolvedSurface)) {
       context.hidden = false;
       const parts = [];
       if (application) parts.push(application);
-      if (surface) parts.push(surface);
+      if (resolvedSurface) parts.push(resolvedSurface);
       contextText.textContent = parts.join(' · ');
     }
   }

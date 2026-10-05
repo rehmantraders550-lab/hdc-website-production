@@ -1,0 +1,85 @@
+/* ORVIA_COMPONENT: hdc-product-detail-v1
+   Scoped product-detail extensions. Existing HDC page shell and site tokens stay authoritative. */
+.hdc-product-page {
+  --pdp-ink: #0B1013;
+  --pdp-charcoal: #171D21;
+  --pdp-teal: #036F86;
+  --pdp-cyan: #47C1C7;
+  --pdp-copper: #7D4E2C;
+  --pdp-copper-light: #D89A63;
+  --pdp-paper: #F0EFED;
+  --pdp-white: #FFFFFF;
+  --pdp-silver: #A9B3B7;
+  --pdp-rule: rgba(11, 16, 19, .17);
+  --pdp-rule-dark: rgba(255, 255, 255, .2);
+}
+.hdc-product-page figure { margin: 0; min-width: 0; }
+.hdc-product-page figcaption { line-height: 1.45; }
+.hdc-product-page img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hdc-product-page .hdc-glass-intro { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(20rem, .98fr); align-items: start; gap: clamp(2rem, 6vw, 6.5rem); }
+.hdc-glass-intro__copy h2 { margin-top: .25rem; }
+.hdc-glass-intro__media img { aspect-ratio: 1.08 / 1; }
+.hdc-glass-intro__media figcaption { padding-top: .7rem; color: var(--pdp-silver); font-size: .76rem; }
+.hdc-claim-boundary { display: grid; grid-template-columns: minmax(8.5rem, .34fr) 1fr; gap: 1rem; padding: 1rem 0 0; border-top: 1px solid var(--pdp-rule); font-size: .92rem; }
+.hdc-claim-boundary strong { color: var(--pdp-copper); font-weight: 600; }
+.hdc-claim-boundary span { max-width: 42rem; }
+.hdc-product-section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17rem, .65fr); align-items: end; gap: 2rem; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.hdc-product-section-head .body { margin: 0 0 .2rem; }
+.hdc-glass-gallery { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(18rem, .85fr); gap: .85rem; }
+.hdc-glass-gallery__lead img { aspect-ratio: 1.35 / 1; }
+.hdc-glass-gallery__support { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; }
+.hdc-glass-gallery__support img { aspect-ratio: 1.2 / .82; }
+.hdc-glass-gallery figcaption { padding-top: .55rem; color: rgba(255,255,255,.78); font-size: .76rem; }
+.hdc-glass-gallery figcaption span { display: block; margin-bottom: .2rem; color: var(--pdp-cyan); font-size: .64rem; letter-spacing: .12em; }
+.hdc-glass-route article { min-width: 0; }
+.hdc-glass-route article p { max-width: 29rem; }
+.hdc-glass-methods { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--pdp-charcoal); color: var(--pdp-white); }
+.hdc-glass-methods__routes, .hdc-glass-methods__register { padding: clamp(1.5rem, 3.4vw, 3.5rem); min-width: 0; }
+.hdc-glass-methods__routes h2 { color: var(--pdp-white); }
+.hdc-glass-methods__routes .body { color: rgba(255,255,255,.76); }
+.hdc-glass-methods .capability-register { margin-top: 2rem; }
+.hdc-glass-methods .capability-register__item { border-color: var(--pdp-rule-dark); }
+.hdc-glass-methods .capability-register__item small { color: var(--pdp-cyan); }
+.hdc-glass-methods .capability-register__item p { color: var(--pdp-white); }
+.hdc-glass-methods__register { background: var(--pdp-paper); color: var(--pdp-ink); }
+.hdc-glass-status { display: flex; align-items: flex-start; gap: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--pdp-rule); }
+.hdc-glass-status__mark { display: grid; flex: 0 0 2.2rem; width: 2.2rem; height: 2.2rem; place-items: center; border: 1px solid var(--pdp-teal); border-radius: 50%; color: var(--pdp-teal); font-weight: 700; }
+.hdc-glass-status small { display: block; margin-bottom: .3rem; color: var(--pdp-teal); }
+.hdc-glass-status strong { display: block; font-size: 1.12rem; }
+.hdc-glass-status p { max-width: 34rem; margin: .5rem 0 0; }
+.hdc-glass-specs { margin: 1rem 0 0; }
+.hdc-glass-specs div { display: grid; grid-template-columns: minmax(8.5rem, .8fr) 1.2fr; gap: 1rem; padding: .7rem 0; border-bottom: 1px solid var(--pdp-rule); }
+.hdc-glass-specs dt { color: var(--pdp-teal); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.hdc-glass-specs dd { margin: 0; }
+.hdc-glass-brief { display: grid; grid-template-columns: minmax(16rem, .7fr) minmax(0, 1.3fr); align-items: start; gap: clamp(2rem, 6vw, 6rem); }
+.hdc-glass-brief__intro h2 { max-width: 12ch; }
+.hdc-glass-brief__note { max-width: 32rem; padding-top: .8rem; border-top: 1px solid var(--pdp-rule); color: #4f595d; font-size: .83rem; }
+.hdc-glass-brief__form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.hdc-glass-brief__form .field { display: grid; align-content: start; gap: .45rem; min-width: 0; }
+.hdc-glass-brief__form label { color: var(--pdp-ink); font-size: .82rem; font-weight: 600; }
+.hdc-glass-brief__form input, .hdc-glass-brief__form select { width: 100%; min-height: 48px; padding: .72rem .8rem; border: 1px solid rgba(11,16,19,.34); border-radius: 0; background: var(--pdp-white); color: var(--pdp-ink); font: inherit; }
+.hdc-glass-brief__form input:focus-visible, .hdc-glass-brief__form select:focus-visible { outline: 2px solid var(--pdp-teal); outline-offset: 2px; }
+.hdc-glass-brief__actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; padding-top: .5rem; }
+.hdc-glass-brief__actions span { max-width: 19rem; color: #4f595d; font-size: .8rem; }
+.hdc-glass-brief__noscript { grid-column: 1 / -1; font-size: .86rem; }
+.hdc-product-page .hdc-glass-brief__actions .button { border: 0; cursor: pointer; font: inherit; }
+@media (max-width: 900px) {
+  .hdc-product-page .hdc-glass-intro, .hdc-product-section-head, .hdc-glass-gallery, .hdc-glass-methods, .hdc-glass-brief { grid-template-columns: 1fr; }
+  .hdc-glass-intro__media { grid-row: 1; }
+  .hdc-glass-intro__media img { aspect-ratio: 1.35 / 1; }
+  .hdc-product-section-head { align-items: start; }
+  .hdc-glass-gallery__lead img { aspect-ratio: 1.2 / .85; }
+  .hdc-glass-brief__form { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .hdc-glass-gallery__support { grid-template-columns: 1fr; }
+  .hdc-glass-gallery__support img { aspect-ratio: 1.2 / .85; }
+  .hdc-claim-boundary, .hdc-glass-specs div { grid-template-columns: 1fr; gap: .35rem; }
+  .hdc-glass-brief__form { grid-template-columns: 1fr; }
+  .hdc-glass-brief__actions { align-items: stretch; }
+  .hdc-glass-brief__actions .button { width: 100%; }
+  .hdc-glass-brief__actions span { max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hdc-product-page *, .hdc-product-page *::before, .hdc-product-page *::after { scroll-behavior: auto !important; }
+}
