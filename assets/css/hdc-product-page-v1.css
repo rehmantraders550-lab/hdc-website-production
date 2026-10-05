@@ -15,7 +15,7 @@
 }
 .hdc-product-page figure { margin: 0; min-width: 0; }
 .hdc-product-page figcaption { line-height: 1.45; }
-.hdc-product-page img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hdc-product-page img { display: block; max-width: 100%; }
 .hdc-product-page .hdc-glass-intro { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(20rem, .98fr); align-items: start; gap: clamp(2rem, 6vw, 6.5rem); }
 .hdc-glass-intro__copy h2 { margin-top: .25rem; }
 .hdc-glass-intro__media img { aspect-ratio: 1.08 / 1; }
@@ -128,4 +128,26 @@
 }
 @media (max-width: 600px) {
   .hdc-product-page .hdc-glass-gallery__support { grid-template-columns: minmax(0, 1fr); }
+}
+/* ORVIA_PRODUCT_FAMILY_ALIGNMENT: preserve each approved hero image's source ratio. */
+.hdc-product-page .page-hero.page-hero--visual .page-hero__media--landscape { aspect-ratio: 3 / 2; }
+.hdc-product-page .page-hero.page-hero--visual .page-hero__media--wide { aspect-ratio: 16 / 9; }
+.hdc-product-page .page-hero.page-hero--visual .page-hero__content h1 {
+  max-width: 14ch;
+  font-size: clamp(3.4rem, 6.1vw, 6.8rem);
+  line-height: .94;
+  letter-spacing: -.045em;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: balance;
+}
+.hdc-product-page .hdc-glass-intro__media img,
+.hdc-product-page .hdc-glass-gallery__lead img,
+.hdc-product-page .hdc-glass-gallery__support img,
+.hdc-product-page .hdc-object-gallery__grid img { width: 100%; }
+@media (max-width: 760px) {
+  .hdc-product-page .page-hero.page-hero--visual .page-hero__content h1 {
+    font-size: clamp(2.75rem, 10vw, 4.6rem);
+  }
 }
