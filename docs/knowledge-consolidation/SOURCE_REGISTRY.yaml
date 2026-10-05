@@ -1,0 +1,142 @@
+version: 1
+project: Hadi Digital Craft website
+baseline:
+  repository: rehmantraders550-lab/hdc-website-production
+  branch: main
+  production_sha: 0bd720206f88b5d95e6346b8b504ff9c316e7336
+  tree_sha: d2bd24d9e61a807709607969183cb87fb500496a
+  captured_at: 2026-09-26
+authority_classes:
+  A1: latest explicit user instruction
+  A2: verified GitHub main and canonical production source
+  A3: current repository policy and production documentation
+  A4: validated HDC/ORVIA project records
+  A5: historical handoffs and superseded records
+  A6: external research
+sources:
+  - id: SRC-REPO-0001
+    kind: git_repository
+    authority: A2
+    locator: rehmantraders550-lab/hdc-website-production
+    ref: 0bd720206f88b5d95e6346b8b504ff9c316e7336
+    note: Canonical production repository snapshot.
+  - id: SRC-REPO-0002
+    kind: file
+    authority: A2
+    path: index.html
+    blob_sha: 1fb0ff5b53467dd66528e80d1628c37691fc4668
+    role: canonical_homepage
+  - id: SRC-REPO-0003
+    kind: file
+    authority: A3
+    path: docs/PRODUCTION_SOURCE_POLICY.md
+    blob_sha: 4677e16101f38849bdeb3bc2b9bb632dfa700405
+    role: production_governance
+  - id: SRC-REPO-0004
+    kind: file
+    authority: A3
+    path: docs/HDC_CURRENT_PRODUCTION_STATE.md
+    blob_sha: f20351ae5876c653f5660caa0202c90e5ab890f7
+    role: historical_current_state_record
+    temporal_note: dated 2026-09-02; newer live source may supersede details.
+  - id: SRC-REPO-0005
+    kind: file
+    authority: A3
+    path: docs/PRODUCTION_STATUS.md
+    blob_sha: e815515baf8f921062de540d427bebaa56c1ab81
+    role: historical_production_status
+  - id: SRC-REPO-0006
+    kind: file
+    authority: A3
+    path: README.md
+    blob_sha: 42aeb6c58af6db64ba38cc99892c4745ae465aef
+    role: repository_overview
+  - id: SRC-REPO-0007
+    kind: file
+    authority: A3
+    path: .github/workflows/hdc-integration.yml
+    blob_sha: 5daf5533c602947383d7840499a7c646b1b28f02
+    role: integration_guard
+  - id: SRC-REPO-0008
+    kind: file
+    authority: A2
+    path: surface-lab.html
+    blob_sha: 63b2a19b8f7552f89663b6940f37f89b315ad05d
+    role: production_page
+  - id: SRC-REPO-0009
+    kind: file
+    authority: A2
+    path: finishing-embellishment.html
+    blob_sha: a8acae4f017a7ffd2b05ffe0bbae062798046b2d
+    role: production_page_reference
+  - id: SRC-REPO-0010
+    kind: file
+    authority: A5
+    path: docs/design.md
+    blob_sha: 1b5e12240675271c9618f831a17546da9523b5fa
+    role: historical_design_record
+    temporal_note: contains earlier visual/component direction; do not override newer production behavior.
+
+  - id: SRC-LIB-0001
+    kind: library_record
+    authority: A4
+    file_name: ORVIA_HDC_Homepage_Workflow_Symmetry_Interaction_Record_2026-09-26.md
+    library_file_id: file_0000000073688208a21060bd4b39a1e2
+    role: current_workflow_and_interaction_record
+  - id: SRC-LIB-0002
+    kind: library_record
+    authority: A4
+    file_name: ORVIA_HDC_HOSTINGER_ROUTING_INCIDENT_POSTMORTEM_2026-09-23.md
+    library_file_id: file_000000003ad881f49824c65b26886c86
+    role: deployment_postmortem
+  - id: SRC-LIB-0003
+    kind: library_record
+    authority: A4
+    file_name: HDC_Visual_Benchmark_Record_v1.md
+    library_file_id: file_0000000084b88211b75fca8644194988
+    role: visual_benchmark
+  - id: SRC-LIB-0004
+    kind: library_record
+    authority: A4
+    file_name: HDC_Visual_Prompting_Rules_v1.md
+    library_file_id: file_00000000e18c82089a10cf456ebc4362
+    role: visual_prompting_standard
+  - id: SRC-LIB-0005
+    kind: library_record
+    authority: A4
+    file_name: HDC_CODEX_FAILURES_AND_EXECUTION_RULES_2026-09-23.md
+    library_file_id: file_0000000034588208a4d435c5c2877c19
+    role: execution_failure_rules
+  - id: SRC-LIB-0006
+    kind: library_record
+    authority: A4
+    file_name: HDC_Surface_Lab_Content_Projection_Audit_v1.md
+    library_file_id: file_00000000df6082089dc38f3d2617db47
+    role: surface_lab_projection_audit
+  - id: SRC-LIB-0007
+    kind: library_record
+    authority: A4
+    file_name: HDC Surface Lab — New Chat Handoff.md
+    library_file_id: file-inline-libfile_4d863d5c31888191a45eca67ae4576fa
+    role: surface_lab_handoff
+  - id: SRC-LIB-0008
+    kind: library_record
+    authority: A5
+    file_name: HDC_NEXT_PHASE_HANDOFF_2026-09-16.md
+    library_file_id: file_00000000a0f8821187151a93d45b50a9
+    role: historical_handoff
+  - id: SRC-LIB-0009
+    kind: library_record
+    authority: A5
+    file_name: HDC_Validated_Website_Construction_Handoff_v1.md
+    library_file_id: file_00000000381c81fd9fb85630f2107ea5
+    role: historical_handoff
+  - id: SRC-LIB-0010
+    kind: library_record
+    authority: A4
+    file_name: EPS_HDC_Open_Questions_and_Recorded_Decisions_2026-09-24.md
+    library_file_id: file_00000000d7fc8211ab3a9feeb8e34cb5
+    role: decision_and_open_item_record
+notes:
+  - Duplicate library files may exist under alternate filenames. Treat identical content as duplicate evidence, not separate canonical facts.
+  - Repository binary/media assets are indexed through Git tree/blob SHAs and are not replaced by narrative summaries.
