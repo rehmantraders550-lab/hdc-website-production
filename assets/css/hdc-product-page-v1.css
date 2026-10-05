@@ -103,3 +103,29 @@
 }
 
 .hdc-product-page .reveal { opacity: 1; transform: none; }
+
+/* ORVIA_ALIGNMENT: match supplied portrait product photos to their real frame. */
+.hdc-product-page .page-hero.page-hero--visual .page-hero__media--portrait { aspect-ratio: 3 / 4; }
+.hdc-product-page .page-hero.page-hero--visual .page-hero__media--portrait img { object-fit: cover; }
+.hdc-product-page .hdc-glass-intro__media img { height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
+.hdc-product-page .hdc-glass-gallery { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: stretch; }
+.hdc-product-page .hdc-glass-gallery__lead { position: relative; min-width: 0; aspect-ratio: 3 / 4; overflow: hidden; background: var(--pdp-paper); }
+.hdc-product-page .hdc-glass-gallery__lead img,
+.hdc-product-page .hdc-glass-gallery__support img { height: 100%; aspect-ratio: auto; object-fit: cover; background: var(--pdp-paper); }
+.hdc-product-page .hdc-glass-gallery__support { grid-template-columns: minmax(0, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); min-height: 0; gap: .85rem; }
+.hdc-product-page .hdc-glass-gallery__support figure { position: relative; min-height: 0; overflow: hidden; background: var(--pdp-paper); }
+.hdc-product-page .hdc-glass-gallery figcaption { position: absolute; right: 0; bottom: 0; left: 0; padding: 1.1rem 1rem .8rem; background: linear-gradient(transparent, rgba(11,16,19,.88)); color: rgba(255,255,255,.92); }
+@media (max-width: 900px) {
+  .hdc-product-page .hdc-product-section-head,
+  .hdc-product-page .hdc-glass-gallery,
+  .hdc-product-page .hdc-glass-methods,
+  .hdc-product-page .hdc-glass-brief { grid-template-columns: 1fr; }
+  .hdc-product-page .hdc-glass-intro__media { grid-row: auto; }
+  .hdc-product-page .hdc-glass-intro__media img,
+  .hdc-product-page .hdc-glass-gallery__lead { aspect-ratio: 3 / 4; }
+  .hdc-product-page .hdc-glass-gallery__support { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
+  .hdc-product-page .hdc-glass-gallery__support figure { aspect-ratio: 3 / 4; }
+}
+@media (max-width: 600px) {
+  .hdc-product-page .hdc-glass-gallery__support { grid-template-columns: minmax(0, 1fr); }
+}
