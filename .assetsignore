@@ -1,0 +1,15 @@
+**/.git/**
+**/.github/**
+**/.orvia/**
+**/node_modules/**
+**/docs/**
+**/scripts/**
+**/HADI-DIGITAL-CRAFT.csv
+**/README.md
+**/.gitattributes
+**/.gitignore
+**/.htaccess
+**/wrangler.jsonc
+**/package.json
+**/package-lock.json
+**/.assetsignore
