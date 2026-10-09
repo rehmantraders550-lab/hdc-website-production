@@ -1,0 +1,12 @@
+{
+  "name": "hdc-public-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "preview": "wrangler preview"
+  },
+  "devDependencies": {
+    "wrangler": "4.148.0"
+  }
+}
