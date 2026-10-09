@@ -1,55 +1,68 @@
 # Cloudflare Website Pipeline
 
-**Status:** migration plan only. As of 2026-10-09, the current production route is still documented as Hostinger. No Pages project, custom-domain change, or production deployment is enabled by this document.
+**Status:** Worker configuration staged for review. The current public site remains on Hostinger. No Worker has been deployed for this site, and no custom domain or DNS setting has changed.
 
 ## Source of truth
 
-Use `rehmantraders550-lab/hdc-website-production` as the canonical public website source for its current HTML pages, styles, scripts, approved media, and asset manifest. Do not copy these files into another repository to make deployment work.
+Use `rehmantraders550-lab/hdc-website-production` as the canonical source for HDC's current public HTML pages, CSS, JavaScript, approved media, and asset manifest. Keep these files in this repository.
 
-Keep the Cloudflare Worker application in `HDC-ENGINEERED-TACTILITY/worker` as a separate backend candidate. It includes D1/R2-backed quote and admin features, but it is not the same implementation as the current static website. Connect the two only after an explicit interface and data-flow review.
+Keep `HDC-ENGINEERED-TACTILITY/worker` as a separate backend candidate. It has D1/R2-backed quote and admin features, but it is a different implementation from the public static site. Do not connect the two during the first deployment.
 
-The other Cloudflare-connected repositories are not deployable substitutes for the canonical site:
+The other Cloudflare-connected repositories are not substitutes for the public site:
 
 - `hdc-engineered-tactility12` is an empty placeholder; its configured `/worker` path is absent.
-- `HDC-RELOADED` is a PHP/MySQL Hostinger application, while its Cloudflare configuration runs `npx wrangler deploy`.
-- `HDC-ENGINEERED-TACTILITY` contains a real Worker, but the observed Cloudflare deployment is older than the latest GitHub commit and its preview data resources have not been shown to be isolated.
+- `HDC-RELOADED` is a PHP/MySQL Hostinger application, while its Cloudflare setup runs a Wrangler Worker deploy command.
+- The existing `HDC-ENGINEERED-TACTILITY` deployment is behind its GitHub source, and its backend preview resources are not verified as isolated.
 
-Do not delete or consolidate any of these repositories or Cloudflare resources as part of this migration.
+Do not delete or consolidate any of those repositories or Cloudflare resources for this migration.
+
+## Deployment target
+
+Use a new Cloudflare Worker named `hdc-public-site` with **Workers Static Assets**. It serves the existing HTML, CSS, JavaScript, and media from this repository. It has no Worker script, database, storage bucket, secrets, or paid form service.
+
+- `wrangler.jsonc` points the static assets directory to the repository root and enables preview URLs.
+- `.assetsignore` keeps repository documentation, automation, scripts, and the product CSV out of the public deployment.
+- `package.json` pins Cloudflare's Wrangler CLI for the build and preview commands; it adds no runtime dependency.
+- Keep the Worker on its `workers.dev` URL during acceptance. Do not attach `hadidigitalcraft.com yet.
+
+The current quote form prepares an email or WhatsApp handoff. It does not store submissions. Verify that behavior on the preview URL and do not describe it as a database-backed form.
 
 ## Intended workflow
 
-1. ChatGPT prepares a narrowly scoped change on a branch. A human checks the diff and opens or reviews its pull request.
-2. GitHub validates local links, required files, manifest references, duplicate HTML IDs, and asset size before merge.
-3. Cloudflare Pages deploys pull requests and non-main branches to review URLs. Review responsive layouts, all important routes, assets, and enquiry behavior there.
-4. Only an approved merge to `main` may publish the Pages production deployment.
-5. After deployment, smoke-check the homepage, critical pages, CSS/JS, and representative media on the Pages URL. Keep the existing Hostinger site and DNS unchanged until the Cloudflare copy passes acceptance.
+1. ChatGPT proposes a focused change on a branch; a human reviews the diff and pull request.
+2. GitHub Actions checks local links, required files, manifest references, duplicate HTML IDs, and asset integrity.
+3. Cloudflare Workers Builds creates a branch preview for review. It uses Workers Preview settings; this static-only Worker has no shared database or storage bindings.
+4. A human checks the preview across important routes, images, responsive layouts, and enquiry behavior.
+5. An approved merge to `main` deploys the static assets to the isolated `hdc-public-site` Worker on `workers.dev`.
+6. Smoke-check the deployed Worker URL. Change the custom domain only as a separate, explicitly approved cutover with a rollback path.
 
-The static site has no framework build step: the repository root is the Pages output. Keep the runtime dependency set at zero. The existing site enquiry form prepares an email and WhatsApp message; it does not persist submissions to the Worker database. Treat that behavior as an acceptance item, not as a working backend.
+GitHub validation and human review must happen before merging to `main`. Cloudflare deployment automation does not replace a protected branch or a human review gate.
 
-## Gates before enabling Cloudflare production
+## First Cloudflare connection
 
-- Create a Pages project linked to this repository, with the correct root/output directory and production branch `main`.
-- Confirm pull request previews build successfully and do not deploy to the existing custom domain.
-- Require the GitHub validation check and human review before merge. A Git push to `main` can otherwise publish without the intended review.
-- Replace or split the current Hostinger live-smoke job only after the target is chosen. That job waits 90 seconds and tests `hadidigitalcraft.com`; it does not verify Cloudflare Pages.
-- Verify that the Pages project name, `pages.dev` URL, canonical tags, redirects, 404 behavior, and media paths are correct.
-- Change the custom domain only as a separate cutover step with the accepted Pages deployment available and a rollback path.
+After this configuration is reviewed and merged:
 
-The Cloudflare Pages project has not been created yet: the available Cloudflare API connection returned an authentication error on the create request. No Cloudflare resource or DNS setting was changed.
+1. In Cloudflare, open **Workers & Pages** → **Create application** → **Get started** next to **Import a repository**.
+2. Authorize Cloudflare's GitHub app for `hdc-website-production` only.
+3. Set the Worker name to `hdc-public-site`, the production branch to `main`, and the root directory to the repository root.
+4. Leave the build command blank. Use Wrangler for deploy and preview; the repository pins its CLI version.
+5. Enable preview builds and confirm the preview URL uses Worker Previews.
+6. Leave custom domains and all D1/R2 bindings unset.
 
-## Hidden dependencies and failure modes
+The Worker name must match `name` in `wrangler.jsonc`. Cloudflare Workers Builds requires this match.
 
-| Dependency or risk | Current evidence | Required handling |
+## Existing pipeline assumptions and risks
+
+| Risk | Current evidence | Handling |
 |---|---|---|
-| Hostinger deployment assumptions | Existing GitHub workflow sleeps 90 seconds and checks the current domain | Keep it while Hostinger is production; add a distinct Pages smoke check before cutover |
-| PyPI/Pillow | Current asset validator imports Pillow and CI installs it | Remove the package dependency or explicitly accept and pin it before treating that job as dependency-free |
-| GitHub Actions | Current checks require a hosted runner and remote actions | Keep checks small; pin trusted actions and do not rely on Actions alone as the human approval gate |
-| Cloudflare Git integration | Worker connections exist, but Pages project creation was not authorized by the API connection | Grant the required Pages project permissions or create/link the project in Cloudflare UI |
-| Quote submission | Static form creates an email/WhatsApp handoff | Do not claim submissions are stored; integrate the Worker only after preview D1/R2 isolation and end-to-end testing |
-| Worker preview data | The Worker config includes production D1/R2 bindings and no confirmed preview-specific bindings | Do not exercise write paths on previews until preview resources are separated and verified |
-| Repository visibility | Canonical repo is public | Keep credentials and customer/private data out of Git; public website assets are intentionally accessible |
-| Multiple source copies | Older static, Worker, and PHP implementations coexist | Keep this repo canonical for the public static site; make backend ownership an explicit later decision |
+| Hostinger live check | Existing GitHub workflow waits 90 seconds and checks `hadidigitalcraft.com` | Keep it while Hostinger remains production; it is not a Cloudflare deployment check |
+| GitHub Actions dependency | Existing static validator runs on a hosted runner and installs Pillow from PyPI | It is CI-only; no package is added to the website runtime |
+| Cloudflare access | The Cloudflare API connection rejected project creation with an authentication error | Connect the new Worker through the dashboard's GitHub authorization flow |
+| Worker preview safety | Existing backend Worker uses D1/R2 | Do not reuse it for the public site; new static Worker has no data bindings |
+| Existing quote handoff | Email/WhatsApp only | Validate it on preview; backend storage is a later, separate change |
+| Public repository | The canonical source repo is public | Keep secrets and private/customer data out of Git; exclude non-site files from deployed assets |
+| Multiple implementations | Static site, Worker backend, and PHP app coexist | Keep the static repository canonical for the public site and avoid blind merges |
 
-## Cost boundary
+## Cost and dependencies
 
-Pages for static assets is the intended low-cost first deployment. Do not add paid storage, analytics, form vendors, image CDNs, or a framework just to publish this static site. Confirm current account limits and any custom-domain cost before cutover; this plan does not change billing or DNS.
+Static asset requests on Workers are free. The first deployment adds no runtime service or third-party form provider. Wrangler is the only deployment tool dependency and is pinned in `package.json`. Check current account limits before adding any dynamic Worker code or paid products.
