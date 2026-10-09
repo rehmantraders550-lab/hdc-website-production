@@ -35,6 +35,17 @@ jobs:
       - name: Validate local references, IDs and asset integrity
         run: python scripts/validate_site.py
 
+      - name: Set up Node.js for Wrangler validation
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install pinned Wrangler CLI
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Validate Worker Static Assets config without deploying
+        run: npm run deploy -- --dry-run
+
       - name: Record validated commit
         run: |
           echo "validated_sha=${GITHUB_SHA}" >> "$GITHUB_STEP_SUMMARY"
