@@ -1,0 +1,9 @@
+/* Reference-led surface index treatment. All imagery remains replaceable, approved HDC site media. */
+#surfaces .surface-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}
+#surfaces .surface-card{min-height:270px;padding:1.15rem}
+#surfaces .surface-card-image{opacity:.84;object-position:center}
+#surfaces .surface-card:before{background:linear-gradient(180deg,rgba(9,15,18,.08) 0%,rgba(9,15,18,.18) 32%,rgba(9,15,18,.92) 100%)}
+#surfaces .surface-card:after{display:none}
+@media(max-width:900px){#surfaces .surface-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#surfaces .surface-grid{grid-template-columns:1fr;gap:.6rem}#surfaces .surface-card{min-height:230px}}
+@media(prefers-reduced-motion:reduce){#surfaces .surface-card-image{transition:none}#surfaces .surface-card:hover .surface-card-image{transform:none}}
