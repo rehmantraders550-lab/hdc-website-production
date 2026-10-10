@@ -11,7 +11,6 @@
   <script src="./assets/site.js" defer></script>
 </head>
 <body>
-  <div class="preview-ribbon"><span>Private development preview</span><span>Product copy and production options remain subject to review</span></div>
   <header class="site-header">
     <a class="brand" href="#home" aria-label="Hadi Digital Craft home"><span class="brand-mark">HDC</span><span class="brand-sub">HADI DIGITAL CRAFT</span></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu"><span></span><span></span></button>
@@ -133,16 +132,21 @@
     <a class="brand brand--footer" href="#home"><span class="brand-mark">HDC</span><span class="brand-sub">HADI DIGITAL CRAFT</span></a>
     <div class="footer-links"><a href="#services">Services</a><a href="#products">Products</a><a href="#surfaces">Surfaces</a><a href="#process">Production</a></div>
     <div class="footer-powered"><span>Powered by</span><strong>ORVIA</strong></div>
-    <p class="footer-note">Private development preview · Copy and production options remain subject to review.</p>
+    <div class="footer-contact" id="contact" aria-label="Contact Hadi Digital Craft">
+      <a href="tel:+923177267318">Call HDC: 0317 7267318</a>
+      <a href="mailto:REHMANTRADERS550@gmail.com">Email HDC</a>
+      <span>Opp. Nayyer Mall, G.T. Road, Gujrat, Pakistan</span>
+    </div>
+    <p class="footer-note">Surface suitability, production routes and pricing are confirmed for each project.</p>
   </footer>
 
   <dialog id="brief-dialog" class="brief-dialog" aria-labelledby="brief-title">
     <form id="brief-form" method="dialog">
       <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
       <p class="eyebrow eyebrow--dark" id="brief-kicker">PROJECT ENQUIRY / HDC</p><h2 id="brief-title">Build a job brief.</h2>
-      <p class="dialog-intro">Add the details you know. This preview creates a brief on your device; it does not send or store your information.</p>
+      <p class="dialog-intro">Add the details you know. This page prepares a brief in your browser. It does not send or save your details; copy or download the finished brief and contact HDC.</p>
       <div class="brief-fields"><label>Your name<input name="name" autocomplete="name" required></label><label>Company / brand<input name="company" autocomplete="organization"></label><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Phone or WhatsApp<input name="phone" autocomplete="tel"></label><label>Product or application<input name="product" id="brief-product" required></label><label>Quantity / run size<input name="quantity" inputmode="numeric"></label><label class="field-wide">What are you making?<textarea name="details" rows="4" required></textarea></label><label class="field-wide">Surface, size, process or finish notes<textarea name="specification" rows="3"></textarea></label></div>
-      <p class="brief-privacy">Do not include confidential artwork or sensitive information in this private preview form.</p>
+      <p class="brief-privacy">Do not include confidential artwork or sensitive information. This form does not submit your brief to HDC.</p>
       <div class="dialog-actions"><button class="button button--teal" type="submit">Prepare brief <span>→</span></button><button class="text-link text-link--dark" type="button" data-close-dialog>Cancel</button></div>
       <div id="brief-result" class="brief-result" hidden role="status"><p>Your brief is ready. Copy it and share it with HDC through your preferred contact channel.</p><button id="copy-brief" class="button button--outline-dark" type="button">Copy brief</button><a id="download-brief" class="text-link text-link--dark" download="hdc-job-brief.txt">Download .txt</a></div>
     </form>
