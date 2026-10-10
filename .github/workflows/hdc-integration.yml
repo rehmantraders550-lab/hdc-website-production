@@ -99,10 +99,11 @@ jobs:
 
           for path in about.html applications.html contact.html faq.html finishing-embellishment.html glass-surface-decoration.html labels-decals.html large-format-brand-environments.html packaging-commercial-print.html production.html products-object-printing.html request-a-quote.html selected-work.html services.html surface-lab.html
           do
-            code="$(curl -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-page.html -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
+            code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-page.html -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
             echo "$path -> $code"
             test "$code" = "200"
             grep -qi "<html" /tmp/hdc-page.html
+            grep -qi "<h1" /tmp/hdc-page.html
             test -s /tmp/hdc-page.html
           done
 
