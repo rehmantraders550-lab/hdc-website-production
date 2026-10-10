@@ -7,12 +7,17 @@ from urllib.parse import unquote
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
+DEPLOY_CONFIG = json.loads((ROOT / "wrangler.jsonc").read_text(encoding="utf-8"))
+DEPLOY_ROOT = (ROOT / DEPLOY_CONFIG["assets"]["directory"]).resolve()
+if not DEPLOY_ROOT.is_relative_to(ROOT):
+    raise SystemExit("Configured static assets directory must stay inside the repository")
 MANIFEST = ROOT / "assets" / "asset-manifest.json"
 TEXT_EXTS = {".html", ".css", ".js"}
 ASSET_EXTS = {".webp", ".jpg", ".jpeg", ".png", ".gif", ".svg", ".mp4", ".webm", ".css", ".js", ".html", ".ico"}
 MAX_ASSET_BYTES = 4 * 1024 * 1024
 
 REF_RE = re.compile(r"""(?:src|href|poster)\s*=\s*["']([^"']+)["']""", re.I)
+JS_FETCH_RE = re.compile(r"""fetch\(\s*["']([^"']+)["']""", re.I)
 CSS_URL_RE = re.compile(r"""url\(\s*["']?([^"')]+)["']?\s*\)""", re.I)
 ID_RE = re.compile(r"""\bid\s*=\s*["']([^"']+)["']""", re.I)
 
@@ -32,9 +37,10 @@ def local_ref(value: str):
 
 def resolve_ref(source: Path, ref: str):
     if ref.startswith("/"):
-        return ROOT / ref.lstrip("/")
+        return DEPLOY_ROOT / ref.lstrip("/")
     if source.suffix.lower() == ".js":
-        return (ROOT / ref).resolve()
+        # Fetch URLs resolve against the document root in this static site.
+        return (DEPLOY_ROOT / ref).resolve()
     return (source.parent / ref).resolve()
 
 def check_ref(source: Path, raw: str):
@@ -52,7 +58,7 @@ def check_ref(source: Path, raw: str):
     if not target.exists():
         errors.append(f"{source.relative_to(ROOT)} -> missing local reference: {raw}")
 
-for path in sorted(ROOT.rglob("*")):
+for path in sorted(DEPLOY_ROOT.rglob("*")):
     if ".git" in path.parts or not path.is_file():
         continue
     rel = path.relative_to(ROOT)
@@ -60,6 +66,9 @@ for path in sorted(ROOT.rglob("*")):
         text = path.read_text(encoding="utf-8", errors="replace")
         for m in REF_RE.finditer(text):
             check_ref(path, m.group(1))
+        if path.suffix.lower() == ".js":
+            for m in JS_FETCH_RE.finditer(text):
+                check_ref(path, m.group(1))
         if path.suffix.lower() == ".css":
             for m in CSS_URL_RE.finditer(text):
                 check_ref(path, m.group(1))
@@ -78,7 +87,7 @@ for path in sorted(ROOT.rglob("*")):
     if path.suffix.lower() in ASSET_EXTS and path.stat().st_size > MAX_ASSET_BYTES:
         warnings.append(f"{rel} -> large asset {path.stat().st_size/1024/1024:.2f} MB")
 
-for req in [ROOT/"index.html", ROOT/"assets/css/styles.css", ROOT/"assets/js/site.js", MANIFEST]:
+for req in [DEPLOY_ROOT/"index.html", DEPLOY_ROOT/"assets/site.css", DEPLOY_ROOT/"assets/site.js", DEPLOY_ROOT/"assets/products.json", DEPLOY_ROOT/"assets/imagery/HDC-2026-hero.webp", MANIFEST]:
     if not req.exists():
         errors.append(f"required production file missing: {req.relative_to(ROOT)}")
 
@@ -122,10 +131,6 @@ if MANIFEST.exists():
     for path, slots in seen_paths.items():
         if len(slots) > 1:
             warnings.append(f"{path} -> reused in multiple semantic slots: {', '.join(slots)}")
-
-videos = ROOT / "assets/videos"
-if not (videos.exists() and list(videos.rglob("*.mp4"))):
-    warnings.append("no MP4 found under assets/videos; confirm hero fallback is intentional")
 
 print(f"HDC integration validation: {checked_refs} local references checked")
 for w in warnings: print(f"WARNING: {w}")
