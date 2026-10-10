@@ -5,10 +5,10 @@ Private production repository for the Hadi Digital Craft website.
 ## Production pipeline
 
 ```text
-ChatGPT → GitHub `main` → Hostinger Git deployment → live HDC website
+ChatGPT → GitHub pull request / `main` → Cloudflare Workers Static Assets → HDC Worker
 ```
 
-**Platform:** Hostinger / custom web stack  
+**Platform:** Cloudflare Workers Static Assets (`hdc-website-production.rehmantraders550.workers.dev`)  
 **Business:** specialised commercial printing services only  
 **Visual doctrine:** Engineered Tactility
 
@@ -55,4 +55,4 @@ The current homepage architecture contains 12 production-defined sections from H
 
 ## Deployment
 
-Hostinger should deploy branch `main` to the HDC site's configured web root. Changes should be committed here first so GitHub remains the canonical production source and rollback point.
+GitHub is the source of truth. Pull requests run the HDC Integration Guard and receive Cloudflare preview deployments. A push to `main` runs asset and route smoke checks against `https://hdc-website-production.rehmantraders550.workers.dev`; Cloudflare serves the static assets configured in `wrangler.jsonc`. Keep custom-domain routing as a separate DNS/deployment setting.
