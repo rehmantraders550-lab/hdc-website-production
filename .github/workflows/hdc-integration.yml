@@ -97,7 +97,16 @@ jobs:
             test -s /tmp/hdc-asset
           done < <(find "$site_dir" -type f | sort)
 
-          for path in about.html applications.html contact.html faq.html finishing-embellishment.html glass-surface-decoration.html hdc-expanding-panels-lab.html labels-decals.html large-format-brand-environments.html machine-dtf.html machine-large-format.html machine-offset.html machine-uv-dtf.html machine-uv-flatbed.html packaging-commercial-print.html production.html products-object-printing.html request-a-quote.html selected-work.html services.html surface-lab.html previews/engineered-tactility-2026-10-07/
+          for path in about.html applications.html contact.html faq.html finishing-embellishment.html glass-surface-decoration.html labels-decals.html large-format-brand-environments.html packaging-commercial-print.html production.html products-object-printing.html request-a-quote.html selected-work.html services.html surface-lab.html
+          do
+            code="$(curl -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-page.html -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
+            echo "$path -> $code"
+            test "$code" = "200"
+            grep -qi "<html" /tmp/hdc-page.html
+            test -s /tmp/hdc-page.html
+          done
+
+          for path in hdc-expanding-panels-lab.html machine-dtf.html machine-large-format.html machine-offset.html machine-uv-dtf.html machine-uv-flatbed.html previews/engineered-tactility-2026-10-07/
           do
             code="$(curl -sS --connect-timeout 10 --max-time 30 -o /dev/null -w '%{http_code}' "$base/$path")"
             echo "$path -> $code"
