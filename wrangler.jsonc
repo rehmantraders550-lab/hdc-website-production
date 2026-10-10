@@ -1,2 +1,10 @@
-// wrangler.jsonc
-"name": "hdc-website-production",
+{
+  "name": "hdc-website-production",
+  "compatibility_date": "2026-10-09",
+  "workers_dev": true,
+  "preview_urls": true,
+  "previews": {},
+  "assets": {
+    "directory": "./"
+  }
+}
