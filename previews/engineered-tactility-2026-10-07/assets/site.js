@@ -1,34 +1,26 @@
-const families = ["All products", "DTF Transfers", "Finished DTF Apparel", "UV Printing + Decals", "Commercial Print + Branding", "Large Format + Display"];
+const families = ["All products", "Labels & Decals", "Products & Object Printing", "Packaging & Commercial Print", "Large Format & Brand Environments"];
 const surfaces = [
   ["Glass", "Coating, curvature and handling shape the route.", "#0c8a9b"],
   ["Acrylic", "Thickness, edge quality and printable area matter.", "#96d9d8"],
   ["Metal", "Surface preparation and coating need review.", "#a7b4b5"],
   ["Wood", "Grain, porosity and finish can change the result.", "#c58b57"],
   ["Paper / Paperboard", "Stock, weight, folds and finishing work together.", "#bda88a"],
-  ["Textiles", "Garment and fabric suitability must be confirmed.", "#9c8271"],
   ["Plastics", "Polymer type and surface energy vary by object.", "#50a7ae"],
   ["Vinyl / Films", "Adhesive, substrate and exposure affect selection.", "#087b90"]
 ];
 const productImagery = {
-  1:{file:"HDC-2026-labels.webp",alt:"Illustrative printed label and cut edge study"},
-  2:{file:"HDC-2026-colour.webp",alt:"Illustrative printed color and edge study"},
-  3:{file:"HDC-2026-labels.webp",alt:"Illustrative printed label and cut edge study"},
-  4:{file:"HDC-2026-labels.webp",alt:"Illustrative transfer-style print detail; apparel artwork is not shown"},
-  5:{file:"HDC-2026-objects.webp",alt:"Illustrative print study on coated objects; apparel artwork is not shown"},
-  6:{file:"HDC-2026-colour.webp",alt:"Illustrative print color study; uniform artwork is not shown"},
-  7:{file:"HDC-2026-objects.webp",alt:"Illustrative print study on coated objects; cap artwork is not shown"},
-  8:{file:"HDC-2026-glass.webp",alt:"Illustrative transfer mark on a glass jar"},
-  9:{file:"HDC-2026-labels.webp",alt:"Illustrative printed labels and decals"},
-  10:{file:"HDC-2026-colour.webp",alt:"Illustrative printed color and edge study"},
-  11:{file:"HDC-2026-glass.webp",alt:"Illustrative transfer mark on a glass jar"},
-  12:{file:"HDC-2026-packaging.webp",alt:"Illustrative folded paperboard packaging"},
-  13:{file:"HDC-2026-surface-trio.webp",alt:"Illustrative glass, metal and leatherette sample set"},
-  14:{file:"HDC-2026-colour.webp",alt:"Illustrative printed color and paper detail"},
-  15:{file:"HDC-2026-finish.webp",alt:"Illustrative foil and varnish finishing study"},
-  16:{file:"HDC-2026-surface-trio.webp",alt:"Illustrative glass, metal and leatherette sample set"},
-  17:{file:"HDC-2026-environments.webp",alt:"Illustrative installed rigid panel in an architectural space"},
-  18:{file:"HDC-2026-colour.webp",alt:"Illustrative printed color and paper detail"},
-  19:{file:"HDC-2026-environments.webp",alt:"Illustrative large-format graphic in an architectural space"}
+  1:{file:"HDC-2026-glass.webp",alt:"Illustrative transfer mark on a glass jar"},
+  2:{file:"HDC-2026-labels.webp",alt:"Illustrative printed labels and decals"},
+  3:{file:"HDC-2026-colour.webp",alt:"Illustrative printed color and edge study"},
+  4:{file:"HDC-2026-glass.webp",alt:"Illustrative branded bottle surface study"},
+  5:{file:"HDC-2026-packaging.webp",alt:"Illustrative folded paperboard packaging"},
+  6:{file:"HDC-2026-surface-trio.webp",alt:"Illustrative glass, metal and coated object sample set"},
+  7:{file:"HDC-2026-colour.webp",alt:"Illustrative printed color and paper detail"},
+  8:{file:"HDC-2026-finish.webp",alt:"Illustrative foil and varnish finishing study"},
+  9:{file:"HDC-2026-surface-trio.webp",alt:"Illustrative glass, metal and coated object sample set"},
+  10:{file:"HDC-2026-environments.webp",alt:"Illustrative installed rigid panel in an architectural space"},
+  11:{file:"HDC-2026-colour.webp",alt:"Illustrative printed color and paper detail"},
+  12:{file:"HDC-2026-environments.webp",alt:"Illustrative large-format graphic in an architectural space"}
 };
 const finishing = {
   spot:{no:"01",title:"Spot UV",desc:"A selective gloss or raised effect can create contrast against a matte field. Map it on a separate, clearly named artwork layer and check its distance from folds, trim and glue areas.",points:["Separate effect artwork from the base print.","Confirm registration and surface suitability.","Keep critical details away from scores and trim."]},
@@ -52,7 +44,7 @@ function renderProducts(){const query=$("#product-search").value.trim().toLowerC
 function renderSurfaces(){const host=$("#surface-grid");surfaces.forEach(([name,desc,glow],i)=>{const card=document.createElement("article");card.className="surface-card";card.style.setProperty("--surface-glow",glow);const n=document.createElement("small");n.textContent=`0${i+1} / SURFACE GROUP`;const h=document.createElement("h3");h.textContent=name;const p=document.createElement("p");p.textContent=desc;card.append(n,h,p);host.append(card);});}
 function selectFinish(key){const data=finishing[key];$$("[data-finish]").forEach(btn=>btn.setAttribute("aria-selected",String(btn.dataset.finish===key)));const host=$("#finish-detail");host.replaceChildren();const e=document.createElement("p");e.className="eyebrow eyebrow--dark";e.textContent=`FINISH REGISTER / ${data.no}`;const h=document.createElement("h3");h.textContent=data.title;const p=document.createElement("p");p.textContent=data.desc;const ul=document.createElement("ul");data.points.forEach(item=>{const li=document.createElement("li");li.textContent=item;ul.append(li);});host.append(e,h,p,ul);}
 function openBrief(product=null,mode="quote"){const dialog=$("#brief-dialog");const form=$("#brief-form");form.reset();$("#brief-result").hidden=true;$("#brief-kicker").textContent=mode==="technical"?"TECHNICAL REVIEW / HDC":"PROJECT ENQUIRY / HDC";$("#brief-title").textContent=mode==="technical"?"Review a surface.":"Build a job brief.";$("#brief-product").value=product?.name||"";$("#brief-product").readOnly=Boolean(product);dialog.showModal();}
-function makeBrief(form){const data=new FormData(form);const lines=["HDC PRINT PROJECT BRIEF","=======================",...Array.from(data.entries()).filter(([,v])=>String(v).trim()).map(([k,v])=>`${k.replaceAll("_"," ").replace(/^./,c=>c.toUpperCase())}: ${String(v).trim()}`),"","This brief was prepared locally from the HDC private site preview. No information was sent or stored."];return lines.join("\n");}
+function makeBrief(form){const data=new FormData(form);const lines=["HDC PRINT PROJECT BRIEF","=======================",...Array.from(data.entries()).filter(([,v])=>String(v).trim()).map(([k,v])=>`${k.replaceAll("_"," ").replace(/^./,c=>c.toUpperCase())}: ${String(v).trim()}`),"","This brief was prepared locally on your device from the HDC preview. No information was sent or stored."];return lines.join("\n");}
 function downloadBrief(text){const blob=new Blob([text],{type:"text/plain;charset=utf-8"});const url=URL.createObjectURL(blob);const a=$("#download-brief");a.href=url;window.setTimeout(()=>URL.revokeObjectURL(url),60000);}
 document.addEventListener("DOMContentLoaded",async()=>{
   renderSurfaces();renderFilters();selectFinish("spot");
