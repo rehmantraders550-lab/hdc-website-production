@@ -13,3 +13,6 @@
 **/package.json
 **/package-lock.json
 **/.assetsignore
+
+**/README-DEPLOY.txt
+**/assets/hdc-hero-reference.png
