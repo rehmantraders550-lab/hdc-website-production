@@ -98,7 +98,7 @@
           '<p>' + escapeHtml((method.related || []).map(function(item){ return item[0]; }).join(' · ')) + '</p>' +
         '</div>' +
         '<div class="prod-record__actions">' +
-          '<a class="button button--dark" href="' + escapeHtml(method.machineGuide) + '">Open machine guide</a>' +
+          '<a class="button button--dark" href="' + escapeHtml(method.machineGuide) + '">Open production guide</a>' +
           '<a class="text-link" href="' + quoteHref(method) + '">Discuss this production route</a>' +
           relatedMarkup(method) +
         '</div>' +

@@ -87,7 +87,27 @@ for path in sorted(DEPLOY_ROOT.rglob("*")):
     if path.suffix.lower() in ASSET_EXTS and path.stat().st_size > MAX_ASSET_BYTES:
         warnings.append(f"{rel} -> large asset {path.stat().st_size/1024/1024:.2f} MB")
 
-for req in [DEPLOY_ROOT/"index.html", DEPLOY_ROOT/"assets/site.css", DEPLOY_ROOT/"assets/site.js", DEPLOY_ROOT/"assets/products.json", DEPLOY_ROOT/"assets/imagery/HDC-2026-hero.webp", MANIFEST]:
+required_files = [
+    DEPLOY_ROOT/"index.html",
+    DEPLOY_ROOT/"previews/engineered-tactility-2026-10-07/assets/site.css",
+    DEPLOY_ROOT/"previews/engineered-tactility-2026-10-07/assets/site.js",
+    DEPLOY_ROOT/"previews/engineered-tactility-2026-10-07/assets/products.json",
+    DEPLOY_ROOT/"previews/engineered-tactility-2026-10-07/assets/imagery/HDC-2026-hero.webp",
+    DEPLOY_ROOT/"_redirects",
+    MANIFEST,
+]
+required_pages = [
+    "about.html", "applications.html", "industries.html", "contact.html", "faq.html",
+    "finishing-embellishment.html", "glass-surface-decoration.html",
+    "labels-decals.html", "large-format-brand-environments.html",
+    "machine-large-format.html", "machine-offset.html", "machine-uv-dtf.html", "machine-uv-flatbed.html",
+    "packaging-commercial-print.html", "production.html",
+    "products-object-printing.html", "request-a-quote.html",
+    "selected-work.html", "services.html", "surface-lab.html",
+]
+for route in required_pages:
+    required_files.append(DEPLOY_ROOT / route)
+for req in required_files:
     if not req.exists():
         errors.append(f"required production file missing: {req.relative_to(ROOT)}")
 

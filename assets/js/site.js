@@ -16,6 +16,7 @@
     ['services.html', 'Services', 'services'],
     ['production.html', 'Production', 'production'],
     ['applications.html', 'Applications', 'applications'],
+    ['industries.html', 'Industries', 'industries'],
     ['about.html', 'About HDC', 'about']
   ];
   const nav = navItems.map(([href, label, key]) => `<a href="${href}"${page === key ? ' aria-current="page"' : ''}>${label}</a>`).join('');
