@@ -40,3 +40,12 @@
 .surface-card small,.surface-card h3,.surface-card p{z-index:3}
 .surface-card:hover .surface-card-image{transform:scale(1.035)}
 @media(prefers-reduced-motion:reduce){.surface-card-image{transition:none}.surface-card:hover .surface-card-image{transform:none}}
+
+
+/* Generated package mockups: visible provenance and responsive display */
+.catalogue-concept{max-width:var(--content);margin:0 auto 2rem;background:var(--ink);border:1px solid rgba(11,16,19,.25)}
+.catalogue-concept img{display:block;width:100%;aspect-ratio:1672/941;object-fit:cover}
+.catalogue-concept figcaption{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 1rem;color:#e9eeec;background:#0b1013;font-size:.62rem;line-height:1.5}
+.catalogue-concept figcaption span:first-child{color:#9fe0df;font-size:.55rem;letter-spacing:.14em;white-space:nowrap}
+.surface-image-note{max-width:var(--content);margin:-1.8rem auto 1rem;color:#c8d0d0;font-size:.62rem;line-height:1.5}
+@media(max-width:700px){.catalogue-concept{margin-bottom:1.5rem}.catalogue-concept img{aspect-ratio:4/3}.catalogue-concept figcaption{align-items:flex-start;flex-direction:column;gap:.25rem}.surface-image-note{margin:-1.25rem auto .85rem;font-size:.59rem}}
