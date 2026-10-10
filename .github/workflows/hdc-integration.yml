@@ -73,23 +73,35 @@ jobs:
           grep -qi "Hadi Digital Craft" /tmp/hdc-home.html
           echo "homepage_http=$code" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Smoke test site pages
+      - name: Smoke test promoted static site assets
         run: |
           set -euo pipefail
           base="${WORKER_URL%/}"
-          for path in about.html applications.html contact.html faq.html finishing-embellishment.html labels-decals.html large-format-brand-environments.html machine-dtf.html machine-large-format.html machine-offset.html machine-uv-dtf.html machine-uv-flatbed.html packaging-commercial-print.html production.html products-object-printing.html request-a-quote.html selected-work.html services.html surface-lab.html
-          do
-            code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-page.html -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
-            echo "$path -> $code"
-            test "$code" = "200"
-            grep -qi "Hadi Digital Craft" /tmp/hdc-page.html
-          done
-          echo "candidate_routes=PASSED" >> "$GITHUB_STEP_SUMMARY"
+          grep -qi "Hadi Digital Craft" /tmp/hdc-home.html
+          grep -qi "Print, engineered to be felt" /tmp/hdc-home.html
+          if grep -qi "PRIVATE DEVELOPMENT PREVIEW" /tmp/hdc-home.html; then
+            echo "Staging banner still appears on the production homepage"
+            exit 1
+          fi
 
-      - name: Smoke test stylesheet delivery
-        run: |
-          set -euo pipefail
-          code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-styles.css -w '%{http_code}' --retry 2 --retry-delay 5 "$WORKER_URL/assets/css/styles.css")"
-          test "$code" = "200"
-          test -s /tmp/hdc-styles.css
-          echo "stylesheet_http=$code" >> "$GITHUB_STEP_SUMMARY"
+          site_dir="previews/engineered-tactility-2026-10-07"
+          while IFS= read -r file
+          do
+            rel="${file#"$site_dir"/}"
+            if [ "$rel" = "_redirects" ]; then
+              continue
+            fi
+            code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-asset -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$rel")"
+            echo "$rel -> $code"
+            test "$code" = "200"
+            test -s /tmp/hdc-asset
+          done < <(find "$site_dir" -type f | sort)
+
+          for path in about.html applications.html contact.html faq.html finishing-embellishment.html glass-surface-decoration.html hdc-expanding-panels-lab.html labels-decals.html large-format-brand-environments.html machine-dtf.html machine-large-format.html machine-offset.html machine-uv-dtf.html machine-uv-flatbed.html packaging-commercial-print.html production.html products-object-printing.html request-a-quote.html selected-work.html services.html surface-lab.html previews/engineered-tactility-2026-10-07/
+          do
+            code="$(curl -sS --connect-timeout 10 --max-time 30 -o /dev/null -w '%{http_code}' "$base/$path")"
+            echo "$path -> $code"
+            test "$code" = "301"
+          done
+          echo "promoted_assets=PASSED" >> "$GITHUB_STEP_SUMMARY"
+          echo "legacy_redirects=PASSED" >> "$GITHUB_STEP_SUMMARY"
