@@ -1,7 +1,7 @@
 # HDC Current Production State
 
-**Date:** 2026-09-02
-**Platform:** Hostinger / custom web stack
+**Last reconciled:** 2026-10-10
+**Platform:** Cloudflare Workers Static Assets
 **Repository:** `rehmantraders550-lab/hdc-website-production`
 **Branch:** `main`
 
@@ -66,7 +66,9 @@ For selected work, use client names / logos / project imagery only where publish
 
 The earlier Shopify implementation language in Phase 5 is obsolete for HDC. The canonical production route is now:
 
-`ChatGPT → GitHub main → Hostinger Git deployment → live HDC website`
+`ChatGPT → GitHub pull request / main → Cloudflare Workers Static Assets → HDC Worker`
+
+The repository `wrangler.jsonc` configures the static asset directory. The integration workflow validates the Worker build and smoke-tests the `workers.dev` deployment. Custom-domain routing is maintained separately.
 
 The architectural, visual, interaction, responsive, evidence, and QA decisions from Phases 4–5 remain valid and should be translated into the Hostinger/custom-code stack rather than Shopify sections.
 
