@@ -100,6 +100,7 @@ required_pages = [
     "about.html", "applications.html", "contact.html", "faq.html",
     "finishing-embellishment.html", "glass-surface-decoration.html",
     "labels-decals.html", "large-format-brand-environments.html",
+    "machine-large-format.html", "machine-offset.html", "machine-uv-dtf.html", "machine-uv-flatbed.html",
     "packaging-commercial-print.html", "production.html",
     "products-object-printing.html", "request-a-quote.html",
     "selected-work.html", "services.html", "surface-lab.html",
