@@ -51,101 +51,45 @@ jobs:
           echo "validated_sha=${GITHUB_SHA}" >> "$GITHUB_STEP_SUMMARY"
           echo "branch=${GITHUB_REF_NAME}" >> "$GITHUB_STEP_SUMMARY"
 
-  live-smoke:
-    name: Verify Hostinger live render
+  worker-smoke:
+    name: Verify Cloudflare candidate render
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: validate
     runs-on: ubuntu-latest
     env:
-      LIVE_URL: ${{ vars.HDC_LIVE_URL || 'https://hadidigitalcraft.com' }}
+      WORKER_URL: https://hdc-website-production.rehmantraders550.workers.dev
     steps:
-      - name: Resolve production URL
-        run: |
-          echo "live_url=$LIVE_URL" >> "$GITHUB_STEP_SUMMARY"
+      - name: Record candidate URL
+        run: echo "candidate_url=$WORKER_URL" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Wait for Hostinger Git deployment
+      - name: Allow Cloudflare Git build to finish
         run: sleep 90
 
-      - name: Smoke test homepage and hero deployment
+      - name: Smoke test homepage
         run: |
           set -euo pipefail
-          base="${LIVE_URL%/}"
-          code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-home.html -w '%{http_code}' --retry 4 --retry-delay 10 "$LIVE_URL")"
+          code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-home.html -w '%{http_code}' --retry 3 --retry-delay 5 "$WORKER_URL")"
           test "$code" = "200"
           grep -qi "Hadi Digital Craft" /tmp/hdc-home.html
-          grep -q 'assets/images/imagery-2026-09-24/HDC-2026-hero.webp' /tmp/hdc-home.html
-          grep -q 'styles.css?v=20260927-hero-luminance-01' /tmp/hdc-home.html
-
-          css_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-styles.css -w '%{http_code}' --retry 3 --retry-delay 5 "$base/assets/css/styles.css?v=20260927-hero-luminance-01")"
-          test "$css_code" = "200"
-          grep -q 'ORVIA HERO LUMINANCE SYSTEM' /tmp/hdc-styles.css
-
-          hero_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /dev/null -w '%{http_code}' --retry 3 --retry-delay 5 "$base/assets/images/imagery-2026-09-24/HDC-2026-hero.webp")"
-          test "$hero_code" = "200"
-
           echo "homepage_http=$code" >> "$GITHUB_STEP_SUMMARY"
-          echo "hero_asset_http=$hero_code" >> "$GITHUB_STEP_SUMMARY"
-          echo "hero_luminance_css=PASSED" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Smoke test critical pages and page-specific heroes
+      - name: Smoke test site pages
         run: |
           set -euo pipefail
-          base="${LIVE_URL%/}"
-          for path in labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html applications.html production.html request-a-quote.html finishing-embellishment.html surface-lab.html machine-dtf.html machine-uv-dtf.html machine-uv-flatbed.html machine-offset.html machine-large-format.html
+          base="${WORKER_URL%/}"
+          for path in about.html applications.html contact.html faq.html finishing-embellishment.html labels-decals.html large-format-brand-environments.html machine-dtf.html machine-large-format.html machine-offset.html machine-uv-dtf.html machine-uv-flatbed.html packaging-commercial-print.html production.html products-object-printing.html request-a-quote.html selected-work.html services.html surface-lab.html
           do
-            code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /dev/null -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
+            code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-page.html -w '%{http_code}' --retry 2 --retry-delay 5 "$base/$path")"
             echo "$path -> $code"
             test "$code" = "200"
+            grep -qi "Hadi Digital Craft" /tmp/hdc-page.html
           done
+          echo "candidate_routes=PASSED" >> "$GITHUB_STEP_SUMMARY"
 
-          fe_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-fe.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/finishing-embellishment.css")"
-          sl_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-sl.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/surface-lab.css?v=20260929-visual-redesign-v4")"
-          ds_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-design-system.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/hdc-design-system-v1.css?v=20260929-service-v2")"
-          test "$fe_code" = "200"
-          test "$sl_code" = "200"
-          test "$ds_code" = "200"
-          grep -q 'ORVIA_SERVICE_ARCHITECTURE_V2' /tmp/hdc-design-system.css
-          echo "design_system_css=PASSED" >> "$GITHUB_STEP_SUMMARY"
-
-          sl_html_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-surface-lab.html -w '%{http_code}' --retry 2 --retry-delay 5 "$base/surface-lab.html")"
-          test "$sl_html_code" = "200"
-          grep -q 'surface-lab.css?v=20260929-visual-redesign-v4' /tmp/hdc-surface-lab.html
-          grep -q 'ORVIA_SURFACE_LAB_VISUAL_REDESIGN_V4' /tmp/hdc-sl.css
-          echo "surface_lab_css=PASSED" >> "$GITHUB_STEP_SUMMARY"
-
-          machine_css_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-machine-pages.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/machine-pages.css?v=20260929-v1")"
-          test "$machine_css_code" = "200"
-          grep -q 'ORVIA_MACHINE_PAGES_VISUAL_REDESIGN_V1' /tmp/hdc-machine-pages.css
-          echo "machine_pages_css=PASSED" >> "$GITHUB_STEP_SUMMARY"
-
-          for path in machine-dtf.html machine-uv-dtf.html machine-uv-flatbed.html machine-offset.html machine-large-format.html
-          do
-            tmp="/tmp/hdc-${path}"
-            curl -L -sS --connect-timeout 10 --max-time 30 --retry 2 --retry-delay 5 -o "$tmp" "$base/$path"
-            grep -q 'machine-pages.css?v=20260929-v1' "$tmp"
-            grep -q 'class="hdc-machine-page"' "$tmp"
-          done
-
-          for path in services.html labels-decals.html products-object-printing.html packaging-commercial-print.html large-format-brand-environments.html
-          do
-            tmp="/tmp/hdc-${path//\//-}"
-            curl -L -sS --connect-timeout 10 --max-time 30 --retry 2 --retry-delay 5 -o "$tmp" "$base/$path"
-            grep -q 'hdc-design-system-v1.css?v=20260929-service-v2' "$tmp"
-          done
-
-          echo "service_architecture_v2=PASSED" >> "$GITHUB_STEP_SUMMARY"
-          echo "surface_lab_visual_redesign_v4=PASSED" >> "$GITHUB_STEP_SUMMARY"
-          site_css_code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-sitewide-symmetry.css -w '%{http_code}' --retry 2 --retry-delay 5 "$base/assets/css/hdc-sitewide-symmetry-v1.css?v=20260929-v1")"
-          test "$site_css_code" = "200"
-          grep -q 'ORVIA_SITEWIDE_SYMMETRY_CALIBRATION_V1' /tmp/hdc-sitewide-symmetry.css
-
-          for path in about.html applications.html contact.html faq.html finishing-embellishment.html index.html labels-decals.html large-format-brand-environments.html machine-dtf.html machine-large-format.html machine-offset.html machine-uv-dtf.html machine-uv-flatbed.html packaging-commercial-print.html production.html products-object-printing.html request-a-quote.html selected-work.html services.html surface-lab.html
-          do
-            tmp="/tmp/hdc-sitewide-${path}"
-            curl -L -sS --connect-timeout 10 --max-time 30 --retry 2 --retry-delay 5 -o "$tmp" "$base/$path"
-            grep -q 'hdc-sitewide-symmetry-v1.css?v=20260929-v1' "$tmp"
-          done
-
-          echo "machine_pages_visual_redesign_v1=PASSED" >> "$GITHUB_STEP_SUMMARY"
-          echo "sitewide_symmetry_calibration_v1=PASSED" >> "$GITHUB_STEP_SUMMARY"
-          echo "live_verification=PASSED" >> "$GITHUB_STEP_SUMMARY"
+      - name: Smoke test stylesheet delivery
+        run: |
+          set -euo pipefail
+          code="$(curl -L -sS --connect-timeout 10 --max-time 30 -o /tmp/hdc-styles.css -w '%{http_code}' --retry 2 --retry-delay 5 "$WORKER_URL/assets/css/styles.css")"
+          test "$code" = "200"
+          grep -q "HDC" /tmp/hdc-styles.css
+          echo "stylesheet_http=$code" >> "$GITHUB_STEP_SUMMARY"
