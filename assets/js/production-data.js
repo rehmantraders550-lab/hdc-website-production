@@ -73,23 +73,5 @@ window.HDC_PRODUCTION_METHODS = [
     material:"Self-adhesive vinyl films, banner media, backlit film, canvas, and textured architectural films engineered for indoor and outdoor exposure.",
     review:"Viewing distance, ambient lighting, surface curvature, surface preparation, installation environment, and expected display lifespan.",
     related:[["Large Format & Brand Environments","large-format-brand-environments.html"]]
-  },
-  {
-    key:"PROD-TEXTILE-05",
-    slug:"dtf-textile",
-    index:"05",
-    tier:"specialist",
-    family:"Specialist Production Route",
-    name:"DTF Textile Transfer",
-    short:"Secondary textile-transfer capability for appropriate garment applications.",
-    image:"assets/images/HDC-IMG-FLATBED-PATTERN-01.webp",
-    imageAlt:"Textile transfer process and pattern evidence",
-    machineGuide:"machine-dtf.html",
-    description:"Direct-to-Film transfer production for flexible textile substrates, providing opaque white underbases, saturated pigment inks, and heat-activated polymer adhesion across diverse garment fabrics.",
-    what:"Prints pigmented water-based inks and an opaque white backup layer onto PET film, coats the wet ink with hot-melt adhesive powder, and heat-cures it into a ready-to-transfer graphic.",
-    applications:"Customised corporate apparel, branded workwear, cotton and poly-blend garments, tote bags, caps, and flexible fabric merchandise.",
-    material:"Natural cottons, synthetic polyesters, blended weaves, canvas, and structured garment panels.",
-    review:"Fabric elasticity, weave density, heat sensitivity, wash-temperature requirements, and press dwell time. Exclusively positioned as a production process; not a standalone commercial service family.",
-    related:[["Applications — Events & Personalisation","applications.html#events-personalisation"]]
   }
 ];
