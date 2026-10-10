@@ -97,7 +97,7 @@ required_files = [
     MANIFEST,
 ]
 required_pages = [
-    "about.html", "applications.html", "contact.html", "faq.html",
+    "about.html", "applications.html", "industries.html", "contact.html", "faq.html",
     "finishing-embellishment.html", "glass-surface-decoration.html",
     "labels-decals.html", "large-format-brand-environments.html",
     "machine-large-format.html", "machine-offset.html", "machine-uv-dtf.html", "machine-uv-flatbed.html",
