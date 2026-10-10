@@ -1,12 +1,12 @@
 const families = ["All products", "Labels & Decals", "Products & Object Printing", "Packaging & Commercial Print", "Large Format & Brand Environments"];
 const surfaces = [
-  ["Glass", "Coating, curvature and handling shape the route.", "#0c8a9b", "/assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-GLASS-01.webp", "Macro view of a glass panel edge and reflective surface"],
-  ["Acrylic", "Thickness, edge quality and printable area matter.", "#96d9d8", "/assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-ACRYLIC-01.webp", "Clear acrylic sheet showing edge thickness and surface"],
-  ["Metal", "Surface preparation and coating need review.", "#a7b4b5", "/assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-COATED-METAL-01.webp", "Coated metal surface detail"],
-  ["Wood", "Grain, porosity and finish can change the result.", "#c58b57", "/assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-WOOD-BOARD-01.webp", "Wood board surface showing natural grain"],
-  ["Paper / Paperboard", "Stock, weight, folds and finishing work together.", "#bda88a", "/assets/images/HDC-S02_IMG_MATERIAL-SPECIMEN_v01.webp", "Material specimen showing paper and board samples"],
-  ["Plastics", "Polymer type and surface energy vary by object.", "#50a7ae", "/assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-RIGID-PLASTICS-01.webp", "Rigid plastic surface sample"],
-  ["Vinyl / Films", "Adhesive, substrate and exposure affect selection.", "#087b90", "/assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-PVC-01.webp", "PVC surface sample representing vinyl and film substrates"]
+  ["Glass", "Coating, curvature and handling shape the route.", "#0c8a9b", "/assets/images/illustrative-mockups/surface-glass.webp", "Generated illustrative macro mockup of a glass surface edge"],
+  ["Acrylic", "Thickness, edge quality and printable area matter.", "#96d9d8", "/assets/images/illustrative-mockups/surface-acrylic.webp", "Generated illustrative macro mockup of a clear acrylic edge"],
+  ["Metal", "Surface preparation and coating need review.", "#a7b4b5", "/assets/images/illustrative-mockups/surface-metal.webp", "Generated illustrative macro mockup of a brushed metal surface"],
+  ["Wood", "Grain, porosity and finish can change the result.", "#c58b57", "/assets/images/illustrative-mockups/surface-wood.webp", "Generated illustrative macro mockup of wood grain and board edge"],
+  ["Paper / Paperboard", "Stock, weight, folds and finishing work together.", "#bda88a", "/assets/images/illustrative-mockups/surface-paperboard.webp", "Generated illustrative macro mockup of paper and paperboard samples"],
+  ["Plastics", "Polymer type and surface energy vary by object.", "#50a7ae", "/assets/images/illustrative-mockups/surface-plastics.webp", "Generated illustrative macro mockup of a rigid plastic surface"],
+  ["Vinyl / Films", "Adhesive, substrate and exposure affect selection.", "#087b90", "/assets/images/illustrative-mockups/surface-vinyl-films.webp", "Generated illustrative macro mockup of a vinyl film surface"]
 ];
 const productImagery = {
   1:{file:"/assets/images/HDC-IMG-UVDTF-LABEL-DETAIL-01.webp",alt:"Illustrative UV DTF transfer detail for a decal application"},
