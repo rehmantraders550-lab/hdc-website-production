@@ -9,9 +9,9 @@ const surfaces = [
   ["Vinyl / Films", "Adhesive, substrate and exposure affect selection.", "#087b90", "/assets/images/illustrative-mockups/surface-vinyl-films.webp", "Generated illustrative macro mockup of a vinyl film surface"]
 ];
 const productImagery = {
-  1:{file:"/assets/images/HDC-IMG-UVDTF-LABEL-DETAIL-01.webp",alt:"Illustrative UV DTF transfer detail for a decal application"},
-  2:{file:"HDC-2026-labels.webp",alt:"Illustrative printed labels and decals arranged for review"},
-  3:{file:"/assets/images/editorial/HDC-IMG-EDITORIAL-LABELS-01.webp",alt:"Illustrative close-up of custom printed sticker labels"},
+  1:{file:"/assets/images/illustrative-mockups/product-uv-dtf-transfer-application.webp",alt:"Generated illustrative mockup of a UV DTF decal transfer being applied by hand"},
+  2:{file:"/assets/images/illustrative-mockups/product-labels-roll-and-sample.webp",alt:"Generated illustrative mockup of printed labels on a roll beside a sample label"},
+  3:{file:"/assets/images/illustrative-mockups/product-custom-sticker-sheet.webp",alt:"Generated illustrative mockup of a sheet of assorted custom cut stickers"},
   4:{file:"HDC-2026-glass.webp",alt:"Illustrative decorated glass bottle surface"},
   5:{file:"HDC-2026-packaging.webp",alt:"Illustrative folded paperboard packaging"},
   6:{file:"/assets/images/editorial/HDC-IMG-EDITORIAL-OBJECTS-01.webp",alt:"Illustrative printed product objects"},
