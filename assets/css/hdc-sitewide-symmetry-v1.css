@@ -319,3 +319,12 @@ body[data-page="production"] .prod-hero__inner { column-gap:clamp(2rem,4vw,4rem)
 
 .contact-grid article { min-width:0; }
 .contact-grid a { max-width:100%; overflow-wrap:anywhere; }
+
+
+/* Fixed WhatsApp contact shortcut */
+.whatsapp-float{position:fixed!important;right:clamp(1rem,3vw,2rem);bottom:calc(1.25rem + env(safe-area-inset-bottom,0px));z-index:80;display:grid;place-items:center;width:58px;height:58px;border:2px solid rgba(255,255,255,.92);border-radius:50%;background:#25d366;color:#fff;box-shadow:0 5px 20px rgba(5,20,23,.28);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.whatsapp-float svg{display:block;width:31px;height:31px}
+.whatsapp-float:hover{transform:translateY(-3px);background:#1fb85a;box-shadow:0 8px 24px rgba(5,20,23,.34)}
+.whatsapp-float:focus-visible{outline:3px solid #47c1c7;outline-offset:4px}
+@media(max-width:700px){.whatsapp-float{right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));width:54px;height:54px}.whatsapp-float svg{width:29px;height:29px}}
+@media(prefers-reduced-motion:reduce){.whatsapp-float{transition:none}}
