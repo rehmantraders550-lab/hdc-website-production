@@ -19,7 +19,7 @@ const productImagery = {
   8:{file:"HDC-2026-finish.webp",alt:"Illustrative foil and raised finish study"},
   9:{file:"/assets/images/HDC-IMG-UVDTF-HARD-SURFACE-01.webp",alt:"Illustrative UV DTF decoration on a hard surface"},
   10:{file:"HDC-2026-environments.webp",alt:"Illustrative installed printed panel in an architectural space"},
-  11:{file:"HDC-2026-colour.webp",alt:"Illustrative printed colour and paper detail"},
+  11:{file:"/assets/images/HDC-IMG-COLOUR-SURFACE-DETAIL-01.webp",alt:"Illustrative macro of printed colour on textured poster stock"},
   12:{file:"/assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-PVC-01.webp",alt:"Illustrative PVC surface detail for vinyl graphics"}
 };
 const productImageSrc = image => image.file.startsWith("/") ? image.file : `/previews/engineered-tactility-2026-10-07/assets/imagery/${image.file}`;
