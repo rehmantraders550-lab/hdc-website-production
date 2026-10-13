@@ -124,6 +124,8 @@
 
 /* Product register: image-led cards with one visible label and preserved detail access. */
 #products .product-card{
+  position:relative;
+  display:block;
   aspect-ratio:1.05 / 1;
   min-height:0;
   padding:0;
@@ -132,14 +134,12 @@
 }
 #products .product-card:before{display:none}
 #products .product-card .product-card-trigger{
-  position:relative;
+  position:absolute;
+  inset:0;
   z-index:1;
-  display:flex;
-  flex:1 1 auto;
-  flex-direction:column;
+  display:block;
   width:100%;
   height:100%;
-  min-height:0;
   margin:0;
   padding:0;
   border:0;
@@ -150,27 +150,26 @@
   cursor:pointer;
 }
 #products .product-card-image{
-  position:relative;
-  inset:auto;
+  position:absolute;
+  inset:0 0 auto;
   z-index:auto;
   display:block;
-  flex:0 0 80%;
   width:100%;
   height:80%;
-  min-height:0;
   object-fit:cover;
   object-position:center;
   opacity:1;
   transform:none;
 }
 #products .product-card-title{
+  position:absolute;
+  inset:auto 0 0;
   display:flex;
-  flex:1 1 20%;
   align-items:center;
   width:100%;
-  min-height:20%;
+  height:20%;
   margin:0;
-  padding:.65rem clamp(.85rem,2vw,1.2rem);
+  padding:.55rem clamp(.75rem,2vw,1.15rem);
   color:#172126;
   font:clamp(1.05rem,1.5vw,1.55rem)/1.05 var(--serif);
   letter-spacing:-.035em;
@@ -185,7 +184,7 @@
 @media(max-width:700px){
   #products .product-card{aspect-ratio:1.05 / 1}
   #products .product-card-title{
-    padding:.55rem .8rem;
+    padding:.5rem .75rem;
     font-size:1.05rem;
   }
 }
