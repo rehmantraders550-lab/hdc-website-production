@@ -15,12 +15,12 @@ const productImagery = {
   4:{file:"HDC-2026-glass.webp",alt:"Illustrative decorated glass bottle surface"},
   5:{file:"HDC-2026-packaging.webp",alt:"Illustrative folded paperboard packaging"},
   6:{file:"/previews/engineered-tactility-2026-10-07/assets/imagery/HDC-2026-objects.webp",alt:"Illustrative mockup of a branded reusable tumbler with a printed graphic"},
-  7:{file:"/previews/engineered-tactility-2026-10-07/assets/imagery/HDC-2026-colour.webp",alt:"Illustrative printed colour swatches on textured brochure paper"},
+  7:{file:"/assets/images/illustrative-mockups/product-brochures-catalogue.webp",alt:"Illustrative tri-fold brochure and printed brochure stack on a studio surface"},
   8:{file:"HDC-2026-finish.webp",alt:"Illustrative foil and raised finish study"},
-  9:{file:"/assets/images/HDC-IMG-UVDTF-HARD-SURFACE-01.webp",alt:"Illustrative UV DTF decoration on a hard surface"},
+  9:{file:"/assets/images/illustrative-mockups/product-printed-bottles-catalogue.webp",alt:"Illustrative clear, amber and reusable bottles with custom printed graphics"},
   10:{file:"HDC-2026-environments.webp",alt:"Illustrative installed printed panel in an architectural space"},
-  11:{file:"/assets/images/HDC-IMG-COLOUR-SURFACE-DETAIL-01.webp",alt:"Illustrative macro of printed colour on textured poster stock"},
-  12:{file:"/assets/images/surface-families/HDC-IMG-SURFACE-FAMILY-PVC-01.webp",alt:"Illustrative PVC surface detail for vinyl graphics"}
+  11:{file:"/assets/images/illustrative-mockups/product-posters-catalogue.webp",alt:"Illustrative large-format art posters displayed and rolled on a studio surface"},
+  12:{file:"/assets/images/illustrative-mockups/product-wall-vinyls-catalogue.webp",alt:"Illustrative UV printed wall vinyl installed as a feature wall in a bright interior"}
 };
 const productImageSrc = image => image.file.startsWith("/") ? image.file : `/previews/engineered-tactility-2026-10-07/assets/imagery/${image.file}`;
 const finishing = {
