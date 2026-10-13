@@ -121,3 +121,73 @@
   #products .product-card,
   #products .product-card-image{transition:none}
 }
+
+/* Product register: image-led cards with one visible label and preserved detail access. */
+#products .product-card{
+  position:relative;
+  display:block;
+  aspect-ratio:1.05 / 1;
+  min-height:0;
+  padding:0;
+  overflow:hidden;
+  background:#f7f5ef;
+}
+#products .product-card:before{display:none}
+#products .product-card .product-card-trigger{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  display:block;
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:inherit;
+  font:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+#products .product-card-image{
+  position:absolute;
+  inset:0 0 auto;
+  z-index:auto;
+  display:block;
+  width:100%;
+  height:80%;
+  object-fit:cover;
+  object-position:center;
+  opacity:1;
+  transform:none;
+}
+#products .product-card-title{
+  position:absolute;
+  inset:auto 0 0;
+  display:flex;
+  align-items:center;
+  width:100%;
+  height:20%;
+  margin:0;
+  padding:.55rem clamp(.75rem,2vw,1.15rem);
+  color:#172126;
+  font:clamp(1.05rem,1.5vw,1.55rem)/1.05 var(--serif);
+  letter-spacing:-.035em;
+}
+#products .product-card .product-card-trigger:hover .product-card-title{color:#036f86}
+#products .product-card .product-card-trigger:focus-visible{
+  outline:3px solid #036f86;
+  outline-offset:-4px;
+}
+#products .product-card:hover{background:#f7f5ef}
+#products .product-card:hover .product-card-image{transform:none}
+@media(max-width:700px){
+  #products .product-card{aspect-ratio:1.05 / 1}
+  #products .product-card-title{
+    padding:.5rem .75rem;
+    font-size:1.05rem;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  #products .product-card-image{transition:none}
+}
