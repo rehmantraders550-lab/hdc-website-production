@@ -200,3 +200,8 @@
 .whatsapp-float:focus-visible{outline:3px solid #47c1c7;outline-offset:4px}
 @media(max-width:700px){.whatsapp-float{right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));width:54px;height:54px}.whatsapp-float svg{width:29px;height:29px}}
 @media(prefers-reduced-motion:reduce){.whatsapp-float{transition:none}}
+
+/* Official HDC homepage brand mark */
+.site-header .brand-logo{display:block;width:66px;height:66px;flex:0 0 66px;object-fit:contain}
+@media(max-width:1050px){.site-header .brand-logo{width:60px;height:60px;flex-basis:60px}}
+@media(max-width:700px){.site-header .brand-logo{width:54px;height:54px;flex-basis:54px}}
