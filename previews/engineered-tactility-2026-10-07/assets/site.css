@@ -201,10 +201,32 @@
 @media(max-width:700px){.whatsapp-float{right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));width:54px;height:54px}.whatsapp-float svg{width:29px;height:29px}}
 @media(prefers-reduced-motion:reduce){.whatsapp-float{transition:none}}
 
-/* Official HDC homepage brand mark — enlarged while preserving responsive navigation */
-.site-header{height:144px}
-.site-header .brand{min-width:275px;gap:.65rem}
-.site-header .brand-logo{display:block;width:132px;height:132px;flex:0 0 132px;object-fit:contain}
-.site-header .brand-sub{font-size:.62rem}
-@media(max-width:1050px){html{scroll-padding-top:160px}.site-header{height:132px;gap:1.1rem}.site-header .brand{width:120px;min-width:120px}.site-header .brand-logo{width:120px;height:120px;flex-basis:120px}.site-header .brand-sub{display:none}.main-nav{gap:.9rem}}
-@media(max-width:700px){html{scroll-padding-top:128px}.site-header{height:120px;padding:0 1.1rem;justify-content:space-between}.site-header .brand{width:108px;min-width:108px}.site-header .brand-logo{width:108px;height:108px;flex-basis:108px}.main-nav{top:120px}}
+/* HDC website lockup: approved monogram with the site's editorial typography */
+html{scroll-padding-top:136px}
+.site-header{height:120px}
+.site-header .brand{min-width:250px;gap:.9rem;flex-shrink:0}
+.site-header .brand-logo{display:block;width:132px;height:100px;flex:0 0 132px;object-fit:contain}
+.site-header .brand-wordmark{display:flex;flex-direction:column;gap:.4rem}
+.site-header .brand-name{font:1.7rem/.95 var(--serif);letter-spacing:-.035em;color:var(--paper)}
+.site-header .brand-descriptor{font:.55rem/1.2 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.site-header .brand:focus-visible{outline:2px solid var(--teal-bright);outline-offset:5px}
+@media(max-width:1050px){
+  html{scroll-padding-top:128px}
+  .site-header{height:112px;gap:1.1rem}
+  .site-header .brand{width:120px;min-width:120px}
+  .site-header .brand-logo{width:120px;height:90px;flex-basis:120px}
+  .site-header .brand-wordmark{display:none}
+  .site-header .main-nav{gap:.9rem}
+}
+@media(max-width:900px){
+  html{scroll-padding-top:120px}
+  .site-header{height:104px;padding:0 1.1rem;gap:.6rem;justify-content:space-between}
+  .site-header .brand{width:104px;min-width:104px}
+  .site-header .brand-logo{width:104px;height:80px;flex-basis:104px}
+  .site-header .menu-toggle{display:flex;flex-direction:column;justify-content:center;gap:5px;order:3;min-width:44px;min-height:44px;padding:.7rem;border:0;background:none;flex-shrink:0}
+  .site-header .menu-toggle span{width:22px;height:1px;background:#fff}
+  .site-header .main-nav{display:none;position:absolute;left:0;right:0;top:104px;padding:1rem 1.2rem 1.3rem;background:var(--ink);border-top:1px solid #ffffff1c;flex-direction:column;align-items:stretch;gap:0}
+  .site-header .main-nav.is-open{display:flex}
+  .site-header .main-nav a{padding:.8rem 0;border-bottom:1px solid #ffffff16}
+  .site-header .header-quote{margin-left:auto;gap:.6rem;min-height:44px;padding:.6rem;font-size:.5rem;letter-spacing:.04em;white-space:nowrap;flex-shrink:0}
+}
