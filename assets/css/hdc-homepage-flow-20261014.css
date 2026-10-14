@@ -1,0 +1,19 @@
+/* ORVIA / HDC homepage flow refinement / 2026-10-14.
+   Loaded only by the canonical homepage. Size the three-line headline against
+   the available copy column so the longest word clears the studio photograph. */
+#home.hero .hero-copy {
+  min-inline-size: 0;
+  container-type: inline-size;
+}
+
+#home.hero h1 {
+  max-inline-size: 100%;
+  font-size: clamp(2rem, 5vw, 6.5rem);
+  line-height: .94;
+}
+
+@supports (font-size: 1cqi) {
+  #home.hero h1 {
+    font-size: clamp(2rem, 16cqi, 6.5rem);
+  }
+}
