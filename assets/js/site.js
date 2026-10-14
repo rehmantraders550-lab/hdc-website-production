@@ -37,14 +37,14 @@
   if (header) header.innerHTML = `
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="site-header">
-      <a class="site-header__brand" href="index.html" aria-label="Hadi Digital Craft home"><span class="brand-mark">HADI</span><span class="brand-sub">DIGITAL CRAFT</span></a>
+      <a class="site-header__brand hdc-brand" href="index.html" aria-label="Hadi Digital Craft home"><img class="hdc-brand__symbol" src="/assets/images/brand/hdc-monogram-matte-20261014.webp" alt="" width="760" height="604"><span class="hdc-brand__type" aria-hidden="true"><span class="hdc-brand__name">Hadi</span><span class="hdc-brand__descriptor">Digital Craft</span></span></a>
       <button class="menu-button" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Primary navigation">${nav}<a class="nav-cta" href="request-a-quote.html">Request a quote</a></nav>
     </div>`;
   if (footer) footer.innerHTML = `
     <footer class="site-footer">
       <div class="footer__top">
-        <div><div class="footer__statement">PRINT, ENGINEERED TO BE FELT.</div></div>
+        <div><a class="hdc-brand hdc-brand--footer" href="index.html" aria-label="Hadi Digital Craft home"><img class="hdc-brand__symbol" src="/assets/images/brand/hdc-monogram-matte-20261014.webp" alt="" width="760" height="604"><span class="hdc-brand__type" aria-hidden="true"><span class="hdc-brand__name">Hadi</span><span class="hdc-brand__descriptor">Digital Craft</span></span></a><div class="footer__statement">PRINT, ENGINEERED TO BE FELT.</div></div>
         <div class="footer__block"><b>Explore</b><a href="services.html">Services</a><a href="production.html">Production</a><a href="applications.html">Applications</a><a href="surface-lab.html">Surface Lab</a><a href="about.html">About HDC</a><a href="faq.html">FAQ</a></div>
         <div class="footer__block"><b>Begin a project</b><a href="tel:+923177267318">0317 7267318</a><a href="mailto:REHMANTRADERS550@GMAIL.COM">REHMANTRADERS550@GMAIL.COM</a><a href="contact.html">Opp. Nayyer Mall, G.T. Road, Gujrat</a></div>
       </div>
