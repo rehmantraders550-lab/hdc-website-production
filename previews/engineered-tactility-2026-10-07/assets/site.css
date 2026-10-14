@@ -201,7 +201,10 @@
 @media(max-width:700px){.whatsapp-float{right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));width:54px;height:54px}.whatsapp-float svg{width:29px;height:29px}}
 @media(prefers-reduced-motion:reduce){.whatsapp-float{transition:none}}
 
-/* Official HDC homepage brand mark */
-.site-header .brand-logo{display:block;width:66px;height:66px;flex:0 0 66px;object-fit:contain}
-@media(max-width:1050px){.site-header .brand-logo{width:60px;height:60px;flex-basis:60px}}
-@media(max-width:700px){.site-header .brand-logo{width:54px;height:54px;flex-basis:54px}}
+/* Official HDC homepage brand mark — enlarged while preserving responsive navigation */
+.site-header{height:144px}
+.site-header .brand{min-width:275px;gap:.65rem}
+.site-header .brand-logo{display:block;width:132px;height:132px;flex:0 0 132px;object-fit:contain}
+.site-header .brand-sub{font-size:.62rem}
+@media(max-width:1050px){html{scroll-padding-top:160px}.site-header{height:132px;gap:1.1rem}.site-header .brand{width:120px;min-width:120px}.site-header .brand-logo{width:120px;height:120px;flex-basis:120px}.site-header .brand-sub{display:none}.main-nav{gap:.9rem}}
+@media(max-width:700px){html{scroll-padding-top:128px}.site-header{height:120px;padding:0 1.1rem;justify-content:space-between}.site-header .brand{width:108px;min-width:108px}.site-header .brand-logo{width:108px;height:108px;flex-basis:108px}.main-nav{top:120px}}
