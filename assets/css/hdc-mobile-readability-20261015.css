@@ -1,0 +1,336 @@
+/* ORVIA / HDC public mobile readability / 2026-10-15
+   One opt-in layer for the canonical homepage and current interior pages.
+   Historical previews retain their original layout and typography. */
+body[data-hdc-mobile-ui] {
+  --hdc-ui-label: .8125rem;
+  --hdc-ui-action: .9375rem;
+  --hdc-ui-target: 3rem;
+  --hdc-ui-arrow: 1.5rem;
+}
+
+/* Arrows need a visible glyph as well as a comfortable clickable area. */
+body[data-hdc-mobile-ui] :is(.button, .nav-cta, .text-link, .sl-text-link) {
+  min-height: var(--hdc-ui-target);
+  align-items: center;
+}
+body[data-hdc-mobile-ui] :is(.button, .nav-cta) {
+  font-size: .8125rem;
+  line-height: 1.4;
+}
+body[data-hdc-mobile-ui] :is(.text-link, .sl-text-link) {
+  display: inline-flex;
+  gap: .65rem;
+  font-size: .8125rem;
+  line-height: 1.5;
+}
+body[data-hdc-mobile-ui] :is(.button, .text-link) > span[aria-hidden="true"],
+body[data-hdc-mobile-ui] :is(.hero-actions, .surface-callout, .closing-cta, .dialog-actions) > :is(a, button) > span,
+body[data-hdc-mobile-ui] .text-link::after,
+body[data-hdc-mobile-ui] :is(.service-arrow, .register-arrow, .sl-material-card__arrow) {
+  flex-shrink: 0;
+  font-size: var(--hdc-ui-arrow);
+  line-height: 1;
+}
+body[data-hdc-mobile-ui] .dialog-close {
+  display: grid;
+  place-items: center;
+  width: var(--hdc-ui-target);
+  height: var(--hdc-ui-target);
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  line-height: 1;
+  z-index: 2;
+}
+body[data-hdc-mobile-ui] .brief-dialog > .dialog-close {
+  top: .5rem;
+  right: .5rem;
+}
+body[data-hdc-mobile-ui] :is(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid #036f86;
+  outline-offset: 4px;
+}
+body[data-hdc-mobile-ui] :is(.site-header, .site-footer, .section-dark) :is(a, button):focus-visible {
+  outline-color: #47c1c7;
+}
+
+@media (max-width: 1050px) {
+  body[data-hdc-mobile-ui] [data-site-header] .site-nav a {
+    min-height: var(--hdc-ui-target);
+    font-size: 1rem;
+    letter-spacing: .04em;
+  }
+}
+
+@media (max-width: 900px) {
+  body[data-hdc-mobile-ui] {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    --type-body: 1rem;
+    --type-label: var(--hdc-ui-label);
+  }
+
+  /* Let grid/flex children shrink to the available width. The finishing tab
+     row previously imposed its intrinsic width on the whole homepage. */
+  body[data-hdc-mobile-ui] :is(main, section, article, .shell, .heading-split, .catalogue-top, .catalogue-controls, .finish-stage, .finish-info, .finish-tabs, .finish-detail, .product-grid, .surface-grid, .surface-callout, .brief-fields, .dialog-actions) {
+    min-width: 0;
+  }
+  body[data-hdc-mobile-ui] :is(.catalogue-top, .heading-split, .finish-stage) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body[data-hdc-mobile-ui] :is(.catalogue-controls, .finish-stage, .finish-tabs, .filter-list, .brief-dialog, .surface-callout .button) {
+    max-width: 100%;
+  }
+  body[data-hdc-mobile-ui] :is(.finish-tabs, .filter-list) {
+    flex-wrap: wrap;
+    overflow: visible;
+    gap: .5rem;
+  }
+  body[data-hdc-mobile-ui] .catalogue-controls {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  body[data-hdc-mobile-ui] :is(.filter-chip, .finish-tabs button) {
+    max-width: 100%;
+    min-height: var(--hdc-ui-target);
+    padding: .75rem .85rem;
+    white-space: normal;
+    text-align: left;
+    font-size: var(--hdc-ui-label);
+    line-height: 1.4;
+    letter-spacing: .035em;
+  }
+
+  /* Body copy, notes and form content stay readable without enlarging the
+     editorial display headings or changing the approved font families. */
+  body[data-hdc-mobile-ui] :is(main, dialog) p:not(.eyebrow):not(.lede):not(.hero-deck):not([class*="__lede"]),
+  body[data-hdc-mobile-ui] :is(.body, .product-detail-copy, .product-spec-grid ul, .finish-detail ul, .brief-result p, .fe-review-path p),
+  body[data-hdc-mobile-ui] .product-spec-grid p:not(.eyebrow) {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  body[data-hdc-mobile-ui] :is(.facts span, .enquiry-checklist, .sl-decision-readout, .sl-record-facts li, .sl-record-notes ul, .fe-gallery__label em, .fe-ledger__content dd, .fe-table-wrap tbody td) {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  body[data-hdc-mobile-ui] :is(.facts b, .service-route b, .sl-tool-status, .sl-record-kicker, .sl-record-facts b, .fe-availability, .fe-gallery__number, .fe-ledger__content dt, .fe-layer-disclaimer, .fe-enquiry__note) {
+    font-size: var(--hdc-ui-label);
+    line-height: 1.5;
+    letter-spacing: .04em;
+  }
+  body[data-hdc-mobile-ui] :is(.hero-deck, .lede, .section-intro) {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  body[data-hdc-mobile-ui] :is(.eyebrow, .section-index, .result-count, .brief-fields label, .field label, .sl-hero__copy .eyebrow, .sl-record-notes summary, .prod-specialist__label, .prod-record__facts b, .prod-record__meta small, .fe-layer-tabs button b, .fe-layer-tabs button span, .fe-gallery__label small, .fe-ledger summary > span) {
+    font-size: var(--hdc-ui-label);
+    line-height: 1.5;
+    letter-spacing: .06em;
+    overflow-wrap: anywhere;
+  }
+  body[data-hdc-mobile-ui] :is(.hero-meta, .hero-index, .methods-line, .service-visual > span, .surface-card small, .finish-coordinate, .finish-specimen > span, .finish-specimen > small, .artwork-register span, .process-foot, .about-side > span, .footer-note, .footer-powered, .footer__bottom, .footer__block > b, .sl-hero__caption, .sl-material-card__copy > span, .sl-decision-rail button small, .prod-routing__rail button > span, .prod-record__meta small, .fe-hero__media figcaption, .fe-gallery__visual figcaption, .fe-table-wrap thead th) {
+    font-size: .75rem;
+    line-height: 1.5;
+    letter-spacing: .04em;
+    overflow-wrap: anywhere;
+  }
+  body[data-hdc-mobile-ui] :is(.hero-meta, .process-foot, .methods-line) {
+    flex-wrap: wrap;
+    gap: .65rem 1rem;
+  }
+
+  body[data-hdc-mobile-ui] :is(.button, .nav-cta, .text-link, .sl-text-link, .menu-button),
+  body[data-hdc-mobile-ui] .sl-record-actions .button,
+  body[data-hdc-mobile-ui] .prod-record__actions .text-link {
+    max-width: 100%;
+    min-height: var(--hdc-ui-target);
+    font-size: var(--hdc-ui-action);
+    line-height: 1.4;
+    letter-spacing: .035em;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  body[data-hdc-mobile-ui] :is(.sl-record-actions .sl-text-action, .contact-stack a) {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--hdc-ui-target);
+    max-width: 100%;
+    font-size: var(--hdc-ui-action);
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+  body[data-hdc-mobile-ui] :is(.service-copy a, .catalogue-note a) {
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    min-height: var(--hdc-ui-target);
+    max-width: 100%;
+    font-size: var(--hdc-ui-action);
+    line-height: 1.4;
+    white-space: normal;
+    letter-spacing: .035em;
+  }
+  body[data-hdc-mobile-ui] :is(.service-copy a, .catalogue-note a) > span {
+    font-size: var(--hdc-ui-arrow);
+    padding-left: 0;
+  }
+  body[data-hdc-mobile-ui] :is(.service-trigger, .sl-compare-chip button, .sl-compare-add, .sl-record-notes summary) {
+    min-height: var(--hdc-ui-target);
+  }
+  body[data-hdc-mobile-ui] :is(.service-arrow, .sl-material-card__arrow, .prod-specialist button b, .faq-list summary::after) {
+    font-size: var(--hdc-ui-arrow);
+  }
+  body[data-hdc-mobile-ui] .sl-compare-chip button {
+    min-width: var(--hdc-ui-target);
+    font-size: var(--hdc-ui-arrow);
+  }
+  body[data-hdc-mobile-ui] :is(.sl-record-thumb, .hdc-enquiry-router__choice) {
+    min-height: var(--hdc-ui-target);
+    min-width: var(--hdc-ui-target);
+  }
+  body[data-hdc-mobile-ui] .hdc-enquiry-router__choice {
+    padding: .65rem .85rem;
+    font-size: var(--hdc-ui-action);
+    line-height: 1.4;
+  }
+  body[data-hdc-mobile-ui] .hdc-enquiry-router__label {
+    font-size: var(--hdc-ui-label);
+  }
+  body[data-hdc-mobile-ui] :is(.search-field input, .sl-search-field input, .brief-fields input, .brief-fields textarea, .field input, .field textarea, .field select) {
+    min-width: 0;
+    max-width: 100%;
+    min-height: var(--hdc-ui-target);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  body[data-hdc-mobile-ui] :is(.search-field, .sl-search-field) {
+    height: auto;
+    min-height: 3.25rem;
+  }
+  body[data-hdc-mobile-ui] :is(.footer-links a, .footer-contact a, .footer__block a) {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--hdc-ui-target);
+    max-width: 100%;
+    font-size: .875rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+  body[data-hdc-mobile-ui] :is(.site-footer, .footer__top, .footer__block, .footer-links, .footer-contact) {
+    min-width: 0;
+  }
+  body[data-hdc-mobile-ui] .footer-contact > span {
+    font-size: .875rem;
+  }
+
+  /* Fit the existing logo, quote action and menu into the phone viewport. */
+  body[data-hdc-mobile-ui] > .site-header {
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr) 48px;
+    gap: .5rem;
+  }
+  body[data-hdc-mobile-ui] > .site-header .brand {
+    grid-column: 1;
+  }
+  body[data-hdc-mobile-ui] > .site-header .header-quote {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    min-height: var(--hdc-ui-target);
+    margin-left: 0;
+    padding: .55rem .5rem;
+    gap: .4rem;
+    font-size: .8125rem;
+    white-space: normal;
+  }
+  body[data-hdc-mobile-ui] > .site-header .menu-toggle {
+    grid-column: 3;
+    grid-row: 1;
+    width: var(--hdc-ui-target);
+    min-height: var(--hdc-ui-target);
+  }
+  body[data-hdc-mobile-ui] > .site-header .menu-toggle span {
+    height: 2px;
+  }
+  body[data-hdc-mobile-ui] > .site-header .main-nav {
+    top: 100%;
+    max-height: calc(100dvh - 104px);
+    overflow-y: auto;
+  }
+  body[data-hdc-mobile-ui] > .site-header .main-nav a {
+    display: flex;
+    align-items: center;
+    min-height: var(--hdc-ui-target);
+    font-size: 1rem;
+  }
+
+  body[data-hdc-mobile-ui] .finish-specimen {
+    max-width: 80%;
+  }
+  body[data-hdc-mobile-ui] :is(.brief-dialog h2, #brief-kicker, #product-kicker) {
+    padding-right: 3rem;
+  }
+}
+
+@media (max-width: 700px) {
+  body[data-hdc-mobile-ui] .prod-record {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body[data-hdc-mobile-ui] :is(.prod-record__aside, .prod-record__context, .prod-record__actions) {
+    min-width: 0;
+  }
+  body[data-hdc-mobile-ui] .prod-record__actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body[data-hdc-mobile-ui] .prod-record__actions a {
+    width: fit-content;
+  }
+  body[data-hdc-mobile-ui] .process-list li {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: .35rem 1rem;
+    padding: 1.25rem 1rem;
+  }
+  body[data-hdc-mobile-ui] .process-list li > span {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  body[data-hdc-mobile-ui] .process-list .process-icon {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+  }
+  body[data-hdc-mobile-ui] .process-list :is(h3, p) {
+    grid-column: 2;
+  }
+  body[data-hdc-mobile-ui] .process-list h3 { grid-row: 1; }
+  body[data-hdc-mobile-ui] .process-list p { grid-row: 2; }
+  body[data-hdc-mobile-ui] #products .product-card-title {
+    font-size: clamp(1.125rem, 4.8vw, 1.5rem);
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 480px) {
+  body[data-hdc-mobile-ui] .surface-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+  body[data-hdc-mobile-ui] .surface-card {
+    min-height: 260px;
+    padding: 1.2rem;
+  }
+  body[data-hdc-mobile-ui] .surface-card h3 {
+    font-size: 2rem;
+  }
+  body[data-hdc-mobile-ui] .site-footer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body[data-hdc-mobile-ui] .footer-powered {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
