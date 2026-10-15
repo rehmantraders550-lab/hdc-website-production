@@ -113,6 +113,15 @@ body[data-hdc-mobile-ui] :is(.site-header, .site-footer, .section-dark) :is(a, b
     font-size: 1rem;
     line-height: 1.65;
   }
+  body[data-hdc-mobile-ui] :is(.facts span, .enquiry-checklist, .sl-decision-readout, .sl-record-facts li, .sl-record-notes ul, .fe-gallery__label em, .fe-ledger__content dd, .fe-table-wrap tbody td) {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  body[data-hdc-mobile-ui] :is(.facts b, .service-route b, .sl-tool-status, .sl-record-kicker, .sl-record-facts b, .fe-availability, .fe-gallery__number, .fe-ledger__content dt, .fe-layer-disclaimer, .fe-enquiry__note) {
+    font-size: var(--hdc-ui-label);
+    line-height: 1.5;
+    letter-spacing: .04em;
+  }
   body[data-hdc-mobile-ui] :is(.hero-deck, .lede, .section-intro) {
     font-size: 1.0625rem;
     line-height: 1.6;
@@ -143,6 +152,15 @@ body[data-hdc-mobile-ui] :is(.site-header, .site-footer, .section-dark) :is(a, b
     line-height: 1.4;
     letter-spacing: .035em;
     white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  body[data-hdc-mobile-ui] :is(.sl-record-actions .sl-text-action, .contact-stack a) {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--hdc-ui-target);
+    max-width: 100%;
+    font-size: var(--hdc-ui-action);
+    line-height: 1.5;
     overflow-wrap: anywhere;
   }
   body[data-hdc-mobile-ui] :is(.service-copy a, .catalogue-note a) {
