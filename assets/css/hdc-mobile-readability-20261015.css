@@ -170,6 +170,18 @@ body[data-hdc-mobile-ui] :is(.site-header, .site-footer, .section-dark) :is(a, b
     min-width: var(--hdc-ui-target);
     font-size: var(--hdc-ui-arrow);
   }
+  body[data-hdc-mobile-ui] :is(.sl-record-thumb, .hdc-enquiry-router__choice) {
+    min-height: var(--hdc-ui-target);
+    min-width: var(--hdc-ui-target);
+  }
+  body[data-hdc-mobile-ui] .hdc-enquiry-router__choice {
+    padding: .65rem .85rem;
+    font-size: var(--hdc-ui-action);
+    line-height: 1.4;
+  }
+  body[data-hdc-mobile-ui] .hdc-enquiry-router__label {
+    font-size: var(--hdc-ui-label);
+  }
   body[data-hdc-mobile-ui] :is(.search-field input, .sl-search-field input, .brief-fields input, .brief-fields textarea, .field input, .field textarea, .field select) {
     min-width: 0;
     max-width: 100%;
@@ -247,6 +259,18 @@ body[data-hdc-mobile-ui] :is(.site-header, .site-footer, .section-dark) :is(a, b
 }
 
 @media (max-width: 700px) {
+  body[data-hdc-mobile-ui] .prod-record {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body[data-hdc-mobile-ui] :is(.prod-record__aside, .prod-record__context, .prod-record__actions) {
+    min-width: 0;
+  }
+  body[data-hdc-mobile-ui] .prod-record__actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body[data-hdc-mobile-ui] .prod-record__actions a {
+    width: fit-content;
+  }
   body[data-hdc-mobile-ui] .process-list li {
     grid-template-columns: 2.5rem minmax(0, 1fr);
     gap: .35rem 1rem;
