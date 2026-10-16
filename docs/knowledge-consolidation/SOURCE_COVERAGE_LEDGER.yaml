@@ -1,0 +1,110 @@
+version: 1
+baseline:
+  production_sha: 0bd720206f88b5d95e6346b8b504ff9c316e7336
+  tree_sha: d2bd24d9e61a807709607969183cb87fb500496a
+coverage_policy:
+  rule: Every discovered source receives an explicit status; absence is not treated as irrelevance.
+  statuses:
+    - EXTRACTED
+    - INDEXED_BINARY
+    - PRESERVED_ONLY
+    - SUPERSEDED_BUT_RETAINED
+    - INTENTIONALLY_NON_KNOWLEDGE
+    - UNRESOLVED
+
+repository_snapshot:
+  status: EXTRACTED
+  source: SRC-REPO-0001
+  integrity_basis: Git commit + recursive tree + per-file blob SHA
+  note: Git history remains the lossless source for exact bytes.
+  groups:
+    - path: index.html
+      status: EXTRACTED
+      role: canonical homepage implementation
+    - path: "*.html"
+      status: EXTRACTED
+      role: production routes and page content
+    - path: assets/css/
+      status: EXTRACTED
+      role: visual/layout/responsive implementation
+    - path: assets/js/
+      status: EXTRACTED
+      role: interaction/state implementation
+    - path: assets/images/
+      status: INDEXED_BINARY
+      role: visual evidence and production derivatives
+      note: Binary pixels are preserved by Git blob; prose does not replace them.
+    - path: assets/videos/
+      status: INDEXED_BINARY
+      role: video evidence and approved media
+    - path: assets/asset-manifest.json
+      status: EXTRACTED
+      role: media lifecycle/integrity metadata
+    - path: .github/workflows/hdc-integration.yml
+      status: EXTRACTED
+      role: validation/deployment workflow
+    - path: scripts/validate_site.py
+      status: EXTRACTED
+      role: static validation logic
+    - path: docs/
+      status: EXTRACTED
+      role: project policy, historical records, briefs, manifests
+    - path: docs/external/
+      status: PRESERVED_ONLY
+      role: external/reference material
+      note: Does not override HDC production authority.
+
+library_records:
+  - source: SRC-LIB-0001
+    status: EXTRACTED
+    coverage: workflow, symmetry, interaction architecture, branch history, failure analysis
+  - source: SRC-LIB-0002
+    status: EXTRACTED
+    coverage: Hostinger routing incident, deployment gates, production safeguards
+  - source: SRC-LIB-0003
+    status: EXTRACTED
+    coverage: visual benchmark and realism doctrine
+  - source: SRC-LIB-0004
+    status: EXTRACTED
+    coverage: visual prompting sequence and physical-behavior rules
+  - source: SRC-LIB-0005
+    status: EXTRACTED
+    coverage: execution failure rules
+  - source: SRC-LIB-0006
+    status: EXTRACTED
+    coverage: Surface Lab public/conditional/internal/blocked projection audit
+  - source: SRC-LIB-0007
+    status: EXTRACTED
+    coverage: Surface Lab governance, status vocabulary, IA continuation context
+  - source: SRC-LIB-0008
+    status: SUPERSEDED_BUT_RETAINED
+    coverage: September 16 architecture and service transition history
+  - source: SRC-LIB-0009
+    status: SUPERSEDED_BUT_RETAINED
+    coverage: early validated construction rules and historical service model
+  - source: SRC-LIB-0010
+    status: EXTRACTED
+    coverage: recorded decisions and unresolved items
+
+known_duplicate_evidence:
+  - HDC_NEXT_PHASE_HANDOFF_2026-09-16.md
+  - HDC_NEXT_PHASE_HANDOFF_2026-09-16(1).md
+  - HDC_Validated_Website_Construction_Handoff_v1.md
+  - HDC_Validated_Website_Construction_Handoff_v1(1).md
+  handling: Preserve both originals if present; normalize to one semantic evidence set.
+
+coverage_limits:
+  - Historical ChatGPT conversation text has not been exhaustively exported line-by-line into this repository.
+  - Any later-discovered HDC file or chat record must enter SOURCE_REGISTRY and this ledger before canonical promotion.
+  - Visual meaning contained only inside an image is not considered fully captured by filename or alt text; original binary remains authoritative.
+  - Current live-domain state may change after this baseline and requires revalidation against the then-current main SHA.
+
+audit_gates:
+  source_registry_present: true
+  baseline_sha_recorded: true
+  tree_sha_recorded: true
+  authority_model_present: true
+  historical_supersession_preserved: true
+  binary_preservation_rule_present: true
+  contradiction_rule_present: true
+  silent_skip_allowed: false
