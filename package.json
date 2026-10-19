@@ -3,10 +3,19 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "tokens:build": "node scripts/build-design-tokens.mjs",
+    "tokens:check": "node scripts/build-design-tokens.mjs --check",
+    "build": "npm run tokens:build",
     "deploy": "wrangler deploy",
-    "preview": "wrangler preview"
+    "preview": "wrangler preview",
+    "test:ui": "playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "style-dictionary": "5.7.0",
     "wrangler": "4.148.0"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

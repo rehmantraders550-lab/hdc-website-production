@@ -16,3 +16,11 @@
 
 **/README-DEPLOY.txt
 **/assets/hdc-hero-reference.png
+
+**/design/**
+**/tests/**
+**/test-results/**
+**/playwright-report/**
+**/playwright.config.*
+**/.wrangler/**
+**/.node-version
