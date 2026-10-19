@@ -35,3 +35,7 @@ npm-debug.log*
 # Large raw media should stay outside GitHub
 raw-assets/
 source-assets/
+
+# Design-system verification output
+playwright-report/
+test-results/

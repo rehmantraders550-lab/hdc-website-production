@@ -6,5 +6,12 @@
   "previews": {},
   "assets": {
     "directory": "."
+  },
+  "build": {
+    "command": "npm run tokens:build",
+    "watch_dir": [
+      "design",
+      "scripts/build-design-tokens.mjs"
+    ]
   }
 }

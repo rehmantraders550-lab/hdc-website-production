@@ -59,7 +59,7 @@ def check_ref(source: Path, raw: str):
         errors.append(f"{source.relative_to(ROOT)} -> missing local reference: {raw}")
 
 for path in sorted(DEPLOY_ROOT.rglob("*")):
-    if ".git" in path.parts or not path.is_file():
+    if any(part in path.parts for part in (".git", "node_modules", ".wrangler", "test-results", "playwright-report")) or not path.is_file():
         continue
     rel = path.relative_to(ROOT)
     if path.suffix.lower() in TEXT_EXTS:

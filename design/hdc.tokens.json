@@ -1,0 +1,192 @@
+{
+  "color": {
+    "graphite": {
+      "value": "#0B1013",
+      "type": "color"
+    },
+    "charcoal": {
+      "value": "#171D21",
+      "type": "color"
+    },
+    "teal": {
+      "value": "#036F86",
+      "type": "color"
+    },
+    "cyan": {
+      "value": "#47C1C7",
+      "type": "color"
+    },
+    "copper": {
+      "value": "#7D4E2C",
+      "type": "color"
+    },
+    "copper-light": {
+      "value": "#D89A63",
+      "type": "color"
+    },
+    "paper": {
+      "value": "#F0EFED",
+      "type": "color"
+    },
+    "white": {
+      "value": "#FFFFFF",
+      "type": "color"
+    },
+    "silver": {
+      "value": "#A9B3B7",
+      "type": "color"
+    }
+  },
+  "font": {
+    "display": {
+      "value": [
+        "HDC Display",
+        "Georgia",
+        "Times New Roman",
+        "serif"
+      ],
+      "type": "fontFamily"
+    },
+    "body": {
+      "value": [
+        "HDC Sans",
+        "Helvetica Neue",
+        "Arial",
+        "sans-serif"
+      ],
+      "type": "fontFamily"
+    }
+  },
+  "type": {
+    "display": {
+      "value": "clamp(3rem, 2rem + 4.8vw, 7rem)",
+      "type": "string"
+    },
+    "section": {
+      "value": "clamp(2.375rem, 1.65rem + 3vw, 5rem)",
+      "type": "string"
+    },
+    "title": {
+      "value": "clamp(1.5rem, 1.15rem + 1.2vw, 2.25rem)",
+      "type": "string"
+    },
+    "lead": {
+      "value": "clamp(1.125rem, 1rem + 0.45vw, 1.375rem)",
+      "type": "string"
+    },
+    "body": {
+      "value": "clamp(1rem, 0.96rem + 0.18vw, 1.125rem)",
+      "type": "string"
+    },
+    "card": {
+      "value": "clamp(1.125rem, 1rem + 0.55vw, 1.5rem)",
+      "type": "string"
+    },
+    "dialog": {
+      "value": "clamp(2rem, 1.5rem + 2vw, 3rem)",
+      "type": "string"
+    },
+    "caption": {
+      "value": "0.8125rem",
+      "type": "string"
+    },
+    "label": {
+      "value": "0.875rem",
+      "type": "string"
+    },
+    "action": {
+      "value": "0.9375rem",
+      "type": "string"
+    },
+    "navigation": {
+      "value": "0.875rem",
+      "type": "string"
+    }
+  },
+  "leading": {
+    "body": {
+      "value": "1.65",
+      "type": "string"
+    },
+    "heading": {
+      "value": "1.04",
+      "type": "string"
+    }
+  },
+  "tracking": {
+    "heading": {
+      "value": "-0.035em",
+      "type": "string"
+    }
+  },
+  "space": {
+    "page": {
+      "value": "clamp(1rem, 3.3vw, 3rem)",
+      "type": "string"
+    },
+    "section": {
+      "value": "clamp(3.5rem, 7vw, 7rem)",
+      "type": "string"
+    },
+    "section-compact": {
+      "value": "clamp(2.5rem, 5vw, 5rem)",
+      "type": "string"
+    },
+    "grid": {
+      "value": "clamp(1rem, 1.75vw, 2rem)",
+      "type": "string"
+    },
+    "heading-gap": {
+      "value": "clamp(2rem, 3.5vw, 3.5rem)",
+      "type": "string"
+    },
+    "small": {
+      "value": "0.5rem",
+      "type": "string"
+    },
+    "medium": {
+      "value": "1rem",
+      "type": "string"
+    },
+    "large": {
+      "value": "2rem",
+      "type": "string"
+    }
+  },
+  "layout": {
+    "max": {
+      "value": "90rem",
+      "type": "string"
+    },
+    "reading": {
+      "value": "64ch",
+      "type": "string"
+    }
+  },
+  "control": {
+    "target": {
+      "value": "3rem",
+      "type": "string"
+    },
+    "icon": {
+      "value": "1.5rem",
+      "type": "string"
+    }
+  },
+  "radius": {
+    "control": {
+      "value": "0.25rem",
+      "type": "string"
+    }
+  },
+  "motion": {
+    "fast": {
+      "value": "180ms",
+      "type": "string"
+    },
+    "standard": {
+      "value": "320ms",
+      "type": "string"
+    }
+  }
+}

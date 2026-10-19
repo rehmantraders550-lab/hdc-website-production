@@ -1,0 +1,16 @@
+/* Existing HDC font binaries, extracted unchanged from styles.css for the homepage. */
+@font-face {
+  font-family: "HDC Sans";
+  src: url("../fonts/hdc-sans.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "HDC Display";
+  src: url("../fonts/hdc-display.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

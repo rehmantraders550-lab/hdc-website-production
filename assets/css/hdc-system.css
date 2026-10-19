@@ -1,0 +1,231 @@
+/* HDC / Engineered Tactility v2
+   One component adapter for the canonical public pages. Tokens are generated.
+   Historic previews do not opt in. Existing interaction scripts remain authoritative. */
+
+body[data-hdc-system="v2"] {
+  --ink: var(--hdc-color-graphite);
+  --ink-2: var(--hdc-color-charcoal);
+  --teal: var(--hdc-color-teal);
+  --teal-bright: var(--hdc-color-cyan);
+  --copper: var(--hdc-color-copper);
+  --copper-light: var(--hdc-color-copper-light);
+  --paper: var(--hdc-color-paper);
+  --white: var(--hdc-color-white);
+  --serif: var(--hdc-font-display);
+  --sans: var(--hdc-font-body);
+  --content: var(--hdc-layout-max);
+  --max: var(--hdc-layout-max);
+  --gutter: var(--hdc-space-page);
+  --type-display-xl: var(--hdc-type-display);
+  --type-display-lg: var(--hdc-type-section);
+  --type-title: var(--hdc-type-title);
+  --type-lede: var(--hdc-type-lead);
+  --type-body: var(--hdc-type-body);
+  --type-label: var(--hdc-type-caption);
+  --display-leading: var(--hdc-leading-heading);
+  --display-tracking: var(--hdc-tracking-heading);
+  --hdc-site-max: var(--hdc-layout-max);
+  --hdc-site-gutter: var(--hdc-space-page);
+  --hdc-site-section: var(--hdc-space-section);
+  --hdc-site-section-tight: var(--hdc-space-section-compact);
+  --hdc-site-copy: var(--hdc-layout-reading);
+  --hdc-site-gap: var(--hdc-space-grid);
+  --hdc-ui-label: var(--hdc-type-caption);
+  --hdc-ui-action: var(--hdc-type-action);
+  --hdc-ui-target: var(--hdc-control-target);
+  --hdc-ui-arrow: var(--hdc-control-icon);
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow-x: visible;
+  font-family: var(--hdc-font-body);
+  font-size: var(--hdc-type-body);
+  line-height: var(--hdc-leading-body);
+  letter-spacing: -.01em;
+  overflow-wrap: anywhere;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Page frame: the shell owns interior gutters; full-bleed media stays full bleed. */
+body[data-hdc-system] :is(main, section, article, .shell, .heading-split, .catalogue-top, .finish-info, .page-hero__content, .sl-hero__copy) { min-width: 0; }
+body[data-hdc-system] > main { width: 100%; }
+body[data-hdc-system] :is(.section-light, .section-cream, .section-dark) { padding-block: var(--hdc-space-section); }
+body[data-hdc-system] :is(.section-heading, .catalogue-top, .catalogue-controls, .product-grid, .surface-grid, .finish-stage, .service-panels) { max-width: var(--hdc-layout-max); }
+body[data-hdc-system] :is(.body, .product-detail-copy, .section-intro, .service-copy p) { max-width: var(--hdc-layout-reading); }
+
+/* Type roles: editorial display; clean functional text; restrained metadata. */
+body[data-hdc-system] :is(h1, h2) {
+  font-family: var(--hdc-font-display);
+  font-weight: 400;
+  letter-spacing: var(--hdc-tracking-heading);
+  line-height: var(--hdc-leading-heading);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+body[data-hdc-system] :is(.page-hero, .prod-hero, .fe-hero, .sl-hero) h1 {
+  max-width: 16ch;
+  font-size: var(--hdc-type-display);
+  line-height: var(--hdc-leading-heading);
+  letter-spacing: var(--hdc-tracking-heading);
+}
+/* Match the existing visual-hero selector so this role owns its type and reflow. */
+body[data-hdc-system] .page-hero.page-hero--visual .page-hero__content h1 {
+  max-width: min(16ch, 100%);
+  font-size: var(--hdc-type-display);
+  line-height: var(--hdc-leading-heading);
+  letter-spacing: var(--hdc-tracking-heading);
+  overflow-wrap: anywhere;
+}
+body[data-hdc-system] .page-hero.page-hero--visual .page-hero__content .lede {
+  font-size: var(--hdc-type-lead);
+  line-height: 1.55;
+}
+body[data-hdc-system] :is(.page-hero__content > div, .technology-card__body, .footer__top > div) { min-width: 0; }
+body[data-hdc-system] #home.hero h1 {
+  font-family: var(--hdc-font-display);
+  font-size: var(--hdc-type-display);
+  font-weight: 400;
+  line-height: var(--hdc-leading-heading);
+  letter-spacing: var(--hdc-tracking-heading);
+  text-transform: none;
+}
+body[data-hdc-system] :is(.section-heading, .catalogue-top, .about-copy, .closing-cta, .section, .sl-decision-heading, .sl-materials-intro, .prod-routing__heading, .prod-systems__heading, .prod-evidence__heading, .prod-project) h2 {
+  max-width: 18ch;
+  font-size: var(--hdc-type-section);
+  line-height: var(--hdc-leading-heading);
+  letter-spacing: var(--hdc-tracking-heading);
+}
+body[data-hdc-system] :is(.sl-record-info, .prod-record__copy, .service-intro) h2 {
+  font-size: var(--hdc-type-section);
+  line-height: var(--hdc-leading-heading);
+  letter-spacing: var(--hdc-tracking-heading);
+}
+body[data-hdc-system] :is(.surface-callout, .finish-detail, .process-list) h3 {
+  font-family: var(--hdc-font-display);
+  font-size: var(--hdc-type-title);
+  font-weight: 400;
+  line-height: 1.15;
+}
+body[data-hdc-system] :is(.body, .product-detail-copy, .product-spec-grid ul, .finish-detail ul, .service-copy p, .prod-record__description, .prod-record__context p, .prod-record__facts span, .prod-routing__readout, .prod-system-card p, .prod-specialist__copy, .facts span, .sl-decision-readout, .sl-record-facts li, .sl-record-notes ul, .fe-ledger__content dd, .fe-gallery__label em, .fe-review-path p) {
+  font-family: var(--hdc-font-body);
+  font-size: var(--hdc-type-body);
+  line-height: var(--hdc-leading-body);
+  letter-spacing: -.01em;
+}
+body[data-hdc-system] :is(.section-intro, .hero-deck, .lede, .prod-hero__lede, .sl-intro) {
+  font-family: var(--hdc-font-body);
+  font-size: var(--hdc-type-lead);
+  line-height: 1.55;
+  letter-spacing: -.015em;
+}
+body[data-hdc-system] :is(.eyebrow, .section-index, .hero-meta, .hero-index, .result-count, .methods-line, .surface-image-note, .sl-hero__caption, .catalogue-note p, .fe-availability, .prod-record__facts b) {
+  font-size: var(--hdc-type-caption);
+  line-height: 1.5;
+  letter-spacing: .075em;
+}
+body[data-hdc-system] .methods-line { flex-wrap: wrap; }
+body[data-hdc-system] .hero-meta { flex-wrap: wrap; gap: .75rem 1.5rem; }
+body[data-hdc-system] #products .product-card-title {
+  font-size: var(--hdc-type-card);
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+body[data-hdc-system] :is(.brief-dialog, .product-dialog) h2 {
+  font-size: var(--hdc-type-dialog);
+  line-height: 1.08;
+}
+
+/* Controls: the visible icon and its hit area have separate, explicit sizes. */
+body[data-hdc-system] :is(button, summary) { min-height: var(--hdc-control-target); min-width: var(--hdc-control-target); }
+body[data-hdc-system] :is(.button, .nav-cta, .text-link, .sl-text-link, .sl-text-action, .menu-button, .filter-chip, .finish-tabs button, .service-copy a, .catalogue-note a) {
+  min-height: var(--hdc-control-target);
+  max-width: 100%;
+  font-family: var(--hdc-font-body);
+  font-size: var(--hdc-type-action);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: .01em;
+  text-transform: none;
+}
+body[data-hdc-system] :is(.button, .nav-cta) {
+  padding: .8rem 1.2rem;
+  gap: .8rem;
+  border-radius: var(--hdc-radius-control);
+  transition: color var(--hdc-motion-fast), background-color var(--hdc-motion-fast), border-color var(--hdc-motion-fast);
+}
+body[data-hdc-system] .button:hover { transform: none; }
+body[data-hdc-system] :is(.text-link, .sl-text-link, .sl-text-action, .service-copy a, .catalogue-note a) { display: inline-flex; align-items: center; gap: .75rem; white-space: normal; }
+body[data-hdc-system] :is(.button, .text-link, .service-copy a, .catalogue-note a) > span[aria-hidden],
+body[data-hdc-system] :is(.hero-actions, .surface-callout, .closing-cta, .dialog-actions) > :is(a, button) > span,
+body[data-hdc-system] :is(.service-arrow, .register-arrow, .sl-material-card__arrow, .text-link::after) {
+  font-family: Arial, sans-serif;
+  font-size: var(--hdc-control-icon);
+  font-weight: 400;
+  line-height: 1;
+  flex-shrink: 0;
+}
+body[data-hdc-system] :is(.menu-toggle, .menu-button, .dialog-close, .sl-compare-chip button, .sl-compare-add, .sl-record-thumb) {
+  min-width: var(--hdc-control-target);
+  min-height: var(--hdc-control-target);
+}
+body[data-hdc-system] :is(.sl-compare-chip button, .dialog-close) { font-size: var(--hdc-control-icon); }
+body[data-hdc-system] .sl-record-thumbs {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--hdc-control-target)), 1fr));
+}
+body[data-hdc-system] :is(.field label, .brief-fields label, .hdc-enquiry-router__label) { font-family: var(--hdc-font-body); font-size: var(--hdc-type-label); letter-spacing: .01em; }
+body[data-hdc-system] :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  min-width: 0;
+  min-height: var(--hdc-control-target);
+  max-width: 100%;
+  font-family: var(--hdc-font-body);
+  font-size: max(1rem, var(--hdc-type-body));
+  line-height: 1.5;
+}
+body[data-hdc-system] :is(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid var(--hdc-color-teal);
+  outline-offset: 4px;
+}
+body[data-hdc-system] :is(.section-dark, .section--dark, .site-footer, #home, .sl-hero, .prod-hero) :focus-visible { outline-color: var(--hdc-color-cyan); }
+body[data-hdc-system] :is(.site-nav, .main-nav) { font-family: var(--hdc-font-body); }
+body[data-hdc-system] :is(.site-nav, .main-nav) a { font-size: var(--hdc-type-navigation); font-weight: 500; letter-spacing: 0; text-transform: none; }
+body[data-hdc-system] .site-nav { gap: clamp(.8rem, 1.4vw, 1.4rem); }
+body[data-hdc-system] .main-nav { gap: clamp(.8rem, 1.6vw, 1.6rem); }
+body[data-hdc-system] .main-nav { min-width: 0; flex-wrap: wrap; }
+body[data-hdc-system] :is(.service-title, .about-copy, .about-side) { min-width: 0; overflow-wrap: anywhere; }
+body[data-hdc-system] > .site-header { height: auto; min-height: 120px; }
+body[data-hdc-system] > .site-header .header-quote { white-space: normal; overflow-wrap: anywhere; flex-wrap: wrap; }
+body[data-hdc-system] [data-site-header] .hdc-brand { min-width: 0; flex-wrap: wrap; }
+
+/* Home and interior shell have separate markup but one spacing scale. */
+body[data-hdc-system] #home.hero .hero-copy { width: min(48%, 680px); padding-left: var(--hdc-space-page); }
+body[data-hdc-system] #home.hero .hero-actions { gap: .5rem 1rem; }
+body[data-hdc-system] .section-heading { margin-bottom: var(--hdc-space-heading-gap); }
+body[data-hdc-system] .section-index { margin-bottom: var(--hdc-space-heading-gap); }
+
+@media (max-width: 1050px) {
+  body[data-hdc-system] :is(.site-nav, .main-nav) a { min-height: var(--hdc-control-target); font-size: 1rem; }
+}
+@media (max-width: 900px) {
+  body[data-hdc-system] > .site-header { min-height: 104px; grid-template-columns: 104px minmax(0, 1fr) var(--hdc-control-target); }
+  body[data-hdc-system] #home.hero .hero-copy { width: 100%; max-width: 38rem; padding-inline: var(--hdc-space-page); }
+  body[data-hdc-system] .about { grid-template-columns: minmax(0, 1fr); }
+  body[data-hdc-system] .about-mark { min-width: 0; font-size: clamp(3rem, 12vw, 7rem); }
+  body[data-hdc-system] .hero-deck { max-width: 30rem; }
+  body[data-hdc-system] :is(.filter-list, .finish-tabs, .hero-actions) { flex-wrap: wrap; }
+  body[data-hdc-system] > .site-header .header-quote { font-size: var(--hdc-type-action); padding: .6rem .5rem; gap: .4rem; }
+  body[data-hdc-system] #products .product-card-title { font-size: var(--hdc-type-card); }
+}
+@media (max-width: 480px) {
+  body[data-hdc-system] .catalogue-controls { grid-template-columns: minmax(0, 1fr); }
+  body[data-hdc-system] .catalogue-controls .result-count { justify-self: start; }
+  body[data-hdc-system] .methods-line { gap: .75rem 1.25rem; }
+  body[data-hdc-system] .methods-line i { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-hdc-system] *, body[data-hdc-system] *::before, body[data-hdc-system] *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
