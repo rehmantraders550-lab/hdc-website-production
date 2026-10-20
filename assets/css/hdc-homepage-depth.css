@@ -1,0 +1,27 @@
+/* Homepage-only scroll depth for visual layers below the hero. Copy and controls stay in normal flow. */
+html.hdc-section-depth-enabled [data-hdc-depth] {
+  translate: 0 var(--hdc-depth-y, 0px);
+}
+
+html.hdc-section-depth-enabled img[data-hdc-depth="image"] {
+  scale: 1.16;
+}
+
+html.hdc-section-depth-enabled img[data-hdc-depth="catalogue"] {
+  scale: 1.2;
+}
+
+html.hdc-section-depth-enabled [data-hdc-depth-active] {
+  will-change: translate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.hdc-section-depth-enabled [data-hdc-depth] {
+    translate: none !important;
+    will-change: auto;
+  }
+
+  html.hdc-section-depth-enabled img[data-hdc-depth] {
+    scale: none !important;
+  }
+}
