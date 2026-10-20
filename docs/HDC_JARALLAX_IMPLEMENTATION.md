@@ -99,7 +99,8 @@ Save-Data is respected when the browser exposes it. No user-agent sniffing or de
 
 | Responsibility | Path |
 | --- | --- |
-| Eligibility, loading, presets, lifecycle | `assets/js/hdc-parallax.js` |\n| Homepage section depth | `assets/js/hdc-homepage-depth.js`, `assets/css/hdc-homepage-depth.css` |
+| Eligibility, loading, presets, lifecycle | `assets/js/hdc-parallax.js` |
+| Homepage section depth | `assets/js/hdc-homepage-depth.js`, `assets/css/hdc-homepage-depth.css` |
 | Image layer and overlay stacking | `assets/css/hdc-parallax.css` |
 | Pinned core, source map, MIT license | `assets/vendor/jarallax/3.1.0/` |
 | Browser behavior and fallback checks | `tests/parallax.spec.ts` |
