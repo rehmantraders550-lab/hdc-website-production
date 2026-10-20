@@ -8,10 +8,12 @@
   // Touch browsers can scroll normally; requiring hover/fine pointer excluded iPhones.
   // Keep only a small-width cutoff for constrained layouts, then let Jarallax follow scroll.
   const supportedViewport = matchMedia('(min-width: 22.5rem)');
+  const mobileArtDirection = matchMedia('(max-width: 63.99rem)');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const connection = navigator.connection;
   const speeds = { home: 0.9, surface: 0.88, finish: 0.92, production: 0.9, editorial: 0.9, object: 0.94 };
   const source = '/assets/vendor/jarallax/3.1.0/jarallax.min.js';
+  const responsiveSources = new WeakMap();
   let core;
 
   const eligible = () => supportedViewport.matches && !reducedMotion.matches && !connection?.saveData && !document.hidden;
@@ -32,6 +34,12 @@
 
   function restore(frame) {
     if (frame.jarallax) window.jarallax(frame, 'destroy');
+    const saved = responsiveSources.get(frame);
+    if (saved) {
+      if (saved.src === null) saved.image.removeAttribute('src');
+      else saved.image.setAttribute('src', saved.src);
+      responsiveSources.delete(frame);
+    }
     delete frame.dataset.hdcParallaxActive;
   }
 
@@ -56,6 +64,13 @@
       if (!image.naturalWidth) return;
 
       try {
+        // Jarallax moves the image out of <picture>. Pin its selected source while
+        // enhanced, then restore the authored src when the frame is destroyed.
+        if (image.parentElement?.tagName === 'PICTURE' && image.currentSrc) {
+          const src = image.getAttribute('src');
+          responsiveSources.set(frame, { image, src });
+          if (image.currentSrc !== image.src) image.setAttribute('src', image.currentSrc);
+        }
         jarallax(frame, {
           type: 'scroll',
           speed: speeds[frame.dataset.hdcParallax],
@@ -76,6 +91,10 @@
   }
 
   supportedViewport.addEventListener('change', reconcile);
+  mobileArtDirection.addEventListener('change', () => {
+    frames.forEach(restore);
+    requestAnimationFrame(reconcile);
+  });
   reducedMotion.addEventListener('change', reconcile);
   connection?.addEventListener?.('change', reconcile);
   document.addEventListener('visibilitychange', reconcile);
