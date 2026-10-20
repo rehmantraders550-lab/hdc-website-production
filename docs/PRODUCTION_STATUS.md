@@ -1,4 +1,17 @@
-# HDC Production Status — 2026-09-02
+# HDC Production Status
+
+## Current production update — 2026-10-20
+
+- Production platform: Cloudflare Workers Static Assets (`hdc-website-production`); `hadidigitalcraft.com` serves the production site.
+- Homepage section order: hero → What We Print/service panels → Product Register → Surface Library → Finishing → Process → About.
+- The first homepage service panel now reads **Labels & Stickers**. The product-register filter and dedicated service page retain **Labels & Decals**.
+- PR [#100](https://github.com/rehmantraders550-lab/hdc-website-production/pull/100) merged to `main`; GitHub static and responsive checks passed.
+- Cloudflare production deployment `c576f046-d414-430b-a7b2-0116ba80979f` was recorded at 2026-10-20 08:58 UTC. Live homepage HTML verified the section position and title.
+- Mobile-header wordmark visibility was discussed separately and was not part of PR #100.
+
+The section below preserves the 2026-09-02 production snapshot for historical context; use `HDC_CURRENT_PRODUCTION_STATE.md` for current operating details.
+
+## Historical snapshot — 2026-09-02
 
 ## Canonical direction
 - Platform: Hostinger static custom-code deployment via GitHub.

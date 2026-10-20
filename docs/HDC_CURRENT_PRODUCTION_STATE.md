@@ -1,6 +1,6 @@
 # HDC Current Production State
 
-**Last reconciled:** 2026-10-10
+**Last reconciled:** 2026-10-20
 **Platform:** Cloudflare Workers Static Assets
 **Repository:** `rehmantraders550-lab/hdc-website-production`
 **Branch:** `main`
@@ -9,8 +9,14 @@
 
 Hadi Digital Craft is a specialised commercial printing-services business. HDC does **not** sell printers, machinery, printing equipment, or printing hardware.
 
-Core service architecture:
+Core service taxonomy (dedicated service page and product-register filter):
 - Labels & Decals
+- Products & Object Printing
+- Packaging & Commercial Print
+- Large Format & Brand Environments
+
+Homepage service-panel display label:
+- First card: Labels & Stickers (display copy only; the product family filter and dedicated Labels & Decals page retain their existing name)
 - Products & Object Printing
 - Packaging & Commercial Print
 - Large Format & Brand Environments
@@ -25,20 +31,17 @@ The website should demonstrate printing through material evidence: substrate, in
 
 Avoid machinery-sales presentation, generic futuristic printing, neon/RGB tech styling, fake smoke, particles, unsupported technical claims, and generic promotional-gift aesthetics.
 
-## Homepage architecture — locked 12-section narrative
+## Current homepage section order — verified 2026-10-20
 
-1. Hero — feel the print
-2. Proof & Capability — establish production credibility
-3. Advanced Printing Technologies — how HDC prints
-4. Surface & Application Laboratory — where the print lives
-5. Work / Application Portfolio — how capability becomes commercial work
-6. Material Detail / Print Specimens — inspect quality up close
-7. Large Format / Brand Environments — print at architectural scale
-8. Process / How HDC Works — understand to delivery
-9. Quality / Production Control — visible production control
-10. Selected Work / Trust — verified production evidence
-11. Conversion / Project Enquiry — start with the application
-12. Footer / Final Brand Close — `PRINT, ENGINEERED TO BE FELT.`
+1. Hero (`#home`)
+2. What We Print / service panels (`#services`) — immediately after the hero
+3. Product Register (`#products`)
+4. Surface Library (`#surfaces`)
+5. Finishing (`#finishing`)
+6. Process (`#process`)
+7. About (`#about`)
+
+The first service panel is titled **Labels & Stickers**. This is a homepage display-label change; the product filter and dedicated Labels & Decals service page remain named **Labels & Decals**.
 
 ## Interaction doctrine
 
@@ -61,6 +64,13 @@ For selected work, use client names / logos / project imagery only where publish
 - Phone / WhatsApp: 0317 7267318
 - Email: REHMANTRADERS550@GMAIL.COM
 - Location: Opp. Nayyer Mall, G.T. Road, Gujrat
+
+## Recent production change — 2026-10-20
+
+- PR [#100](https://github.com/rehmantraders550-lab/hdc-website-production/pull/100) merged to `main` as merge commit `37fa654f8ee5ded3e6236478abe1f7e3d4c3c3c3`.
+- Moved the complete `#services` section directly after the homepage hero and renamed its first panel to **Labels & Stickers**.
+- GitHub static-site validation and responsive browser tests passed. Cloudflare recorded production deployment `c576f046-d414-430b-a7b2-0116ba80979f` at 2026-10-20 08:58 UTC; the live homepage HTML was checked and confirmed the new order and label.
+- The separately discussed mobile header wordmark adjustment was not included in PR #100 and is not recorded as deployed by this change.
 
 ## Current implementation direction
 
