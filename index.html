@@ -18,8 +18,12 @@
   <link rel="stylesheet" href="/assets/css/hdc-typefaces.css?v=20261020-imagery">
   <link rel="stylesheet" href="/assets/css/hdc-tokens.css?v=20261020-imagery">
   <link rel="stylesheet" href="/assets/css/hdc-system.css?v=20261020-imagery">
+  <link rel="stylesheet" href="/assets/css/hdc-campaign-match.css?v=1">
   <link rel="stylesheet" href="/assets/css/hdc-parallax.css?v=20261020-imagery">
   <script src="/assets/js/hdc-parallax.js?v=20261020-touch" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/hdc-campaign-match.js?v=1" defer></script>
 </head>
 <body data-hdc-system="v2" data-hdc-mobile-ui="20261015">
   <header class="site-header">
@@ -72,6 +76,34 @@
         </article>
       </div>
       <div class="methods-line"><span>OFFSET LITHOGRAPHY</span><i></i><span>DIRECT-TO-OBJECT UV</span><i></i><span>UV DTF</span><i></i><span>LARGE FORMAT</span></div>
+    </section>
+
+    <section class="campaign-match" aria-labelledby="campaign-match-title" data-campaign-match>
+      <div class="campaign-match__heading">
+        <p class="eyebrow eyebrow--dark">A CAMPAIGN, IN PRINT</p>
+        <h2 id="campaign-match-title">What are you<br><em>putting into the world?</em></h2>
+        <p>Choose a goal to explore a print direction. We’ll review the application and production details with you.</p>
+      </div>
+      <div class="campaign-match__story" data-sms-root>
+        <div class="campaign-match__entries" data-sms-entries aria-label="Choose a campaign goal">
+          <div class="campaign-match__step" data-sms-step><button class="campaign-match__entry is-active" type="button" aria-pressed="true" data-sms-entry><span class="campaign-match__num" aria-hidden="true">01</span><span class="campaign-match__body"><span class="campaign-match__title">Launch something new</span><span class="campaign-match__line">Give a product a clear identity on its pack, label or object.</span></span></button></div>
+          <div class="campaign-match__step" data-sms-step><button class="campaign-match__entry" type="button" aria-pressed="false" data-sms-entry><span class="campaign-match__num" aria-hidden="true">02</span><span class="campaign-match__body"><span class="campaign-match__title">Make an offer visible</span><span class="campaign-match__line">Bring a promotion into the places customers notice.</span></span></button></div>
+          <div class="campaign-match__step" data-sms-step><button class="campaign-match__entry" type="button" aria-pressed="false" data-sms-entry><span class="campaign-match__num" aria-hidden="true">03</span><span class="campaign-match__body"><span class="campaign-match__title">Shape a customer experience</span><span class="campaign-match__line">Connect the product, its packaging and the moment it is opened.</span></span></button></div>
+          <div class="campaign-match__step" data-sms-step><button class="campaign-match__entry" type="button" aria-pressed="false" data-sms-entry><span class="campaign-match__num" aria-hidden="true">04</span><span class="campaign-match__body"><span class="campaign-match__title">Brand a place</span><span class="campaign-match__line">Carry a campaign into a shop, event or physical environment.</span></span></button></div>
+        </div>
+        <div class="campaign-match__stage" aria-hidden="true"><figure class="campaign-match__frame">
+          <img class="campaign-match__media is-active" src="/assets/images/renewal-20261020/labels.webp" alt="" width="1536" height="1024" loading="eager" decoding="async">
+          <img class="campaign-match__media" src="/assets/images/renewal-20261020/environment.webp" alt="" width="1536" height="1024" loading="eager" decoding="async">
+          <img class="campaign-match__media" src="/assets/images/renewal-20261020/packaging.webp" alt="" width="1536" height="1024" loading="eager" decoding="async">
+          <img class="campaign-match__media" src="/assets/images/renewal-20261020/environment.webp" alt="" width="1536" height="1024" loading="eager" decoding="async">
+          <figcaption><span>HDC / CAMPAIGN DIRECTIONS</span><span data-sms-counter>01 / 04</span></figcaption>
+        </figure></div>
+        <div class="campaign-match__result" aria-live="polite" aria-atomic="true">
+          <div><p class="eyebrow eyebrow--dark">A STARTING POINT</p><h3 data-campaign-result-title>Product labels, packaging or object print</h3><p data-campaign-result-copy>Choose the product and where its identity needs to appear. HDC can review the material, artwork and application together.</p></div>
+          <div class="campaign-match__actions"><a class="button button--outline-dark" href="#products" data-campaign-products>Explore related products <span aria-hidden="true">↓</span></a><button class="button button--teal" type="button" data-campaign-brief>Build this brief <span aria-hidden="true">→</span></button></div>
+          <p class="campaign-match__note">Illustrative visuals. Recommended formats and production routes require review against the actual job.</p>
+        </div>
+      </div>
     </section>
 
     <section class="catalogue section-cream" id="products">
