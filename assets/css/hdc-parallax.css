@@ -1,0 +1,18 @@
+/* Only the selected image frame is enhanced. Layout, copy and controls stay in normal flow. */
+body[data-hdc-system="v2"] [data-hdc-parallax] {
+  isolation: isolate;
+}
+
+body[data-hdc-system="v2"] .hdc-parallax-layer {
+  pointer-events: none;
+}
+
+/* Keep the existing readability overlays above Jarallax's image layer. */
+body[data-hdc-system="v2"] [data-hdc-parallax-active]::before,
+body[data-hdc-system="v2"] [data-hdc-parallax-active]::after {
+  z-index: 1;
+}
+
+body[data-hdc-system="v2"] [data-hdc-parallax-active] figcaption {
+  z-index: 2;
+}
