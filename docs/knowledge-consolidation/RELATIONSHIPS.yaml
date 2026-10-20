@@ -1,0 +1,73 @@
+version: 1
+relationships:
+  - from: HDC-GOV-0002
+    type: establishes_authority_for
+    to: [HDC-GOV-0003, HDC-WF-0001, HDC-DEP-0001]
+  - from: HDC-BIZ-0002
+    type: supersedes
+    to: [HDC-HIST-0001]
+  - from: HDC-VIS-0001
+    type: supersedes_or_constrains
+    to: [HDC-HIST-0002]
+  - from: HDC-UX-0005
+    type: supersedes_or_constrains
+    to: [HDC-HIST-0002]
+  - from: HDC-HIST-0003
+    type: explains_temporal_transition
+    to: [HDC-UX-0001, HDC-UX-0002, HDC-UX-0003, HDC-UX-0005, HDC-UX-0006]
+  - from: HDC-WF-0001
+    type: constrained_by
+    to: [HDC-GOV-0004, HDC-WF-0003]
+  - from: HDC-WF-0002
+    type: failure_recovery_for
+    to: [HDC-WF-0001]
+  - from: HDC-DEP-0001
+    type: constrained_by
+    to: [HDC-GOV-0004]
+  - from: HDC-DEP-0002
+    type: validates
+    to: [HDC-DEP-0001]
+  - from: HDC-DEP-0003
+    type: warning_for
+    to: [HDC-DEP-0001, HDC-DEP-0002]
+  - from: HDC-OPEN-0003
+    type: unresolved_hardening_for
+    to: [HDC-DEP-0003]
+  - from: HDC-SL-0002
+    type: governs
+    to: [HDC-SL-0003, HDC-SL-0004]
+  - from: HDC-BIZ-0005
+    type: constrains
+    to: [HDC-SL-0004, HDC-VIS-0002]
+  - from: HDC-VIS-0003
+    type: implements
+    to: [HDC-VIS-0001, HDC-VIS-0002, HDC-VIS-0004, HDC-VIS-0005]
+  - from: HDC-UX-0003
+    type: shares_architecture_without_forcing_behavior
+    to: [finishing_embellishment_register, quality_register]
+
+collision_rules:
+  - id: COLL-0001
+    condition: historical_record_conflicts_with_current_main
+    resolution: preserve historical record, mark superseded, current main wins
+  - id: COLL-0002
+    condition: visual_ambition_conflicts_with_material_truth
+    resolution: material/process truth wins
+  - id: COLL-0003
+    condition: interaction_novelty_conflicts_with_accessibility_or_mobile
+    resolution: accessibility/mobile continuity wins
+  - id: COLL-0004
+    condition: deployment_success_conflicts_with_live_route_evidence
+    resolution: live route evidence wins; deployment remains incomplete
+  - id: COLL-0005
+    condition: duplicate_source_text_detected
+    resolution: preserve both source identities, normalize one canonical atom, retain all provenance links
+  - id: COLL-0006
+    condition: uncertain_surface_capability
+    resolution: route to testing/review; do not promote to production-approved claim
+
+supersession_rules:
+  - Never delete a superseded atom.
+  - New knowledge should point to the atom it supersedes.
+  - A historical atom remains valid for its original temporal scope.
+  - Canonical projections should include only ACTIVE atoms unless historical context is explicitly useful.
