@@ -140,6 +140,78 @@ test('Jarallax keeps the mobile hero art direction while active and across break
   await expect.poll(() => image.evaluate(img => new URL(img.currentSrc).pathname)).toContain('hero-mobile.webp');
 });
 
+test('Jarallax homepage section depth reaches every visual section without moving copy or layout', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/index.html');
+  await expect(page.locator('html')).toHaveClass(/hdc-section-depth-enabled/);
+
+  const sectionTargets: Array<[string, number]> = [
+    ['#services [data-hdc-depth]', 4],
+    ['[data-campaign-match] [data-hdc-depth]', 4],
+    ['#products [data-hdc-depth="catalogue"]', 12],
+    ['#surfaces [data-hdc-depth]', 7],
+    ['#finishing [data-hdc-depth]', 1],
+    ['#process [data-hdc-depth]', 5],
+    ['#about [data-hdc-depth]', 2],
+    ['.closing-cta [data-hdc-depth]', 1],
+  ];
+  for (const [selector, count] of sectionTargets) {
+    await expect(page.locator(selector)).toHaveCount(count);
+  }
+
+  const sectionVisuals = [
+    '#services [data-hdc-depth]',
+    '[data-campaign-match] [data-hdc-depth]',
+    '#products [data-hdc-depth="catalogue"]',
+    '#surfaces [data-hdc-depth]',
+    '#finishing [data-hdc-depth]',
+    '#process [data-hdc-depth]',
+    '#about [data-hdc-depth]',
+    '.closing-cta [data-hdc-depth]',
+  ];
+  for (const selector of sectionVisuals) {
+    const visual = page.locator(selector).first();
+    await visual.scrollIntoViewIfNeeded();
+    await expect(visual).toHaveAttribute('data-hdc-depth-active', '');
+    const before = await visual.evaluate(el => Number.parseFloat(el.style.getPropertyValue('--hdc-depth-y')) || 0);
+    const scrollStep = await page.evaluate(() => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      return scrollY > max / 2 ? -100 : 100;
+    });
+    await page.evaluate(step => scrollBy({ top: step, behavior: 'instant' }), scrollStep);
+    await expect.poll(async () => {
+      const after = await visual.evaluate(el => Number.parseFloat(el.style.getPropertyValue('--hdc-depth-y')) || 0);
+      return Math.abs(after - before);
+    }).toBeGreaterThan(1);
+  }
+
+  const image = page.locator('#services .service-visual img').first();
+  const heading = page.locator('#services h2');
+  await image.scrollIntoViewIfNeeded();
+  await expect(image).toHaveAttribute('data-hdc-depth-active', '');
+  const beforeOffset = await image.evaluate(el => Number.parseFloat(el.style.getPropertyValue('--hdc-depth-y')) || 0);
+  const beforeHeading = await heading.boundingBox();
+  const beforeScroll = await page.evaluate(() => scrollY);
+
+  await page.evaluate(() => scrollBy({ top: 140, behavior: 'instant' }));
+  await expect.poll(async () => {
+    const value = await image.evaluate(el => Number.parseFloat(el.style.getPropertyValue('--hdc-depth-y')) || 0);
+    return Math.abs(value - beforeOffset);
+  }).toBeGreaterThan(3);
+
+  const afterHeading = await heading.boundingBox();
+  const afterScroll = await page.evaluate(() => scrollY);
+  expect(afterHeading!.y + afterScroll).toBeCloseTo(beforeHeading!.y + beforeScroll, 0);
+  const layout = await page.evaluate(() => ({ page: document.documentElement.scrollWidth, viewport: document.documentElement.clientWidth }));
+  expect(layout.page).toBeLessThanOrEqual(layout.viewport + 1);
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(page.locator('html')).not.toHaveClass(/hdc-section-depth-enabled/);
+  await expect(image).not.toHaveAttribute('data-hdc-depth-active');
+  expect(await image.evaluate(el => el.style.getPropertyValue('--hdc-depth-y'))).toBe('');
+});
+
 for (const route of lifecycleRoutes) {
   test(`Jarallax ${route} respects reduced motion at startup and restores the original image when preferences or width change`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
