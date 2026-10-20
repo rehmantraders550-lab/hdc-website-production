@@ -15,11 +15,8 @@ Core service taxonomy (dedicated service page and product-register filter):
 - Packaging & Commercial Print
 - Large Format & Brand Environments
 
-Homepage service-panel display label:
-- First card: Labels & Stickers (display copy only; the product family filter and dedicated Labels & Decals page retain their existing name)
-- Products & Object Printing
-- Packaging & Commercial Print
-- Large Format & Brand Environments
+Homepage service-panel label update:
+- First card: Labels & Decals → Labels & Stickers (display copy only; the product-register filter and dedicated service page retain the name Labels & Decals).
 
 Production methods remain subordinate to the service architecture: UV DTF may support labels, decals, products or objects where technically appropriate; Offset supports Packaging & Commercial Print; Large Format supports Large Format & Brand Environments. Events & Personalisation is an application category, not a core service.
 
