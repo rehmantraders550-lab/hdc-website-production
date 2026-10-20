@@ -4,6 +4,21 @@ import { readdirSync, readFileSync } from 'node:fs';
 const routes = readdirSync('.').filter(file => file.endsWith('.html') && readFileSync(file, 'utf8').includes('data-hdc-system="v2"')).map(file => `/${file}`);
 const lifecycleRoutes = ['/index.html', '/surface-lab.html', '/finishing-embellishment.html', '/about.html', '/glass-surface-decoration.html', '/production.html'];
 
+for (const width of [1024, 1440]) {
+  test(`Jarallax production hero keeps the heading words intact at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto('/production.html');
+    await page.evaluate(() => document.fonts.ready);
+    const lineCount = await page.locator('h1').evaluate(heading => {
+      const range = document.createRange();
+      range.setStart(heading.firstChild!, 0);
+      range.setEnd(heading.firstChild!, 'Production'.length);
+      return range.getClientRects().length;
+    });
+    expect(lineCount).toBe(1);
+  });
+}
+
 async function assertStatic(page: Page) {
   const frame = page.locator('[data-hdc-parallax]');
   await expect(frame).toHaveCount(1);

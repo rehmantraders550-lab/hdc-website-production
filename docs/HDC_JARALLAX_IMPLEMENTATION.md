@@ -49,6 +49,8 @@ Design variance 7/10, motion intensity 3/10, visual density 4/10, matching HDC d
 
 Jarallax speed 1 tracks ordinary document travel. Values close to 1 keep differential movement small. This implementation uses only `type: 'scroll'`.
 
+The Production hero uses balanced desktop text columns so “Production” remains a whole word beside its introduction. This small shared-layout correction preserves its existing type scale and copy.
+
 ## Runtime contract
 
 1. Static HTML and existing CSS render the complete hero first, with existing source URLs, alt text, loading priority and dimensions.
