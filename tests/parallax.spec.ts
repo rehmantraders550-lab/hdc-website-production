@@ -1,6 +1,8 @@
 import { test, expect, type Page } from '@playwright/test';
+import { readdirSync, readFileSync } from 'node:fs';
 
-const routes = ['/index.html', '/surface-lab.html', '/finishing-embellishment.html'];
+const routes = readdirSync('.').filter(file => file.endsWith('.html') && readFileSync(file, 'utf8').includes('data-hdc-system="v2"')).map(file => `/${file}`);
+const lifecycleRoutes = ['/index.html', '/surface-lab.html', '/finishing-embellishment.html', '/about.html', '/glass-surface-decoration.html', '/production.html'];
 
 async function assertStatic(page: Page) {
   const frame = page.locator('[data-hdc-parallax]');
@@ -16,12 +18,10 @@ async function assertStatic(page: Page) {
 for (const route of routes) {
   test(`Jarallax ${route} gives the desktop hero depth without moving its copy or changing layout`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(route);
     const frame = page.locator('[data-hdc-parallax]');
-    await expect(frame).toHaveAttribute('data-hdc-parallax-active', '');
-    await expect(frame.locator('img')).toHaveCount(1);
-    await expect(frame.locator('.hdc-parallax-layer img')).toBeVisible();
+    await assertStatic(page);
     if (route === '/index.html') await expect(page.locator('.product-card')).toHaveCount(12);
     await page.evaluate(() => document.fonts.ready);
 
@@ -38,6 +38,7 @@ for (const route of routes) {
         headingTop: heading.top + scrollY,
         frameTop: box.top + scrollY,
         frameHeight: box.height,
+        imageFit: getComputedStyle(frame.querySelector('img')!).objectFit,
         visibleTop: Math.max(0, box.top),
         visibleBottom: Math.min(innerHeight, box.bottom),
         frameLeft: box.left,
@@ -47,7 +48,23 @@ for (const route of routes) {
         viewport: document.documentElement.clientWidth,
       };
     });
+    const baseline = await measure();
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await expect(frame).toHaveAttribute('data-hdc-parallax-active', '');
+    await expect(frame.locator('img')).toHaveCount(1);
+    await expect(frame.locator('.hdc-parallax-layer img')).toBeVisible();
     const before = await measure();
+    expect(before.frameHeight).toBeCloseTo(baseline.frameHeight, 0);
+    expect(before.frameTop).toBeCloseTo(baseline.frameTop, 0);
+    expect(before.headingTop).toBeCloseTo(baseline.headingTop, 0);
+    expect(before.documentHeight).toBe(baseline.documentHeight);
+    expect(before.imageFit).toBe(baseline.imageFit);
+    const caption = page.locator('.page-hero__media figcaption');
+    if (await caption.count()) {
+      const captionBox = await caption.boundingBox();
+      const frameBox = await frame.boundingBox();
+      expect(captionBox!.y).toBeGreaterThanOrEqual(frameBox!.y + frameBox!.height - 1);
+    }
     await page.evaluate(() => scrollTo({ top: 280, behavior: 'instant' }));
     await expect.poll(async () => (await measure()).imageTop).toBeLessThan(before.imageTop - 20);
     const after = await measure();
@@ -66,26 +83,26 @@ for (const route of routes) {
   });
 }
 
-test('Jarallax 390px and 430px phone layouts stay static and never request the optional core', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'no-preference' });
-  const coreRequests: string[] = [];
-  page.on('request', request => { if (request.url().includes('/vendor/jarallax/')) coreRequests.push(request.url()); });
-  for (const width of [320, 390, 430, 900]) {
-    await page.setViewportSize({ width, height: 932 });
-    for (const route of routes) {
+for (const route of routes) {
+  test(`Jarallax ${route} 390px and 430px phone layouts stay static and never request the optional core`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    const coreRequests: string[] = [];
+    page.on('request', request => { if (request.url().includes('/vendor/jarallax/')) coreRequests.push(request.url()); });
+    for (const width of [320, 390, 430, 900]) {
+      await page.setViewportSize({ width, height: 932 });
       await page.goto(route);
       await assertStatic(page);
       const layout = await page.evaluate(() => ({ page: document.documentElement.scrollWidth, viewport: document.documentElement.clientWidth }));
       expect(layout.page).toBeLessThanOrEqual(layout.viewport + 1);
     }
-  }
-  expect(coreRequests).toEqual([]);
-});
+    expect(coreRequests).toEqual([]);
+  });
+}
 
-test('Jarallax respects reduced motion at startup and restores the original image when preferences or width change', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  for (const route of routes) {
+for (const route of lifecycleRoutes) {
+  test(`Jarallax ${route} respects reduced motion at startup and restores the original image when preferences or width change`, async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(route);
     await assertStatic(page);
     expect(await page.locator('script[src*="/vendor/jarallax/"]').count()).toBe(0);
@@ -107,8 +124,8 @@ test('Jarallax respects reduced motion at startup and restores the original imag
     await page.setViewportSize({ width: 1440, height: 1000 });
     await expect(page.locator('[data-hdc-parallax]')).toHaveAttribute('data-hdc-parallax-active', '');
     await page.emulateMedia({ reducedMotion: 'reduce' });
-  }
-});
+  });
+}
 
 test('Jarallax keeps large touch devices and data-saving connections static', async ({ browser, baseURL }) => {
   const touch = await browser.newContext({ baseURL, viewport: { width: 1366, height: 1024 }, hasTouch: true, isMobile: true, reducedMotion: 'no-preference' });

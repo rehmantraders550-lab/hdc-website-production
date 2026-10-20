@@ -2,11 +2,11 @@
 
 ## Purpose and source
 
-Add restrained visual depth to three editorial introductions in HDC’s Engineered Tactility system. Artwork, material and finishing imagery carry the motion; headings, navigation, captions and controls keep their current position and behavior.
+Add restrained visual depth to the hero introduction on all 21 current public pages in HDC’s Engineered Tactility system. Artwork, material and finishing imagery carry the motion; headings, navigation, captions and controls keep their current position and behavior.
 
-- Verified base: `735016ecd6ecd43f945c087b8d6fda175d7bc512`, merged design-system PR #96.
-- Branch: `feat/hdc-jarallax-20261020`.
-- Root `index.html` is the canonical homepage, verified at Git blob `75507660252d0e1677b347aae6504746dc0a1de7`.
+- Verified base: `78c1d3ddc0021230cd4ec4d7dedb2258e3493cab`, merged Jarallax PR #97.
+- Branch: `feat/hdc-parallax-all-pages-20261020`.
+- Root `index.html` is the canonical homepage, verified at Git blob `47820767d0f4ad6e4a531e6f06ad4ba2646d0944`.
 - The historical `previews/engineered-tactility-2026-10-07/index.html` remains unchanged. Its active assets are still consumed by the canonical homepage.
 - Legacy `machine-dtf.html` and `hdc-expanding-panels-lab.html` retain their existing redirects and are unchanged.
 - The user-provided `jarallax-master.zip` contains `README.md` and `CHANGELOG.md`; there is no separate `jarallax.md`.
@@ -19,25 +19,43 @@ Design variance 7/10, motion intensity 3/10, visual density 4/10, matching HDC d
 - Existing HDC Display remains the editorial voice; HDC Sans carries body copy and controls.
 - Preserve the existing left-aligned hero copy, full-bleed homepage composition, split Surface Lab composition and finishing specimen frame.
 - The only new visual behavior is a gentle difference between image travel and normal document travel. No heading reveals, zoom, fade, scroll interception, video or moving controls are introduced.
-- Concentrate the effect in the introduction on each selected page. Product cards, surface comparisons, forms and finishing gallery interactions keep their current behavior.
+- Apply the same restrained effect to the introduction on every current page. Product cards, surface comparisons, forms and finishing gallery interactions keep their current behavior.
 
 ## Placement map
 
-| Page | Selected image frame | Preset speed | Behavior |
+| Page | Route | Image frame | Speed |
 | --- | --- | --- | --- |
-| Homepage | `#home .hero-image` | 0.90 | Existing tile / horses / signage / personalized objects image drifts gently behind stable copy and overlays. |
-| Surface Lab | `.sl-hero__visual` | 0.88 | Existing material study image gains depth beside the static introduction. |
-| Finishing & embellishment | `.fe-hero__media` | 0.92 | Existing finish samples drift subtly; caption and readability overlay remain above the image. |
+| Homepage | `index.html` | `#home .hero-image` | 0.90 |
+| About HDC | `about.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Applications | `applications.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Contact | `contact.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| FAQ | `faq.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Finishing & embellishment | `finishing-embellishment.html` | `.fe-hero__media` | 0.92 |
+| Glass surface decoration | `glass-surface-decoration.html` | `.page-hero__media--portrait .hdc-parallax-frame` | 0.94 |
+| Industries | `industries.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Labels & decals | `labels-decals.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Large format & brand environments | `large-format-brand-environments.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Large-format production guide | `machine-large-format.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Offset production guide | `machine-offset.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| UV DTF production guide | `machine-uv-dtf.html` | `.page-hero__media--portrait .hdc-parallax-frame` | 0.94 |
+| Direct-to-object UV production guide | `machine-uv-flatbed.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Packaging & commercial print | `packaging-commercial-print.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Production methods | `production.html` | `.prod-hero__media` | 0.90 |
+| Products & object printing | `products-object-printing.html` | `.page-hero__media--portrait .hdc-parallax-frame` | 0.94 |
+| Request a quote | `request-a-quote.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Selected work | `selected-work.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Services | `services.html` | `.page-hero__media .hdc-parallax-frame` | 0.90 |
+| Surface Lab | `surface-lab.html` | `.sl-hero__visual` | 0.88 |
 
 Jarallax speed 1 tracks ordinary document travel. Values close to 1 keep differential movement small. This implementation uses only `type: 'scroll'`.
 
 ## Runtime contract
 
 1. Static HTML and existing CSS render the complete hero first, with existing source URLs, alt text, loading priority and dimensions.
-2. Only the three selected pages load the small HDC controller and scoped adapter CSS.
+2. All 21 current pages load the same small HDC controller and scoped adapter CSS; each page has exactly one opted-in hero frame.
 3. The controller checks width of at least 64rem, fine pointer, hover support, reduced-motion preference, data-saving preference and document visibility.
 4. Eligible sessions load the local, versioned Jarallax core once. No CDN, jQuery, video extension, React integration, npm runtime package or new network provider is required.
-5. After the existing image loads successfully, Jarallax moves that same image node into its generated layer. No duplicate image or duplicate alt text is introduced.
+5. Split-hero pages reserve the existing 3:2, 3:4 or 16:9 image geometry in a dedicated frame, while the caption stays outside it. After the image loads successfully, Jarallax moves that same image node into its generated layer. Its existing object-fit and object-position are preserved, including contain on whole-object photographs. No duplicate image or duplicate alt text is introduced.
 6. A narrower layout, reduced-motion request, connection preference change or hidden page destroys the instance and restores the original image and inline styles. Eligible sessions can initialize again.
 7. Page-hide destroys instances; page-show reconciles eligibility for browser back/forward cache restoration.
 8. A missing/blocked core, unsupported enhancement or failed image leaves the existing static page available. Other website scripts do not depend on the enhancement.
@@ -81,7 +99,7 @@ API and license reference: <https://github.com/nk-o/jarallax>. The supplied READ
 
 ## Acceptance and promotion
 
-- Preserve the exact text, headings, menu items, destinations, product data and image references on all three pages.
+- Preserve the exact text, headings, menu items, destinations, product data and image references on all 21 current pages.
 - Verify actual differential image travel, stable heading/document geometry, clipped image coverage and absence of horizontal page overflow in Chromium and WebKit.
 - Verify static phone layouts and absence of an optional core download on mobile, reduced-motion and data-saving sessions.
 - Verify preference toggles, desktop/phone resize, script failure and JavaScript-disabled hero rendering.
@@ -91,4 +109,4 @@ API and license reference: <https://github.com/nk-o/jarallax>. The supplied READ
 
 ## Rollback
 
-Removing the three `data-hdc-parallax` opt-ins and their adapter/controller references restores the previous static behavior. The vendor assets can remain harmlessly stored; no file deletion is required.
+Removing the `data-hdc-parallax` opt-ins and their adapter/controller references restores the previous static behavior. The vendor assets can remain harmlessly stored; no file deletion is required.

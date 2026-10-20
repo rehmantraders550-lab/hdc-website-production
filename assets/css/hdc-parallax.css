@@ -3,6 +3,25 @@ body[data-hdc-system="v2"] [data-hdc-parallax] {
   isolation: isolate;
 }
 
+/* Reserve the existing split-hero image geometry independently of its caption.
+   Jarallax moves the image out of normal flow; this frame keeps the layout steady. */
+body[data-hdc-system="v2"] .hdc-parallax-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--hdc-color-charcoal);
+}
+
+body[data-hdc-system="v2"] .page-hero__media--portrait .hdc-parallax-frame {
+  aspect-ratio: 3 / 4;
+  background: var(--hdc-color-paper);
+}
+
+body[data-hdc-system="v2"] .page-hero__media--wide .hdc-parallax-frame {
+  aspect-ratio: 16 / 9;
+}
+
 body[data-hdc-system="v2"] .hdc-parallax-layer {
   pointer-events: none;
 }
