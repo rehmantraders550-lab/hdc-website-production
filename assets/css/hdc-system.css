@@ -222,6 +222,13 @@ body[data-hdc-system] .section-index { margin-bottom: var(--hdc-space-heading-ga
   body[data-hdc-system] .methods-line { gap: .75rem 1.25rem; }
   body[data-hdc-system] .methods-line i { display: none; }
 }
+/* Keep whole words in the production title at desktop sizes. */
+@media (min-width: 64rem) {
+  body[data-hdc-system="v2"] .prod-hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  body[data-hdc-system="v2"] .prod-hero h1 { max-width: 12ch; }
+}
 @media (prefers-reduced-motion: reduce) {
   body[data-hdc-system] *, body[data-hdc-system] *::before, body[data-hdc-system] *::after {
     scroll-behavior: auto !important;

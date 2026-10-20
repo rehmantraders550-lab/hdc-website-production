@@ -8,7 +8,7 @@
   const desktop = matchMedia('(min-width: 64rem) and (hover: hover) and (pointer: fine)');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const connection = navigator.connection;
-  const speeds = { home: 0.9, surface: 0.88, finish: 0.92 };
+  const speeds = { home: 0.9, surface: 0.88, finish: 0.92, production: 0.9, editorial: 0.9, object: 0.94 };
   const source = '/assets/vendor/jarallax/3.1.0/jarallax.min.js';
   let core;
 
@@ -58,6 +58,7 @@
           type: 'scroll',
           speed: speeds[frame.dataset.hdcParallax],
           imgElement: image,
+          imgSize: getComputedStyle(image).objectFit,
           imgPosition: getComputedStyle(image).objectPosition,
           keepImg: false,
           zIndex: 0,
