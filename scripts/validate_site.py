@@ -16,6 +16,13 @@ TEXT_EXTS = {".html", ".css", ".js"}
 ASSET_EXTS = {".webp", ".jpg", ".jpeg", ".png", ".gif", ".svg", ".mp4", ".webm", ".css", ".js", ".html", ".ico"}
 MAX_ASSET_BYTES = 4 * 1024 * 1024
 
+# Jarallax's unchanged, hash-pinned core includes a one-pixel transparent GIF
+# for its CSS-background fallback. This is not a production content image.
+VENDOR_PIXEL_FILES = {
+    "assets/vendor/jarallax/3.1.0/jarallax.min.js": "a0f19bc766c317c29d5627005afdf1b49d20063e9f337ec7a1eb08c3461dbcdf",
+}
+TRANSPARENT_PIXEL = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+
 REF_RE = re.compile(r"""(?:src|href|poster)\s*=\s*["']([^"']+)["']""", re.I)
 JS_FETCH_RE = re.compile(r"""fetch\(\s*["']([^"']+)["']""", re.I)
 CSS_URL_RE = re.compile(r"""url\(\s*["']?([^"')]+)["']?\s*\)""", re.I)
@@ -80,7 +87,10 @@ for path in sorted(DEPLOY_ROOT.rglob("*")):
             dupes = sorted(k for k,v in counts.items() if v > 1)
             if dupes:
                 errors.append(f"{rel} -> duplicate id(s): {', '.join(dupes)}")
-        if "data:image/" in text:
+        image_check_text = text
+        if VENDOR_PIXEL_FILES.get(rel.as_posix()) == hashlib.sha256(path.read_bytes()).hexdigest():
+            image_check_text = image_check_text.replace(TRANSPARENT_PIXEL, "")
+        if "data:image/" in image_check_text:
             errors.append(f"{rel} -> embedded base64 image data is not allowed in production")
         if "localhost" in text or "127.0.0.1" in text:
             errors.append(f"{rel} -> contains localhost reference")

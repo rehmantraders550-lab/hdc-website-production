@@ -1,0 +1,82 @@
+/* HDC / Engineered Tactility: a single image-depth treatment for editorial heroes. */
+(() => {
+  'use strict';
+
+  const frames = [...document.querySelectorAll('[data-hdc-parallax]')];
+  if (!frames.length) return;
+
+  const desktop = matchMedia('(min-width: 64rem) and (hover: hover) and (pointer: fine)');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const connection = navigator.connection;
+  const speeds = { home: 0.9, surface: 0.88, finish: 0.92 };
+  const source = '/assets/vendor/jarallax/3.1.0/jarallax.min.js';
+  let core;
+
+  const eligible = () => desktop.matches && !reducedMotion.matches && !connection?.saveData && !document.hidden;
+
+  function loadCore() {
+    if (!core) {
+      core = new Promise(resolve => {
+        const script = document.createElement('script');
+        script.src = source;
+        script.async = true;
+        script.onload = () => resolve(typeof window.jarallax === 'function' ? window.jarallax : null);
+        script.onerror = () => resolve(null);
+        document.head.append(script);
+      });
+    }
+    return core;
+  }
+
+  function restore(frame) {
+    if (frame.jarallax) window.jarallax(frame, 'destroy');
+    delete frame.dataset.hdcParallaxActive;
+  }
+
+  async function reconcile() {
+    if (!eligible()) {
+      frames.forEach(restore);
+      return;
+    }
+
+    const jarallax = await loadCore();
+    // A media preference or visibility change can happen while the script is in flight.
+    if (!jarallax || !eligible()) return;
+
+    frames.forEach(frame => {
+      if (frame.jarallax) return;
+      const image = frame.querySelector('img');
+      if (!image || !Object.hasOwn(speeds, frame.dataset.hdcParallax)) return;
+      if (!image.complete) {
+        image.addEventListener('load', reconcile, { once: true });
+        return;
+      }
+      if (!image.naturalWidth) return;
+
+      try {
+        jarallax(frame, {
+          type: 'scroll',
+          speed: speeds[frame.dataset.hdcParallax],
+          imgElement: image,
+          imgPosition: getComputedStyle(image).objectPosition,
+          keepImg: false,
+          zIndex: 0,
+          containerClass: 'hdc-parallax-layer',
+          disableParallax: () => !eligible(),
+        });
+        if (frame.jarallax?.image?.$container) frame.dataset.hdcParallaxActive = '';
+      } catch {
+        // Static HTML is the complete experience if the optional enhancement fails.
+        restore(frame);
+      }
+    });
+  }
+
+  desktop.addEventListener('change', reconcile);
+  reducedMotion.addEventListener('change', reconcile);
+  connection?.addEventListener?.('change', reconcile);
+  document.addEventListener('visibilitychange', reconcile);
+  window.addEventListener('pagehide', () => frames.forEach(restore));
+  window.addEventListener('pageshow', reconcile);
+  reconcile();
+})();

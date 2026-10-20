@@ -15,7 +15,7 @@ export default defineConfig({
   },
   projects: [
     { name: 'chromium', use: { browserName: 'chromium' } },
-    { name: 'webkit', use: { browserName: 'webkit' }, grep: /390px|430px|mobile navigation|interior navigation/ },
+    { name: 'webkit', use: { browserName: 'webkit' }, grep: /390px|430px|mobile navigation|interior navigation|Jarallax/ },
   ],
   webServer: externalURL ? undefined : {
     command: 'python3 -m http.server 8876 --bind 127.0.0.1',
