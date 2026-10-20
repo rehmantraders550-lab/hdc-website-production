@@ -22,7 +22,7 @@ for (const width of [1024, 1440]) {
 async function assertStatic(page: Page) {
   const frame = page.locator('[data-hdc-parallax]');
   await expect(frame).toHaveCount(1);
-  await expect(frame.locator(':scope > img')).toHaveCount(1);
+  await expect(frame.locator(':scope > img, :scope > picture > img')).toHaveCount(1);
   await expect(frame.locator('img')).toBeVisible();
   await expect(frame.locator('.hdc-parallax-layer')).toHaveCount(0);
   await expect(frame).not.toHaveAttribute('data-hdc-parallax-active');
@@ -121,7 +121,7 @@ for (const route of lifecycleRoutes) {
     await page.goto(route);
     await assertStatic(page);
     expect(await page.locator('script[src*="/vendor/jarallax/"]').count()).toBe(0);
-    const original = await page.locator('[data-hdc-parallax] > img').getAttribute('src');
+    const original = await page.locator('[data-hdc-parallax] img').getAttribute('src');
     await page.evaluate(() => document.fonts.ready);
     const initialBox = await page.locator('[data-hdc-parallax]').boundingBox();
     await page.emulateMedia({ reducedMotion: 'no-preference' });
@@ -131,7 +131,7 @@ for (const route of lifecycleRoutes) {
     expect(activeBox!.y).toBeCloseTo(initialBox!.y, 0);
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await assertStatic(page);
-    await expect(page.locator('[data-hdc-parallax] > img')).toHaveAttribute('src', original!);
+    await expect(page.locator('[data-hdc-parallax] img')).toHaveAttribute('src', original!);
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await expect(page.locator('[data-hdc-parallax]')).toHaveAttribute('data-hdc-parallax-active', '');
     await page.setViewportSize({ width: 430, height: 932 });
@@ -182,7 +182,7 @@ test('Jarallax enhancement is optional when JavaScript is disabled', async ({ br
   const page = await context.newPage();
   for (const route of routes) {
     await page.goto(route);
-    await expect(page.locator('[data-hdc-parallax] > img')).toBeVisible();
+    await expect(page.locator('[data-hdc-parallax] img')).toBeVisible();
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('.hdc-parallax-layer')).toHaveCount(0);
   }

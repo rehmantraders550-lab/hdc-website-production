@@ -394,21 +394,21 @@ h3 { margin: 0; font-size: var(--type-title); font-weight: 500; letter-spacing: 
    text remains readable without suppressing material/process evidence.
    ========================================================================== */
 body[data-page="production"] {
-  --hdc-page-hero-image: url("../images/heroes/HDC-HERO-PRODUCTION-2026-09-26.webp");
+  --hdc-page-hero-image: url("/assets/images/renewal-20261020/flatbed.webp");
 }
 
 body[data-page="services"] {
-  --hdc-page-hero-image: url("../images/approved/HDC-IMG-HERO-SERVICE-ARCHITECTURE-01.webp");
+  --hdc-page-hero-image: url("/assets/images/renewal-20261020/hero.webp");
 }
 
 body[data-page="about"],
 body[data-page="applications"],
 body[data-page="work"] {
-  --hdc-page-hero-image: url("../images/heroes/HDC-HERO-PROJECT-2026-09-26.webp");
+  --hdc-page-hero-image: url("/assets/images/renewal-20261020/preflight.webp");
 }
 
 body[data-page=""] {
-  --hdc-page-hero-image: url("../images/heroes/HDC-HERO-PROJECT-2026-09-26.webp");
+  --hdc-page-hero-image: url("/assets/images/renewal-20261020/preflight.webp");
 }
 
 /* Homepage: material-first image, controlled left-side text scrim. */

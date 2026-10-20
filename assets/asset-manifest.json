@@ -20,7 +20,7 @@
       "height": 941,
       "aspect": "16:9",
       "git_blob_sha": "0c57724994075b2e4feb762e535e1532915d7daa",
-      "status": "fallback"
+      "status": "legacy"
     },
     {
       "slot": "homepage.production_evidence",
@@ -29,7 +29,7 @@
       "height": 800,
       "aspect": "1:1",
       "git_blob_sha": "358a114e79aef8f39ef604fd5cd671271d9d0d37",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "service.labels_decals",
@@ -38,7 +38,7 @@
       "height": 1024,
       "aspect": "3:2",
       "git_blob_sha": "6e464925a416224ee9f35f2e0fa8b8569dda6b8b",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "service.products_objects",
@@ -47,7 +47,7 @@
       "height": 1024,
       "aspect": "3:2",
       "git_blob_sha": "a5b4c23751556675c5527345a24c8f9a41153955",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "service.packaging_commercial",
@@ -56,7 +56,7 @@
       "height": 502,
       "aspect": "wide",
       "git_blob_sha": "3bf6cf74dd440211371eccfc3c88e26df0e7d835",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "service.large_format_environment",
@@ -65,7 +65,7 @@
       "height": 941,
       "aspect": "16:9",
       "git_blob_sha": "6237a890286a604b62dad689ef43d39b3dc14461",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.surface_lab",
@@ -74,7 +74,7 @@
       "height": 502,
       "aspect": "wide",
       "git_blob_sha": "8445f8afba6fd916aaab4cec8b4d6f4a6990f84b",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.material_macro",
@@ -83,7 +83,7 @@
       "height": 800,
       "aspect": "1:1",
       "git_blob_sha": "436d02c5b8f68af00a6189c4158e1ff8673423f7",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.registration",
@@ -92,7 +92,7 @@
       "height": 502,
       "aspect": "wide",
       "git_blob_sha": "535c4ed4f9f55704085877610a3bf4b93ea9eb3d",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "production.precision_process",
@@ -101,7 +101,7 @@
       "height": 800,
       "aspect": "1:1",
       "git_blob_sha": "5ae194aabde0e9d0f9b169928174e6665e2785c0",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "production.flatbed_pattern",
@@ -110,7 +110,7 @@
       "height": 698,
       "aspect": "wide",
       "git_blob_sha": "be5155f90cdfc5f3903d41bd5e180daaa669f837",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.colour_surface_detail",
@@ -119,7 +119,7 @@
       "height": 698,
       "aspect": "wide",
       "git_blob_sha": "408bf17661a59d8301b873819c2923de6566ffe5",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "production.uv_flatbed_process",
@@ -128,7 +128,7 @@
       "height": 800,
       "aspect": "1:1",
       "git_blob_sha": "b5d8a9e1b3b66d9c670cf58bcd7d63339b47181d",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.surface_family.glass",
@@ -137,7 +137,7 @@
       "height": 1402,
       "aspect": "4:5",
       "git_blob_sha": "868a75796a7c55d5af72f2418c4ab66f976af05a",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.surface_family.acrylic",
@@ -146,7 +146,7 @@
       "height": 1402,
       "aspect": "4:5",
       "git_blob_sha": "b8d442d4f1089ab5d8d1a6750fa3af16b1e1772c",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.surface_family.coated-metal",
@@ -155,7 +155,7 @@
       "height": 1402,
       "aspect": "4:5",
       "git_blob_sha": "8e0eda823b24a9fdfcc290d358f96fe98986e915",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.surface_family.acm",
@@ -164,7 +164,7 @@
       "height": 1402,
       "aspect": "4:5",
       "git_blob_sha": "384584556f774892a1c77df88ff82b51ade075b3",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.surface_family.pvc",
@@ -173,7 +173,7 @@
       "height": 1402,
       "aspect": "4:5",
       "git_blob_sha": "c261060ea9274bc7dd2b99548162efb3bad86fd8",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.surface_family.wood-board",
@@ -182,7 +182,7 @@
       "height": 1402,
       "aspect": "4:5",
       "git_blob_sha": "ccfe63321f37c5c065ecc707ffd49b64173bf7f7",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.surface_family.rigid-plastics",
@@ -191,7 +191,7 @@
       "height": 1402,
       "aspect": "4:5",
       "git_blob_sha": "9624ae65ee1209d6976f1ca876755e14cdc73080",
-      "status": "live"
+      "status": "legacy"
     },
     {
       "slot": "homepage.surface_family.unknown-surfaces",
@@ -200,6 +200,348 @@
       "height": 1402,
       "aspect": "4:5",
       "git_blob_sha": "a7fd0be827451f411cdaf781dc7e9628fb0a036f",
+      "status": "legacy"
+    },
+    {
+      "slot": "imagery.renewal.hero",
+      "path": "assets/images/renewal-20261020/hero.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "4f82d6db46ae43890e230f3371630c3378d7755a",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.labels",
+      "path": "assets/images/renewal-20261020/labels.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "9f92db663ff6441893377b80481a9a7e124a6391",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.objects",
+      "path": "assets/images/renewal-20261020/objects.webp",
+      "width": 1024,
+      "height": 1536,
+      "aspect": "portrait",
+      "git_blob_sha": "2e3b01ff4a761454361a310a21eb1bccdb9f5412",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.packaging",
+      "path": "assets/images/renewal-20261020/packaging.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "e2760607d3fcc49ba876ce104aaf4e93298698ea",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.environment",
+      "path": "assets/images/renewal-20261020/environment.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "02015240c0cb5c1877844659b6335082c8541473",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.studio",
+      "path": "assets/images/renewal-20261020/studio.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "35e8b234a91488f877c421f8b24aaccc6b083564",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.flatbed",
+      "path": "assets/images/renewal-20261020/flatbed.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "7e275a7c1893acb2ecd30bc568e25b4d88f7e1bf",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.offset",
+      "path": "assets/images/renewal-20261020/offset.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "6de23a1be4d1879634f41641c8b376ec5b196249",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.roll",
+      "path": "assets/images/renewal-20261020/roll.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "55cd5e13b1831a57ecf0b315c5a86599feb3d8f0",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.preflight",
+      "path": "assets/images/renewal-20261020/preflight.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "481b9a2b21cbbe25a1f1ec9f3cb4d98d3316b0d1",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.registration",
+      "path": "assets/images/renewal-20261020/registration.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "257213530b86878453e7378219cb5e418180056f",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.finishing",
+      "path": "assets/images/renewal-20261020/finishing.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "ec85cd4d4398ce68da1a484f0e67393d216c2c9a",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.glass",
+      "path": "assets/images/renewal-20261020/glass.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "d176d913fb756310e499fab058ee897708cff98b",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.acrylic",
+      "path": "assets/images/renewal-20261020/acrylic.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "6d5c86aa3abe040c773f0da7f6f693d9a1e547cb",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.metal",
+      "path": "assets/images/renewal-20261020/metal.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "d0a97ea093ac19bb8ab5da913eea23aa90778ead",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.wood",
+      "path": "assets/images/renewal-20261020/wood.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "4f1956d16fc095a00ffd60cbdbc0120823c3ed3d",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.paperboard",
+      "path": "assets/images/renewal-20261020/paperboard.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "2c988cfabdf08b266d359157da03ca52e12856e9",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.plastics",
+      "path": "assets/images/renewal-20261020/plastics.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "000a4630214927eb53c11d64fb6193933be11d6d",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.vinyl",
+      "path": "assets/images/renewal-20261020/vinyl.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "4be6bf884917dbc2bad0df9ee1e6c913fbfef6b9",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.unknown",
+      "path": "assets/images/renewal-20261020/unknown.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "c1a636b1da9d68410f26e6017a3f6cb8c5a2c426",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.colour",
+      "path": "assets/images/renewal-20261020/colour.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "f5fe381e98a3da845021833b7eb885ce69aaafaa",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.emboss",
+      "path": "assets/images/renewal-20261020/emboss.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "27ed100c4ca19e6b8a44a9904c93f61827a5399a",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.spotuv",
+      "path": "assets/images/renewal-20261020/spotuv.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "b6e747589c9a14289aec2a1f75fc050477a7861d",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.texture",
+      "path": "assets/images/renewal-20261020/texture.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "00cb82a6da56309b864ff67ef535ee0b77874991",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.cut",
+      "path": "assets/images/renewal-20261020/cut.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "0b104db69f5260da640acc7db13c6b5de21f03b2",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.stickers",
+      "path": "assets/images/renewal-20261020/stickers.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "cb43e9e86963cebce2c88837754c5bd2b5b6c4ae",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.labelroll",
+      "path": "assets/images/renewal-20261020/labelroll.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "415f558d7f2ca2f27bd6d374a743aec3fc10563d",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.brochures",
+      "path": "assets/images/renewal-20261020/brochures.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "b25e97f46f59bd326fcff9ab8ae2eed8a8317106",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.certificates",
+      "path": "assets/images/renewal-20261020/certificates.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "9f36124d0fa95f128147c474ac55dc5562683b0d",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.posters",
+      "path": "assets/images/renewal-20261020/posters.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "88f5da344c5c9f556ca15d990bd752d19929692f",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.wallvinyl",
+      "path": "assets/images/renewal-20261020/wallvinyl.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "acd1662ab3928070b5847a207ddfc136512c912c",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.transfer",
+      "path": "assets/images/renewal-20261020/transfer.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "a3b5f27aa558e6ca947160300602dc0f00af01e3",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.specimens",
+      "path": "assets/images/renewal-20261020/specimens.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "5726ddef8dfb2bba6bb31fc326dee129bfa4fbe3",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.acm",
+      "path": "assets/images/renewal-20261020/acm.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "a9c5160ff8ed38a81b352d556bb7ae37774322ee",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.notebook",
+      "path": "assets/images/renewal-20261020/notebook.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "a88beaf336af3eeabc2f7dc1b941114b740859ca",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.hero-mobile",
+      "path": "assets/images/renewal-20261020/hero-mobile.webp",
+      "width": 1024,
+      "height": 1536,
+      "aspect": "portrait",
+      "git_blob_sha": "08be5a9180ddf5624abf311f334e2fc1176e2135",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.glass-detail",
+      "path": "assets/images/renewal-20261020/glass-detail.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "38e4e4bb69486cdb53e50685e00d962683c2882d",
+      "status": "live"
+    },
+    {
+      "slot": "imagery.renewal.glass-transfer",
+      "path": "assets/images/renewal-20261020/glass-transfer.webp",
+      "width": 1536,
+      "height": 1024,
+      "aspect": "3:2",
+      "git_blob_sha": "9bd986eb2771f2a052250754b96bbfbd1cf67bda",
       "status": "live"
     }
   ],
