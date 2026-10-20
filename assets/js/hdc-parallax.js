@@ -5,14 +5,16 @@
   const frames = [...document.querySelectorAll('[data-hdc-parallax]')];
   if (!frames.length) return;
 
-  const desktop = matchMedia('(min-width: 64rem) and (hover: hover) and (pointer: fine)');
+  // Touch browsers can scroll normally; requiring hover/fine pointer excluded iPhones.
+  // Keep only a small-width cutoff for constrained layouts, then let Jarallax follow scroll.
+  const supportedViewport = matchMedia('(min-width: 22.5rem)');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const connection = navigator.connection;
   const speeds = { home: 0.9, surface: 0.88, finish: 0.92, production: 0.9, editorial: 0.9, object: 0.94 };
   const source = '/assets/vendor/jarallax/3.1.0/jarallax.min.js';
   let core;
 
-  const eligible = () => desktop.matches && !reducedMotion.matches && !connection?.saveData && !document.hidden;
+  const eligible = () => supportedViewport.matches && !reducedMotion.matches && !connection?.saveData && !document.hidden;
 
   function loadCore() {
     if (!core) {
@@ -73,7 +75,7 @@
     });
   }
 
-  desktop.addEventListener('change', reconcile);
+  supportedViewport.addEventListener('change', reconcile);
   reducedMotion.addEventListener('change', reconcile);
   connection?.addEventListener?.('change', reconcile);
   document.addEventListener('visibilitychange', reconcile);
