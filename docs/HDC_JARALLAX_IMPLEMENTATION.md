@@ -15,6 +15,8 @@ Add restrained visual depth to the hero introduction on all 21 current public pa
 
 Design variance 7/10, motion intensity 3/10, visual density 4/10, matching HDC design-system v2.
 
+The canonical homepage extends this image-depth treatment through every content section below the hero using a small, single-frame scroll controller. It moves only media and decorative marks in the Services, Campaign Directions, Products, Surfaces, Finishing, Process, About and closing CTA sections. Section copy, headings, controls and card geometry remain in normal flow. The campaign's existing sticky image swaps keep their GSAP transitions; the depth uses CSS's independent translate property so it does not replace those transforms. The supporting controller skips reduced-motion and Save-Data sessions, and the desktop and inner-page Jarallax behavior remains unchanged.
+
 - Graphite `#0B1013`, charcoal `#171D21`, paper `#F0EFED`, white `#FFFFFF`, teal `#036F86` and copper `#D89A63` keep their current roles.
 - Existing HDC Display remains the editorial voice; HDC Sans carries body copy and controls.
 - Preserve the existing left-aligned hero copy, full-bleed homepage composition, split Surface Lab composition and finishing specimen frame.
@@ -62,6 +64,23 @@ The Production hero uses balanced desktop text columns so “Production” remai
 7. Page-hide destroys instances; page-show reconciles eligibility for browser back/forward cache restoration.
 8. A missing/blocked core, unsupported enhancement or failed image leaves the existing static page available. Other website scripts do not depend on the enhancement.
 
+## Homepage section depth
+
+The canonical homepage uses `assets/js/hdc-homepage-depth.js` and `assets/css/hdc-homepage-depth.css` for the visual layers below the hero. A single passive scroll listener schedules one animation frame and updates only targets in or near the viewport. It does not clone or reparent image nodes. Full-frame media receives a restrained 1.16 scale for crop safety; product-card media uses a smaller offset because it occupies a fixed portion of each card.
+
+| Homepage section | Depth targets |
+| --- | --- |
+| Services | The four active service panel images |
+| Campaign Directions | The four existing sticky image layers; GSAP keeps the active-layer transition |
+| Products | Twelve generated product-card images |
+| Surfaces | Seven generated surface-card images |
+| Finishing | The specimen's gloss layer |
+| Process | Five process symbols |
+| About | The decorative HDC mark and stamp |
+| Closing CTA | The background HDC mark |
+
+At widths below 22.5rem, with reduced motion, with Save-Data enabled, or while the document is hidden, the controller removes its enhancement class and clears its inline offsets. The hero continues to use the Jarallax controller described above. These homepage-only targets are verified alongside the site-wide hero regression suite.
+
 ## Eligibility matrix
 
 | Condition | Result | Initial optional core request |
@@ -80,7 +99,7 @@ Save-Data is respected when the browser exposes it. No user-agent sniffing or de
 
 | Responsibility | Path |
 | --- | --- |
-| Eligibility, loading, presets, lifecycle | `assets/js/hdc-parallax.js` |
+| Eligibility, loading, presets, lifecycle | `assets/js/hdc-parallax.js` |\n| Homepage section depth | `assets/js/hdc-homepage-depth.js`, `assets/css/hdc-homepage-depth.css` |
 | Image layer and overlay stacking | `assets/css/hdc-parallax.css` |
 | Pinned core, source map, MIT license | `assets/vendor/jarallax/3.1.0/` |
 | Browser behavior and fallback checks | `tests/parallax.spec.ts` |
