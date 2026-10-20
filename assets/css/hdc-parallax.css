@@ -35,3 +35,5 @@ body[data-hdc-system="v2"] [data-hdc-parallax-active]::after {
 body[data-hdc-system="v2"] [data-hdc-parallax-active] figcaption {
   z-index: 2;
 }
+/* Responsive art direction stays in the same image frame when motion is static. */
+#home.hero .hero-image picture { display: contents; }

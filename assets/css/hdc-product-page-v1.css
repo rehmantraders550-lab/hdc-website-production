@@ -122,3 +122,11 @@
  .hdc-product-page .hdc-glass-gallery { grid-template-columns:minmax(0,1fr); gap:2rem; }
  .hdc-product-page .hdc-glass-gallery figure { max-width:28rem; width:100%; justify-self:center; }
 }
+/* Fresh static transfer study uses the existing production-media layout. */
+.hdc-glass-video__layout figure > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}

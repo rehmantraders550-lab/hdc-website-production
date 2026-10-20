@@ -1,26 +1,68 @@
 const families = ["All products", "Labels & Decals", "Products & Object Printing", "Packaging & Commercial Print", "Large Format & Brand Environments"];
 const surfaces = [
-  ["Glass", "Coating, curvature and handling shape the route.", "#0c8a9b", "/assets/images/illustrative-mockups/surface-glass.webp", "Generated illustrative macro mockup of a glass surface edge"],
-  ["Acrylic", "Thickness, edge quality and printable area matter.", "#96d9d8", "/assets/images/illustrative-mockups/surface-acrylic.webp", "Generated illustrative macro mockup of a clear acrylic edge"],
-  ["Metal", "Surface preparation and coating need review.", "#a7b4b5", "/assets/images/illustrative-mockups/surface-metal.webp", "Generated illustrative macro mockup of a brushed metal surface"],
-  ["Wood", "Grain, porosity and finish can change the result.", "#c58b57", "/assets/images/illustrative-mockups/surface-wood.webp", "Generated illustrative macro mockup of wood grain and board edge"],
-  ["Paper / Paperboard", "Stock, weight, folds and finishing work together.", "#bda88a", "/assets/images/illustrative-mockups/surface-paperboard.webp", "Generated illustrative macro mockup of paper and paperboard samples"],
-  ["Plastics", "Polymer type and surface energy vary by object.", "#50a7ae", "/assets/images/illustrative-mockups/surface-plastics.webp", "Generated illustrative macro mockup of a rigid plastic surface"],
-  ["Vinyl / Films", "Adhesive, substrate and exposure affect selection.", "#087b90", "/assets/images/illustrative-mockups/surface-vinyl-films.webp", "Generated illustrative macro mockup of a vinyl film surface"]
+  [
+    "Glass",
+    "Coating, curvature and handling shape the route.",
+    "#0c8a9b",
+    "/assets/images/renewal-20261020/glass.webp",
+    "Illustrative flat glass panel with a printed botanical graphic and transparent edges."
+  ],
+  [
+    "Acrylic",
+    "Thickness, edge quality and printable area matter.",
+    "#96d9d8",
+    "/assets/images/renewal-20261020/acrylic.webp",
+    "Illustrative clear acrylic sheets with geometric print and polished edges."
+  ],
+  [
+    "Metal",
+    "Surface preparation and coating need review.",
+    "#a7b4b5",
+    "/assets/images/renewal-20261020/metal.webp",
+    "Illustrative printed brushed aluminium and coated metal sample panels."
+  ],
+  [
+    "Wood",
+    "Grain, porosity and finish can change the result.",
+    "#c58b57",
+    "/assets/images/renewal-20261020/wood.webp",
+    "Illustrative geometric print on birch plywood with visible grain and layered edges."
+  ],
+  [
+    "Paper / Paperboard",
+    "Stock, weight, folds and finishing work together.",
+    "#bda88a",
+    "/assets/images/renewal-20261020/paperboard.webp",
+    "Illustrative paperboard specimens with cut edges, printed faces and a scored fold."
+  ],
+  [
+    "Plastics",
+    "Polymer type and surface energy vary by object.",
+    "#50a7ae",
+    "/assets/images/renewal-20261020/plastics.webp",
+    "Illustrative printed rigid plastic sheets and a rectangular faceplate."
+  ],
+  [
+    "Vinyl / Films",
+    "Adhesive, substrate and exposure affect selection.",
+    "#087b90",
+    "/assets/images/renewal-20261020/vinyl.webp",
+    "Illustrative printed self-adhesive vinyl with a peeled release liner."
+  ]
 ];
 const productImagery = {
-  1:{file:"/assets/images/illustrative-mockups/product-uv-dtf-transfer-application.webp",alt:"Generated illustrative mockup of a UV DTF decal transfer being applied by hand"},
-  2:{file:"/assets/images/illustrative-mockups/product-labels-roll-and-sample.webp",alt:"Generated illustrative mockup of printed labels on a roll beside a sample label"},
-  3:{file:"/assets/images/illustrative-mockups/product-custom-sticker-sheet-v2.webp",alt:"Custom kiss-cut sticker sheet with a selection of colorful printed designs"},
-  4:{file:"HDC-2026-glass.webp",alt:"Illustrative decorated glass bottle surface"},
-  5:{file:"HDC-2026-packaging.webp",alt:"Illustrative folded paperboard packaging"},
-  6:{file:"/previews/engineered-tactility-2026-10-07/assets/imagery/HDC-2026-objects.webp",alt:"Illustrative mockup of a branded reusable tumbler with a printed graphic"},
-  7:{file:"/assets/images/illustrative-mockups/product-brochures-catalogue.webp",alt:"Illustrative tri-fold brochure and printed brochure stack on a studio surface"},
-  8:{file:"/assets/images/illustrative-mockups/product-certificates-catalogue.webp",alt:"Textured printed certificates with embossed borders and copper foil details"},
-  9:{file:"/assets/images/illustrative-mockups/product-printed-bottles-catalogue.webp",alt:"Illustrative clear, amber and reusable bottles with custom printed graphics"},
-  10:{file:"HDC-2026-environments.webp",alt:"Illustrative installed printed panel in an architectural space"},
-  11:{file:"/assets/images/illustrative-mockups/product-posters-catalogue.webp",alt:"Illustrative large-format art posters displayed and rolled on a studio surface"},
-  12:{file:"/assets/images/illustrative-mockups/product-wall-vinyls-catalogue.webp",alt:"Illustrative UV printed wall vinyl installed as a feature wall in a bright interior"}
+  1:{"file":"/assets/images/renewal-20261020/transfer.webp","alt":"Illustrative UV DTF transfer film positioned above a flat ceramic tile."},
+  2:{"file":"/assets/images/renewal-20261020/labelroll.webp","alt":"Illustrative roll of printed adhesive labels with an unrolled liner strip."},
+  3:{"file":"/assets/images/renewal-20261020/stickers.webp","alt":"Illustrative custom kiss-cut sticker sheet with botanical and geometric decals."},
+  4:{"file":"/assets/images/renewal-20261020/glass-transfer.webp","alt":"Illustrative transfer-film and geometric decoration study on a flat glass panel."},
+  5:{"file":"/assets/images/renewal-20261020/packaging.webp","alt":"Illustrative printed carton, brochure and stationery arranged on a pale surface."},
+  6:{"file":"/assets/images/renewal-20261020/notebook.webp","alt":"Illustrative printed notebook, metal tag and acrylic corporate gift samples."},
+  7:{"file":"/assets/images/renewal-20261020/brochures.webp","alt":"Illustrative printed brochures and catalogues with visible paper and folded spines."},
+  8:{"file":"/assets/images/renewal-20261020/certificates.webp","alt":"Illustrative blank certificate prints with a copper border and abstract teal ornament."},
+  9:{"file":"/assets/images/renewal-20261020/transfer.webp","alt":"Illustrative UV DTF transfer film positioned above a flat ceramic tile."},
+  10:{"file":"/assets/images/renewal-20261020/environment.webp","alt":"Illustrative large printed wall graphic and freestanding display in an architectural interior."},
+  11:{"file":"/assets/images/renewal-20261020/posters.webp","alt":"Illustrative large-format botanical and geometric poster prints."},
+  12:{"file":"/assets/images/renewal-20261020/wallvinyl.webp","alt":"Illustrative botanical wall vinyl installed in a clean architectural interior."}
 };
 const productImageSrc = image => image.file.startsWith("/") ? image.file : `/previews/engineered-tactility-2026-10-07/assets/imagery/${image.file}`;
 const finishing = {
