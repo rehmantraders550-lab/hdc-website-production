@@ -118,6 +118,28 @@ for (const route of routes) {
   });
 }
 
+test('Jarallax keeps the mobile hero art direction while active and across breakpoint changes', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/index.html');
+  const frame = page.locator('[data-hdc-parallax]');
+  const image = frame.locator('img');
+  await expect(frame).toHaveAttribute('data-hdc-parallax-active', '');
+  await expect.poll(() => image.evaluate(img => new URL(img.currentSrc).pathname)).toContain('hero-mobile.webp');
+
+  const before = await image.boundingBox();
+  await page.evaluate(() => scrollTo({ top: 300, behavior: 'instant' }));
+  await expect.poll(async () => (await image.boundingBox())!.y).toBeLessThan(before!.y - 20);
+
+  await page.setViewportSize({ width: 1024, height: 844 });
+  await expect(frame).toHaveAttribute('data-hdc-parallax-active', '');
+  await expect.poll(() => image.evaluate(img => new URL(img.currentSrc).pathname)).toContain('hero.webp');
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(frame).toHaveAttribute('data-hdc-parallax-active', '');
+  await expect.poll(() => image.evaluate(img => new URL(img.currentSrc).pathname)).toContain('hero-mobile.webp');
+});
+
 for (const route of lifecycleRoutes) {
   test(`Jarallax ${route} respects reduced motion at startup and restores the original image when preferences or width change`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
