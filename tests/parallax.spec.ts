@@ -140,13 +140,13 @@ test('Jarallax keeps the mobile hero art direction while active and across break
   await expect.poll(() => image.evaluate(img => new URL(img.currentSrc).pathname)).toContain('hero-mobile.webp');
 });
 
-test('homepage section depth reaches every visual section without moving copy or layout', async ({ page }) => {
+test('Jarallax homepage section depth reaches every visual section without moving copy or layout', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/index.html');
   await expect(page.locator('html')).toHaveClass(/hdc-section-depth-enabled/);
 
-  const sectionTargets = [
+  const sectionTargets: Array<[string, number]> = [
     ['#services [data-hdc-depth]', 4],
     ['[data-campaign-match] [data-hdc-depth]', 4],
     ['#products [data-hdc-depth="catalogue"]', 12],
@@ -157,7 +157,29 @@ test('homepage section depth reaches every visual section without moving copy or
     ['.closing-cta [data-hdc-depth]', 1],
   ];
   for (const [selector, count] of sectionTargets) {
-    await expect(page.locator(selector)).toHaveCount(count as number);
+    await expect(page.locator(selector)).toHaveCount(count);
+  }
+
+  const sectionVisuals = [
+    '#services [data-hdc-depth]',
+    '[data-campaign-match] [data-hdc-depth]',
+    '#products [data-hdc-depth="catalogue"]',
+    '#surfaces [data-hdc-depth]',
+    '#finishing [data-hdc-depth]',
+    '#process [data-hdc-depth]',
+    '#about [data-hdc-depth]',
+    '.closing-cta [data-hdc-depth]',
+  ];
+  for (const selector of sectionVisuals) {
+    const visual = page.locator(selector).first();
+    await visual.scrollIntoViewIfNeeded();
+    await expect(visual).toHaveAttribute('data-hdc-depth-active', '');
+    const before = await visual.evaluate(el => Number.parseFloat(el.style.getPropertyValue('--hdc-depth-y')) || 0);
+    await page.evaluate(() => scrollBy({ top: 100, behavior: 'instant' }));
+    await expect.poll(async () => {
+      const after = await visual.evaluate(el => Number.parseFloat(el.style.getPropertyValue('--hdc-depth-y')) || 0);
+      return Math.abs(after - before);
+    }).toBeGreaterThan(1);
   }
 
   const image = page.locator('#services .service-visual img').first();
