@@ -55,10 +55,10 @@ The Production hero uses balanced desktop text columns so “Production” remai
 
 1. Static HTML and existing CSS render the complete hero first, with existing source URLs, alt text, loading priority and dimensions.
 2. All 21 current pages load the same small HDC controller and scoped adapter CSS; each page has exactly one opted-in hero frame.
-3. The controller checks width of at least 64rem, fine pointer, hover support, reduced-motion preference, data-saving preference and document visibility.
+3. The controller checks a minimum width of 22.5rem, reduced-motion preference, data-saving preference and document visibility. This enables gentle image depth on touch devices while retaining a static fallback on very narrow screens.
 4. Eligible sessions load the local, versioned Jarallax core once. No CDN, jQuery, video extension, React integration, npm runtime package or new network provider is required.
 5. Split-hero pages reserve the existing 3:2, 3:4 or 16:9 image geometry in a dedicated frame, while the caption stays outside it. After the image loads successfully, Jarallax moves that same image node into its generated layer. Its existing object-fit and object-position are preserved, including contain on whole-object photographs. No duplicate image or duplicate alt text is introduced.
-6. A narrower layout, reduced-motion request, connection preference change or hidden page destroys the instance and restores the original image and inline styles. Eligible sessions can initialize again.
+6. A narrower layout, reduced-motion request, connection preference change or hidden page destroys the instance and restores the original image and inline styles. When Jarallax detaches an image from a responsive `<picture>`, the controller pins the already-selected source for the duration of enhancement and restores the authored source on teardown. Crossing the 64rem mobile art-direction breakpoint restarts the enhancement so the correct crop is selected. Eligible sessions can initialize again.
 7. Page-hide destroys instances; page-show reconciles eligibility for browser back/forward cache restoration.
 8. A missing/blocked core, unsupported enhancement or failed image leaves the existing static page available. Other website scripts do not depend on the enhancement.
 
@@ -66,9 +66,9 @@ The Production hero uses balanced desktop text columns so “Production” remai
 
 | Condition | Result | Initial optional core request |
 | --- | --- | --- |
-| Desktop, at least 64rem, hover/fine pointer, normal motion | Image-only depth | Yes, one same-origin request |
-| Phone, narrow tablet or window below 64rem | Existing static imagery | None |
-| Large touch device with coarse pointer | Existing static imagery | None |
+| Viewport at least 22.5rem, normal motion | Image-only depth, including touch devices | Yes, one same-origin request |
+| Viewport below 22.5rem | Existing static imagery | None |
+
 | Reduced motion | Existing static imagery | None |
 | Save-Data preference exposed as enabled | Existing static imagery | None |
 | JavaScript disabled | Existing static imagery | None |
@@ -103,7 +103,7 @@ API and license reference: <https://github.com/nk-o/jarallax>. The supplied READ
 
 - Preserve the exact text, headings, menu items, destinations, product data and image references on all 21 current pages.
 - Verify actual differential image travel, stable heading/document geometry, clipped image coverage and absence of horizontal page overflow in Chromium and WebKit.
-- Verify static phone layouts and absence of an optional core download on mobile, reduced-motion and data-saving sessions.
+- Verify static layouts below 22.5rem and absence of an optional core download on reduced-motion and data-saving sessions; verify correct mobile art direction and restored image sources across breakpoints.
 - Verify preference toggles, desktop/phone resize, script failure and JavaScript-disabled hero rendering.
 - Re-run the existing responsive design-system suite, token drift check, static asset validator and Wrangler dry run.
 - Publish a branch preview and PR. Production promotion follows the user’s visual validation.
