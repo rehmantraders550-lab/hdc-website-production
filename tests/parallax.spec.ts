@@ -175,7 +175,11 @@ test('Jarallax homepage section depth reaches every visual section without movin
     await visual.scrollIntoViewIfNeeded();
     await expect(visual).toHaveAttribute('data-hdc-depth-active', '');
     const before = await visual.evaluate(el => Number.parseFloat(el.style.getPropertyValue('--hdc-depth-y')) || 0);
-    await page.evaluate(() => scrollBy({ top: 100, behavior: 'instant' }));
+    const scrollStep = await page.evaluate(() => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      return scrollY > max / 2 ? -100 : 100;
+    });
+    await page.evaluate(step => scrollBy({ top: step, behavior: 'instant' }), scrollStep);
     await expect.poll(async () => {
       const after = await visual.evaluate(el => Number.parseFloat(el.style.getPropertyValue('--hdc-depth-y')) || 0);
       return Math.abs(after - before);
