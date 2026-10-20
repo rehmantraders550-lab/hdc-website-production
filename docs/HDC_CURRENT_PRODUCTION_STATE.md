@@ -11,9 +11,12 @@ Hadi Digital Craft is a specialised commercial printing-services business. HDC d
 
 Core service taxonomy (dedicated service page and product-register filter):
 - Labels & Decals
+- Products & Object Printing
+- Packaging & Commercial Print
+- Large Format & Brand Environments
 
 Homepage service-panel display label:
-- Labels & Stickers (display copy only; the product family filter and dedicated Labels & Decals page retain their existing name)
+- First card: Labels & Stickers (display copy only; the product family filter and dedicated Labels & Decals page retain their existing name)
 - Products & Object Printing
 - Packaging & Commercial Print
 - Large Format & Brand Environments
