@@ -10,11 +10,12 @@
   "library_snapshot": {
     "source_file": "docs/releases/HDC_RELEASE_HANDOVER_2026-10-22.md",
     "intended_library_path": "/hadi digital craft website/HDC_RELEASE_HANDOVER_2026-10-22.md",
-    "library_file_id": null,
-    "publication_state": "UPLOAD_PENDING",
+    "library_file_id": "libfile_2063dc1bec00819195f05848bc1d7c5c",
+    "publication_state": "PUBLISHED_READBACK_VERIFIED",
     "last_material_source_commit": "39163b7177734b405fee834bc581f28306ed6a42",
     "last_audited_head": "93e3275dba85a121bd1cbaec6bb949ce03ae6cab",
-    "verification": "No Library upload/readback claimed. Confirm separately before marking published."
+    "verification": "ChatGPT Library upload succeeded; files.read verified 73 lines, beginning with the canonical handover title. GitHub release handover mirrored to the same content.",
+    "content_sha256": "1e712d5257d4917b5b39b4f94e7f585e0817452853bf936a43836d187f7be09f"
   },
   "deployment_evidence": {
     "integration_guard": "https://github.com/rehmantraders550-lab/hdc-website-production/actions/runs/39770861097",
