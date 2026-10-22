@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "project": "Hadi Digital Craft website",
+  "authority": {
+    "repository": "rehmantraders550-lab/hdc-website-production",
+    "branch": "main"
+  },
+  "last_reconciled_at_utc": "2026-10-22T12:05:00Z",
+  "audited_git_head": "93e3275dba85a121bd1cbaec6bb949ce03ae6cab",
+  "library_snapshot": {
+    "source_file": "docs/releases/HDC_RELEASE_HANDOVER_2026-10-22.md",
+    "intended_library_path": "/hadi digital craft website/HDC_RELEASE_HANDOVER_2026-10-22.md",
+    "library_file_id": null,
+    "publication_state": "UPLOAD_PENDING",
+    "last_material_source_commit": "39163b7177734b405fee834bc581f28306ed6a42",
+    "last_audited_head": "93e3275dba85a121bd1cbaec6bb949ce03ae6cab",
+    "verification": "No Library upload/readback claimed. Confirm separately before marking published."
+  },
+  "deployment_evidence": {
+    "integration_guard": "https://github.com/rehmantraders550-lab/hdc-website-production/actions/runs/39770861097",
+    "conclusion": "success",
+    "worker_smoke": "passed",
+    "custom_domain_visual_check": "not_checked_here"
+  },
+  "enforcement": {
+    "pr_release_note_check": "proposed; not active until this PR merged",
+    "on_main_source_drift": "warning, not an automatic Library upload",
+    "automatic_library_upload": false
+  }
+}
