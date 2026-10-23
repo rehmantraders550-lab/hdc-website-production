@@ -97,3 +97,54 @@ test('interior navigation, form sizing, keyboard focus and reduced motion', asyn
   expect(await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(true);
   expect(await page.locator('.button').first().evaluate(el => getComputedStyle(el).transitionDuration)).toBe('0s');
 });
+
+
+// HDC-HOME-CHANGE-01: header CTA removal must not affect the quote route;
+// the headline is visually bottom-aligned while hero actions remain separate.
+for (const width of [320, 375, 390, 430, 768, 900, 1440]) {
+  test(`HDC-HOME-CHANGE-01 homepage geometry at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    await page.evaluate(() => document.fonts.ready);
+    await expect(page.locator('header.site-header .header-quote')).toHaveCount(0);
+    await expect(page.locator('#home .hero-actions a')).toHaveCount(2);
+
+    const boxes = await page.evaluate(() => {
+      const hero = document.querySelector('#home')!.getBoundingClientRect();
+      const heading = document.querySelector('#home .hero-copy h1')!.getBoundingClientRect();
+      const actions = document.querySelector('#home .hero-actions')!.getBoundingClientRect();
+      const menu = document.querySelector('header.site-header .menu-toggle')!.getBoundingClientRect();
+      return {
+        heroBottom: hero.bottom,
+        heroTop: hero.top,
+        heroHeight: hero.height,
+        headingTop: heading.top,
+        headingBottom: heading.bottom,
+        actionsBottom: actions.bottom,
+        menuRight: menu.right,
+        viewport: document.documentElement.clientWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+      };
+    });
+    expect(boxes.heroBottom - boxes.headingBottom, JSON.stringify(boxes)).toBeGreaterThanOrEqual(-1);
+    expect(boxes.heroBottom - boxes.headingBottom, JSON.stringify(boxes)).toBeLessThan(145);
+    expect(boxes.headingTop, JSON.stringify(boxes)).toBeGreaterThan(boxes.heroTop + boxes.heroHeight * 0.32);
+    expect(boxes.actionsBottom, JSON.stringify(boxes)).toBeLessThan(boxes.headingTop - 8);
+    expect(boxes.scrollWidth, JSON.stringify(boxes)).toBeLessThanOrEqual(boxes.viewport + 1);
+    if (width <= 900) expect(boxes.menuRight).toBeLessThanOrEqual(boxes.viewport + 1);
+  });
+}
+
+test('HDC-HOME-CHANGE-01 quote route and sticky mobile header survive', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await expect(page.locator('header.site-header .header-quote')).toHaveCount(0);
+  await page.locator('.menu-toggle').click();
+  await expect(page.locator('#main-nav')).toBeVisible();
+  await page.locator('.menu-toggle').click();
+  await page.evaluate(() => window.scrollTo(0, 560));
+  const top = await page.locator('header.site-header').evaluate(el => el.getBoundingClientRect().top);
+  expect(Math.abs(top)).toBeLessThanOrEqual(1);
+  const quoteResponse = await page.request.get('/request-a-quote.html');
+  expect(quoteResponse.status()).toBe(200);
+});

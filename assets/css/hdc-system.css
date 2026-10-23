@@ -236,3 +236,38 @@ body[data-hdc-system] .section-index { margin-bottom: var(--hdc-space-heading-ga
     transition: none !important;
   }
 }
+
+/* HDC-HOME-CHANGE-01: homepage-only header reduction and bottom heading.
+   Preserve semantic heading-first DOM order and keep CTAs in their own upper field. */
+body[data-hdc-system="v2"] #home.hero .hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(1.75rem, 4vw, 3rem);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+body[data-hdc-system="v2"] #home.hero .hero-copy > .hero-actions {
+  order: -1;
+  margin-top: 0;
+}
+body[data-hdc-system="v2"] #home.hero .hero-copy > h1 {
+  order: 0;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+@media (max-width: 480px) {
+  /* Existing mobile header CSS reserves a quote column: restore a two-item grid. */
+  body[data-hdc-system="v2"] > .site-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--hdc-control-target);
+  }
+  body[data-hdc-system="v2"] > .site-header .brand {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  body[data-hdc-system="v2"] > .site-header .menu-toggle {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+}
