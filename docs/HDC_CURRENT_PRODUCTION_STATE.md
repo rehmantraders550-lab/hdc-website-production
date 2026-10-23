@@ -1,9 +1,19 @@
 # HDC Current Production State
 
-**Last reconciled:** 2026-10-20
+**Last reconciled:** 2026-10-22
 **Platform:** Cloudflare Workers Static Assets
 **Repository:** `rehmantraders550-lab/hdc-website-production`
 **Branch:** `main`
+
+## Current verified source and latest release · 2026-10-22
+
+- **GitHub main:** `93e3275dba85a121bd1cbaec6bb949ce03ae6cab` (merged PR [#110](https://github.com/rehmantraders550-lab/hdc-website-production/pull/110)).
+- **Latest customer-facing code commit:** `39163b7177734b405fee834bc581f28306ed6a42` (PR [#109](https://github.com/rehmantraders550-lab/hdc-website-production/pull/109)).
+- **CI and Worker smoke:** [main run 39770861097](https://github.com/rehmantraders550-lab/hdc-website-production/actions/runs/39770861097) succeeded across static validation, responsive tests, and Worker endpoint smoke. Independent custom-domain visual audit for this commit not documented.
+- **Current homepage:** Hero → Services → Campaign Matcher → Products → Surfaces → Finishing → Process → About → CTA, with restrained section-level image depth and responsive/mobile crop preservation. Actual DOM section/group nesting remains authoritative.
+- **Contact rule:** the former floating WhatsApp bubble was removed in PR #105; WhatsApp links in explicit enquiry/contact flows remain.
+- **Governance:** incremental authorized spend PKR 0; [zero-cost protocol](HDC_ZERO_COST_GOVERNANCE_2026-10-22.md) is merged. No paid API/billing exception authorized.
+- **Release details:** [22 October handover](releases/HDC_RELEASE_HANDOVER_2026-10-22.md), [RecordSync manifest](HDC_RECORDSYNC_MANIFEST.json); older PR #100 paragraphs below are historical snapshots.
 
 ## Locked business position
 
@@ -62,7 +72,7 @@ For selected work, use client names / logos / project imagery only where publish
 - Email: REHMANTRADERS550@GMAIL.COM
 - Location: Opp. Nayyer Mall, G.T. Road, Gujrat
 
-## Recent production change — 2026-10-20
+## Historical production change — 2026-10-20 (PR #100)
 
 - PR [#100](https://github.com/rehmantraders550-lab/hdc-website-production/pull/100) merged to `main` as merge commit `37fa654f8ee5ded3e6236478abe1f7e3d4c3c3c3`.
 - Moved the complete `#services` section directly after the homepage hero and renamed its first panel to **Labels & Stickers**.

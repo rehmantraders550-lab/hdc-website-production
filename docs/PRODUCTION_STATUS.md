@@ -1,5 +1,13 @@
 # HDC Production Status
 
+## Reconciled source and production status · 2026-10-22
+
+- GitHub `main` through [PR #110](https://github.com/rehmantraders550-lab/hdc-website-production/pull/110), SHA `93e3275dba85a121bd1cbaec6bb949ce03ae6cab`.
+- [Main-branch HDC Integration Guard](https://github.com/rehmantraders550-lab/hdc-website-production/actions/runs/39770861097): all jobs succeeded, including Worker endpoint smoke tests. Separate final custom-domain visual QA unverified here.
+- New since older Library handover: guided Campaign Matcher (#104), floating WhatsApp removal (#105), marked homepage text refinement (#106–107), Jarallax mobile art direction (#108), site-wide homepage depth (#109), zero-cost policy (#110).
+- Authoritative details: [HDC release handover](releases/HDC_RELEASE_HANDOVER_2026-10-22.md). Library publication status remains separately traceable; an unverified upload is not a successful mirror.
+- The October 20 and September 2 sections below are **historical**, retained without deletion.
+
 ## Current production update — 2026-10-20
 
 - Production platform: Cloudflare Workers Static Assets (`hdc-website-production`); `hadidigitalcraft.com` serves the production site.

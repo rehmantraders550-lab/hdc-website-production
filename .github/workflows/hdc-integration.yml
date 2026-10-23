@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 concurrency:
   group: hdc-integration-${{ github.ref }}
@@ -22,7 +23,7 @@ jobs:
       - name: Checkout exact commit
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -34,6 +35,14 @@ jobs:
 
       - name: Validate local references, IDs and asset integrity
         run: python scripts/validate_site.py
+
+      - name: Check release-note coverage on PRs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/check_recordsync.py --mode pr-check
+
+      - name: Check handover source freshness
+        run: python scripts/check_recordsync.py --mode audit
 
       - name: Set up Node.js for Wrangler validation
         uses: actions/setup-node@v4

@@ -1,10 +1,18 @@
 # Cloudflare Website Pipeline
 
-**Status:** Production pipeline operational; last reconciled 2026-10-20.  
+**Status:** Production pipeline operational; last reconciled 2026-10-22.  
 **Repository:** `rehmantraders550-lab/hdc-website-production`  
 **Production Worker:** `hdc-website-production`  
 **Public site:** [hadidigitalcraft.com](https://hadidigitalcraft.com)  
 **Worker URL:** [hdc-website-production.rehmantraders550.workers.dev](https://hdc-website-production.rehmantraders550.workers.dev)
+
+## Most recent independently checked main-branch release · 2026-10-22
+
+- **Source head:** [`93e3275dba85a121bd1cbaec6bb949ce03ae6cab`](https://github.com/rehmantraders550-lab/hdc-website-production/commit/93e3275dba85a121bd1cbaec6bb949ce03ae6cab), PR #110, documentation/PR template only.
+- **Verification:** [HDC Integration Guard run 39770861097](https://github.com/rehmantraders550-lab/hdc-website-production/actions/runs/39770861097) succeeded, including Worker smoke on `workers.dev`.
+- **Last user-facing feature change:** PR #109 commit `39163b7177734b405fee834bc581f28306ed6a42`. See [detailed reconciled handover](releases/HDC_RELEASE_HANDOVER_2026-10-22.md).
+- **Custom-domain visual QA and exact deployment ID for #110:** not independently verified in this audit.
+- **RecordSync rollout:** manifest and PR candidate gate are being introduced in an isolated branch. Merging does not on its own certify Library publication. Preserve earlier release records below as historical.
 
 ## Source of truth and production target
 
@@ -26,7 +34,7 @@ The public site deployment is static. The separate HDC backend candidate and any
 
 GitHub Actions validates the candidate; Cloudflare performs the production deployment. A branch push alone does not publish the production site.
 
-## Latest verified release
+## Historical verified release — PR #100
 
 - **PR:** [#100 — Move homepage services below hero](https://github.com/rehmantraders550-lab/hdc-website-production/pull/100)
 - **Merge commit:** `37fa654f8ee5ded3e6236478abe1f7e3d4c3c3c3`
